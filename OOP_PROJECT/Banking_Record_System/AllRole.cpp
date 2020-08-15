@@ -105,10 +105,12 @@ OPTION:
 	cout << "\n==========LOGIN==========\n";
 	cout << "-> Username: ";
 	getline(cin, user);
+	pass.clear();
 	cout << "-> Password: ";
-	getline(cin, pass);
+	getPassword(pass);
+	pass2.clear();
 	cout << "-> Password level 2 (enter if don't have): ";
-	getline(cin, pass2);
+	getPassword(pass2);
 	cout << "\n=========================\n";
 
 	role = this->_account.login(user, pass, pass2);
@@ -123,3 +125,64 @@ OPTION:
 	cout << "Login successfully.\n";
 	return;
 }
+<<<<<<< Updated upstream
+=======
+
+string Menu::getPassword(string& password)
+{
+	char temp = 0;
+	cout << endl;
+	while (true)
+	{
+		temp = _getch();
+		if (temp == 13)
+			break;
+		if ((int)temp == 8) {
+			password = password.substr(0, password.length() - 1);
+		}
+		else {
+			password = password + temp;
+		}
+		cout << '\r';
+		for (int i = 0; i <= password.length(); i++)
+			cout << ' ';
+		cout << '\r';
+		for (int i = 0; i < password.length(); i++)
+			cout << '*';
+	}
+	cout << endl;
+	return password;
+}
+
+Request::Request()
+{
+	this->_detail = "";
+	this->_approvalStatus = false;
+}
+
+Request::Request(const string& detail, bool status)
+{
+	this->_detail = detail;
+	this->_approvalStatus = status;
+}
+
+string Request::viewRequest()
+{
+	return this->_detail;
+}
+
+void Request::approveRequest()
+{
+	this->_approvalStatus = true;
+}
+
+void Request::denyRequest()
+{
+	this->_approvalStatus = false;
+}
+
+bool Request::approvalStatus()
+{
+	return this->_approvalStatus;
+}
+>>>>>>> Stashed changes
