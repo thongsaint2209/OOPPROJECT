@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -140,10 +140,26 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AllRole.h" />
+    <ClInclude Include="BankAccount.h" />
+    <ClInclude Include="Customer.h" />
+    <ClInclude Include="Director.h" />
+    <ClInclude Include="Employee.h" />
+    <ClInclude Include="Header.h" />
+    <ClInclude Include="MyStaicLib\Date.h" />
+    <ClInclude Include="MyStaicLib\Mylib\Tokenizer\Tokenizer.h" />
+    <ClInclude Include="MyStaicLib\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllRole.cpp" />
+    <ClCompile Include="BankAccount.cpp" />
+    <ClCompile Include="Customer.cpp" />
+    <ClCompile Include="Director.cpp" />
+    <ClCompile Include="Employee.cpp" />
+    <ClCompile Include="Header.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="MyStaicLib\MyStaticLib.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
