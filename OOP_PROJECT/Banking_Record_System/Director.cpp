@@ -156,7 +156,8 @@ void DirectorMenu::editRequest()
 	{
 		f << this->_requestList[i].viewRequest() << endl;
 		f << this->_requestList[i].approvalStatus() << endl;
-		f << endl;
+		if (i != this->_requestList.size() - 1)
+			f << endl;
 	}
 
 	f.close();
