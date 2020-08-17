@@ -140,14 +140,24 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AllRole.h" />
+    <ClInclude Include="BankAccount.h" />
+    <ClInclude Include="Customer.h" />
     <ClInclude Include="Director.h" />
+    <ClInclude Include="Employee.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="MyStaicLib\Date.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllRole.cpp" />
+    <ClCompile Include="BankAccount.cpp" />
+    <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Director.cpp" />
+    <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="MyStaicLib\MyStaticLib.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

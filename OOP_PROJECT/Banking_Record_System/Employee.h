@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _EMPLOYEE_H_
+#define _EMPLOYEE_H_
+
 #include".\\MyStaicLib\Date.h"
 #include"BankAccount.h"
 
@@ -22,4 +24,6 @@ public:
 	void TransactionHistory();
 
 };
+
+#endif
 
