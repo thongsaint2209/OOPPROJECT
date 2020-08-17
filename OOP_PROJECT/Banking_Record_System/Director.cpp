@@ -11,7 +11,6 @@ DirectorMenu::DirectorMenu(Account acc)
 
 	string buffer1 = "";
 	string buffer2 = "";
-	bool buffer3 = false;
 
 	while (!f.eof())
 	{
@@ -19,11 +18,9 @@ DirectorMenu::DirectorMenu(Account acc)
 		getline(f, buffer2, '\n');
 		f.ignore(1, '\n');
 
-		if (buffer2 == "0")
-			buffer3 = false;
-		else buffer3 = true;
+		int status = stoi(buffer2);
 
-		Request temp(buffer1, buffer3);
+		Request temp(buffer1, status);
 		this->_requestList.push_back(temp);
 	}
 
@@ -39,9 +36,12 @@ void DirectorMenu::viewRequest()
 	{
 		cout << "Request #" << i + 1 << endl;
 		cout << this->_requestList[i].viewRequest() << endl;
-		if (this->_requestList[i].approvalStatus())
+		if (this->_requestList[i].approvalStatus() == -1)
+			cout << "Denied\n";
+		if (this->_requestList[i].approvalStatus() == 0)
+			cout << "Pending\n";
+		if (this->_requestList[i].approvalStatus() == 1)
 			cout << "Approved\n";
-		else cout << "Denied\n";
 		cout << endl;
 	}
 }

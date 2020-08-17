@@ -114,10 +114,10 @@ void Account::logout()
 Request::Request()
 {
 	this->_detail = "";
-	this->_approvalStatus = false;
+	this->_approvalStatus = 0;
 }
 
-Request::Request(const string& detail, bool status)
+Request::Request(const string& detail, int status)
 {
 	this->_detail = detail;
 	this->_approvalStatus = status;
@@ -138,7 +138,7 @@ void Request::denyRequest()
 	this->_approvalStatus = false;
 }
 
-bool Request::approvalStatus()
+int Request::approvalStatus()
 {
 	return this->_approvalStatus;
 }

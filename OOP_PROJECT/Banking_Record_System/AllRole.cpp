@@ -1,5 +1,16 @@
 #include "AllRole.h"
 
+void Menu::redirect()
+{
+	if (this->_role == 1)
+	{
+		DirectorMenu m(this->_account);
+
+		m.viewRequest();
+	}
+	//continue...
+}
+
 void Menu::loginMenu()
 {
 	string user = "";
@@ -14,7 +25,7 @@ OPTION:
 		return;
 	}
 	cout << "\n==========LOGIN==========\n";
-	cout << "-> Username: ";
+	cout << "-> Username: \n";
 	getline(cin, user);
 	pass.clear();
 	cout << "-> Password: ";
