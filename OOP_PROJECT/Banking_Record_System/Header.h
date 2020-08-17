@@ -5,6 +5,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include <conio.h>
 
 using namespace std;
 
@@ -12,14 +13,20 @@ class Request
 {
 private:
 	string _detail;
-	bool _approvalStatus;
+	/*
+	Status:
+		-1: Denied
+		 0: Pending
+		 1: Approved
+	*/
+	int _approvalStatus;
 public:
 	Request();
-	Request(const string& detail, bool status);
+	Request(const string& detail, int status);
 	string viewRequest();
 	void approveRequest();
 	void denyRequest();
-	bool approvalStatus();
+	int approvalStatus();
 };
 
 class Account

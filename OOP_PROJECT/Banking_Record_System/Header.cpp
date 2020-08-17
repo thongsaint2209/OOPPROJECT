@@ -61,7 +61,7 @@ int Account::login(const string& username, const string& password, const string&
 		getline(f, buffer2, '\n');
 		f.ignore(1, '\n');
 
-		if (buffer1 == this->_username && buffer2 == this->_password)
+		if (buffer1 == this->_username && buffer2 == this->_password && this->_passwordLv2 == "")
 		{
 			f.close();
 			return 2;
@@ -82,7 +82,7 @@ int Account::login(const string& username, const string& password, const string&
 		getline(f, buffer2, '\n');
 		f.ignore(1, '\n');
 
-		if (buffer1 == this->_username && buffer2 == this->_password)
+		if (buffer1 == this->_username && buffer2 == this->_password && this->_passwordLv2 == "")
 		{
 			f.close();
 			return 3;
@@ -109,4 +109,36 @@ void Account::logout()
 	this->_username = "";
 	this->_password = "";
 	this->_passwordLv2 = "";
+}
+
+Request::Request()
+{
+	this->_detail = "";
+	this->_approvalStatus = 0;
+}
+
+Request::Request(const string& detail, int status)
+{
+	this->_detail = detail;
+	this->_approvalStatus = status;
+}
+
+string Request::viewRequest()
+{
+	return this->_detail;
+}
+
+void Request::approveRequest()
+{
+	this->_approvalStatus = 1;
+}
+
+void Request::denyRequest()
+{
+	this->_approvalStatus = -1;
+}
+
+int Request::approvalStatus()
+{
+	return this->_approvalStatus;
 }
