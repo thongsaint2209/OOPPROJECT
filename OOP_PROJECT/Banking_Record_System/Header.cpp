@@ -142,3 +142,10 @@ int Request::approvalStatus()
 {
 	return this->_approvalStatus;
 }
+
+Profile::Profile()
+{
+	this->_fullname = "";
+	this->_ID = "";
+	this->_merit = 0;
+}

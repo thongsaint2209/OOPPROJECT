@@ -29,6 +29,17 @@ public:
 	int approvalStatus();
 };
 
+class Profile
+{
+private:
+	string _fullname;
+	string _ID;
+	//Date _DoB;
+	int _merit; //Max = 100
+public:
+	Profile();
+};
+
 class Account
 {
 private:
