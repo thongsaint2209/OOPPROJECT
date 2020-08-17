@@ -6,11 +6,14 @@
 class DirectorMenu
 {
 private:
+	int _mode;
 	Account _account;
 	vector<Request> _requestList;
 public:
 	DirectorMenu(Account acc);
+	void showMenu();
 	void viewRequest();
+	void editRequest();
 };
 
 #endif

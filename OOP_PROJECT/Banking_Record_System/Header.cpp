@@ -130,12 +130,12 @@ string Request::viewRequest()
 
 void Request::approveRequest()
 {
-	this->_approvalStatus = true;
+	this->_approvalStatus = 1;
 }
 
 void Request::denyRequest()
 {
-	this->_approvalStatus = false;
+	this->_approvalStatus = -1;
 }
 
 int Request::approvalStatus()

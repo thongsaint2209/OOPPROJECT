@@ -6,7 +6,7 @@ void Menu::redirect()
 	{
 		DirectorMenu m(this->_account);
 
-		m.viewRequest();
+		m.showMenu();
 	}
 	//continue...
 }
