@@ -5,7 +5,11 @@
 #include <string>
 #include <fstream>
 #include <vector>
+<<<<<<< HEAD
 
+=======
+#include <conio.h>
+>>>>>>> Minh
 using namespace std;
 
 class Request

@@ -12,6 +12,7 @@ private:
 public:
 	void redirect();
 	void loginMenu();
+	string getPassword(string& );
 };
 
 #endif

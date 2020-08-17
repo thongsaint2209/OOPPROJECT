@@ -61,7 +61,11 @@ int Account::login(const string& username, const string& password, const string&
 		getline(f, buffer2, '\n');
 		f.ignore(1, '\n');
 
+<<<<<<< HEAD
 		if (buffer1 == this->_username && buffer2 == this->_password)
+=======
+		if (buffer1 == this->_username && buffer2 == this->_password && this->_passwordLv2 == "")
+>>>>>>> Minh
 		{
 			f.close();
 			return 2;
@@ -82,7 +86,11 @@ int Account::login(const string& username, const string& password, const string&
 		getline(f, buffer2, '\n');
 		f.ignore(1, '\n');
 
+<<<<<<< HEAD
 		if (buffer1 == this->_username && buffer2 == this->_password)
+=======
+		if (buffer1 == this->_username && buffer2 == this->_password && this->_passwordLv2 == "")
+>>>>>>> Minh
 		{
 			f.close();
 			return 3;
