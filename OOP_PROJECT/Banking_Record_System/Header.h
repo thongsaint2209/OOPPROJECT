@@ -13,6 +13,12 @@ class Request
 {
 private:
 	string _detail;
+	/*
+	Status:
+		-1: Denied
+		 0: Pending
+		 1: Approved
+	*/
 	int _approvalStatus;
 public:
 	Request();
