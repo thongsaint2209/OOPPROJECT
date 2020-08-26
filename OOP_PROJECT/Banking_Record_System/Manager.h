@@ -6,7 +6,7 @@
 class ManagerMenu
 {
 private:
-	int _mode;
+	int _option;
 	Account _account;
 	vector<Request> _requestList;
 public:

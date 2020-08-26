@@ -18,8 +18,8 @@ void ManagerMenu::showMenu()
 		
 		cout << "0. Exit.\n";
 		cout << "=================================\n";
-		cout << "-> Select mode: ";
-		cin >> this->_mode;
+		cout << "-> Select option: ";
+		cin >> this->_option;
 
 		while (1)
 		{
@@ -29,16 +29,16 @@ void ManagerMenu::showMenu()
 				cin.ignore(numeric_limits<streamsize>::max(), '\n');
 				cout << "Please only enter number!" << endl;
 				cout << "Enter again: ";
-				cin >> this->_mode;
+				cin >> this->_option;
 			}
 			if (!cin.fail())
 				break;
 		}
 
-		if (this->_mode == 0)
+		if (this->_option == 0)
 			break;
 
-		switch (this->_mode)
+		switch (this->_option)
 		{
 		case 1:
 			this->viewRequest();
