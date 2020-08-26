@@ -156,3 +156,204 @@ void ManagerMenu::editRequest()
 
 	cout << "Saved successfully\n";
 }
+
+void Customer::viewlistReDirector()
+{
+	ifstream f1;
+
+	f1.open("DirectorRequestsList.txt", ios::in);
+
+	string id;
+	string	name;
+	string	address;
+	float	withdraw;
+	float	balance;
+
+	if (!f1.is_open())
+		cout << "Cannot open DirectorRequestsList.txt\n";
+
+	string buffer1 = "";
+	string buffer2 = "";
+
+	while (!f1.eof())
+	{
+		getline(f1, buffer1, '\n');
+		getline(f1, buffer2, '\n');
+		f1.ignore(1, '\n');
+
+		int status = stoi(buffer2);
+
+		Request temp(buffer1, status);
+
+		this->_requestList.push_back(temp);
+	}
+
+	f1.close();
+
+	ifstream f2;
+	f2.open("Viewlistacceptedfromdirector.txt", ios::in);
+
+	int i = 0;
+
+	if (!f2.is_open())
+	{
+		cout << "Can not open file" << endl;
+	}
+	else
+	{
+		while (!f2.eof())
+		{
+			getline(f2, id, '\n');
+			getline(f2, name, '\n');
+			getline(f2, address, '\n');
+			f2.ignore(1, '\n');
+     		f2 >> withdraw;
+			f2 >> balance;
+
+
+			cout << "Request #" << i + 1 << endl;
+		    cout << this->_requestList[i].viewRequest() << endl;
+
+				if (this->_requestList[i].approvalStatus() == 1)
+				{
+					cout << "id :" <<id ;
+					cout << "name :" << name;
+					cout << "address :" << address;
+					cout << "withdraw :" << withdraw;
+					cout << "balance :" << balance;
+
+					cout << endl;
+				}
+				i++;
+		}
+		
+		f1.close();
+		
+	}
+	
+}
+
+void Customer::viewlistReDirector()
+{
+	ifstream f1;
+
+	f1.open("DirectorRequestsList.txt", ios::in);
+
+	string id;
+	string	name;
+	string	address;
+	float	withdraw;
+	float	balance;
+
+	if (!f1.is_open())
+		cout << "Cannot open DirectorRequestsList.txt\n";
+
+	string buffer1 = "";
+	string buffer2 = "";
+
+	while (!f1.eof())
+	{
+		getline(f1, buffer1, '\n');
+		getline(f1, buffer2, '\n');
+		f1.ignore(1, '\n');
+
+		int status = stoi(buffer2);
+
+		Request temp(buffer1, status);
+
+		this->_requestList.push_back(temp);
+	}
+
+	f1.close();
+
+	ifstream f2;
+	f2.open("Viewlistacceptedfromdirector.txt", ios::in);
+
+	int i = 0;
+
+	if (!f2.is_open())
+	{
+		cout << "Can not open file" << endl;
+	}
+	else
+	{
+		while (!f2.eof())
+		{
+			getline(f2, id, '\n');
+			getline(f2, name, '\n');
+			getline(f2, address, '\n');
+			f2.ignore(1, '\n');
+			f2 >> withdraw;
+			f2 >> balance;
+
+
+			cout << "Request #" << i + 1 << endl;
+			cout << this->_requestList[i].viewRequest() << endl;
+
+			if (this->_requestList[i].approvalStatus() == 1)
+			{
+				cout << "id :" << id;
+				cout << "name :" << name;
+				cout << "address :" << address;
+				cout << "withdraw :" << withdraw;
+				cout << "balance :" << balance;
+
+				cout << endl;
+			}
+			i++;
+		}
+
+		f2.close();
+
+	}
+
+}
+
+void Customer::viewcustomer()
+{
+	
+
+	string id;
+	string	name;
+	string	address;
+	float	withdraw;
+	float	balance;
+
+	
+	ifstream f2;
+	f2.open("Viewlistacceptedfromdirector.txt", ios::in);
+
+	int i = 0;
+
+	if (!f2.is_open())
+	{
+		cout << "Can not open file" << endl;
+	}
+	else
+	{
+		while (!f2.eof())
+		{
+			getline(f2, id, '\n');
+			getline(f2, name, '\n');
+			getline(f2, address, '\n');
+			f2.ignore(1, '\n');
+			f2 >> withdraw;
+			f2 >> balance;
+
+
+			cout << "Request #" << i + 1 << endl;
+				cout << "id :" << id;
+				cout << "name :" << name;
+				cout << "address :" << address;
+				cout << "withdraw :" << withdraw;
+				cout << "balance :" << balance;
+
+				cout << endl;
+			
+		}
+
+		
+		i++;
+	}
+	f2.close();
+}

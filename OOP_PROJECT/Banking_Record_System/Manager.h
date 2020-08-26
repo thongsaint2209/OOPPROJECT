@@ -19,4 +19,21 @@ public:
 	void editRequest();
 };
 
+class Customer
+{
+private:
+	
+		string id;
+		string	name;
+		string	address;
+		float	withdraw;
+		float	balance;
+		
+	
+	vector<Request> _requestList;
+public:
+	void viewlistReDirector();
+	void viewcustomer();
+};
+
 #endif
