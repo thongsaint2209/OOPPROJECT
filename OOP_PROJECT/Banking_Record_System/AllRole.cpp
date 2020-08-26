@@ -8,6 +8,11 @@ void Menu::redirect()
 
 		m.showMenu();
 	}
+	if (this->_role == 2)
+	{
+		ManagerMenu m(this->_account);
+		 m.showMenu();
+	}
 	//continue...
 }
 

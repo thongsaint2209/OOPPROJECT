@@ -11,8 +11,11 @@ private:
 	vector<Request> _requestList;
 public:
 	ManagerMenu(Account acc);
+
 	void showMenu();
+
 	void viewRequest();
+
 	void editRequest();
 };
 
