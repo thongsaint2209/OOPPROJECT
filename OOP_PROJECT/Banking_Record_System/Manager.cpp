@@ -1,5 +1,6 @@
 #include"Manager.h"
 
+#include"Customer.h"
 ManagerMenu::ManagerMenu(Account acc)
 {
 	fstream f;
@@ -42,10 +43,10 @@ void ManagerMenu::showMenu()
 		cout << "2. Edit requests list.\n";
 
 		cout << "3. View list of accepting requests from director\n";
-
-		cout << "4. View trade history ( not VIP).\n";
+		cout << "4. View list of accepting requests from director.\n";
+		cout << "5. View trade history ( not VIP).\n";
 		
-		cout << "5. Fire employee.\n";
+		cout << "6. Fire employee.\n";
 		
 		cout << "0. Exit.\n";
 		cout << "=================================\n";
@@ -247,7 +248,7 @@ void ManagerMenu::viewlistReDirector()
 
 
 			f2 >> withdraw;
-			;
+			
 			f2 >> balance;
 
 			f2 >> status;
