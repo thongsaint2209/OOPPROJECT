@@ -1,7 +1,38 @@
 #include"Manager.h"
 
+ManagerMenu::ManagerMenu(Account acc)
+{
+	fstream f;
+
+	f.open("ManagerRequestList.txt", ios::in);
+
+	if (!f.is_open())
+		cout << "Cannot open ManagerRequestsList.txt\n";
+
+	string buffer1 = "";
+	string buffer2 = "";
+
+	while (!f.eof())
+	{
+		getline(f, buffer1, '\n');
+		getline(f, buffer2, '\n');
+		f.ignore(1, '\n');
+
+		int status = stoi(buffer2);
+
+		Request temp(buffer1, status);
+		this->_requestList.push_back(temp);
+	}
+
+	f.close();
+
+	this->_account = acc;
+	this->_option = -1;
+}
+
 void ManagerMenu::showMenu()
 {
+	
 	while (true)
 	{
 		system("cls");
@@ -34,7 +65,7 @@ void ManagerMenu::showMenu()
 			if (!cin.fail())
 				break;
 		}
-
+		
 		if (this->_option == 0)
 			break;
 
@@ -47,8 +78,10 @@ void ManagerMenu::showMenu()
 			this->editRequest();
 			break;
 		case 3:
+			this->viewlistReDirector();
 			break;
 		case 4:
+			this->viewcustomer();
 			break;
 		case 5:
 			break;
@@ -157,7 +190,9 @@ void ManagerMenu::editRequest()
 	cout << "Saved successfully\n";
 }
 
-void Customer::viewlistReDirector()
+
+
+void ManagerMenu::viewlistReDirector()
 {
 	ifstream f1;
 
@@ -166,8 +201,8 @@ void Customer::viewlistReDirector()
 	string id;
 	string	name;
 	string	address;
-	float	withdraw;
-	float	balance;
+	int	withdraw;
+	int	balance;
 
 	if (!f1.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
@@ -203,100 +238,34 @@ void Customer::viewlistReDirector()
 	{
 		while (!f2.eof())
 		{
+			
 			getline(f2, id, '\n');
+
 			getline(f2, name, '\n');
-			getline(f2, address, '\n');
-			f2.ignore(1, '\n');
-     		f2 >> withdraw;
-			f2 >> balance;
+
+			getline(f2, address);
 
 
-			cout << "Request #" << i + 1 << endl;
-		    cout << this->_requestList[i].viewRequest() << endl;
-
-				if (this->_requestList[i].approvalStatus() == 1)
-				{
-					cout << "id :" <<id ;
-					cout << "name :" << name;
-					cout << "address :" << address;
-					cout << "withdraw :" << withdraw;
-					cout << "balance :" << balance;
-
-					cout << endl;
-				}
-				i++;
-		}
-		
-		f1.close();
-		
-	}
-	
-}
-
-void Customer::viewlistReDirector()
-{
-	ifstream f1;
-
-	f1.open("DirectorRequestsList.txt", ios::in);
-
-	string id;
-	string	name;
-	string	address;
-	float	withdraw;
-	float	balance;
-
-	if (!f1.is_open())
-		cout << "Cannot open DirectorRequestsList.txt\n";
-
-	string buffer1 = "";
-	string buffer2 = "";
-
-	while (!f1.eof())
-	{
-		getline(f1, buffer1, '\n');
-		getline(f1, buffer2, '\n');
-		f1.ignore(1, '\n');
-
-		int status = stoi(buffer2);
-
-		Request temp(buffer1, status);
-
-		this->_requestList.push_back(temp);
-	}
-
-	f1.close();
-
-	ifstream f2;
-	f2.open("Viewlistacceptedfromdirector.txt", ios::in);
-
-	int i = 0;
-
-	if (!f2.is_open())
-	{
-		cout << "Can not open file" << endl;
-	}
-	else
-	{
-		while (!f2.eof())
-		{
-			getline(f2, id, '\n');
-			getline(f2, name, '\n');
-			getline(f2, address, '\n');
-			f2.ignore(1, '\n');
 			f2 >> withdraw;
+			;
 			f2 >> balance;
 
+			f2 >> status;
+			f2.ignore(1, '\n');
+			f2.ignore(1, '\n');
 
-			cout << "Request #" << i + 1 << endl;
-			cout << this->_requestList[i].viewRequest() << endl;
 
-			if (this->_requestList[i].approvalStatus() == 1)
+		
+			
+
+			if (this->_requestList[i].approvalStatus() == 1&& this->_requestList[i].approvalStatus()==status)
 			{
-				cout << "id :" << id;
-				cout << "name :" << name;
-				cout << "address :" << address;
-				cout << "withdraw :" << withdraw;
-				cout << "balance :" << balance;
+				cout << "Request #" << i + 1 << endl;
+				cout << "id :" << id << endl;
+				cout << "name :" << name << endl;
+				cout << "address :" << address << endl;
+				cout << "withdraw :" << withdraw << endl;
+				cout << "balance :" << balance << endl;
 
 				cout << endl;
 			}
@@ -309,15 +278,15 @@ void Customer::viewlistReDirector()
 
 }
 
-void Customer::viewcustomer()
+void ManagerMenu::viewcustomer()
 {
 	
 
 	string id;
 	string	name;
 	string	address;
-	float	withdraw;
-	float	balance;
+	int	withdraw;
+	int	balance;
 
 	
 	ifstream f2;
@@ -333,27 +302,35 @@ void Customer::viewcustomer()
 	{
 		while (!f2.eof())
 		{
+			
 			getline(f2, id, '\n');
+		
 			getline(f2, name, '\n');
-			getline(f2, address, '\n');
-			f2.ignore(1, '\n');
+			
+			getline(f2, address);
+			
+			
 			f2 >> withdraw;
+			;
 			f2 >> balance;
+		
+			f2 >> status;
+			f2.ignore(1, '\n');
+			f2.ignore(1, '\n');
 
-
-			cout << "Request #" << i + 1 << endl;
-				cout << "id :" << id;
-				cout << "name :" << name;
-				cout << "address :" << address;
-				cout << "withdraw :" << withdraw;
+			    cout << "Request #" << i + 1 << endl;
+				cout << "id :" << id<<endl;
+				cout << "name :" << name << endl;;
+				cout << "address :" << address << endl;;
+				cout << "withdraw :" << withdraw << endl;;
 				cout << "balance :" << balance;
 
 				cout << endl;
-			
+				i++;
 		}
 
 		
-		i++;
+		
 	}
 	f2.close();
 }

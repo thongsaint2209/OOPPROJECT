@@ -27,3 +27,34 @@ test request 9.
 
 test request 10.
 -1
+
+test request 11.
+0
+
+test request 12.
+1
+
+test request 13.
+1
+
+test request 14.
+0
+
+test request 15.
+-1
+
+test request 16.
+0
+
+test request 17.
+0
+
+test request 18.
+1
+
+test request 19.
+0
+
+test request 20.
+0
+

@@ -2,12 +2,12 @@
 
 void Menu::redirect()
 {
-	if (this->_role == 1)
+	/*if (this->_role == 1)
 	{
 		DirectorMenu m(this->_account);
 
 		m.showMenu();
-	}
+	}*/
 	if (this->_role == 2)
 	{
 		ManagerMenu m(this->_account);

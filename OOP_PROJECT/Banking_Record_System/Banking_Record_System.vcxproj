@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AllRole.h" />
+    <ClInclude Include="Customer.h" />
     <ClInclude Include="Director.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Manager.h" />

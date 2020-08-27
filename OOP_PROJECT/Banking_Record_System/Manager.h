@@ -2,8 +2,8 @@
 #define _MANAGER_H_
 
 #include "Header.h"
-
-class ManagerMenu
+#include "Customer.h"
+class ManagerMenu :public Customer
 {
 private:
 	int _option;
@@ -17,23 +17,12 @@ public:
 	void viewRequest();
 
 	void editRequest();
-};
 
-class Customer
-{
-private:
-	
-		string id;
-		string	name;
-		string	address;
-		float	withdraw;
-		float	balance;
-		
-	
-	vector<Request> _requestList;
-public:
 	void viewlistReDirector();
+
 	void viewcustomer();
 };
+
+
 
 #endif
