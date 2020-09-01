@@ -113,19 +113,37 @@ void Account::logout()
 
 Request::Request()
 {
-	this->_detail = "";
+	this->_id = "";
+	this->_type = "";
+	this->_money = 0;
 	this->_approvalStatus = 0;
 }
 
-Request::Request(const string& detail, int status)
+Request::Request(const string& id, const string& type, int money, int status)
 {
-	this->_detail = detail;
+	this->_id = id;
+	this->_type = type;
+	this->_money = money;
 	this->_approvalStatus = status;
 }
 
-string Request::viewRequest()
+//string Request::viewRequest()
+//{
+//	return this->_detail;
+//}
+string Request::getId()
 {
-	return this->_detail;
+	return this->_id;
+}
+
+string Request::getType()
+{
+	return this->_type;
+}
+
+int Request::getMoney()
+{
+	return this->_money;
 }
 
 void Request::approveRequest()

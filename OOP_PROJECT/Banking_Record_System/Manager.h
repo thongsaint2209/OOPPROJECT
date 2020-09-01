@@ -3,12 +3,14 @@
 
 #include "Header.h"
 #include "Customer.h"
-class ManagerMenu :public Customer
+class ManagerMenu
 {
 protected:
 	int _option;
 	Account _account;
-	vector<Request> _requestList;
+	vector<Request> _requestList1;
+	vector<Request> _requestList2;
+	vector<Customer> a;
 	
 public:
 	

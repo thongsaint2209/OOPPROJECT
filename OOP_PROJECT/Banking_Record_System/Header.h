@@ -12,7 +12,9 @@ using namespace std;
 class Request
 {
 private:
-	string _detail;
+	string _id;
+	string _type;
+	int _money;
 	/*
 	Status:
 		-1: Denied
@@ -22,8 +24,11 @@ private:
 	int _approvalStatus;
 public:
 	Request();
-	Request(const string& detail, int status);
-	string viewRequest();
+	Request(const string& id, const string& type, int money, int status);
+//	string viewRequest();
+	string getId();
+	string getType();
+	int getMoney();
 	void approveRequest();
 	void denyRequest();
 	int approvalStatus();
