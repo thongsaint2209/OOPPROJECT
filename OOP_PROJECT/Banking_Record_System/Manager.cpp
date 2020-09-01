@@ -17,7 +17,7 @@ ManagerMenu::ManagerMenu(Account acc)
 	int	balance;
 	int status;
 
-	while (!f.eof())
+	while (!f1.eof())
 	{
 		getline(f1, id, '\n');
 
@@ -38,7 +38,7 @@ ManagerMenu::ManagerMenu(Account acc)
 		this->_requestList.push_back(temp);
 	}
 
-	f.close();
+	f1.close();
 
 	this->_account = acc;
 	this->_option = -1;
@@ -56,7 +56,7 @@ void ManagerMenu::showMenu()
 		cout << "2. Edit requests list.\n";
 
 		cout << "3. View list of accepting requests from director\n";
-		cout << "4. View list of accepting requests from director.\n";
+		cout << "4. View list of customer.\n";
 		cout << "5. View trade history ( not VIP).\n";
 		
 		cout << "6. Fire employee.\n";
@@ -186,13 +186,14 @@ void ManagerMenu::editRequest()
 
 	fstream f;
 
-	f.open("ManagerRequestsList.txt", ios::out);
+	f.open("ManagerRequestList.txt", ios::out);
 
 	if (!f.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
 
 	for (int i = 0; i < this->_requestList.size(); i++)
 	{
+		
 		f << this->_requestList[i].viewRequest() << endl;
 		f << this->_requestList[i].approvalStatus() << endl;
 		if (i != this->_requestList.size() - 1)
@@ -210,14 +211,15 @@ void ManagerMenu::viewlistReDirector()
 {
 	ifstream f1;
 
-	f1.open("DirectorRequestsList.txt", ios::in);
-
 	string id;
 	string	name;
 	string	address;
 	int	withdraw;
 	int	balance;
 	int status;
+	f1.open("DirectorRequestsList.txt", ios::in);
+
+	
 	if (!f1.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
 
@@ -263,21 +265,13 @@ void ManagerMenu::viewlistReDirector()
 
 	f1.close();
 
-	
-
-
-
-	
-	
-			
-			
-		
 
 }
 
 void ManagerMenu::viewcustomer()
 {
 	
+	ifstream f1;
 
 	string id;
 	string	name;
@@ -285,49 +279,44 @@ void ManagerMenu::viewcustomer()
 	int	withdraw;
 	int	balance;
 	int status;
+	f1.open("Customer.txt", ios::in);
+
+
+	if (!f1.is_open())
+		cout << "Cannot open Customer.txt\n";
+
 	
-	ifstream f2;
-	f2.open("Customer.txt", ios::in);
-
 	int i = 0;
-
-	if (!f2.is_open())
+	while (!f1.eof())
 	{
-		cout << "Can not open file" << endl;
+		getline(f1, id, '\n');
+
+		getline(f1, name, '\n');
+
+		getline(f1, address);
+
+
+		f1 >> withdraw;
+
+		f1 >> balance;
+
+		f1 >> status;
+		f1.ignore(1, '\n');
+		f1.ignore(1, '\n');
+
+
+
+		
+			cout << "Request #" << i + 1 << endl;
+			cout << "id :" << id << endl;
+			cout << "name :" << name << endl;
+			cout << "address :" << address << endl;
+			cout << "withdraw :" << withdraw << endl;
+			cout << "balance :" << balance << endl;
+
+		
+		i++;
 	}
-	else
-	{
-		while (!f2.eof())
-		{
-			
-			getline(f2, id, '\n');
-		
-			getline(f2, name, '\n');
-			
-			getline(f2, address);
-			
-			
-			f2 >> withdraw;
-			
-			f2 >> balance;
-		
-			f2 >> status;
-			f2.ignore(1, '\n');
-			f2.ignore(1, '\n');
 
-			    cout << "Request #" << i + 1 << endl;
-				cout << "id :" << id<<endl;
-				cout << "name :" << name << endl;;
-				cout << "address :" << address << endl;;
-				cout << "withdraw :" << withdraw << endl;;
-				cout << "balance :" << balance;
-
-				cout << endl;
-				i++;
-		}
-
-		
-		
-	}
-	f2.close();
+	f1.close();
 }
