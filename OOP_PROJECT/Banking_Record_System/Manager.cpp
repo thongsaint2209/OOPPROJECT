@@ -3,25 +3,38 @@
 #include"Customer.h"
 ManagerMenu::ManagerMenu(Account acc)
 {
-	fstream f;
+	fstream f1;
 
-	f.open("ManagerRequestList.txt", ios::in);
+	f1.open("ManagerRequestList.txt", ios::in);
 
-	if (!f.is_open())
+	if (!f1.is_open())
 		cout << "Cannot open ManagerRequestsList.txt\n";
 
-	string buffer1 = "";
-	string buffer2 = "";
+	string id;
+	string	name;
+	string	address;
+	int	withdraw;
+	int	balance;
+	int status;
 
 	while (!f.eof())
 	{
-		getline(f, buffer1, '\n');
-		getline(f, buffer2, '\n');
-		f.ignore(1, '\n');
+		getline(f1, id, '\n');
 
-		int status = stoi(buffer2);
+		getline(f1, name, '\n');
 
-		Request temp(buffer1, status);
+		getline(f1, address);
+
+
+		f1 >> withdraw;
+
+		f1 >> balance;
+
+		f1 >> status;
+		f1.ignore(1, '\n');
+		f1.ignore(1, '\n');
+
+		Request temp(id, status);
 		this->_requestList.push_back(temp);
 	}
 
@@ -204,78 +217,61 @@ void ManagerMenu::viewlistReDirector()
 	string	address;
 	int	withdraw;
 	int	balance;
-
+	int status;
 	if (!f1.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
 
 	string buffer1 = "";
 	string buffer2 = "";
-
+	int i = 0;
 	while (!f1.eof())
 	{
-		getline(f1, buffer1, '\n');
-		getline(f1, buffer2, '\n');
+		getline(f1, id, '\n');
+
+		getline(f1, name, '\n');
+
+		getline(f1, address);
+
+
+		f1 >> withdraw;
+
+		f1 >> balance;
+
+		f1 >> status;
+		f1.ignore(1, '\n');
 		f1.ignore(1, '\n');
 
-		int status = stoi(buffer2);
+		
 
-		Request temp(buffer1, status);
+		Request temp(id, status);
 
 		this->_requestList.push_back(temp);
+
+		if (this->_requestList[i].approvalStatus() == 1 && this->_requestList[i].approvalStatus() == status)
+		{
+			cout << "Request #" << i + 1 << endl;
+			cout << "id :" << id << endl;
+			cout << "name :" << name << endl;
+			cout << "address :" << address << endl;
+			cout << "withdraw :" << withdraw << endl;
+			cout << "balance :" << balance << endl;
+
+			cout << endl;
+		}
+		i++;
 	}
 
 	f1.close();
 
-	ifstream f2;
-	f2.open("Viewlistacceptedfromdirector.txt", ios::in);
+	
 
-	int i = 0;
 
-	if (!f2.is_open())
-	{
-		cout << "Can not open file" << endl;
-	}
-	else
-	{
-		while (!f2.eof())
-		{
+
+	
+	
 			
-			getline(f2, id, '\n');
-
-			getline(f2, name, '\n');
-
-			getline(f2, address);
-
-
-			f2 >> withdraw;
 			
-			f2 >> balance;
-
-			f2 >> status;
-			f2.ignore(1, '\n');
-			f2.ignore(1, '\n');
-
-
 		
-			
-
-			if (this->_requestList[i].approvalStatus() == 1&& this->_requestList[i].approvalStatus()==status)
-			{
-				cout << "Request #" << i + 1 << endl;
-				cout << "id :" << id << endl;
-				cout << "name :" << name << endl;
-				cout << "address :" << address << endl;
-				cout << "withdraw :" << withdraw << endl;
-				cout << "balance :" << balance << endl;
-
-				cout << endl;
-			}
-			i++;
-		}
-
-		f2.close();
-
-	}
 
 }
 
@@ -288,10 +284,10 @@ void ManagerMenu::viewcustomer()
 	string	address;
 	int	withdraw;
 	int	balance;
-
+	int status;
 	
 	ifstream f2;
-	f2.open("Viewlistacceptedfromdirector.txt", ios::in);
+	f2.open("Customer.txt", ios::in);
 
 	int i = 0;
 
@@ -312,7 +308,7 @@ void ManagerMenu::viewcustomer()
 			
 			
 			f2 >> withdraw;
-			;
+			
 			f2 >> balance;
 		
 			f2 >> status;

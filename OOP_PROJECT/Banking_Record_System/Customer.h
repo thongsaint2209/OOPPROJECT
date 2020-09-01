@@ -11,14 +11,14 @@ using namespace std;
 
 class Customer
 {
-public:
+protected:
 
-	string id;
-	string	name;
-	string	address;
-	int	withdraw;
-	int	balance;
-	int status;
+	string _id;
+	string	_name;
+	string	_address;
+	int	_withdraw;
+	int	_balance;
+	int _status;
 
 	vector<Request> _requestList;
 public:

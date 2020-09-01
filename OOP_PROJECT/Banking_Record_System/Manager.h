@@ -10,6 +10,7 @@ private:
 	Account _account;
 	vector<Request> _requestList;
 public:
+	
 	ManagerMenu(Account acc);
 
 	void showMenu();
