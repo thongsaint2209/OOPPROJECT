@@ -11,7 +11,7 @@ using namespace std;
 
 class Customer
 {
-protected:
+public:
 
 	string _id;
 	string	_name;

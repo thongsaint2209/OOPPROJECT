@@ -16,25 +16,25 @@ ManagerMenu::ManagerMenu(Account acc)
 	int	withdraw;
 	int	balance;
 	int status;
-
+	Customer a;
 	while (!f1.eof())
 	{
-		getline(f1, id, '\n');
+		getline(f1, a._id, '\n');
 
-		getline(f1, name, '\n');
+		getline(f1, a._name, '\n');
 
-		getline(f1, address);
+		getline(f1, a._address);
 
 
-		f1 >> withdraw;
+		f1 >> a._withdraw;
 
-		f1 >> balance;
+		f1 >> a._balance;
 
-		f1 >> status;
+		f1 >> a._status;
 		f1.ignore(1, '\n');
 		f1.ignore(1, '\n');
 
-		Request temp(id, status);
+		Request temp(id, a._status);
 		this->_requestList.push_back(temp);
 	}
 
@@ -279,6 +279,7 @@ void ManagerMenu::viewcustomer()
 	int	withdraw;
 	int	balance;
 	int status;
+	Customer a;
 	f1.open("Customer.txt", ios::in);
 
 
@@ -289,33 +290,32 @@ void ManagerMenu::viewcustomer()
 	int i = 0;
 	while (!f1.eof())
 	{
-		getline(f1, id, '\n');
+		getline(f1, a._id, '\n');
+		
+		getline(f1, a._name, '\n');
 
-		getline(f1, name, '\n');
-
-		getline(f1, address);
+		getline(f1, a._address);
 
 
-		f1 >> withdraw;
+		f1 >> a._withdraw;
 
-		f1 >> balance;
+		f1 >> a._balance;
 
-		f1 >> status;
+		f1 >> a._status;
 		f1.ignore(1, '\n');
 		f1.ignore(1, '\n');
-
 
 
 		
 			cout << "Request #" << i + 1 << endl;
-			cout << "id :" << id << endl;
-			cout << "name :" << name << endl;
-			cout << "address :" << address << endl;
-			cout << "withdraw :" << withdraw << endl;
-			cout << "balance :" << balance << endl;
-
+			cout << "id :" << a._id << endl;
+			cout << "name :" << a._name << endl;
+			cout << "address :" << a._address << endl;
+			cout << "withdraw :" << a._withdraw << endl;
+			cout << "balance :" << a._balance << endl;
+			cout << endl;
 		
-		i++;
+			i++;
 	}
 
 	f1.close();

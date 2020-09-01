@@ -5,10 +5,11 @@
 #include "Customer.h"
 class ManagerMenu :public Customer
 {
-private:
+protected:
 	int _option;
 	Account _account;
 	vector<Request> _requestList;
+	
 public:
 	
 	ManagerMenu(Account acc);
