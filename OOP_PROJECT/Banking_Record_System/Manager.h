@@ -3,7 +3,7 @@
 
 #include "Header.h"
 #include "Customer.h"
-class ManagerMenu :public Customer
+class ManagerMenu 
 {
 protected:
 	int _option;
