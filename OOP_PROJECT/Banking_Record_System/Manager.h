@@ -1,14 +1,15 @@
-#ifndef _MANAGER_H_
-#define _MANAGER_H_
-
 #include "Header.h"
 #include "Customer.h"
-class ManagerMenu 
+
+	class ManagerMenu
 {
 protected:
 	int _option;
 	Account _account;
-	vector<Request> _requestList;
+	
+	vector<Request> _requestList1;
+	vector<Request> _requestList2;
+	vector<Customer> a;
 	
 public:
 	
@@ -27,4 +28,3 @@ public:
 
 
 
-#endif
