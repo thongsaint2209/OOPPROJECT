@@ -16,12 +16,17 @@ public:
 	string _id;
 	string	_name;
 	string	_address;
-	int	_withdraw;
 	int	_balance;
-	int _status;
 
 	vector<Request> _requestList;
 public:
+	Customer(string id, string name, string address, int balance)
+	{
+		this->_id = id;
+		this->_name = name;
+		this->_address = address;
+		this->_balance = balance;
+	}
 	void viewlistReDirector();
 	void viewcustomer();
 };

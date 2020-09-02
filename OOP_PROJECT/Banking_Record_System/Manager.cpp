@@ -9,33 +9,26 @@ ManagerMenu::ManagerMenu(Account acc)
 
 	if (!f1.is_open())
 		cout << "Cannot open ManagerRequestsList.txt\n";
-
-	string id;
-	string	name;
-	string	address;
-	int	withdraw;
-	int	balance;
+	string id ;
+	string type ;
+	int money;
 	int status;
-	Customer a;
-	while (!f1.eof())
+	while (f1.good())
 	{
-		getline(f1, a._id, '\n');
+		f1 >> id;
 
-		getline(f1, a._name, '\n');
+		f1 >> type;
 
-		getline(f1, a._address);
+		f1 >> money;
 
+		f1 >> status;
 
-		f1 >> a._withdraw;
+		if (f1.eof())
+			break;
+		Request temp(id, type, money, status);
+		this->_requestList1.push_back(temp);
 
-		f1 >> a._balance;
-
-		f1 >> a._status;
-		f1.ignore(1, '\n');
-		f1.ignore(1, '\n');
-
-		Request temp(id, a._status);
-		this->_requestList.push_back(temp);
+		
 	}
 
 	f1.close();
@@ -116,15 +109,17 @@ void ManagerMenu::showMenu()
 void ManagerMenu::viewRequest()
 {
 	cout << "\n==========REQUESTS-LIST==========\n";
-	for (int i = 0; i < this->_requestList.size(); i++)
+	for (int i = 0; i < this->_requestList1.size(); i++)
 	{
 		cout << "Request #" << i + 1 << endl;
-		cout << this->_requestList[i].viewRequest() << endl;
-		if (this->_requestList[i].approvalStatus() == -1)
+		cout << this->_requestList1[i].getId() << endl;
+		cout << this->_requestList1[i].getType() << endl;
+		cout << this->_requestList1[i].getMoney() << endl;
+		if (this->_requestList1[i].approvalStatus() == -1)
 			cout << "Denied\n";
-		if (this->_requestList[i].approvalStatus() == 0)
+		if (this->_requestList1[i].approvalStatus() == 0)
 			cout << "Pending\n";
-		if (this->_requestList[i].approvalStatus() == 1)
+		if (this->_requestList1[i].approvalStatus() == 1)
 			cout << "Approved\n";
 		cout << endl;
 	}
@@ -151,7 +146,7 @@ void ManagerMenu::editRequest()
 
 			index--;
 
-			if (index > -1 && index < this->_requestList.size())
+			if (index > -1 && index < this->_requestList1.size())
 				break;
 
 			cout << "Cannot find request #" << index + 1 << endl;
@@ -170,13 +165,13 @@ void ManagerMenu::editRequest()
 
 			if (temp == 0)
 			{
-				this->_requestList[index].denyRequest();
+				this->_requestList1[index].denyRequest();
 				break;
 			}
 
 			if (temp == 1)
 			{
-				this->_requestList[index].approveRequest();
+				this->_requestList1[index].approveRequest();
 				break;
 			}
 
@@ -191,12 +186,14 @@ void ManagerMenu::editRequest()
 	if (!f.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
 
-	for (int i = 0; i < this->_requestList.size(); i++)
+	for (int i = 0; i < this->_requestList1.size(); i++)
 	{
 		
-		f << this->_requestList[i].viewRequest() << endl;
-		f << this->_requestList[i].approvalStatus() << endl;
-		if (i != this->_requestList.size() - 1)
+		f << this->_requestList1[i].getId() << endl;
+		f << this->_requestList1[i].getType() << endl;
+		f << this->_requestList1[i].getMoney() << endl;
+		f << this->_requestList1[i].approvalStatus() << endl;
+		if (i != this->_requestList1.size() - 1)
 			f << endl;
 	}
 
@@ -212,10 +209,8 @@ void ManagerMenu::viewlistReDirector()
 	ifstream f1;
 
 	string id;
-	string	name;
-	string	address;
-	int	withdraw;
-	int	balance;
+	string type;
+	int money;
 	int status;
 	f1.open("DirectorRequestsList.txt", ios::in);
 
@@ -223,41 +218,29 @@ void ManagerMenu::viewlistReDirector()
 	if (!f1.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
 
-	string buffer1 = "";
-	string buffer2 = "";
 	int i = 0;
-	while (!f1.eof())
+	while (f1.good())
 	{
-		getline(f1, id, '\n');
+		f1 >> id;
 
-		getline(f1, name, '\n');
+		f1 >> type;
 
-		getline(f1, address);
-
-
-		f1 >> withdraw;
-
-		f1 >> balance;
+		f1 >> money;
 
 		f1 >> status;
-		f1.ignore(1, '\n');
-		f1.ignore(1, '\n');
 
-		
+		if (f1.eof())
+			break;
+		Request temp(id, type, money, status);
 
-		Request temp(id, status);
+		this->_requestList2.push_back(temp);
 
-		this->_requestList.push_back(temp);
-
-		if (this->_requestList[i].approvalStatus() == 1 && this->_requestList[i].approvalStatus() == status)
+		if (this->_requestList2[i].approvalStatus() == 1 && this->_requestList2[i].approvalStatus() == status)
 		{
 			cout << "Request #" << i + 1 << endl;
-			cout << "id :" << id << endl;
-			cout << "name :" << name << endl;
-			cout << "address :" << address << endl;
-			cout << "withdraw :" << withdraw << endl;
-			cout << "balance :" << balance << endl;
-
+			cout << this->_requestList2[i].getId() << endl;
+			cout << this->_requestList2[i].getType() << endl;
+			cout << this->_requestList2[i].getMoney() << endl;
 			cout << endl;
 		}
 		i++;
@@ -276,47 +259,39 @@ void ManagerMenu::viewcustomer()
 	string id;
 	string	name;
 	string	address;
-	int	withdraw;
 	int	balance;
-	int status;
-	Customer a;
 	f1.open("Customer.txt", ios::in);
 
 
 	if (!f1.is_open())
 		cout << "Cannot open Customer.txt\n";
 
-	
 	int i = 0;
-	while (!f1.eof())
+	int count = 0;
+	while (f1.good())
 	{
-		getline(f1, a._id, '\n');
-		
-		getline(f1, a._name, '\n');
+		f1 >> id;
+		getline(f1, name);
+		getline(f1, name);
+		getline(f1, address);
+		f1 >> balance;
 
-		getline(f1, a._address);
-
-
-		f1 >> a._withdraw;
-
-		f1 >> a._balance;
-
-		f1 >> a._status;
+		if (f1.eof())
+			break;
+		Customer temp(id, name, address, balance);
+		this->a.push_back(temp);
 		f1.ignore(1, '\n');
-		f1.ignore(1, '\n');
-
-
-		
-			cout << "Request #" << i + 1 << endl;
-			cout << "id :" << a._id << endl;
-			cout << "name :" << a._name << endl;
-			cout << "address :" << a._address << endl;
-			cout << "withdraw :" << a._withdraw << endl;
-			cout << "balance :" << a._balance << endl;
-			cout << endl;
-		
-			i++;
+		count++;
 	}
 
+	for (int i = 0; i < count; i++)
+	{
+		cout << "Request #" << i + 1 << endl;
+		cout << "id :" << a[i]._id << endl;
+		cout << "name :" << a[i]._name << endl;
+		cout << "address :" << a[i]._address << endl;
+		cout << "balance :" << a[i]._balance << endl;
+		cout << endl;
+	}
 	f1.close();
 }

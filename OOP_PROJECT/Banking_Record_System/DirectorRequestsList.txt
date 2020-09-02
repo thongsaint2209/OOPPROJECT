@@ -1,140 +1,100 @@
 19127001
-Nguyen Thanh Tu
-185 Nguyen Van Cu Ho Chi Minh
+Deposit
 1000000
-2000000
 1
 
 19127002
-Ngo Dang Quang
-69 Xuan Dieu Hai Phong
+Withdraw
 3000000
-4000000
 1
 
 19127003
-Ngo Dang Khoa
-69 Xuan Dieu Hai Phong
-5000000
+Deposit
 6000000
 1
 
 19127004
-Nguyen Thi Be Ba
-357 Ly Thuong Kiet Tien Giang
-9000000
+Deposit
 6000000
 1
 
 19127005
-Tran Van Cu
-123 Do Si Lien Ho Chi Minh
-12000000
+Withdraw
 20000000
 1
 
 19127006
-Vo Thanh Thuy
-12 Ap Bac Ho Chi Minh
-60000000
+Withdraw
 20000000
 1
 
 19127007
-Vo Thi Nam
-23/5 Nguyen Minh Khai Ho Chi Minh
-70000000
+Withdraw
 12000000
 1
 
 19127008
-Vo Thanh Tam
-129/5 Nguyen Trai Ho Chi Minh
-56000000
+Withdraw
 21000000
 1
 
 19127009
-Ngo Quang Khai
-156/5 Nguyen Thi Minh Khai Ho Chi Minh
-89000000
+Withdraw
 75000000
 1
 
 19127010
-Luong Kiem Minh
-28 Hoa Hung Ca Mau
-56000000
+Deposit
 98000000
 1
 
 19127011
-Phan The Duy
-12 Dong Khoi Ha Noi
-2000000
+Deposit
 50000000
 1
 
 19127012
-Tran Duc Nam
-45 Ly Thuong Kiet An Giang
-45000000
+Deposit
 10000000
 1
 
 19127013
-Phan The Anh
-32/4 Nguyen Dinh Chieu Tien Giang
-21000000
+Deposit
 15000000
 1
 
 19127014
-Phan Hai
-12 Ung Bu Ben Tre
-15000000
+Deposit
 51000000
 1
 
 19127015
-Tran Dan 
-14/5 Nguyen Anh Nghe An
-22000000
+Deposit
 30000000
 1
 
 19127016
-Phan Nguyen Thanh Ngan
-123 Nguyen Thi Thap Dong Nai
-55000000
+Deposit
 50000000
 1
 
 19127017
-Nguyen Thanh Nhan
-23 Nguyen Trai Ha Noi
-25000000
+Deposit
 520000000
 1
 
 19127018
-Nguyen Phuong
-62/7 Nguyen Tat Thanh Thanh Hoa
-800000000
+Deposit
 50000000
 1
 
 19127019
-Nguyen Nhat An
-10 An Duong Vuong Ca Mau
-400000000
+Deposit
 56000000
 1
 
 19127020
-Nguyen Phuong Anh
-23 Hung Vuong Tien Giang
-2000000
+Deposit
 50000000
 1
 
