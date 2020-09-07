@@ -18,8 +18,37 @@ public:
 	string	_address;
 	int	_balance;
 
+
 	vector<Request> _requestList;
 public:
+	void setId(string id)
+	{
+		_id = id;
+	}
+	void setname(string name)
+	{
+		_name = name;
+	}
+	void setaddress(string address)
+	{
+		_address = address;
+	}
+	string getId()
+	{
+		return _id;
+	}
+	string getname()
+	{
+		return _name;
+	}
+	string getaddress()
+	{
+		return _address;
+	}
+	int getBalance()
+	{
+		return _balance;
+	}
 	Customer(string id, string name, string address, int balance)
 	{
 		this->_id = id;
@@ -32,3 +61,4 @@ public:
 };
 
 #endif
+

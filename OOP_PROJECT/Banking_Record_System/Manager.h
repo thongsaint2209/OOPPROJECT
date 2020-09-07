@@ -24,6 +24,8 @@ public:
 	void viewlistReDirector();
 
 	void viewcustomer();
+
+	void searchcustomer();
 };
 
 
