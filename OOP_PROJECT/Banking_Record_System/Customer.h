@@ -17,7 +17,9 @@ public:
 	string	_name;
 	string	_address;
 	int	_balance;
-
+	
+	int _option;
+	Account _account;
 
 	vector<Request> _requestList;
 public:
@@ -56,8 +58,9 @@ public:
 		this->_address = address;
 		this->_balance = balance;
 	}
-	void viewlistReDirector();
-	void viewcustomer();
+	void newAccount();
+
+	void showMenu();
 };
 
 #endif

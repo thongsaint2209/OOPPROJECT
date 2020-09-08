@@ -432,7 +432,11 @@ void ManagerMenu::searchcustomer()
 		f1.ignore(1, '\n');
 		count++;
 	}
-
+	for (int i = 0; i < count; i++)
+	{		
+		cout << "id :" << a[i]._id << endl;		
+		cout << endl;
+	}
 	cout << "Choose id you want to dind information about customer   ";
 	while (getchar() != '\n');
 	getline(cin, id);
