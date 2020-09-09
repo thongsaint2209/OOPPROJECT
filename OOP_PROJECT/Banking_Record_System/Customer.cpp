@@ -1,5 +1,5 @@
 #include"Customer.h"
-
+#include"Header.h"
 void Customer::newAccount()
 {
 	fstream f1;
@@ -256,14 +256,15 @@ void Customer::deleteAccount()
 		count++;
 	}
 	f1.close();
+
+
+
 	ifstream f2;
 	string id;
 	string	name;
 	string	address;
 	int	balance;
 	f2.open("Customer.txt", ios::in);
-
-
 	if (!f2.is_open())
 		cout << "Cannot open Customer.txt\n";
 
@@ -279,18 +280,18 @@ void Customer::deleteAccount()
 
 		if (f2.eof())
 			break;
-		Customer temp(id, name, address, balance);
-		this->a.push_back(temp);
+		Customer temp1(id, name, address, balance);
+		this->a.push_back(temp1);
 		f2.ignore(1, '\n');
 		count1++;
 
 	}
 	f2.close();
-	cout << "Choose id you want to delete  ";
+	cout << "Enter id you want to Delete :";
 	while (getchar() != '\n');
-	getline(cin, username);
-
-	int flag = 0;
+	getline(cin, id);
+	
+	
 
 	int option;
 	cout << "Do you want to delete this customer?  " << endl;
@@ -306,69 +307,66 @@ void Customer::deleteAccount()
 	case 1:
 	{
 
-		for (int i = 0; i < count; i++)
+		for (int i = 0; i < this->account.size(); i++)
 		{
-			if (account[i].username() == username)
+			if (account[i].username() == id)
 			{
-				//tao vector temp 
-				
-
 
 				this->account.erase(account.begin() + i);
-				
-
+	
 				fstream f3;
 				f3.open("CustomerAccounts.txt", ios::out);
 				if (!f3.is_open())
 					cout << "Cannot open CustomerAccounts.txt\n";
 				
-				for (int i = 0; i < this->account.size(); i++)
+				for (int m = 0; i < this->account.size(); m++)
 				{
 
-					f3 << account[i].username();
+					f3 << account[m].username()<<endl;
 
-					f3 << account[i].password();
+					f3 << account[m].password() << endl;
 
-					
+					f3 << endl;
 
 
 				}
 				f3.close();
 
-				
-				
 			}
-			for (int i = 0; i < count1; i++)
+			
+		}
+		
+		for (int j = 0; j < this->a.size(); j++)
+		{
+			if (a[j]._id == id)
 			{
-				if (a[i]._id==username)
+				this->a.erase(a.begin() + j);
+
+				fstream f4;
+				f4.open("Customer.txt", ios::out);
+				if (!f4.is_open())
+					cout << "Cannot open Customer.txt\n";
+
+				for (int k = 0; k < this->a.size(); k++)
 				{
-					this->a.erase(a.begin() + i);
-					count1--;
-					fstream f4;
-					f4.open("Customer.txt", ios::out);
-					if (!f4.is_open())
-						cout << "Cannot open Customer.txt\n";
 
-					for (int i = 0; i < count1; i++)
-					{
+					f4 << a[k]._id << endl;
 
-						f4 << a[i]._id;
+					f4 << a[k]._name << endl;
 
-						f4 << a[i]._name;
+					f4 << a[k]._address << endl;
+					f4 << a[k]._balance << endl;
+					f4 << endl;
 
-						f4 << a[i]._address;
-						f4 << a[i]._balance << endl;
-
-
-					}
-					f4.close();
 				}
+				f4.close();
 			}
 		}
+		cout << "Delete Successfully ";
 	}
 	default:
 	{
-		cout << "Please choose number from 0-2" << endl;
+		
 		break;
 	}
 	}
@@ -413,13 +411,13 @@ void Customer::showMenu()
 		switch (this->_option)
 		{
 		case 1:
-			
+			this->newAccount();
 			break;
 		case 2:
-			
+			this->Editprofile();
 			break;
 		case 3:
-			
+			this->deleteAccount();
 			break;
 		case 4:
 			

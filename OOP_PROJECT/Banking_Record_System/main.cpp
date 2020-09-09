@@ -8,8 +8,8 @@ int main()
 
 	m.loginMenu();
 
-	m.redirect();
-	//Customer c;
-	//c.newAccount();
+	//m.redirect();
+	Customer c;
+	c.deleteAccount();
 	return 0;
 }

@@ -486,17 +486,17 @@ void ManagerMenu::FireEmployee()
 
 		count++;
 	}
-
+	f1.close();
 	string id;
 
-	cout << "Choose id you want to Delete ";
+	cout << "Enter id you want to Delete :";
 	while (getchar() != '\n');
 	getline(cin, id);
 
 
 
 	int option;
-	cout << "Do you want to delete this customer?  " << endl;
+	cout << "Do you want to delete this employee?  " << endl;
 	cout << "0: Out" << endl;
 	cout << "1: Delete" << endl;
 	cin >> option;
