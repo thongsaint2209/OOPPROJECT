@@ -1,6 +1,6 @@
 #include"Customer.h"
 
-void Customer::newAccount(Account acc)
+void Customer::newAccount()
 {
 	fstream f1;
 
@@ -29,7 +29,7 @@ void Customer::newAccount(Account acc)
 	cout << "Enter your id : ";
 	getline(cin, username);
 
-	cout << "Enter your username : ";
+	cout << "Enter your password : ";
 	getline(cin, password);
 
 	Account temp1(username, password);
@@ -37,18 +37,18 @@ void Customer::newAccount(Account acc)
 	this->account.push_back(temp1);
 	count++;
 	ofstream f2;
-	f2.open("Customer.txt", ios::out);
+	f2.open("CustomerAccounts.txt", ios::out);
 	if (!f2.is_open())
 		cout << "Cannot open Customer.txt\n";
 
 	for (int i = 0; i < this->account.size(); i++)
 	{
 
-		f2 << account[i].username();
+		f2 << account[i].username()<<endl;
 
-		f2 << account[i].password();
+		f2 << account[i].password()<<endl;
 
-		
+		f2 << endl;
 
 	}
 	f2.close();
@@ -111,12 +111,13 @@ void Customer::newAccount(Account acc)
 	for (int i = 0; i < count1; i++)
 	{
 
-		f4<< a[i]._id;
+		f4<< a[i]._id<<endl;
 
-		f4 << a[i]._name;
+		f4 << a[i]._name<<endl;
 
-		f4 << a[i]._address;
+		f4 << a[i]._address<<endl;
 		f4 << a[i]._balance << endl;
+		f4 << endl;
 
 	}
 	f4.close();
@@ -176,7 +177,7 @@ void Customer::Editprofile()
 		
 		for (int i = 0; i < count; i++)
 		{
-			if (a[i]._id==id)
+			if (a[i].getId()==id)
 			{
 				//tao vector temp 
 
@@ -210,13 +211,13 @@ void Customer::Editprofile()
 				for (int i = 0; i < count; i++)
 				{
 					
-						f3 << a[i]._id;
+						f3 << a[i]._id<<endl;
 
-						f3 << a[i]._name;
+						f3 << a[i]._name<<endl;
 
-						f3 << a[i]._address;
+						f3 << a[i]._address<<endl;
 						f3 << a[i]._balance << endl;
-					
+						f3 << endl;
 
 				}
 				f3.close();

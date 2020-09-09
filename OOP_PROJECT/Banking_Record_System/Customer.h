@@ -61,7 +61,7 @@ public:
 		this->_address = address;
 		this->_balance = balance;
 	}
-	void newAccount(Account acc);
+	void newAccount();
 
 	void showMenu();
 
