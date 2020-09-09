@@ -44,6 +44,7 @@ void ManagerMenu::showMenu()
 	{
 		system("cls");
 		cout << "\n==========MANAGER-MENU==========\n";
+		
 		cout << "1. View requests list.\n";
 
 		cout << "2. Edit requests list.\n";
@@ -540,7 +541,7 @@ void ManagerMenu::FireEmployee()
 	}
 	default:
 	{
-		cout << "" << endl;
+		
 		break;
 	}
 	}
