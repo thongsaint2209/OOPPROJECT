@@ -11,6 +11,7 @@ protected:
 	vector<Request> _requestList2;
 	vector<Customer> a;
 	
+	vector<Account> account;
 public:
 	
 	ManagerMenu(Account acc);
@@ -26,6 +27,8 @@ public:
 	void viewcustomer();
 
 	void searchcustomer();
+
+	void FireEmployee();
 };
 
 

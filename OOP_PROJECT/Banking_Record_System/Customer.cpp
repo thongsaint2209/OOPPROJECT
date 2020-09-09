@@ -84,22 +84,19 @@ void Customer::newAccount()
 		count1++;
 		
 	}
-	cout << "Enter your id : ";
-	getline(cin, id);
-
+	
 	cout << "Enter your name : ";
 	getline(cin, name);
 
 	cout << "Enter your address : ";
 	getline(cin, address);
 
-	cout << "Enter your balance : ";
-	cin>> balance;
-	cin.ignore();
+	
+	
+	
 
 
-
-	Customer temp2(id, name, address, balance);
+	Customer temp2(username, name, address);
 	this->a.push_back(temp2);
 
 	count1++;

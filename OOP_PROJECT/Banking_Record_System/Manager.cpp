@@ -92,6 +92,7 @@ void ManagerMenu::showMenu()
 		case 5:
 			break;
 		case 6:
+			this->FireEmployee();
 			break;
 		case 7:
 			this->searchcustomer();
@@ -455,4 +456,92 @@ void ManagerMenu::searchcustomer()
 		}
 	}
 	f1.close();
+}
+
+void ManagerMenu::FireEmployee()
+{
+	fstream f1;
+
+	f1.open("EmployeeAccounts.txt", ios::in);
+
+	if (!f1.is_open())
+		cout << "Cannot open EmployeeAccounts.txt\n";
+
+	string username;
+	string password;
+	int count = 0;
+	while (f1.good())
+	{
+		f1 >> username;
+
+		f1 >> password;
+
+
+
+		if (f1.eof())
+			break;
+		Account temp(username, password);
+		this->account.push_back(temp);
+
+		count++;
+	}
+
+	string id;
+
+	cout << "Choose id you want to Delete ";
+	while (getchar() != '\n');
+	getline(cin, id);
+
+
+
+	int option;
+	cout << "Do you want to delete this customer?  " << endl;
+	cout << "0: Out" << endl;
+	cout << "1: Delete" << endl;
+	cin >> option;
+	switch (option)
+	{
+	case 0:
+	{
+		return;
+	}
+	case 1:
+	{
+
+		for (int i = 0; i < this->account.size(); i++)
+		{
+			if (account[i].username() == id)
+			{
+				
+				
+				this->account.erase(account.begin() + i);
+
+				fstream f3;
+				f3.open("EmployeeAccounts.txt", ios::out);
+				if (!f3.is_open())
+					cout << "EmployeeAccounts.txt\n";
+
+				for (int j = 0; j < this->account.size(); j++)
+				{
+
+					f3 << this->account[j].username()<< endl;
+
+					f3 << this->account[j].password() << endl;
+
+				
+					f3 << endl;
+
+				}
+				f3.close();
+
+				cout << "Delete successfully " << endl;
+			}
+		}
+	}
+	default:
+	{
+		cout << "" << endl;
+		break;
+	}
+	}
 }

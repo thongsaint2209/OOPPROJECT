@@ -9,6 +9,7 @@
 
 using namespace std;
 
+
 class Customer
 {
 private:
@@ -60,6 +61,13 @@ public:
 		this->_name = name;
 		this->_address = address;
 		this->_balance = balance;
+	}
+	Customer(string id, string name, string address)
+	{
+		this->_id = id;
+		this->_name = name;
+		this->_address = address;
+		this->_balance = 0;
 	}
 	void newAccount();
 
