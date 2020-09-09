@@ -25,6 +25,7 @@ private:
 	vector<Account> account;
 	vector<Customer> a;
 public:
+	Customer() {};
 	void setId(string id)
 	{
 		_id = id;
