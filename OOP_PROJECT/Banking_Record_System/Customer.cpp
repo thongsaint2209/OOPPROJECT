@@ -36,17 +36,17 @@ void Customer::newAccount(Account acc)
 
 	this->account.push_back(temp1);
 	count++;
-	fstream f2;
+	ofstream f2;
 	f2.open("Customer.txt", ios::out);
 	if (!f2.is_open())
 		cout << "Cannot open Customer.txt\n";
 
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < this->account.size(); i++)
 	{
 
-		f2 << account[i].username;
+		f2 << account[i].username();
 
-		f2 << account[i].password;
+		f2 << account[i].password();
 
 		
 
@@ -310,7 +310,7 @@ void Customer::deleteAccount()
 
 		for (int i = 0; i < count; i++)
 		{
-			if (account[i].username == username)
+			if (account[i].username() == username)
 			{
 				//tao vector temp 
 				
@@ -327,9 +327,9 @@ void Customer::deleteAccount()
 				for (int i = 0; i < this->account.size(); i++)
 				{
 
-					f3 << account[i].username;
+					f3 << account[i].username();
 
-					f3 << account[i].password;
+					f3 << account[i].password();
 
 					
 

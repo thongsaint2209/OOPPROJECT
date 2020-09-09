@@ -66,7 +66,14 @@ public:
 	{
 		return _password;
 	}
-	Account(string username, string password);
+
+
+	Account(const string &username,const  string &name)
+	{
+		this->_username = username;
+		this->_password = name;
+		
+	}
 	int login(const string& username, const string& password, const string& password2);
 	void changePassword(const string& password);
 	void changePasswordLv2(const string& password);
