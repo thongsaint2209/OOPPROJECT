@@ -155,7 +155,7 @@ void Customer::Editprofile()
 	cout << "Choose id you want to Edit  ";
 	while (getchar() != '\n');
 	getline(cin, id);
-
+	
 	int flag = 0;
 
 	int option;
@@ -172,25 +172,16 @@ void Customer::Editprofile()
 	case 1:
 	{
 		
-		for (int i = 0; i < count; i++)
+		for (int i = 0; i < this->a.size(); i++)
 		{
 			if (a[i].getId()==id)
 			{
-				//tao vector temp 
-
 				
-
 				cout << "Enter your name : ";
 				getline(cin, name);
 
 				cout << "Enter your address : ";
 				getline(cin, address);
-
-				cout << "Enter your balance : ";
-				cin >> balance;
-				cin.ignore();
-
-
 
 				Customer temp2(id, name, address, balance);
 
@@ -220,10 +211,12 @@ void Customer::Editprofile()
 				f3.close();
 			}
 		}
+
+		cout << "Edit Successfully" << endl;
 	}
 	default:
 	{
-		cout << "Please choose number from 0-2" << endl;
+		cout << "HUHU" << endl;
 		break;
 	}
 	}

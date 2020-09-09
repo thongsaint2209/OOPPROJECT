@@ -10,6 +10,6 @@ int main()
 
 	//m.redirect();
 	Customer c;
-	c.deleteAccount();
+	c.Editprofile();
 	return 0;
 }

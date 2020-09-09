@@ -91,6 +91,7 @@ void ManagerMenu::showMenu()
 			this->viewcustomer();
 			break;
 		case 5:
+			
 			break;
 		case 6:
 			this->FireEmployee();
@@ -546,3 +547,4 @@ void ManagerMenu::FireEmployee()
 	}
 	}
 }
+

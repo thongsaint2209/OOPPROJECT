@@ -29,6 +29,7 @@ public:
 	void searchcustomer();
 
 	void FireEmployee();
+	
 };
 
 
