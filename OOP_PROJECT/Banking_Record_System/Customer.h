@@ -11,7 +11,7 @@ using namespace std;
 
 class Customer
 {
-public:
+private:
 
 	string _id;
 	string	_name;

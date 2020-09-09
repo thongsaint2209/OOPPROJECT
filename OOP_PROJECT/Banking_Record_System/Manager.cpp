@@ -333,12 +333,12 @@ void ManagerMenu::viewlistReDirector()
 				for (int i = 0; i < count; i++)
 				{
 
-					f3 << a[i]._id;
+					f3 << a[i].getId();
 
-					f3 << a[i]._name;
+					f3 << a[i].getname();
 
-					f3 << a[i]._address;
-					f3 << a[i]._balance << endl;
+					f3 << a[i].getaddress();
+					f3 << a[i].getBalance() << endl;
 
 				}
 				f3.close();
@@ -391,10 +391,10 @@ void ManagerMenu::viewcustomer()
 	for (int i = 0; i < count; i++)
 	{
 		cout << "Request #" << i + 1 << endl;
-		cout << "id :" << a[i]._id << endl;
-		cout << "name :" << a[i]._name << endl;
-		cout << "address :" << a[i]._address << endl;
-		cout << "balance :" << a[i]._balance << endl;
+		cout << "id :" << a[i].getId() << endl;
+		cout << "name :" << a[i].getname() << endl;
+		cout << "address :" << a[i].getname() << endl;
+		cout << "balance :" << a[i].getBalance() << endl;
 		cout << endl;
 	}
 	f1.close();
@@ -434,7 +434,7 @@ void ManagerMenu::searchcustomer()
 	}
 	for (int i = 0; i < count; i++)
 	{		
-		cout << "id :" << a[i]._id << endl;		
+		cout << "id :" << a[i].getId() << endl;		
 		cout << endl;
 	}
 	cout << "Choose id you want to dind information about customer   ";
@@ -444,13 +444,13 @@ void ManagerMenu::searchcustomer()
 
 	for (int i = 0; i < count; i++)
 	{
-		if (a[i]._id == id)
+		if (a[i].getId() == id)
 		{
 			cout << "Request #" << i + 1 << endl;
-			cout << "id :" << a[i]._id << endl;
-			cout << "name :" << a[i]._name << endl;
-			cout << "address :" << a[i]._address << endl;
-			cout << "balance :" << a[i]._balance << endl;
+			cout << "id :" << a[i].getId() << endl;
+			cout << "name :" << a[i].getname() << endl;
+			cout << "address :" << a[i].getaddress() << endl;
+			cout << "balance :" << a[i].getBalance() << endl;
 			cout << endl;
 		}
 	}
