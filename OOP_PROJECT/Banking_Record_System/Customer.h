@@ -22,6 +22,8 @@ public:
 	Account _account;
 
 	vector<Request> _requestList;
+	vector<Account> account;
+	vector<Customer> a;
 public:
 	void setId(string id)
 	{
@@ -58,9 +60,13 @@ public:
 		this->_address = address;
 		this->_balance = balance;
 	}
-	void newAccount();
+	void newAccount(Account acc);
 
 	void showMenu();
+
+	void Editprofile();
+
+	void deleteAccount();
 };
 
 #endif

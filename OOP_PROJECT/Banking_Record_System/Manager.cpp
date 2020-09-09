@@ -325,12 +325,12 @@ void ManagerMenu::viewlistReDirector()
 				}
 				f2.close();
 
-				ifstream f3;
+				fstream f3;
 				f3.open("Customer.txt", ios::out);
 				if (!f3.is_open())
 					cout << "Cannot open Customer.txt\n";
 
-				/*for (int i = 0; i < count; i++)
+				for (int i = 0; i < count; i++)
 				{
 
 					f3 << a[i]._id;
@@ -340,7 +340,7 @@ void ManagerMenu::viewlistReDirector()
 					f3 << a[i]._address;
 					f3 << a[i]._balance << endl;
 
-				}*/
+				}
 				f3.close();
 			}
 			default:

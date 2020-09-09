@@ -50,6 +50,23 @@ public:
 		3: Employee
 		0: Cannot find role (wrong account)
 	*/
+	void username(string username)
+	{
+		_username = username;
+	}
+	string username()
+	{
+		return _username;
+	}
+	void password(string password)
+	{
+		_password = password;
+	}
+	string password()
+	{
+		return _password;
+	}
+	Account(string username, string password);
 	int login(const string& username, const string& password, const string& password2);
 	void changePassword(const string& password);
 	void changePasswordLv2(const string& password);
