@@ -91,7 +91,7 @@ void ManagerMenu::showMenu()
 			this->viewcustomer();
 			break;
 		case 5:
-			
+		//	Customer::Editprofile();
 			break;
 		case 6:
 			this->FireEmployee();

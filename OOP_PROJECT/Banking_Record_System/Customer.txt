@@ -1,105 +1,59 @@
 19127001
+12/12/2020
 Nguyen Thanh Tu
 185 Nguyen Van Cu Ho Chi Minh
+0906123456
+nttu@gmail.com
+Time-deposit account
 2000000
+13
+12
 
 19127002
+01/12/2020
 Ngo Dang Quang
 69 Xuan Dieu Hai Phong
+0906123456
+nttu@gmail.com
+Demand – deposit account
 4000000
+10
+0
 
 19127003
+12/12/2001
 Ngo Dang Khoa
 69 Xuan Dieu Hai Phong
+0909123123
+ndk@gmail.com
+Payment account
 6000000
+12
+0
 
 19127004
+09/01/2020
 Nguyen Thi Be Ba
 357 Ly Thuong Kiet Tien Giang
+0902664578
+ntbb@gmail.com
+Time-deposit account
 6000000
+24
+24
 
 19127005
-Tran Van Cu
-123 Do Si Lien Ho Chi Minh
-20000000
-
-19127006
-Vo Thanh Thuy
-12 Ap Bac Ho Chi Minh
-20000000
-
-19127007
-Vo Thi Nam
-23/5 Nguyen Minh Khai Ho Chi Minh
-12000000
-
-19127008
-Vo Thanh Tam
-129/5 Nguyen Trai Ho Chi Minh
-21000000
-
-19127009
-Ngo Quang Khai
-156/5 Nguyen Thi Minh Khai Ho Chi Minh
-75000000
-
-19127010
-Luong Kiem Minh
-28 Hoa Hung Ca Mau
-98000000
-
-19127011
-Phan The Duy
-12 Dong Khoi Ha Noi
-50000000
-
-19127012
-Tran Duc Nam
-45 Ly Thuong Kiet An Giang
-10000000
-
-19127013
-Phan The Anh
-32/4 Nguyen Dinh Chieu Tien Giang
-15000000
-
-19127014
-Phan Hai
-12 Ung Bu Ben Tre
-51000000
-
-19127015
-Tran Dan 
-14/5 Nguyen Anh Nghe An
-30000000
-
-19127016
-Phan Nguyen Thanh Ngan
-123 Nguyen Thi Thap Dong Nai
-50000000
-
-19127017
-Nguyen Thanh Nhan
-23 Nguyen Trai Ha Noi
-520000000
-
-19127018
-Nguyen Phuong
-62/7 Nguyen Tat Thanh Thanh Hoa
-50000000
-
-19127019
-Nguyen Nhat An
-10 An Duong Vuong Ca Mau
-56000000
-
-19127020
-Nguyen Phuong Anh
-23 Hung Vuong Tien Giang
-50000000
-
-19127022
-Vo Ngoc Tran
-129/23D Nguyen Trai Sai Gon
+12/12/2020
+Nguyen Thanh Tinh
+123 Tran Dan Ho Chi Minh
+0906123456
+nttu@gmail.com
+Demand – deposit account
+2000000
+15
 0
+
+
+
+
 

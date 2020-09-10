@@ -15,10 +15,19 @@ class Customer
 private:
 
 	string _id;
+	string _birth;
 	string	_name;
 	string	_address;
-	int	_balance;
-	
+
+
+	string _phone;
+	string _mail;
+	int _duration;
+	int _period;
+	string _acctype;
+	float _TermRate;
+	float _DemandRate;
+	int _balance;
 	int _option;
 	Account _account;
 
@@ -73,7 +82,7 @@ public:
 
 	void showMenu();
 
-	void Editprofile();
+    void Editprofile();
 
 	void deleteAccount();
 };
