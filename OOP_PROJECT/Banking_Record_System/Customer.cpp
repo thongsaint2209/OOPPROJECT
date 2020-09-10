@@ -153,7 +153,7 @@ void Customer::Editprofile()
 
 	}
 	cout << "Choose id you want to Edit  ";
-	while (getchar() != '\n');
+	
 	getline(cin, id);
 	
 	int flag = 0;
@@ -163,6 +163,7 @@ void Customer::Editprofile()
 	cout << "0: Out" << endl;
 	cout << "1: Edit" << endl;
 	cin >> option;
+	while (getchar() != '\n');
 	switch (option)
 	{
 	case 0:
@@ -281,7 +282,7 @@ void Customer::deleteAccount()
 	}
 	f2.close();
 	cout << "Enter id you want to Delete :";
-	while (getchar() != '\n');
+	
 	getline(cin, id);
 	
 	
@@ -291,6 +292,7 @@ void Customer::deleteAccount()
 	cout << "0: Out" << endl;
 	cout << "1: Delete" << endl;
 	cin >> option;
+	while (getchar() != '\n');
 	switch (option)
 	{
 	case 0:
@@ -312,7 +314,7 @@ void Customer::deleteAccount()
 				if (!f3.is_open())
 					cout << "Cannot open CustomerAccounts.txt\n";
 				
-				for (int m = 0; i < this->account.size(); m++)
+				for (int m = 0; m < this->account.size(); m++)
 				{
 
 					f3 << account[m].username()<<endl;
