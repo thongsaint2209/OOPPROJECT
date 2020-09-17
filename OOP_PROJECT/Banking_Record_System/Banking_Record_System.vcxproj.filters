@@ -33,7 +33,16 @@
     <ClInclude Include="Employee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyStaicLib\Date.h">
+    <ClInclude Include="MyStaticLib\MyStaticLib\Address.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStaticLib\MyStaticLib\Date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStaticLib\MyStaticLib\FullName.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyStaticLib\MyStaticLib\Random.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -61,6 +70,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="MyStaicLib\MyStaticLib.lib" />
+    <Library Include="MyStaticLib\MyStaticLib\MyStaticLib.lib" />
   </ItemGroup>
 </Project>

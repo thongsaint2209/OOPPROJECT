@@ -4,7 +4,7 @@
 #include<ctime>
 #include<sstream>
 #include<vector>
-#include"../MyStaicLib/Mylib/Tokenizer/Tokenizer.h"
+#include"../../MyLib/Tokenizer/Tokenizer.h"
 #include<iomanip>
 
 using namespace std;

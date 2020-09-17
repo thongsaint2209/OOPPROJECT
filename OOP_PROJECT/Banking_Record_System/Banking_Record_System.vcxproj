@@ -145,7 +145,10 @@
     <ClInclude Include="Director.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Header.h" />
-    <ClInclude Include="MyStaicLib\Date.h" />
+    <ClInclude Include="MyStaticLib\MyStaticLib\Address.h" />
+    <ClInclude Include="MyStaticLib\MyStaticLib\Date.h" />
+    <ClInclude Include="MyStaticLib\MyStaticLib\FullName.h" />
+    <ClInclude Include="MyStaticLib\MyStaticLib\Random.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllRole.cpp" />
@@ -157,7 +160,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="MyStaicLib\MyStaticLib.lib" />
+    <Library Include="MyStaticLib\MyStaticLib\MyStaticLib.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -6,6 +6,9 @@
 #include <fstream>
 #include <vector>
 #include <conio.h>
+#include"MyStaticLib/MyStaticLib/FullName.h"
+#include"MyStaticLib/MyStaticLib/Date.h"
+#include"MyStaticLib/MyStaticLib/Address.h"
 
 using namespace std;
 
@@ -35,6 +38,13 @@ private:
 	string _username;
 	string _password;
 	string _passwordLv2;
+	string _name;
+	string _phone;
+	string _mail;
+	string _address;
+	string _id;
+	friend class Customer;
+	
 public:
 	Account();
 	//operator =
