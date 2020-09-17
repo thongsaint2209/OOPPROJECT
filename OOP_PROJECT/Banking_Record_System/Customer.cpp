@@ -214,7 +214,7 @@ void Customer::Editprofile()
 		if (f1.eof())
 			break;
 		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
-		this->a.push_back(temp);
+		a.push_back(temp);
 		f1.ignore(1, '\n');
 		count++;
 
@@ -240,7 +240,7 @@ void Customer::Editprofile()
 	case 1:
 	{
 		
-	for (int i = 0; i < this->a.size(); i++)
+	for (int i = 0; i < a.size(); i++)
 		{
 			if (a[i].getId()==id)
 			{
@@ -265,9 +265,9 @@ void Customer::Editprofile()
 
 				a[i]._id = temp2._id;
 				a[i]._name = temp2._name;
-				a[i]._date = temp2._date;
+				a[i]._birth = temp2._birth;
 				a[i]._address = temp2._address;
-				a[i]._phone = temp2.phone;
+				a[i]._phone = temp2._phone;
 				a[i]._mail = temp2._mail;
 				a[i]._acctype = temp2._acctype;
 				
@@ -343,8 +343,17 @@ void Customer::deleteAccount()
 	ifstream f2;
 	string id;
 	string	name;
+	string date;
 	string	address;
+
+	string phone;
+	string mail;
+	string Acctype;
+
 	int	balance;
+
+	int	duration;
+	int	period;
 	f2.open("Customer.txt", ios::in);
 	if (!f2.is_open())
 		cout << "Cannot open Customer.txt\n";
@@ -354,15 +363,28 @@ void Customer::deleteAccount()
 	while (f2.good())
 	{
 		f2 >> id;
+		f2.ignore();
 		getline(f2, name);
-		getline(f2, name);
+
+		getline(f2, date);
+
+
 		getline(f2, address);
+
+		getline(f2, phone);
+
+		getline(f2, mail);
+
+		getline(f2, Acctype);
+
 		f2 >> balance;
+		f2>> duration;
+		f2 >> period;
 
 		if (f2.eof())
 			break;
-		//Customer temp1(id, name, address, balance);
-	//	this->a.push_back(temp1);
+		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
+		this->a.push_back(temp);
 		f2.ignore(1, '\n');
 		count1++;
 
@@ -431,13 +453,16 @@ void Customer::deleteAccount()
 
 				for (int k = 0; k < this->a.size(); k++)
 				{
-
-					f4 << a[k]._id << endl;
-
+					f4<< a[k]._id << endl;
 					f4 << a[k]._name << endl;
-
+					f4 << a[k]._birth << endl;
 					f4 << a[k]._address << endl;
+					f4<< a[k]._phone << endl;
+					f4 << a[k]._mail << endl;
+					f4 << a[k]._acctype << endl;
 					f4 << a[k]._balance << endl;
+					f4 << a[k]._duration << endl;
+					f4 << a[k]._period << endl;
 					f4 << endl;
 
 				}
@@ -454,7 +479,7 @@ void Customer::deleteAccount()
 	}
 }
 
-/*void Customer::showMenu()
+void Customer::showMenu()
 {
 
 	while (true)
@@ -519,4 +544,4 @@ void Customer::deleteAccount()
 		}
 		system("pause");
 	}
-}*/
+}

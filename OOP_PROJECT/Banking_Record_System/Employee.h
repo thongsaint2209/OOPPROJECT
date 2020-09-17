@@ -89,7 +89,7 @@ public:
 		this->_merits = merits;
 	}
 
-
+	void showMenu();
 };
 
 #endif

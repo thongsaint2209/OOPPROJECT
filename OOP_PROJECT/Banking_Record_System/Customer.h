@@ -37,7 +37,7 @@ private:
 
 	vector<Request> _requestList;
 	vector<Account> account;
-	vector<Customer> a;
+    vector<Customer> a;
 public:
 	Customer() {};
 	void setId(string id)
@@ -122,7 +122,7 @@ public:
 
 	void showMenu();
 
-   static void Editprofile();
+    void Editprofile();
 
 	void deleteAccount();
 };

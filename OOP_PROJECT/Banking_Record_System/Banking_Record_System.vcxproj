@@ -150,6 +150,7 @@
     <ClCompile Include="AllRole.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Director.cpp" />
+    <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager.cpp" />

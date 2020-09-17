@@ -55,6 +55,8 @@ void ManagerMenu::showMenu()
 		
 		cout << "6. Fire employee.\n";
 		cout << "7. Search information customer\n";
+		cout << "8. Search information employee\n";
+		cout << "9. View list of employee\n";
 		cout << "=================================\n";
 		cout << "-> Select option: ";
 		cin >> this->_option;
@@ -91,13 +93,19 @@ void ManagerMenu::showMenu()
 			this->viewcustomer();
 			break;
 		case 5:
-			Customer::Editprofile();
+			//Customer::Editprofile();
 			break;
 		case 6:
 			this->FireEmployee();
 			break;
 		case 7:
 			this->searchcustomer();
+			break;
+		case 8:
+			this->searchemployee();
+			break;
+		case 9:
+			this->viewemployee();
 			break;
 		default:
 		{
@@ -706,5 +714,146 @@ void ManagerMenu::FireEmployee()
 		break;
 	}
 	}
+}
+
+void ManagerMenu::viewemployee()
+{
+
+	ifstream f1;
+
+	string id;
+	string	name;
+	string date;
+	string	address;
+
+	string phone;
+	string mail;
+	int merits;
+	f1.open("Employee.txt", ios::in);
+
+
+	if (!f1.is_open())
+		cout << "Cannot open Employee.txt\n";
+
+	int i = 0;
+	int count = 0;
+	while (f1.good())
+	{
+		f1 >> id;
+		f1.ignore();
+		getline(f1, name);
+
+		getline(f1, date);
+
+
+		getline(f1, address);
+
+		getline(f1, phone);
+
+		getline(f1, mail);
+
+
+		f1 >> merits;
+
+		if (f1.eof())
+			break;
+		Employee temp(id, name, date, address, phone, mail, merits);
+		e.push_back(temp);
+		f1.ignore(1, '\n');
+		count++;
+	}
+
+	for (int i = 0; i < e.size(); i++)
+	{
+		
+		cout << "id :" << e[i].getId() << endl;
+		cout << "name :" << e[i].getname() << endl;
+		cout << "birthday :" << e[i].getbirth() << endl;
+		cout << "address :" << e[i].getaddress() << endl;
+		cout << "phone :" << e[i].getphone() << endl;
+		cout << "mail:" << e[i].getmail() << endl;
+		
+		
+		cout << "merit :" << e[i].getmerit() << endl;
+		cout << endl;
+	}
+	f1.close();
+}
+
+void ManagerMenu::searchemployee()
+{
+
+	ifstream f1;
+
+	string id;
+	string	name;
+	string date;
+	string	address;
+
+	string phone;
+	string mail;
+	int merits;
+	f1.open("Employee.txt", ios::in);
+
+
+	if (!f1.is_open())
+		cout << "Cannot open Employee.txt\n";
+
+	int i = 0;
+	int count = 0;
+	while (f1.good())
+	{
+		f1 >> id;
+		f1.ignore();
+		getline(f1, name);
+
+		getline(f1, date);
+
+
+		getline(f1, address);
+
+		getline(f1, phone);
+
+		getline(f1, mail);
+
+
+		f1 >> merits;
+
+
+
+		if (f1.eof())
+			break;
+		Employee temp(id, name, date, address, phone, mail, merits);
+		e.push_back(temp);
+		f1.ignore(1, '\n');
+		count++;
+	}
+	for (int i = 0; i < e.size(); i++)
+	{
+		cout << "id :" << e[i].getId() << endl;
+		cout << endl;
+	}
+	cout << "Choose id you want to dind information about employee   ";
+	while (getchar() != '\n');
+	getline(cin, id);
+
+
+	for (int i = 0; i < count; i++)
+	{
+		if (e[i].getId() == id)
+		{
+			cout << "id :" << e[i].getId() << endl;
+			cout << "name :" << e[i].getname() << endl;
+			cout << "birthday :" << e[i].getbirth() << endl;
+			cout << "address :" << e[i].getaddress() << endl;
+			cout << "phone :" << e[i].getphone() << endl;
+			cout << "mail:" << e[i].getmail() << endl;
+
+
+			cout << "merit :" << e[i].getmerit() << endl;
+			cout << endl;
+		}
+	}
+	f1.close();
 }
 

@@ -46,7 +46,10 @@ public:
 	void searchcustomer();
 
 	void FireEmployee();
-	
+
+	void viewemployee();
+
+	void searchemployee();
 };
 
 
