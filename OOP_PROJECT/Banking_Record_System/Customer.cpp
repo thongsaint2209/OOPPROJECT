@@ -56,10 +56,20 @@ void Customer::newAccount()
 
 	ifstream f3;
 
+
 	string id;
 	string	name;
+	string date;
 	string	address;
+
+	string phone;
+	string mail;
+	string Acctype;
+
 	int	balance;
+
+	int	duration;
+	int	period;
 	f3.open("Customer.txt", ios::in);
 
 
@@ -71,14 +81,27 @@ void Customer::newAccount()
 	while (f3.good())
 	{
 		f3 >> id;
+		f3.ignore();
 		getline(f3, name);
-		getline(f3, name);
+
+		getline(f3, date);
+
+
 		getline(f3, address);
+
+		getline(f3, phone);
+
+		getline(f3, mail);
+
+		getline(f3, Acctype);
+
 		f3 >> balance;
+		f3 >> duration;
+		f3 >> period;
 
 		if (f3.eof())
 			break;
-		Customer temp(id, name, address, balance);
+		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
 		this->a.push_back(temp);
 		f3.ignore(1, '\n');
 		count1++;
@@ -88,15 +111,29 @@ void Customer::newAccount()
 	cout << "Enter your name : ";
 	getline(cin, name);
 
+	cout << "Enter your date : ";
+	getline(cin, date);
+
 	cout << "Enter your address : ";
 	getline(cin, address);
 
+	cout << "Enter your phone : ";
+	getline(cin, phone);
+
+	cout << "Enter your  mail : ";
+	getline(cin, mail);
+
+	cout << "Enter Acc-Type : ";
+	getline(cin, Acctype);
+
+	
+
 	
 	
 	
 
 
-	Customer temp2(username, name, address);
+	Customer temp2(username, name, date, address, phone, mail, Acctype);
 	this->a.push_back(temp2);
 
 	count1++;
@@ -108,16 +145,24 @@ void Customer::newAccount()
 	for (int i = 0; i < count1; i++)
 	{
 
-		f4<< a[i]._id<<endl;
 
-		f4 << a[i]._name<<endl;
-
-		f4 << a[i]._address<<endl;
+		f4 << a[i]._id << endl;
+		f4 << a[i]._name << endl;
+		f4 << a[i]._birth << endl;
+		f4 << a[i]._address << endl;
+		f4 << a[i]._phone << endl;
+		f4 << a[i]._mail << endl;
+		f4 << a[i]._acctype << endl;
 		f4 << a[i]._balance << endl;
+		f4 << a[i]._duration << endl;
+		f4 << a[i]._period << endl;
+
 		f4 << endl;
+		
 
 	}
 	f4.close();
+	cout << "Add new acc successfully " << endl;
 }
 
 void Customer::Editprofile()
@@ -126,8 +171,17 @@ void Customer::Editprofile()
 
 	string id;
 	string	name;
+	string date;
 	string	address;
+
+	string phone;
+	string mail;
+	string Acctype;
+
 	int	balance;
+
+	int	duration;
+	int	period;
 	f1.open("Customer.txt", ios::in);
 
 
@@ -139,14 +193,27 @@ void Customer::Editprofile()
 	while (f1.good())
 	{
 		f1 >> id;
+		f1.ignore();
 		getline(f1, name);
-		getline(f1, name);
+
+		getline(f1, date);
+
+
 		getline(f1, address);
-		f1>> balance;
+
+		getline(f1, phone);
+
+		getline(f1, mail);
+
+		getline(f1, Acctype);
+
+		f1 >> balance;
+		f1 >> duration;
+		f1 >> period;
 
 		if (f1.eof())
 			break;
-		Customer temp(id, name, address, balance);
+		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
 		this->a.push_back(temp);
 		f1.ignore(1, '\n');
 		count++;
@@ -173,7 +240,7 @@ void Customer::Editprofile()
 	case 1:
 	{
 		
-		for (int i = 0; i < this->a.size(); i++)
+	for (int i = 0; i < this->a.size(); i++)
 		{
 			if (a[i].getId()==id)
 			{
@@ -181,16 +248,33 @@ void Customer::Editprofile()
 				cout << "Enter your name : ";
 				getline(cin, name);
 
+				cout << "Enter your date : ";
+				getline(cin, date);
+
 				cout << "Enter your address : ";
 				getline(cin, address);
 
-				Customer temp2(id, name, address, balance);
+				cout << "Enter your phone : ";
+				getline(cin, phone);
+
+				cout << "Enter your mail : ";
+				getline(cin, mail);
+
+				Customer temp2(id, name, date, address, phone, mail, Acctype, balance, duration, period);
+				
 
 				a[i]._id = temp2._id;
 				a[i]._name = temp2._name;
+				a[i]._date = temp2._date;
 				a[i]._address = temp2._address;
+				a[i]._phone = temp2.phone;
+				a[i]._mail = temp2._mail;
+				a[i]._acctype = temp2._acctype;
+				
+
 				a[i]._balance = temp2._balance;
-			   
+				a[i]._duration = temp2._duration;
+				a[i]._period = temp2._period;
 
 				fstream f3;
 				f3.open("Customer.txt", ios::out);
@@ -199,13 +283,16 @@ void Customer::Editprofile()
 
 				for (int i = 0; i < count; i++)
 				{
-					
-						f3 << a[i]._id<<endl;
-
-						f3 << a[i]._name<<endl;
-
-						f3 << a[i]._address<<endl;
-						f3 << a[i]._balance << endl;
+					f3 << a[i]._id << endl;
+					f3 << a[i]._name << endl;
+					f3 << a[i]._birth << endl;
+					f3 << a[i]._address << endl;
+					f3 << a[i]._phone << endl;
+					f3 << a[i]._mail << endl;
+					f3 << a[i]._acctype << endl;
+					f3 << a[i]._balance << endl;
+					f3 << a[i]._duration << endl;
+					f3 << a[i]._period << endl;
 						f3 << endl;
 
 				}
@@ -274,8 +361,8 @@ void Customer::deleteAccount()
 
 		if (f2.eof())
 			break;
-		Customer temp1(id, name, address, balance);
-		this->a.push_back(temp1);
+		//Customer temp1(id, name, address, balance);
+	//	this->a.push_back(temp1);
 		f2.ignore(1, '\n');
 		count1++;
 
@@ -367,7 +454,7 @@ void Customer::deleteAccount()
 	}
 }
 
-void Customer::showMenu()
+/*void Customer::showMenu()
 {
 
 	while (true)
@@ -432,4 +519,4 @@ void Customer::showMenu()
 		}
 		system("pause");
 	}
-}
+}*/

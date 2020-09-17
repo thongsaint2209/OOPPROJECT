@@ -49,9 +49,9 @@ void ManagerMenu::showMenu()
 
 		cout << "2. Edit requests list.\n";
 
-		cout << "3. View list of accepting requests from director\n";
+		cout << "3. View list of accepting requests and processing from director\n";
 		cout << "4. View list of customer.\n";
-		cout << "5. View trade history ( not VIP).\n";
+		cout << "5. Edit profile customer).\n";
 		
 		cout << "6. Fire employee.\n";
 		cout << "7. Search information customer\n";
@@ -91,7 +91,7 @@ void ManagerMenu::showMenu()
 			this->viewcustomer();
 			break;
 		case 5:
-		//	Customer::Editprofile();
+			Customer::Editprofile();
 			break;
 		case 6:
 			this->FireEmployee();
@@ -206,7 +206,7 @@ void ManagerMenu::editRequest()
 }
 
 
-
+//chua xong
 void ManagerMenu::viewlistReDirector()
 {
 	ifstream f1;
@@ -256,14 +256,14 @@ void ManagerMenu::viewlistReDirector()
 	f1.close();
 	
 	
-	cout << "Choose id you want to Edit  ";
+	cout << "Choose id you want to Processing  ";
 	while (getchar() != '\n');
 	getline(cin, id);
 
 	int flag = 0;
 	
 			int option;
-			cout << "Do you want to edit this customer?  " << endl;
+			cout << "Do you want to  Processing this customer?  " << endl;
 			cout << "0: Out" << endl;
 			cout << "1: Edit" << endl;
 			cin >> option;
@@ -321,8 +321,8 @@ void ManagerMenu::viewlistReDirector()
 
 					if (f1.eof())
 						break;
-					Customer temp(id, name, address, balance);
-					this->a.push_back(temp);
+					//Customer temp(id, name, address, balance);
+					//this->a.push_back(temp);
 					f1.ignore(1, '\n');
 					count++;
 				}
@@ -365,8 +365,17 @@ void ManagerMenu::viewcustomer()
 
 	string id;
 	string	name;
+	string date;
 	string	address;
+
+	string phone;
+	string mail;
+	string Acctype;
+	
 	int	balance;
+	
+	int	duration;
+	int	period;
 	f1.open("Customer.txt", ios::in);
 
 
@@ -378,14 +387,27 @@ void ManagerMenu::viewcustomer()
 	while (f1.good())
 	{
 		f1 >> id;
+		f1.ignore();
 		getline(f1, name);
-		getline(f1, name);
+	
+		getline(f1, date);
+		
+		
 		getline(f1, address);
+	
+		getline(f1, phone);
+	
+		getline(f1, mail);
+		
+		getline(f1, Acctype);
+		
 		f1 >> balance;
+		f1 >> duration;
+		f1 >> period;
 
 		if (f1.eof())
 			break;
-		Customer temp(id, name, address, balance);
+		Customer temp(id, name,date, address,phone,mail,Acctype, balance,duration,period);
 		this->a.push_back(temp);
 		f1.ignore(1, '\n');
 		count++;
@@ -396,8 +418,14 @@ void ManagerMenu::viewcustomer()
 		cout << "Request #" << i + 1 << endl;
 		cout << "id :" << a[i].getId() << endl;
 		cout << "name :" << a[i].getname() << endl;
-		cout << "address :" << a[i].getname() << endl;
+		cout << "birthday :" << a[i].getbirth() << endl;
+		cout << "address :" << a[i].getaddress() << endl;
+		cout << "phone :" << a[i].getphone() << endl;
+		cout << "mail:" << a[i].getmail() << endl;
+		cout << "Acc type :" << a[i].getacctype() << endl;
 		cout << "balance :" << a[i].getBalance() << endl;
+		cout << "duration :" << a[i].getDuration() << endl;
+		cout << "period :" << a[i].getPeriod() << endl;
 		cout << endl;
 	}
 	f1.close();
@@ -410,8 +438,17 @@ void ManagerMenu::searchcustomer()
 
 	string id;
 	string	name;
+	string date;
 	string	address;
+
+	string phone;
+	string mail;
+	string Acctype;
+
 	int	balance;
+
+	int	duration;
+	int	period;
 	f1.open("Customer.txt", ios::in);
 
 
@@ -423,14 +460,28 @@ void ManagerMenu::searchcustomer()
 	while (f1.good())
 	{
 		f1 >> id;
+		f1.ignore();
 		getline(f1, name);
-		getline(f1, name);
+
+		getline(f1, date);
+
+
 		getline(f1, address);
+
+		getline(f1, phone);
+
+		getline(f1, mail);
+
+		getline(f1, Acctype);
+
 		f1 >> balance;
+		f1 >> duration;
+		f1 >> period;
+
 
 		if (f1.eof())
 			break;
-		Customer temp(id, name, address, balance);
+		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
 		this->a.push_back(temp);
 		f1.ignore(1, '\n');
 		count++;
@@ -452,8 +503,14 @@ void ManagerMenu::searchcustomer()
 			cout << "Request #" << i + 1 << endl;
 			cout << "id :" << a[i].getId() << endl;
 			cout << "name :" << a[i].getname() << endl;
+			cout << "birthday :" << a[i].getbirth() << endl;
 			cout << "address :" << a[i].getaddress() << endl;
+			cout << "phone :" << a[i].getphone() << endl;
+			cout << "mail:" << a[i].getmail() << endl;
+			cout << "Acc type :" << a[i].getacctype() << endl;
 			cout << "balance :" << a[i].getBalance() << endl;
+			cout << "duration :" << a[i].getDuration() << endl;
+			cout << "period :" << a[i].getPeriod() << endl;
 			cout << endl;
 		}
 	}
@@ -488,8 +545,73 @@ void ManagerMenu::FireEmployee()
 		count++;
 	}
 	f1.close();
+	
 	string id;
+	string	name;
+	string date;
+	string	address;
 
+	string phone;
+	string mail;
+
+
+	int	merits;
+	fstream f2;
+	f2.open("Employee.txt", ios::in);
+
+
+	if (!f1.is_open())
+		cout << "Cannot open Customer.txt\n";
+
+	int i = 0;
+
+	while (f2.good())
+	{
+		f2 >> id;
+		f2.ignore();
+		getline(f2, name);
+
+		getline(f2, date);
+
+
+		getline(f2, address);
+
+		getline(f2, phone);
+
+		getline(f2, mail);
+
+	
+
+
+		f2 >> merits;
+
+
+		if (f2.eof())
+			break;
+		Employee temp(id, name, date, address, phone, mail, merits);
+		this->e.push_back(temp);
+		f1.ignore(1, '\n');
+	
+	}
+	//cout merits <=90;
+	cout << "View List employees have merits < 90 : " << endl;
+	for (int i = 0; i < e.size(); i++)
+	{
+		if (e[i].getmerit()<90)
+		{
+			
+			cout << "id :" << e[i].getId() << endl;
+			cout << "name :" << e[i].getname() << endl;
+			cout << "birthday :" << e[i].getbirth() << endl;
+			cout << "address :" << e[i].getaddress() << endl;
+			cout << "phone :" << e[i].getphone() << endl;
+			cout << "mail:" << e[i].getmail() << endl;
+			
+			cout << "merits :" << e[i].getmerit() << endl;
+			cout << endl;
+		}
+	}
+	
 	cout << "Enter id you want to Delete :";
 	while (getchar() != '\n');
 	getline(cin, id);
@@ -501,6 +623,7 @@ void ManagerMenu::FireEmployee()
 	cout << "0: Out" << endl;
 	cout << "1: Delete" << endl;
 	cin >> option;
+	int temp_pos;
 	switch (option)
 	{
 	case 0:
@@ -509,10 +632,42 @@ void ManagerMenu::FireEmployee()
 	}
 	case 1:
 	{
+		for (int k = 0; k < e.size(); k++)
+		{
+			if (e[k].getId() == id)
+			{
+				temp_pos = k;
+				e.erase(e.begin() + k);
 
+				fstream f4;
+				f4.open("Employee.txt", ios::out);
+				if (!f4.is_open())
+					cout << "Employee.txt\n";
+
+				for (int l = 0; l < e.size(); l++)
+				{
+
+					f4 << e[l].getId() << endl;
+					f4 << e[l].getname() << endl;
+					f4 << e[l].getbirth() << endl;
+					f4 << e[l].getaddress() << endl;
+					f4 << e[l].getphone() << endl;
+
+					f4 << e[l].getmail() << endl;
+
+					f4 << e[l].getmerit() << endl;
+					f4 << endl;
+					
+				}
+				f4.close();
+
+				
+			}
+		}
+		
 		for (int i = 0; i < this->account.size(); i++)
 		{
-			if (account[i].username() == id)
+			if(i==temp_pos)
 			{
 				
 				
@@ -536,9 +691,14 @@ void ManagerMenu::FireEmployee()
 				}
 				f3.close();
 
-				cout << "Delete successfully " << endl;
+				
 			}
 		}
+		
+		
+		
+
+		cout << "Delete successfully " << endl;
 	}
 	default:
 	{

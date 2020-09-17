@@ -1,6 +1,6 @@
 #include "Header.h"
 #include "Customer.h"
-
+#include "Employee.h"
 	class ManagerMenu
 {
 protected:
@@ -12,9 +12,10 @@ protected:
 
 	string _phone;
 	string _mail;
+	string _acctype;
 	int _duration;
 	int _period;
-	string _acctype;
+	
 	static float _TermRate;
 	static float _DemandRate;
 
@@ -27,8 +28,9 @@ protected:
 	vector<Customer> a;
 	
 	vector<Account> account;
+	vector<Employee> e;
 public:
-	
+	ManagerMenu()  {};
 	ManagerMenu(Account acc);
 
 	void showMenu();
