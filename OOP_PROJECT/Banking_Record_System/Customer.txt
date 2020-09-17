@@ -1,6 +1,6 @@
 19127001
-12/12/2020
 Nguyen Thanh Tu
+12/12/2020
 185 Nguyen Van Cu Ho Chi Minh
 0906123456
 nttu@gmail.com
@@ -10,8 +10,8 @@ Time - deposit account
 12
 
 19127002
-01/12/2020
 Ngo Dang Quang
+01/12/2020
 69 Xuan Dieu Hai Phong
 0906123456
 nttu@gmail.com
@@ -21,8 +21,8 @@ Demand – deposit account
 0
 
 19127003
-12/12/2001
 Ngo Dang Khoa
+12/12/2001
 69 Xuan Dieu Hai Phong
 0909123123
 ndk@gmail.com
@@ -32,8 +32,8 @@ Payment account
 0
 
 19127004
-09/01/2020
 Nguyen Thi Be Ba
+09/01/2020
 357 Ly Thuong Kiet Tien Giang
 0902664578
 ntbb@gmail.com
@@ -43,8 +43,8 @@ Time-deposit account
 24
 
 19127005
-12/12/2020
 Nguyen Thanh Tinh
+12/12/2020
 123 Tran Dan Ho Chi Minh
 0906123456
 nttu@gmail.com
