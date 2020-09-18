@@ -5,7 +5,7 @@ Nguyen Thanh Tu
 0906123456
 nttu@gmail.com
 Time - deposit account
-2000000
+20000000
 13
 12
 
@@ -37,19 +37,30 @@ Nguyen Thi Be Ba
 357 Ly Thuong Kiet Tien Giang
 0902664578
 ntbb@gmail.com
-Time-deposit account
+Time - deposit account
 6000000
 24
 24
 
 19127005
-Nguyen Thanh Tinh
-12/12/2020
-123 Tran Dan Ho Chi Minh
-0906123456
-nttu@gmail.com
-Demand – deposit account
+Vy Ngu
+01/01/2001
+13/2 Tran Phu
+00000969
+vyngu@gmail.com
+Demand - deposit account
 2000000
 15
+0
+
+19127006
+Vy Ngu 2
+01/01/2001
+123/12 Tran Phu
+696969696969
+vyngu2@gmail.com
+Time - deposit account
+0
+0
 0
 
