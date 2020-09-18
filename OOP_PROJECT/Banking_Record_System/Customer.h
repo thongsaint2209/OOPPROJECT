@@ -104,7 +104,7 @@ public:
 		this->_acctype = type;
 		this->_balance = balance;
 		this->_duration = duration;
-		this->_period=period;
+		this->_period = period;
 	}
 	Customer(string id, string name, string birth, string address, string phone, string mail, string type)
 	{

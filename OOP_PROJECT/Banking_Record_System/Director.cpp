@@ -83,13 +83,22 @@ void DirectorMenu::showMenu()
 			break;
 		case 3:
 		{
+			cout << "=================================\n";
 			cout << "Total Money In Bank: ";
-			cout << this->getTotalMoney() << endl;;
+			cout << this->getTotalMoney() << endl;
+			cout << "=================================\n";
 			break;
 		}
 		case 4:
+		{
+			cout << "=================================\n";
+			cout << "Total Bank's Customer: ";
+			cout << this->getTotalCustomer() << endl;
+			cout << "=================================\n";
 			break;
+		}
 		case 5:
+			this->viewVIPCustomer();
 			break;
 		case 6:
 			this->showFireMenu();
@@ -223,7 +232,6 @@ string DirectorMenu::getTotalMoney()
 	if (!f.is_open())
 		cout << "Cannot open Customer.txt\n";
 
-	int count = 0;
 	while (f.good())
 	{
 		f >> id;
@@ -244,8 +252,8 @@ string DirectorMenu::getTotalMoney()
 		Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
 		temp.push_back(temp1);
 		f.ignore(1, '\n');
-		count++;
 	}
+	f.close();
 
 	//calc total money
 	float sum = 0;
@@ -253,6 +261,123 @@ string DirectorMenu::getTotalMoney()
 		sum += temp[i].getBalance();
 
 	return to_string((int)sum);
+}
+
+int DirectorMenu::getTotalCustomer()
+{
+	//local variables
+	vector<Customer> temp;
+	//read file buffers
+	string id;
+	string name;
+	string date;
+	string address;
+	string phone;
+	string mail;
+	string Acctype;
+	string balance;
+	string duration;
+	string period;
+	fstream f;
+
+	f.open("Customer.txt", ios::in);
+
+	if (!f.is_open())
+		cout << "Cannot open Customer.txt\n";
+
+	while (f.good())
+	{
+		f >> id;
+		f.ignore();
+		getline(f, name);
+		getline(f, date);
+		getline(f, address);
+		getline(f, phone);
+		getline(f, mail);
+		getline(f, Acctype);
+		getline(f, balance);
+		getline(f, duration);
+		getline(f, period);
+
+		if (f.eof())
+			break;
+
+		Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+		temp.push_back(temp1);
+		f.ignore(1, '\n');
+	}
+	f.close();
+
+	return temp.size();
+}
+
+void DirectorMenu::viewVIPCustomer()
+{
+	//local variables
+	vector<Customer> temp;
+	//read file buffers
+	string id;
+	string name;
+	string date;
+	string address;
+	string phone;
+	string mail;
+	string Acctype;
+	string balance;
+	string duration;
+	string period;
+	fstream f;
+
+	f.open("Customer.txt", ios::in);
+
+	if (!f.is_open())
+		cout << "Cannot open Customer.txt\n";
+
+	while (f.good())
+	{
+		f >> id;
+		f.ignore();
+		getline(f, name);
+		getline(f, date);
+		getline(f, address);
+		getline(f, phone);
+		getline(f, mail);
+		getline(f, Acctype);
+		getline(f, balance);
+		getline(f, duration);
+		getline(f, period);
+
+		if (f.eof())
+			break;
+
+		Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+		temp.push_back(temp1);
+		f.ignore(1, '\n');
+	}
+	f.close();
+
+	int count = 0;
+	system("cls");
+	cout << "\n==========VIP-CUSTOMER==========\n";
+	for (int i = 0; i < temp.size(); i++)
+	{
+		if (temp[i].getBalance() > 99999999)
+		{
+			cout << "#" << ++count << endl;
+			cout << "ID          : " << temp[i].getId() << endl;
+			cout << "Name        : " << temp[i].getname() << endl;
+			cout << "DoB         : " << temp[i].getbirth() << endl;
+			cout << "Address     : " << temp[i].getaddress() << endl;
+			cout << "Phone Number: " << temp[i].getphone() << endl;
+			cout << "Email       : " << temp[i].getmail() << endl;
+			cout << "Account Type: " << temp[i].getacctype() << endl;
+			cout << "Balance     : " << temp[i].getBalance() << endl;
+			if (i != temp.size() - 1)
+				cout << endl;
+		}
+	}
+	cout << "================================\n";
+	cout << "Press anykey to go back.\n";
 }
 
 void DirectorMenu::showFireMenu()

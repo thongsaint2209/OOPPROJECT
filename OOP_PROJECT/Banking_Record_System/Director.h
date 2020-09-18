@@ -28,6 +28,8 @@ public:
 	void editRequest();
 	string getTotalMoney();
 	void showFireMenu();
+	int getTotalCustomer();
+	void viewVIPCustomer();
 };
 
 #endif
