@@ -3,7 +3,8 @@
 
 #include "Header.h"
 #include "Director.h"
-
+#include "Manager.h"
+#include "Customer.h"
 class Menu
 {
 private:
@@ -12,6 +13,7 @@ private:
 		1: Director
 		2: Manager
 		3: Employee
+		4: Customer
 	*/
 	int _role;
 	Account _account;
