@@ -311,7 +311,7 @@ void ManagerMenu::viewlistReDirector()
 							this->_requestList2.erase(_requestList2.begin() + j);
 						}
 					}
-					if (this->_requestList2[j].approvalStatus() == -1)
+					if (this->_requestList2[j].approvalStatus() != 1)
 					{
 						this->_requestList2.erase(_requestList2.begin() + j);
 					}
@@ -335,7 +335,7 @@ void ManagerMenu::viewlistReDirector()
 			}
 			default:
 			{
-				cout << "Please choose number from 0-2" << endl;
+				cout << "Successfully" << endl;
 				break;
 			}
 			}
