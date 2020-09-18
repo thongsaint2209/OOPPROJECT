@@ -26,6 +26,7 @@ void Customer::newAccount()
 
 		count++;
 	}
+	cin.ignore();
 	cout << "Enter your id : ";
 	getline(cin, username);
 
@@ -219,10 +220,7 @@ void Customer::Editprofile()
 		count++;
 
 	}
-	cout << "Choose id you want to Edit  ";
-	
-	getline(cin, id);
-	
+
 	int flag = 0;
 
 	int option;
@@ -242,7 +240,7 @@ void Customer::Editprofile()
 		
 	for (int i = 0; i < a.size(); i++)
 		{
-			if (a[i].getId()==id)
+			if (a[i]._id== _account.username())
 			{
 				
 				cout << "Enter your name : ";
@@ -259,11 +257,13 @@ void Customer::Editprofile()
 
 				cout << "Enter your mail : ";
 				getline(cin, mail);
-
-				Customer temp2(id, name, date, address, phone, mail, Acctype, balance, duration, period);
 				
 
-				a[i]._id = temp2._id;
+				
+				Customer temp2(_account.username(), name, date, address, phone, mail, Acctype, a[i]._balance, a[i]._duration, a[i]._period);
+				
+
+				
 				a[i]._name = temp2._name;
 				a[i]._birth = temp2._birth;
 				a[i]._address = temp2._address;
@@ -272,16 +272,14 @@ void Customer::Editprofile()
 				a[i]._acctype = temp2._acctype;
 				
 
-				a[i]._balance = temp2._balance;
-				a[i]._duration = temp2._duration;
-				a[i]._period = temp2._period;
+				
 
 				fstream f3;
 				f3.open("Customer.txt", ios::out);
 				if (!f3.is_open())
 					cout << "Cannot open Customer.txt\n";
 
-				for (int i = 0; i < count; i++)
+				for (int i = 0; i < a.size(); i++)
 				{
 					f3 << a[i]._id << endl;
 					f3 << a[i]._name << endl;
@@ -390,9 +388,7 @@ void Customer::deleteAccount()
 
 	}
 	f2.close();
-	cout << "Enter id you want to Delete :";
-	
-	getline(cin, id);
+
 	
 	
 
@@ -413,7 +409,7 @@ void Customer::deleteAccount()
 
 		for (int i = 0; i < this->account.size(); i++)
 		{
-			if (account[i].username() == id)
+			if (account[i].username() == _account.username())
 			{
 
 				this->account.erase(account.begin() + i);
@@ -442,7 +438,7 @@ void Customer::deleteAccount()
 		
 		for (int j = 0; j < this->a.size(); j++)
 		{
-			if (a[j]._id == id)
+			if (a[j]._id == _account.username())
 			{
 				this->a.erase(a.begin() + j);
 

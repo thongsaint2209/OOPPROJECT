@@ -9,7 +9,6 @@ int main()
 	m.loginMenu();
 
 //m.redirect();
-	Customer c;
-	c.newAccount();
+	m.redirect();
 	return 0;
 }
