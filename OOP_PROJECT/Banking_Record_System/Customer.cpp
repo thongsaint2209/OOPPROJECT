@@ -33,9 +33,9 @@ void Customer::newAccount()
 		cout << "Enter your id : ";
 		getline(cin, username);
 		int k;
-		for (k=0; k < this->account.size(),k++)
+		for (k=0; k < this->account.size();k++)
 		{
-			if (username == this->[k].username())
+			if (username == this->account[k].username())
 			{
 				break;
 			}
