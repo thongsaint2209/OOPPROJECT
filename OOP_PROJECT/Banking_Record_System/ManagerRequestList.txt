@@ -1,7 +1,7 @@
 19127001
 Deposit
 1000000
-1
+-1
 
 19127002
 Withdraw
@@ -11,7 +11,7 @@ Withdraw
 19127003
 Deposit
 6000000
--1
+1
 
 19127004
 Deposit
@@ -21,4 +21,4 @@ Deposit
 19127005
 Withdraw
 20000000
-1
+-1

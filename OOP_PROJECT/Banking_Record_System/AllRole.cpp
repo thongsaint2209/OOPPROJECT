@@ -4,21 +4,24 @@ void Menu::redirect()
 {
 	if (this->_role == 1)
 	{
-		//Director
-		DirectorMenu m(this->_account);
-
-		m.showMenu();
+		DirectorMenu d(this->_account);
+		d.showMenu();
 	}
-
 	if (this->_role == 2)
 	{
-		//Manager
+		ManagerMenu m(this->_account);
+		 m.showMenu();
 	}
-
 	if (this->_role == 3)
 	{
-		//Employee
+		Employee e();
 	}
+	if (this->_role == 4)
+	{
+		Customer c(this->_account);
+		c.showMenu();
+	}
+	//continue...
 }
 
 void Menu::loginMenu()
