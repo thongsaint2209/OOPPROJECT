@@ -486,7 +486,7 @@ void Customer::showMenu()
 	while (true)
 	{
 		system("cls");
-		cout << "\n==========MANAGER-MENU==========\n";
+		cout << "\n==========CUSTOMER-MENU==========\n";
 		cout << "1.Create New Account.\n";
 
 		cout << "2. Edit information customer.\n";
