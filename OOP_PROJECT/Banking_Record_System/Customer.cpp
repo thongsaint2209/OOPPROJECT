@@ -1,5 +1,6 @@
 #include"Customer.h"
 #include"Header.h"
+vector <Customer> Customer::a;
 void Customer::newAccount()
 {
 	fstream f1;
@@ -595,7 +596,7 @@ void Customer::deposit(int money) {
 }
 
 
-void Customer::withdraw(int money) {
+void Customer::withdraw(int money,string id) {
 	ifstream f1;
 	string id;
 	string	name;
