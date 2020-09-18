@@ -92,13 +92,7 @@ public:
 
 	void showMenu();
 
-	float ClacInrest();
-
-	void deposit(int money);
-
-	int gettype();
-
-	static void withdraw(int money);
+	
 };
 
 #endif

@@ -318,49 +318,7 @@ void ManagerMenu::viewlistReDirector()
 					j++;
 				}
 
-				ifstream f2;
-				f2.open("Customer.txt", ios::in);
-
-
-				if (!f2.is_open())
-					cout << "Cannot open Customer.txt\n";
-
-
-				int count = 0;
-				while (f2.good())
-				{
-					f2 >> id;
-					getline(f2, name);
-					getline(f2, name);
-					getline(f2, address);
-					f2 >> balance;
-
-					if (f1.eof())
-						break;
-					//Customer temp(id, name, address, balance);
-					//this->a.push_back(temp);
-					f1.ignore(1, '\n');
-					count++;
-				}
-				f2.close();
-
-				fstream f3;
-				f3.open("Customer.txt", ios::out);
-				if (!f3.is_open())
-					cout << "Cannot open Customer.txt\n";
-
-				for (int i = 0; i < count; i++)
-				{
-
-					f3 << a[i].getId();
-
-					f3 << a[i].getname();
-
-					f3 << a[i].getaddress();
-					f3 << a[i].getBalance() << endl;
-
-				}
-				f3.close();
+				
 			}
 			default:
 			{
