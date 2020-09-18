@@ -40,6 +40,7 @@ private:
     vector<Customer> a;
 public:
 	Customer() {};
+	Customer(Account acc) { this->_account = acc; }
 	void setId(string id)
 	{
 		_id = id;
