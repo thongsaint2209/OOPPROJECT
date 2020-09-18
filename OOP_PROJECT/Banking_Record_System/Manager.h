@@ -1,3 +1,6 @@
+#ifndef MANAGER_H
+#define MANAGER_H
+
 #include "Header.h"
 #include "Customer.h"
 #include "Employee.h"
@@ -22,7 +25,7 @@ protected:
 	int	_balance;
 	int _option;
 	Account _account;
-	
+	Support _s;
 	vector<Request> _requestList1;
 	vector<Request> _requestList2;
 	vector<Customer> a;
@@ -52,5 +55,5 @@ public:
 	void searchemployee();
 };
 
-
+#endif
 

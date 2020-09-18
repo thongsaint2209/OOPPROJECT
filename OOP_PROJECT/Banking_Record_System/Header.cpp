@@ -186,3 +186,19 @@ Profile::Profile()
 	this->_ID = "";
 	this->_merit = 0;
 }
+
+void Support::checkValid(int _mode) {
+	while (1)
+	{
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(numeric_limits<streamsize>::max(), '\n');
+			cout << "Please only enter number!" << endl;
+			cout << "Enter again: ";
+			cin >> _mode;
+		}
+		if (!cin.fail())
+			break;
+	}
+}

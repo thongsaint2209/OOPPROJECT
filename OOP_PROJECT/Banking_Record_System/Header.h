@@ -91,5 +91,10 @@ public:
 	void logout();
 };
 
+class Support
+{
+public:
+	void checkValid(int _mode);
 
+};
 #endif

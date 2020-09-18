@@ -1,5 +1,5 @@
 #include"Customer.h"
-#include"Header.h"
+#include"AllRole.h"
 void Customer::newAccount()
 {
 	fstream f1;
@@ -481,32 +481,16 @@ void Customer::showMenu()
 	while (true)
 	{
 		system("cls");
-		cout << "\n==========MANAGER-MENU==========\n";
-		cout << "1.Create New Account.\n";
-
-		cout << "2. Edit information customer.\n";
-
-		cout << "3. Delete account\n";
-		
-
-		
+		cout << "\n==========CUSTOMER-MENU==========\n";
+		cout << "1. View profile information.\n";
+		cout << "2. Change password.\n";
+		cout << "3. Director's authority.\n";
+		cout << "0. Logout.\n";
 		cout << "=================================\n";
 		cout << "-> Select option: ";
 		cin >> this->_option;
 
-		while (1)
-		{
-			if (cin.fail())
-			{
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "Please only enter number!" << endl;
-				cout << "Enter again: ";
-				cin >> this->_option;
-			}
-			if (!cin.fail())
-				break;
-		}
+		_s.checkValid(this->_option);
 
 		if (this->_option == 0)
 			break;
@@ -514,30 +498,72 @@ void Customer::showMenu()
 		switch (this->_option)
 		{
 		case 1:
-			this->newAccount();
+			//View profile
 			break;
 		case 2:
-			this->Editprofile();
+			//change pass
 			break;
 		case 3:
-			this->deleteAccount();
+		{
+			while (true)
+			{
+				system("cls");
+				cout << "\n==========CUSTOMER'S AUTHORITY-MENU==========\n";
+				cout << "1.Create New Account.\n";
+				cout << "2. Edit information customer.\n";
+				cout << "3. Delete account\n";
+				cout << "0. Exit.\n";
+				cout << "=================================\n";
+				cout << "-> Select option: ";
+				cin >> this->_option;
+
+				_s.checkValid(this->_option);
+
+				if (this->_option == 0)
+					break;
+				switch (this->_option)
+				{
+				case 1:
+					this->newAccount();
+					break;
+				case 2:
+					this->Editprofile();
+					break;
+				case 3:
+					this->deleteAccount();
+					break;
+				case 4:
+
+					break;
+				case 5:
+					break;
+				case 6:
+					break;
+				case 7:
+
+					break;
+				default:
+				{
+					cout << "Please only enter number from 0 to 7!\n";
+					break;
+				}
+				}
+				system("pause");
+			}
 			break;
-		case 4:
-			
-			break;
-		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
-			
-			break;
+		}
 		default:
 		{
-			cout << "Please only enter number from 0 to 7!\n";
+			cout << "Please only enter number from 0 to 3!\n";
 			break;
 		}
 		}
 		system("pause");
 	}
+	system("cls");
+	cin.ignore(1);
+
+	Menu m;
+	m.loginMenu();
+	m.redirect();
 }

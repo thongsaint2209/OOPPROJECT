@@ -34,6 +34,7 @@ private:
 
 	int _option;
 	Account _account;
+	Support _s;
 
 	vector<Request> _requestList;
 	vector<Account> account;

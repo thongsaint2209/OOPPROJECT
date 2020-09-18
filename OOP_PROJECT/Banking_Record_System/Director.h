@@ -20,9 +20,11 @@ private:
 	int	_balance;
 	int _mode;
 	Account _account;
+	Support _s;
 	vector<Request> _requestList;
 public:
 	DirectorMenu(Account acc);
+	void viewProfile();
 	void showMenu();
 	void viewRequest();
 	void editRequest();

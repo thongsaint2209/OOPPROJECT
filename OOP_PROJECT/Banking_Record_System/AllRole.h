@@ -4,6 +4,7 @@
 #include "Header.h"
 #include "Director.h"
 #include "Manager.h"
+#include "Employee.h"
 #include "Customer.h"
 class Menu
 {

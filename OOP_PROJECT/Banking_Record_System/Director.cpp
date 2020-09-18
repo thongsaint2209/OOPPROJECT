@@ -1,8 +1,7 @@
 #include "Director.h"
 #include "Customer.h"
 #include "Employee.h"
-#include "Manager.h"
-
+#include "AllRole.h"
 DirectorMenu::DirectorMenu(Account acc)
 {
 	fstream f;
@@ -44,31 +43,14 @@ void DirectorMenu::showMenu()
 	{
 		system("cls");
 		cout << "\n==========DIRECTOR-MENU==========\n";
-		cout << "1. View requests list.\n";
-		cout << "2. Edit requests list.\n";
-		cout << "3. View total money.\n";
-		cout << "4. View total customer.\n";
-		cout << "5. View VIP customer.\n";
-		cout << "6. Fire manager/employee.\n";
-		cout << "7. View report/feedback.\n";
-		cout << "0. Exit.\n";
+		cout << "1. View profile information.\n";
+		cout << "2. Change password.\n";
+		cout << "3. Director's authority.\n";
+		cout << "0. Logout.\n";
 		cout << "=================================\n";
 		cout << "-> Select mode: ";
 		cin >> this->_mode;
-
-		while (1)
-		{
-			if (cin.fail())
-			{
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "Please only enter number!" << endl;
-				cout << "Enter again: ";
-				cin >> this->_mode;
-			}
-			if (!cin.fail())
-				break;
-		}
+		_s.checkValid(this->_mode);
 
 		if (this->_mode == 0)
 			break;
@@ -76,34 +58,82 @@ void DirectorMenu::showMenu()
 		switch (this->_mode)
 		{
 		case 1:
-			this->viewRequest();
+			//View profile
 			break;
 		case 2:
-			this->editRequest();
+			//change pass
 			break;
 		case 3:
 		{
-			cout << "Total Money In Bank: ";
-			cout << this->getTotalMoney() << endl;;
+			while (true)
+			{
+				system("cls");
+				cout << "\n==========DIRECTOR'S AUTHORITY-MENU==========\n";
+				cout << "1. View requests list.\n";
+				cout << "2. Edit requests list.\n";
+				cout << "3. View total money.\n";
+				cout << "4. View total customer.\n";
+				cout << "5. View VIP customer.\n";
+				cout << "6. Fire manager/employee.\n";
+				cout << "7. View report/feedback.\n";
+				cout << "0. Exit.\n";
+				cout << "=================================\n";
+				cout << "-> Select mode: ";
+				cin >> this->_mode;
+
+				_s.checkValid(this->_mode);
+
+				if (this->_mode == 0)
+					break;
+
+				switch (this->_mode)
+				{
+					case 1:
+						this->viewRequest();
+						break;
+					case 2:
+						this->editRequest();
+						break;
+					case 3:
+					{
+						cout << "Total Money In Bank: ";
+						cout << this->getTotalMoney() << endl;;
+						break;
+					}
+					case 4:
+						break;
+					case 5:
+						break;
+					case 6:
+						this->showFireMenu();
+						break;
+					case 7:
+						break;
+					default:
+					{
+						cout << "Please only enter number from 0 to 7!\n";
+						break;
+					}
+				}
+				system("pause");
+			}
 			break;
 		}
-		case 4:
-			break;
-		case 5:
-			break;
-		case 6:
-			this->showFireMenu();
-			break;
-		case 7:
-			break;
+
 		default:
 		{
-			cout << "Please only enter number from 0 to 7!\n";
+			cout << "Please only enter number from 0 to 3!\n";
 			break;
 		}
 		}
 		system("pause");
 	}
+	system("cls");
+	cin.ignore(1);
+
+	Menu m;
+	m.loginMenu();
+	m.redirect();
 }
 
 void DirectorMenu::viewRequest()
@@ -463,4 +493,9 @@ TRY1:
 		cout << "Wrong Mode.\n";
 		system("pause");
 	}
+}
+
+void DirectorMenu::viewProfile()
+{
+
 }

@@ -1,6 +1,5 @@
 #include"Manager.h"
-
-#include"Customer.h"
+#include"AllRole.h"
 ManagerMenu::ManagerMenu(Account acc)
 {
 	fstream f1;
@@ -44,36 +43,15 @@ void ManagerMenu::showMenu()
 	{
 		system("cls");
 		cout << "\n==========MANAGER-MENU==========\n";
-		
-		cout << "1. View requests list.\n";
-
-		cout << "2. Edit requests list.\n";
-
-		cout << "3. View list of accepting requests and processing from director\n";
-		cout << "4. View list of customer.\n";
-		cout << "5. Edit profile customer).\n";
-		
-		cout << "6. Fire employee.\n";
-		cout << "7. Search information customer\n";
-		cout << "8. Search information employee\n";
-		cout << "9. View list of employee\n";
+		cout << "1. View profile information.\n";
+		cout << "2. Change password.\n";
+		cout << "3. Director's authority.\n";
+		cout << "0. Logout.\n";
 		cout << "=================================\n";
 		cout << "-> Select option: ";
 		cin >> this->_option;
 
-		while (1)
-		{
-			if (cin.fail())
-			{
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "Please only enter number!" << endl;
-				cout << "Enter again: ";
-				cin >> this->_option;
-			}
-			if (!cin.fail())
-				break;
-		}
+		_s.checkValid(this->_option);
 		
 		if (this->_option == 0)
 			break;
@@ -81,40 +59,86 @@ void ManagerMenu::showMenu()
 		switch (this->_option)
 		{
 		case 1:
-			this->viewRequest();
+			//View profile
 			break;
 		case 2:
-			this->editRequest();
+			//change pass
 			break;
 		case 3:
-			this->viewlistReDirector();
-			break;
-		case 4:
-			this->viewcustomer();
-			break;
-		case 5:
-			//Customer::Editprofile();
-			break;
-		case 6:
-			this->FireEmployee();
-			break;
-		case 7:
-			this->searchcustomer();
-			break;
-		case 8:
-			this->searchemployee();
-			break;
-		case 9:
-			this->viewemployee();
-			break;
-		default:
 		{
-			cout << "Please only enter number from 0 to 7!\n";
+			while (true)
+			{
+				system("cls");
+				cout << "\n==========MANAGER'S AUTHORITY-MENU==========\n";
+				cout << "1. View requests list.\n";
+				cout << "2. Edit requests list.\n";
+				cout << "3. View list of accepting requests and processing from director\n";
+				cout << "4. View list of customer.\n";
+				cout << "5. Fire employee.\n";
+				cout << "6. Search information customer\n";
+				cout << "7. Search information employee\n";
+				cout << "8. View list of employee\n";
+				cout << "0. Exit.\n";
+				cout << "=================================\n";
+				cout << "-> Select option: ";
+				cin >> this->_option;
+				_s.checkValid(this->_option);
+
+				if (this->_option == 0)
+					break;
+
+				switch (this->_option)
+				{
+				case 1:
+					this->viewRequest();
+					break;
+				case 2:
+					this->editRequest();
+					break;
+				case 3:
+					this->viewlistReDirector();
+					break;
+				case 4:
+					this->viewcustomer();
+					break;
+				case 5:
+					this->FireEmployee();
+					break;
+				case 6:
+					this->searchcustomer();
+					break;
+				case 7:
+					this->searchemployee();
+					break;
+				case 8:
+					this->viewemployee();
+					break;
+				default:
+				{
+					cout << "Please only enter number from 0 to 8!\n";
+					break;
+				}
+
+				}
+				system("pause");
+			}
 			break;
 		}
+		default:
+		{
+			cout << "Please only enter number from 0 to 3!\n";
+			break;
+		}
+
 		}
 		system("pause");
 	}
+	system("cls");
+	cin.ignore(1);
+
+	Menu m;
+	m.loginMenu();
+	m.redirect();
 }
 
 void ManagerMenu::viewRequest()
