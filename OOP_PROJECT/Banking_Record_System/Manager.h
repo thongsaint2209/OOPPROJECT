@@ -1,7 +1,7 @@
 #include "Header.h"
 #include "Customer.h"
 #include "Employee.h"
-	class ManagerMenu
+class ManagerMenu
 {
 protected:
 	string _id;
@@ -30,7 +30,7 @@ protected:
 	vector<Account> account;
 	vector<Employee> e;
 public:
-	ManagerMenu()  {};
+	ManagerMenu() {}
 	ManagerMenu(Account acc);
 
 	void showMenu();
