@@ -127,9 +127,8 @@ public:
 
 	void deleteAccount();
 
-	 float ClacInrest();
+    float ClacInrest();
 
-	void deposit(int money);
 
 	int gettype();
 

@@ -599,8 +599,7 @@ float Customer::ClacInrest() {
 		return  getBalance() * _DemandRate;
 	}
 }
-}
-}
+
 
 
 void Customer::withdraw(int money,string id1) {
@@ -759,7 +758,7 @@ void Customer::deposit(int money, string id1) {
 
 	}
 	f1.close();
-	
+
 
 
 	for (int i = 0; i < a.size(); i++)
@@ -769,7 +768,7 @@ void Customer::deposit(int money, string id1) {
 		{
 			if (money < 10000000) {
 				if (a[i].gettype() == 3) {
-					a[i]._balance += ClacInrest() + money;
+					a[i]._balance += a[i].ClacInrest() + money;
 					a[i]._duration = 0;
 
 
@@ -801,34 +800,34 @@ void Customer::deposit(int money, string id1) {
 					if (!f4.is_open())
 						cout << "Cannot open TransactDate.txt\n";
 					else {
-					//	Date d;
-						//f4 << d.toString() << endl << a[i].getname() << endl << "Deposit" << endl << money << endl;
+						//	Date d;
+							//f4 << d.toString() << endl << a[i].getname() << endl << "Deposit" << endl << money << endl;
 
 					}
 					f4.close();
 
 				}
 				else if (a[i].gettype() == 1 || a[i].gettype() == 2) {
-					fstream f3;
-					f3.open("EmployeeRequestsList.txt", ios::out);
-					if (!f3.is_open())
+					fstream f5;
+					f5.open("EmployeeRequestsList.txt", ios::out);
+					if (!f5.is_open())
 						cout << "Cannot open EmployeeRequestsList.txt\n";
 					else {
-						f3 << endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
+						f5 << endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
 					}
-					f3.close();
+					f5.close();
 
 				}
 
 
 			}
 			else {
-				fstream f3;
-				f3.open("ManagerRequestsList.txt", ios::out);
-				if (!f3.is_open())
+				fstream f6;
+				f6.open("ManagerRequestsList.txt", ios::out);
+				if (!f6.is_open())
 					cout << "Cannot open ManagerRequestsList.txt\n";
 				else {
-					f3 << endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
+					f6<< endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
 				}
 			}
 

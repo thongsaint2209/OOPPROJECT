@@ -311,7 +311,7 @@ void ManagerMenu::viewlistReDirector()
 						}
 						else
 						{
-							
+							Customer::deposit(this->_requestList2[j].getMoney(), id1);
 
 							this->_requestList2.erase(_requestList2.begin() + j);
 						}
