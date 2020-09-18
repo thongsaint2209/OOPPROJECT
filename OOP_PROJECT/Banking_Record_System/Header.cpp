@@ -163,6 +163,19 @@ string Request::getType()
 int Request::getMoney()
 {
 	return this->_money;
+	this->_detail = "";
+	this->_approvalStatus = 0;
+}
+
+Request::Request(const string& detail, int status)
+{
+	this->_detail = detail;
+	this->_approvalStatus = status;
+}
+
+string Request::viewRequest()
+{
+	return this->_detail;
 }
 
 void Request::approveRequest()

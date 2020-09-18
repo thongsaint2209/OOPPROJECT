@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+#include "Customer.h"
+=======
+>>>>>>> Vy
 #include"Customer.h"
 #include"Header.h"
 void Customer::newAccount()
@@ -26,7 +32,10 @@ void Customer::newAccount()
 
 		count++;
 	}
+<<<<<<< HEAD
 	cin.ignore();
+=======
+>>>>>>> Vy
 	cout << "Enter your id : ";
 	getline(cin, username);
 
@@ -75,7 +84,11 @@ void Customer::newAccount()
 
 
 	if (!f3.is_open())
+<<<<<<< HEAD
 		cout << "Cannot open Customer.txt\n";
+=======
+		cout << "Cannot open Customer.txt\n"; 1
+>>>>>>> Vy
 
 	
 	int count1 = 0;
@@ -220,7 +233,14 @@ void Customer::Editprofile()
 		count++;
 
 	}
+<<<<<<< HEAD
 
+=======
+	cout << "Choose id you want to Edit  ";
+	
+	getline(cin, id);
+	
+>>>>>>> Vy
 	int flag = 0;
 
 	int option;
@@ -240,7 +260,11 @@ void Customer::Editprofile()
 		
 	for (int i = 0; i < a.size(); i++)
 		{
+<<<<<<< HEAD
 			if (a[i]._id== _account.username())
+=======
+			if (a[i].getId()==id)
+>>>>>>> Vy
 			{
 				
 				cout << "Enter your name : ";
@@ -257,6 +281,7 @@ void Customer::Editprofile()
 
 				cout << "Enter your mail : ";
 				getline(cin, mail);
+<<<<<<< HEAD
 				
 
 				
@@ -264,6 +289,13 @@ void Customer::Editprofile()
 				
 
 				
+=======
+
+				Customer temp2(id, name, date, address, phone, mail, Acctype, balance, duration, period);
+				
+
+				a[i]._id = temp2._id;
+>>>>>>> Vy
 				a[i]._name = temp2._name;
 				a[i]._birth = temp2._birth;
 				a[i]._address = temp2._address;
@@ -272,14 +304,24 @@ void Customer::Editprofile()
 				a[i]._acctype = temp2._acctype;
 				
 
+<<<<<<< HEAD
 				
+=======
+				a[i]._balance = temp2._balance;
+				a[i]._duration = temp2._duration;
+				a[i]._period = temp2._period;
+>>>>>>> Vy
 
 				fstream f3;
 				f3.open("Customer.txt", ios::out);
 				if (!f3.is_open())
 					cout << "Cannot open Customer.txt\n";
 
+<<<<<<< HEAD
 				for (int i = 0; i < a.size(); i++)
+=======
+				for (int i = 0; i < count; i++)
+>>>>>>> Vy
 				{
 					f3 << a[i]._id << endl;
 					f3 << a[i]._name << endl;
@@ -388,7 +430,13 @@ void Customer::deleteAccount()
 
 	}
 	f2.close();
+<<<<<<< HEAD
 
+=======
+	cout << "Enter id you want to Delete :";
+	
+	getline(cin, id);
+>>>>>>> Vy
 	
 	
 
@@ -409,7 +457,11 @@ void Customer::deleteAccount()
 
 		for (int i = 0; i < this->account.size(); i++)
 		{
+<<<<<<< HEAD
 			if (account[i].username() == _account.username())
+=======
+			if (account[i].username() == id)
+>>>>>>> Vy
 			{
 
 				this->account.erase(account.begin() + i);
@@ -438,7 +490,11 @@ void Customer::deleteAccount()
 		
 		for (int j = 0; j < this->a.size(); j++)
 		{
+<<<<<<< HEAD
 			if (a[j]._id == _account.username())
+=======
+			if (a[j]._id == id)
+>>>>>>> Vy
 			{
 				this->a.erase(a.begin() + j);
 
@@ -540,4 +596,9 @@ void Customer::showMenu()
 		}
 		system("pause");
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Stashed changes
+>>>>>>> Vy

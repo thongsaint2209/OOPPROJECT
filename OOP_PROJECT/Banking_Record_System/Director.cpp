@@ -9,23 +9,18 @@ DirectorMenu::DirectorMenu(Account acc)
 	if (!f.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
 
-	string id;
-	string type;
-	int money;
-	int status;
-	while (f.good())
+	string buffer1 = "";
+	string buffer2 = "";
+
+	while (!f.eof())
 	{
-		f >> id;
+		getline(f, buffer1, '\n');
+		getline(f, buffer2, '\n');
+		f.ignore(1, '\n');
 
-		f >> type;
+		int status = stoi(buffer2);
 
-		f >> money;
-
-		f >> status;
-
-		if (f.eof())
-			break;
-		Request temp(id, type, money, status);
+		Request temp(buffer1, status);
 		this->_requestList.push_back(temp);
 	}
 
@@ -104,9 +99,7 @@ void DirectorMenu::viewRequest()
 	for (int i = 0; i < this->_requestList.size(); i++)
 	{
 		cout << "Request #" << i + 1 << endl;
-		cout << this->_requestList[i].getId() << endl;
-		cout << this->_requestList[i].getType() << endl;
-		cout << this->_requestList[i].getMoney() << endl;
+		cout << this->_requestList[i].viewRequest() << endl;
 		if (this->_requestList[i].approvalStatus() == -1)
 			cout << "Denied\n";
 		if (this->_requestList[i].approvalStatus() == 0)
@@ -180,9 +173,7 @@ void DirectorMenu::editRequest()
 
 	for (int i = 0; i < this->_requestList.size(); i++)
 	{
-		f << this->_requestList[i].getId() << endl;
-		f << this->_requestList[i].getType() << endl;
-		f << this->_requestList[i].getMoney() << endl;
+		f << this->_requestList[i].viewRequest() << endl;
 		f << this->_requestList[i].approvalStatus() << endl;
 		if (i != this->_requestList.size() - 1)
 			f << endl;
