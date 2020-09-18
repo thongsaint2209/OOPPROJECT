@@ -6,12 +6,11 @@
 #include <fstream>
 #include <vector>
 #include <conio.h>
+#include "..\MyStaicLib\Date.h"
+#include"BankAccount.h"
 
 using namespace std;
 
-
-#include".\\MyStaicLib\Date.h"
-#include"BankAccount.h"
 
 class Employee
 {
