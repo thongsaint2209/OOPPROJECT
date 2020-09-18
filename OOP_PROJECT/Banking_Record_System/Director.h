@@ -30,6 +30,8 @@ public:
 	void showFireMenu();
 	int getTotalCustomer();
 	void viewVIPCustomer();
+	void searchEmployee();
+	void viewEmployee();
 };
 
 #endif

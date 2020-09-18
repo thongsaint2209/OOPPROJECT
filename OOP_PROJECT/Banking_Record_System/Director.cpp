@@ -51,6 +51,8 @@ void DirectorMenu::showMenu()
 		cout << "5. View VIP customer.\n";
 		cout << "6. Fire manager/employee.\n";
 		cout << "7. View report/feedback.\n";
+		cout << "8. Search manager/employee/customer.\n";
+		cout << "9. View manager/employee/customer.\n";
 		cout << "0. Exit.\n";
 		cout << "=================================\n";
 		cout << "-> Select mode: ";
@@ -105,9 +107,15 @@ void DirectorMenu::showMenu()
 			break;
 		case 7:
 			break;
+		case 8:
+			this->searchEmployee();
+			break;
+		case 9:
+			this->viewEmployee();
+			break;
 		default:
 		{
-			cout << "Please only enter number from 0 to 7!\n";
+			cout << "Please only enter number from 0 to 9!\n";
 			break;
 		}
 		}
@@ -378,6 +386,423 @@ void DirectorMenu::viewVIPCustomer()
 	}
 	cout << "================================\n";
 	cout << "Press anykey to go back.\n";
+}
+
+void DirectorMenu::searchEmployee()
+{
+	while (true)
+	{
+		int mode = -1;
+		system("cls");
+		cout << "\n==========SEARCH-MENU==========\n";
+		cout << "1. Search Manager.\n";
+		cout << "2. Search Employee.\n";
+		cout << "3. Search Customer.\n";
+		cout << "0. Exit.\n";
+		cout << "===============================\n";
+		cout << "-> Select mode: ";
+		cin >> mode;
+		cin.ignore(1);
+
+		if (mode == 0)
+			return;
+
+		if (mode == 1)
+		{
+			string id;
+			string name;
+			string DoB;
+			string address;
+			string phone;
+			string email;
+			string merit;
+			vector<Employee> temp;
+
+			fstream f;
+
+			f.open("Manager.txt", ios::in);
+
+			if (!f.is_open())
+			{
+				cout << "Cannot find Manager.txt.\n";
+				continue;
+			}
+
+			while (!f.eof())
+			{
+				getline(f, id, '\n');
+				getline(f, name, '\n');
+				getline(f, DoB, '\n');
+				getline(f, address, '\n');
+				getline(f, phone, '\n');
+				getline(f, email, '\n');
+				getline(f, merit, '\n');
+				f.ignore(1, '\n');
+
+				Employee buffer(id, name, DoB, address, phone, email, stoi(merit));
+				temp.push_back(buffer);
+			}
+			f.close();
+
+			string idTemp = "";
+			cout << "===============================\n";
+			cout << "-> Enter ID to search: ";
+			getline(cin, idTemp);
+			cout << "===============================\n";
+
+			for (int i = 0; i < temp.size(); i++)
+			{
+				if (temp[i].getId() == idTemp)
+				{
+					cout << "ID          : " << temp[i].getId() << endl;
+					cout << "Name        : " << temp[i].getname() << endl;
+					cout << "DoB         : " << temp[i].getbirth() << endl;
+					cout << "Address     : " << temp[i].getaddress() << endl;
+					cout << "Phone Number: " << temp[i].getphone() << endl;
+					cout << "Email       : " << temp[i].getmail() << endl;
+					cout << "Merit       : " << temp[i].getmerit() << endl;
+					cout << "===============================\n";
+					goto SHORTCUT;
+				}
+			}
+
+			cout << "No manager with ID <" << idTemp << ">.\n";
+			cout << "===============================\n";
+			goto SHORTCUT;
+		}
+
+		if (mode == 2)
+		{
+			string id;
+			string name;
+			string DoB;
+			string address;
+			string phone;
+			string email;
+			string merit;
+			vector<Employee> temp;
+
+			fstream f;
+
+			f.open("Employee.txt", ios::in);
+
+			if (!f.is_open())
+			{
+				cout << "Cannot find Employee.txt.\n";
+				continue;
+			}
+
+			while (!f.eof())
+			{
+				getline(f, id, '\n');
+				getline(f, name, '\n');
+				getline(f, DoB, '\n');
+				getline(f, address, '\n');
+				getline(f, phone, '\n');
+				getline(f, email, '\n');
+				getline(f, merit, '\n');
+				f.ignore(1, '\n');
+
+				Employee buffer(id, name, DoB, address, phone, email, stoi(merit));
+				temp.push_back(buffer);
+			}
+			f.close();
+
+			string idTemp = "";
+			cout << "===============================\n";
+			cout << "-> Enter ID to search: ";
+			getline(cin, idTemp);
+			cout << "===============================\n";
+
+			for (int i = 0; i < temp.size(); i++)
+			{
+				if (temp[i].getId() == idTemp)
+				{
+					cout << "ID          : " << temp[i].getId() << endl;
+					cout << "Name        : " << temp[i].getname() << endl;
+					cout << "DoB         : " << temp[i].getbirth() << endl;
+					cout << "Address     : " << temp[i].getaddress() << endl;
+					cout << "Phone Number: " << temp[i].getphone() << endl;
+					cout << "Email       : " << temp[i].getmail() << endl;
+					cout << "Merit       : " << temp[i].getmerit() << endl;
+					cout << "===============================\n";
+					goto SHORTCUT;
+				}
+			}
+
+			cout << "No employee with ID <" << idTemp << ">.\n";
+			cout << "===============================\n";
+			goto SHORTCUT;
+		}
+
+		if (mode == 3)
+		{
+			//local variables
+			vector<Customer> temp;
+			//read file buffers
+			string id;
+			string name;
+			string date;
+			string address;
+			string phone;
+			string mail;
+			string Acctype;
+			string balance;
+			string duration;
+			string period;
+			fstream f;
+
+			f.open("Customer.txt", ios::in);
+
+			if (!f.is_open())
+				cout << "Cannot open Customer.txt\n";
+
+			while (f.good())
+			{
+				f >> id;
+				f.ignore();
+				getline(f, name);
+				getline(f, date);
+				getline(f, address);
+				getline(f, phone);
+				getline(f, mail);
+				getline(f, Acctype);
+				getline(f, balance);
+				getline(f, duration);
+				getline(f, period);
+
+				if (f.eof())
+					break;
+
+				Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+				temp.push_back(temp1);
+				f.ignore(1, '\n');
+			}
+			f.close();
+
+			string idTemp = "";
+			cout << "===============================\n";
+			cout << "-> Enter ID to search: ";
+			getline(cin, idTemp);
+			cout << "===============================\n";
+
+			for (int i = 0; i < temp.size(); i++)
+			{
+				if (temp[i].getId() == idTemp)
+				{
+					cout << "ID          : " << temp[i].getId() << endl;
+					cout << "Name        : " << temp[i].getname() << endl;
+					cout << "DoB         : " << temp[i].getbirth() << endl;
+					cout << "Address     : " << temp[i].getaddress() << endl;
+					cout << "Phone Number: " << temp[i].getphone() << endl;
+					cout << "Email       : " << temp[i].getmail() << endl;
+					cout << "===============================\n";
+					goto SHORTCUT;
+				}
+			}
+
+			cout << "No customer with ID <" << idTemp << ">.\n";
+			cout << "===============================\n";
+			goto SHORTCUT;
+		}
+SHORTCUT:
+		system("pause");
+	}
+}
+
+void DirectorMenu::viewEmployee()
+{
+	while (true)
+	{
+		int mode = -1;
+		system("cls");
+		cout << "\n==========VIEW-MENU==========\n";
+		cout << "1. View Manager List.\n";
+		cout << "2. View Employee List.\n";
+		cout << "3. View Customer List.\n";
+		cout << "0. Exit.\n";
+		cout << "===============================\n";
+		cout << "-> Select mode: ";
+		cin >> mode;
+		cin.ignore(1);
+
+		if (mode == 0)
+			return;
+
+		if (mode == 1)
+		{
+			string id;
+			string name;
+			string DoB;
+			string address;
+			string phone;
+			string email;
+			string merit;
+			vector<Employee> temp;
+
+			fstream f;
+
+			f.open("Manager.txt", ios::in);
+
+			if (!f.is_open())
+			{
+				cout << "Cannot find Manager.txt.\n";
+				continue;
+			}
+
+			while (!f.eof())
+			{
+				getline(f, id, '\n');
+				getline(f, name, '\n');
+				getline(f, DoB, '\n');
+				getline(f, address, '\n');
+				getline(f, phone, '\n');
+				getline(f, email, '\n');
+				getline(f, merit, '\n');
+				f.ignore(1, '\n');
+
+				Employee buffer(id, name, DoB, address, phone, email, stoi(merit));
+				temp.push_back(buffer);
+			}
+			f.close();
+
+			cout << "===============================\n";
+			for (int i = 0; i < temp.size(); i++)
+			{
+				cout << "#" << i + 1 << endl;
+				cout << "ID          : " << temp[i].getId() << endl;
+				cout << "Name        : " << temp[i].getname() << endl;
+				cout << "DoB         : " << temp[i].getbirth() << endl;
+				cout << "Address     : " << temp[i].getaddress() << endl;
+				cout << "Phone Number: " << temp[i].getphone() << endl;
+				cout << "Email       : " << temp[i].getmail() << endl;
+				cout << "Merit       : " << temp[i].getmerit() << endl;
+				if (i != temp.size() - 1)
+					cout << endl;
+			}
+			cout << "===============================\n";
+			goto SHORTCUT;
+		}
+
+		if (mode == 2)
+		{
+			string id;
+			string name;
+			string DoB;
+			string address;
+			string phone;
+			string email;
+			string merit;
+			vector<Employee> temp;
+
+			fstream f;
+
+			f.open("Employee.txt", ios::in);
+
+			if (!f.is_open())
+			{
+				cout << "Cannot find Employee.txt.\n";
+				continue;
+			}
+
+			while (!f.eof())
+			{
+				getline(f, id, '\n');
+				getline(f, name, '\n');
+				getline(f, DoB, '\n');
+				getline(f, address, '\n');
+				getline(f, phone, '\n');
+				getline(f, email, '\n');
+				getline(f, merit, '\n');
+				f.ignore(1, '\n');
+
+				Employee buffer(id, name, DoB, address, phone, email, stoi(merit));
+				temp.push_back(buffer);
+			}
+			f.close();
+
+			cout << "===============================\n";
+			for (int i = 0; i < temp.size(); i++)
+			{
+				cout << "#" << i + 1 << endl;
+				cout << "ID          : " << temp[i].getId() << endl;
+				cout << "Name        : " << temp[i].getname() << endl;
+				cout << "DoB         : " << temp[i].getbirth() << endl;
+				cout << "Address     : " << temp[i].getaddress() << endl;
+				cout << "Phone Number: " << temp[i].getphone() << endl;
+				cout << "Email       : " << temp[i].getmail() << endl;
+				cout << "Merit       : " << temp[i].getmerit() << endl;
+				if (i != temp.size() - 1)
+					cout << endl;
+			}
+			cout << "===============================\n";
+			goto SHORTCUT;
+		}
+
+		if (mode == 3)
+		{
+			//local variables
+			vector<Customer> temp;
+			//read file buffers
+			string id;
+			string name;
+			string date;
+			string address;
+			string phone;
+			string mail;
+			string Acctype;
+			string balance;
+			string duration;
+			string period;
+			fstream f;
+
+			f.open("Customer.txt", ios::in);
+
+			if (!f.is_open())
+				cout << "Cannot open Customer.txt\n";
+
+			while (f.good())
+			{
+				f >> id;
+				f.ignore();
+				getline(f, name);
+				getline(f, date);
+				getline(f, address);
+				getline(f, phone);
+				getline(f, mail);
+				getline(f, Acctype);
+				getline(f, balance);
+				getline(f, duration);
+				getline(f, period);
+
+				if (f.eof())
+					break;
+
+				Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+				temp.push_back(temp1);
+				f.ignore(1, '\n');
+			}
+			f.close();
+
+			cout << "===============================\n";
+			for (int i = 0; i < temp.size(); i++)
+			{
+				cout << "#" << i + 1 << endl;
+				cout << "ID          : " << temp[i].getId() << endl;
+				cout << "Name        : " << temp[i].getname() << endl;
+				cout << "DoB         : " << temp[i].getbirth() << endl;
+				cout << "Address     : " << temp[i].getaddress() << endl;
+				cout << "Phone Number: " << temp[i].getphone() << endl;
+				cout << "Email       : " << temp[i].getmail() << endl;
+				if (i != temp.size() - 1)
+					cout << endl;
+			}
+			cout << "===============================\n";
+			goto SHORTCUT;
+		}
+SHORTCUT:
+		system("pause");
+	}
 }
 
 void DirectorMenu::showFireMenu()
