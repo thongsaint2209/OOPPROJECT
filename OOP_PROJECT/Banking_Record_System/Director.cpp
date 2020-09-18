@@ -48,6 +48,20 @@ void DirectorMenu::showMenu()
 		cout << "-> Select mode: ";
 		cin >> this->_mode;
 
+		while (1)
+		{
+			if (cin.fail())
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Please only enter number!" << endl;
+				cout << "Enter again: ";
+				cin >> this->_mode;
+			}
+			if (!cin.fail())
+				break;
+		}
+
 		if (this->_mode == 0)
 			break;
 
@@ -69,6 +83,11 @@ void DirectorMenu::showMenu()
 			break;
 		case 7:
 			break;
+		default:
+		{
+			cout << "Please only enter number from 0 to 7!\n";
+			break;
+		}
 		}
 		system("pause");
 	}
