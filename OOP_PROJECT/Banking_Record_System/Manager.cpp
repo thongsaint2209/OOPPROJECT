@@ -213,6 +213,7 @@ void ManagerMenu::editRequest()
 	f.close();
 
 	cout << "Saved successfully\n";
+	_requestList1.clear();
 }
 
 
@@ -252,25 +253,29 @@ void ManagerMenu::viewlistReDirector()
 
 		this->_requestList2.push_back(temp);
 		
-		if (this->_requestList2[i].approvalStatus() == 1 && this->_requestList2[i].approvalStatus() == status)
-		{
-			cout << "Request #" << i + 1 << endl;
-			cout << this->_requestList2[i].getId() << endl;
-			cout << this->_requestList2[i].getType() << endl;
-			cout << this->_requestList2[i].getMoney() << endl;
-			cout << endl;
-		}
+		
 		i++;
 	}
-	
+	for (int m=0;m<_requestList2.size();m++)
+	{
+		if (this->_requestList2[m].approvalStatus() == 1 && this->_requestList2[m].approvalStatus() == status)
+		{
+			cout << "Request #" << m + 1 << endl;
+			cout << this->_requestList2[m].getId() << endl;
+			cout << this->_requestList2[m].getType() << endl;
+			cout << this->_requestList2[m].getMoney() << endl;
+			cout << this->_requestList2[m].approvalStatus() << endl;
+			cout << endl;
+		}
+	}
 	f1.close();
 	
-	
+	string id1;
 	cout << "Choose id you want to Processing  ";
 	while (getchar() != '\n');
-	getline(cin, id);
+	getline(cin, id1);
 
-	int flag = 0;
+
 	
 			int option;
 			cout << "Do you want to  Processing this customer?  " << endl;
@@ -285,20 +290,20 @@ void ManagerMenu::viewlistReDirector()
 			}
 			case 1:
 			{
-				int j = 0;
+				
 
-				//tao vector temp 
+				
 
-				while (f1.good())
+
+				for(int j=0;j< this->_requestList2.size();j++)
 				{
-
-					if (this->_requestList2[j].getId() == id)
+					if (this->_requestList2[j].getId() == id1)
 					{
 						if (this->_requestList2[j].getType() == "Withdraw")
 						{
 							
 
-							Customer::withdraw(this->_requestList2[j].getMoney(),id);
+							Customer::withdraw(this->_requestList2[j].getMoney(),id1);
 
 
 							this->_requestList2.erase(_requestList2.begin() + j);
@@ -306,7 +311,7 @@ void ManagerMenu::viewlistReDirector()
 						}
 						else
 						{
-							this->_requestList2[j].getMoney();
+							
 
 							this->_requestList2.erase(_requestList2.begin() + j);
 						}
@@ -315,7 +320,7 @@ void ManagerMenu::viewlistReDirector()
 					{
 						this->_requestList2.erase(_requestList2.begin() + j);
 					}
-					j++;
+				
 				}
 				fstream f2;
 				f2.open("DirectorRequestsList.txt", ios::out);
@@ -335,7 +340,7 @@ void ManagerMenu::viewlistReDirector()
 			}
 			default:
 			{
-				cout << "Successfully" << endl;
+			
 				break;
 			}
 			}
