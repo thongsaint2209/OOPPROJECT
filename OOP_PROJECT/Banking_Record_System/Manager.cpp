@@ -50,13 +50,17 @@ void ManagerMenu::showMenu()
 		cout << "2. Edit requests list.\n";
 
 		cout << "3. View list of accepting requests and processing from director\n";
+
 		cout << "4. View list of customer.\n";
-		cout << "5. Edit profile customer).\n";
+	
 		
-		cout << "6. Fire employee.\n";
-		cout << "7. Search information customer\n";
-		cout << "8. Search information employee\n";
-		cout << "9. View list of employee\n";
+		cout << "5. Fire employee.\n";
+
+		cout << "6. Search information customer\n";
+
+		cout << "7. Search information employee\n";
+
+		cout << "8. View list of employee\n";
 		cout << "=================================\n";
 		cout << "-> Select option: ";
 		cin >> this->_option;
@@ -92,19 +96,17 @@ void ManagerMenu::showMenu()
 		case 4:
 			this->viewcustomer();
 			break;
+		
 		case 5:
-			//Customer::Editprofile();
-			break;
-		case 6:
 			this->FireEmployee();
 			break;
-		case 7:
+		case 6:
 			this->searchcustomer();
 			break;
-		case 8:
+		case 7:
 			this->searchemployee();
 			break;
-		case 9:
+		case 8:
 			this->viewemployee();
 			break;
 		default:
@@ -294,8 +296,9 @@ void ManagerMenu::viewlistReDirector()
 					{
 						if (this->_requestList2[j].getType() == "Deposit")
 						{
-							this->_requestList2[j].getMoney();//goi ham thuc thi
+							
 
+							Customer::withdraw(this->_requestList2[j].getMoney());
 
 
 							this->_requestList2.erase(_requestList2.begin() + j);

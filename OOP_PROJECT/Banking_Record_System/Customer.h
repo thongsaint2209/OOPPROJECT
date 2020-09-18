@@ -37,7 +37,7 @@ private:
 
 	vector<Request> _requestList;
 	vector<Account> account;
-    vector<Customer> a;
+  static  vector<Customer> a;
 public:
 	Customer() {};
 	Customer(Account acc) { this->_account = acc; }
@@ -126,6 +126,14 @@ public:
     void Editprofile();
 
 	void deleteAccount();
+
+	float ClacInrest();
+
+	void deposit(int money);
+
+	int gettype();
+
+	static void withdraw(int money);
 };
 
 #endif

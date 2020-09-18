@@ -8,7 +8,7 @@
 #include <conio.h>
 
 using namespace std;
-
+#include "Customer.h"
 
 class Employee
 {
@@ -34,6 +34,7 @@ private:
 	vector<Request> _requestList;
 	vector<Account> account;
 	vector<Employee> e;
+	vector<Customer> a;
 public:
 	Employee() {};
 	void setId(string id)
@@ -90,6 +91,14 @@ public:
 	}
 
 	void showMenu();
+
+	float ClacInrest();
+
+	void deposit(int money);
+
+	int gettype();
+
+	static void withdraw(int money);
 };
 
 #endif
