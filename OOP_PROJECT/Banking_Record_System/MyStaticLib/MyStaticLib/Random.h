@@ -8,7 +8,11 @@ class Random
 {
 public:
 	Random() {
+<<<<<<< Updated upstream
 		srand(time(NULL));
+=======
+		//srand(time(NULL));
+>>>>>>> Stashed changes
 	}
 	int next() {
 		return rand();

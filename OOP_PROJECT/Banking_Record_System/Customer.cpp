@@ -548,4 +548,304 @@ void Customer::showMenu()
 		system("pause");
 	}
 }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+
+
+float Customer::ClacInrest() {
+
+	if (gettype() == 1) {
+		float TimeInterest = getBalance() * (_duration / _period) * _period * _TermRate / 12;
+		float DemandInterest = getBalance() * (_duration % _period) * _DemandRate / 12;
+		return TimeInterest + DemandInterest;
+	}
+	if (gettype() == 2 || gettype() == 3) {
+		return  getBalance() * _DemandRate;
+	}
+}
+
+void Customer::deposit(int money) {
+	ifstream f1;
+
+	string id;
+	string	name;
+	string date;
+	string	address;
+
+	string phone;
+	string mail;
+	string Acctype;
+
+	int	balance;
+
+	int	duration;
+	int	period;
+	f1.open("Customer.txt", ios::in);
+
+
+	if (!f1.is_open())
+		cout << "Cannot open Customer.txt\n";
+
+
+	int count = 0;
+	while (f1.good())
+	{
+		f1 >> id;
+		f1.ignore();
+		getline(f1, name);
+
+		getline(f1, date);
+
+
+		getline(f1, address);
+
+		getline(f1, phone);
+
+		getline(f1, mail);
+
+		getline(f1, Acctype);
+
+		f1 >> balance;
+		f1 >> duration;
+		f1 >> period;
+
+		if (f1.eof())
+			break;
+		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
+		a.push_back(temp);
+		f1.ignore(1, '\n');
+		count++;
+
+	}
+	f1.close();
+	cout << "Choose id you want to deposit  ";
+
+	getline(cin, id);
+
+	
+		for (int i = 0; i < a.size(); i++)
+		{
+
+			if (a[i].getId() == id)
+			{
+				if (money < 10000000) {
+				if (a[i].gettype() == 3) {
+					a[i]._balance += ClacInrest() + money;
+					a[i]._duration = 0;
+
+
+					fstream f3;
+					f3.open("Customer.txt", ios::out);
+					if (!f3.is_open())
+						cout << "Cannot open Customer.txt\n";
+
+					for (int i = 0; i < count; i++)
+					{
+						f3 << a[i]._id << endl;
+						f3 << a[i]._name << endl;
+						f3 << a[i]._birth << endl;
+						f3 << a[i]._address << endl;
+						f3 << a[i]._phone << endl;
+						f3 << a[i]._mail << endl;
+						f3 << a[i]._acctype << endl;
+						f3 << a[i]._balance << endl;
+						f3 << a[i]._duration << endl;
+						f3 << a[i]._period << endl;
+						f3 << endl;
+
+					}
+					f3.close();
+
+					cout << "Deposit Successfully" << endl;
+					fstream f4;
+					f4.open("TransactDate.txt", ios::out);
+					if (!f4.is_open())
+						cout << "Cannot open TransactDate.txt\n";
+					else {
+						Date d;
+						f4 << d.toString() << endl << a[i].getname() << endl << "Deposit" << endl << money << endl;
+
+					}
+					f4.close();
+
+				}
+				else if (a[i].gettype() == 1 || a[i].gettype() == 2) {
+					fstream f3;
+					f3.open("EmployeeRequestsList.txt", ios::out);
+					if (!f3.is_open())
+						cout << "Cannot open EmployeeRequestsList.txt\n";
+					else {
+						f3 << endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
+					}
+					f3.close();
+
+				}
+				
+				
+			}
+				else {
+					fstream f3;
+					f3.open("ManagerRequestsList.txt", ios::out);
+					if (!f3.is_open())
+						cout << "Cannot open ManagerRequestsList.txt\n";
+					else {
+						f3 << endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
+					}
+				}
+
+				break;
+		}
+
+		
+		
+	}
+	
+}
+
+void Customer::withdraw(int money) {
+	 
+		ifstream f1;
+
+		string id;
+		string	name;
+		string date;
+		string	address;
+
+		string phone;
+		string mail;
+		string Acctype;
+
+		int	balance;
+
+		int	duration;
+		int	period;
+		f1.open("Customer.txt", ios::in);
+
+
+		if (!f1.is_open())
+			cout << "Cannot open Customer.txt\n";
+
+
+		int count = 0;
+		while (f1.good())
+		{
+			f1 >> id;
+			f1.ignore();
+			getline(f1, name);
+
+			getline(f1, date);
+
+
+			getline(f1, address);
+
+			getline(f1, phone);
+
+			getline(f1, mail);
+
+			getline(f1, Acctype);
+
+			f1 >> balance;
+			f1 >> duration;
+			f1 >> period;
+
+			if (f1.eof())
+				break;
+			Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
+			a.push_back(temp);
+			f1.ignore(1, '\n');
+			count++;
+
+		}
+		f1.close();
+		cout << "Choose id you want to withdraw  ";
+
+		getline(cin, id);
+
+		
+		for (int i = 0; i < a.size(); i++)
+		{
+			if (a[i].getId() == id)
+			{
+				if (money < 10000000) {
+					if (a[i].gettype() == 3) {
+						a[i]._balance += a[i].ClacInrest();
+						if (a[i]._balance > money) {
+							a[i]._balance -= money;
+							a[i]._duration = 0;
+						}
+
+
+						fstream f3;
+						f3.open("Customer.txt", ios::out);
+						if (!f3.is_open())
+							cout << "Cannot open Customer.txt\n";
+
+						for (int i = 0; i < count; i++)
+						{
+							f3 << a[i]._id << endl;
+							f3 << a[i]._name << endl;
+							f3 << a[i]._birth << endl;
+							f3 << a[i]._address << endl;
+							f3 << a[i]._phone << endl;
+							f3 << a[i]._mail << endl;
+							f3 << a[i]._acctype << endl;
+							f3 << a[i]._balance << endl;
+							f3 << a[i]._duration << endl;
+							f3 << a[i]._period << endl;
+							f3 << endl;
+
+						}
+						f3.close();
+
+						cout << "Withdraw Successfully" << endl;
+						fstream f4;
+						f4.open("TransactDate.txt", ios::out);
+						if (!f4.is_open())
+							cout << "Cannot open TransactDate.txt\n";
+						else {
+							Date d;
+							f4 << d.toString() << endl << a[i].getname() << endl << "Deposit" << endl << money << endl;
+
+						}
+						f4.close();
+					}
+					else if (a[i].gettype() == 1 || a[i].gettype() == 2) {
+						fstream f3;
+						f3.open("EmployeeRequestsList.txt", ios::out);
+						if (!f3.is_open())
+							cout << "Cannot open EmployeeRequestsList.txt\n";
+						else {
+							f3 << endl << endl << "Withdraw" << endl << a[i].getId() << endl << money << endl << 0;
+						}
+						f3.close();
+					}
+
+				}
+
+				else {
+					fstream f3;
+					f3.open("ManagerRequestsList.txt", ios::out);
+					if (!f3.is_open())
+						cout << "Cannot open ManagerRequestsList.txt\n";
+					else {
+						f3 << endl << endl << "Withdraw" << endl << a[i].getId() << endl << money << endl << 0;
+					}
+				}
+
+				break;
+			}
+		}
+	
+}
+
+
+
+//Time - deposit account(1), Demand – deposit account(2), payment acc(3)
+int Customer::gettype() {
+	if (_acctype == "Time - deposit account") return 1;
+	if (_acctype == "Demand – deposit account") return 2;
+	if (_acctype == "Payment account") return 3;
+	return 0;
+}
 >>>>>>> Stashed changes

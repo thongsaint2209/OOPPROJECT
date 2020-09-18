@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{ec6d1248-8b6b-49a4-bef8-998814f743d6}</ProjectGuid>
-    <RootNamespace>BankingRecordSystem</RootNamespace>
+    <ProjectGuid>{ad08e3a9-cec8-46b2-a36a-08883db19ec3}</ProjectGuid>
+    <RootNamespace>Tokenizer</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,37 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AllRole.h" />
-    <ClInclude Include="BankAccount.h" />
-    <ClInclude Include="Customer.h" />
-    <ClInclude Include="Director.h" />
-    <ClInclude Include="Employee.h" />
-    <ClInclude Include="Header.h" />
-<<<<<<< Updated upstream
-    <ClInclude Include="MyStaticLib\MyStaticLib\Address.h" />
-    <ClInclude Include="MyStaticLib\MyStaticLib\Date.h" />
-    <ClInclude Include="MyStaticLib\MyStaticLib\FullName.h" />
-    <ClInclude Include="MyStaticLib\MyStaticLib\Random.h" />
-=======
-    <ClInclude Include="Manager.h" />
-    <ClInclude Include="MyStaticLib\Date.h" />
-    <ClInclude Include="MyStaticLib\Time.h" />
->>>>>>> Stashed changes
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Tokenizer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AllRole.cpp" />
-    <ClCompile Include="BankAccount.cpp" />
-    <ClCompile Include="Customer.cpp" />
-    <ClCompile Include="Director.cpp" />
-    <ClCompile Include="Employee.cpp" />
-    <ClCompile Include="Header.cpp" />
-    <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="MyStaticLib\MyStaticLib\MyStaticLib.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="MyStaticLib\MyStaticLib.lib" />
+    <ClInclude Include="Tokenizer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

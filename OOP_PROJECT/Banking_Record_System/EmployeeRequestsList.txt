@@ -19,6 +19,7 @@ test request 6.
 test request 7.
 1
 
+<<<<<<< Updated upstream:OOP_PROJECT/Banking_Record_System/DirectorRequestsList.txt
 test request 8.
 -1
 
@@ -27,3 +28,5 @@ test request 9.
 
 test request 10.
 -1
+=======
+>>>>>>> Stashed changes:OOP_PROJECT/Banking_Record_System/EmployeeRequestsList.txt
