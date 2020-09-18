@@ -787,6 +787,7 @@ void ManagerMenu::viewemployee()
 		cout << endl;
 	}
 	f1.close();
+	e.clear();
 }
 
 void ManagerMenu::searchemployee()
@@ -864,5 +865,6 @@ void ManagerMenu::searchemployee()
 		}
 	}
 	f1.close();
+	e.clear();
 }
 
