@@ -37,7 +37,7 @@ DirectorMenu::DirectorMenu(Account acc)
 	this->_account = acc;
 	this->_mode = -1;
 }
-
+/*
 void DirectorMenu::showMenu()
 {
 	while (true)
@@ -122,7 +122,7 @@ void DirectorMenu::showMenu()
 		}
 		system("pause");
 	}
-}
+}*/
 
 void DirectorMenu::viewRequest()
 {
@@ -218,7 +218,7 @@ void DirectorMenu::editRequest()
 
 	cout << "Saved successfully.\n";
 }
-
+/*
 string DirectorMenu::getTotalMoney()
 {
 	//local variables
@@ -1020,4 +1020,4 @@ TRY1:
 		cout << "Wrong Mode.\n";
 		system("pause");
 	}
-}
+}*/

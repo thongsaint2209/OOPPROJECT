@@ -328,7 +328,7 @@ void ManagerMenu::viewlistReDirector()
 					f2 << _requestList2[t].getId()<<endl;
 					f2 << _requestList2[t].getType()<<endl;
 					f2 << _requestList2[t].getMoney() << endl;
-					f2 << _requestList2[t].approvalStatus()<<<endl;
+					f2 << _requestList2[t].approvalStatus()<<endl;
 				}
 				f2.close();
 			}
