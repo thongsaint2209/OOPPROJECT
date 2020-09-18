@@ -26,7 +26,7 @@ private:
 	vector<Request> _requestList;
 public:
 	DirectorMenu(Account acc);
-	void showMenu();
+	//void showMenu();
 	void viewRequest();
 	void editRequest();
 };

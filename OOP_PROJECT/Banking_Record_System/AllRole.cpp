@@ -5,7 +5,7 @@ void Menu::redirect()
 	if (this->_role == 1)
 	{
 		DirectorMenu d(this->_account);
-		d.showMenu();
+		//d.showMenu();
 	}
 	if (this->_role == 2)
 	{
