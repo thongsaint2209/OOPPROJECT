@@ -838,7 +838,7 @@ void ManagerMenu::searchemployee()
 	getline(cin, id);
 
 
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < e.size(); i++)
 	{
 		if (e[i].getId() == id)
 		{
