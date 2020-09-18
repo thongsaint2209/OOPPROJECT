@@ -17,17 +17,12 @@ private:
 	string _id;
 	string	_name;
 	string _birth;
-
 	string	_address;
-
-
 	string _phone;
 	string _mail;
-	
 	int _merits;
 	float _TermRate;
 	float _DemandRate;
-
 	int _option;
 	Account _account;
 
@@ -85,7 +80,6 @@ public:
 		this->_address = address;
 		this->_phone = phone;
 		this->_mail = mail;
-		
 		this->_merits = merits;
 	}
 

@@ -1,4 +1,7 @@
 #include "Director.h"
+#include "Customer.h"
+#include "Employee.h"
+#include "Manager.h"
 
 DirectorMenu::DirectorMenu(Account acc)
 {
@@ -79,12 +82,17 @@ void DirectorMenu::showMenu()
 			this->editRequest();
 			break;
 		case 3:
+		{
+			cout << "Total Money In Bank: ";
+			cout << this->getTotalMoney() << endl;;
 			break;
+		}
 		case 4:
 			break;
 		case 5:
 			break;
 		case 6:
+			this->showFireMenu();
 			break;
 		case 7:
 			break;
@@ -190,5 +198,269 @@ void DirectorMenu::editRequest()
 
 	f.close();
 
-	cout << "Saved successfully\n";
+	cout << "Saved successfully.\n";
+}
+
+string DirectorMenu::getTotalMoney()
+{
+	//local variables
+	vector<Customer> temp;
+	//read file buffers
+	string id;
+	string name;
+	string date;
+	string address;
+	string phone;
+	string mail;
+	string Acctype;
+	string balance;
+	string duration;
+	string period;
+	fstream f;
+
+	f.open("Customer.txt", ios::in);
+
+	if (!f.is_open())
+		cout << "Cannot open Customer.txt\n";
+
+	int count = 0;
+	while (f.good())
+	{
+		f >> id;
+		f.ignore();
+		getline(f, name);
+		getline(f, date);
+		getline(f, address);
+		getline(f, phone);
+		getline(f, mail);
+		getline(f, Acctype);
+		getline(f, balance);
+		getline(f, duration);
+		getline(f, period);
+
+		if (f.eof())
+			break;
+
+		Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+		temp.push_back(temp1);
+		f.ignore(1, '\n');
+		count++;
+	}
+
+	//calc total money
+	float sum = 0;
+	for (int i = 0; i < temp.size(); i++)
+		sum += temp[i].getBalance();
+
+	return to_string((int)sum);
+}
+
+void DirectorMenu::showFireMenu()
+{
+	while (true)
+	{
+		int mode;
+		system("cls");
+		cout << "\n==========FIRE-MENU==========\n";
+		cout << "1. Fire Manager.\n";
+		cout << "2. Fire Employee.\n";
+		cout << "0. Exit.\n";
+		cout << "=============================\n";
+		cout << "-> Select mode: ";
+		cin >> mode;
+
+		if (mode == 1)
+		{
+			string id;
+			string name;
+			string DoB;
+			string address;
+			string phone;
+			string email;
+			string merit;
+			vector<Employee> temp;
+
+			fstream f;
+
+			f.open("Manager.txt", ios::in);
+
+			if (!f.is_open())
+			{
+				cout << "Cannot find Manager.txt.\n";
+				continue;
+			}
+
+			while (!f.eof())
+			{
+				getline(f, id, '\n');
+				getline(f, name, '\n');
+				getline(f, DoB, '\n');
+				getline(f, address, '\n');
+				getline(f, phone, '\n');
+				getline(f, email, '\n');
+				getline(f, merit, '\n');
+				f.ignore(1, '\n');
+
+				Employee buffer(id, name, DoB, address, phone, email, stoi(merit));
+				temp.push_back(buffer);
+			}
+			f.close();
+
+			int index = -2;
+LOOP:
+			system("cls");
+			cout << "\n==========MANAGER-LIST==========\n";
+			for (int i = 0; i < temp.size(); i++)
+			{
+				cout << "#" << i + 1 << endl;
+				cout << "ID          : " << temp[i].getId() << endl;
+				cout << "Name        : " << temp[i].getname() << endl;
+				cout << "DoB         : " << temp[i].getbirth() << endl;
+				cout << "Address     : " << temp[i].getaddress() << endl;
+				cout << "Phone Number: " << temp[i].getphone() << endl;
+				cout << "Email       : " << temp[i].getmail() << endl;
+				cout << "Merit       : " << temp[i].getmerit() << endl;
+				if (i != temp.size() - 1)
+					cout << endl;
+			}
+			cout << "================================\n";
+TRY:
+			cout << "-> Select manager that you want to fire (Enter -1 To Save Change And Go Back): ";
+			cin >> index;
+			if (index == -1)
+			{
+				f.open("Manager.txt", ios::out);
+
+				if (!f.is_open())
+				{
+					cout << "Save change failed.\n";
+					continue;
+				}
+
+				for (int i = 0; i < temp.size(); i++)
+				{
+					f << temp[i].getId() << endl;
+					f << temp[i].getname() << endl;
+					f << temp[i].getbirth() << endl;
+					f << temp[i].getaddress() << endl;
+					f << temp[i].getphone() << endl;
+					f << temp[i].getmail() << endl;
+					f << temp[i].getmerit() << endl;
+					if (i != temp.size() - 1)
+						f << endl;
+				}
+				f.close();
+
+				cout << "Saved successfully.\n";
+				continue;
+			}
+
+			index--;
+			if (index < 0 || index > temp.size() - 1)
+				goto TRY;
+
+			temp.erase(temp.begin() + index);
+			goto LOOP;
+		}
+
+		if (mode == 2)
+		{
+			string id;
+			string name;
+			string DoB;
+			string address;
+			string phone;
+			string email;
+			string merit;
+			vector<Employee> temp;
+
+			fstream f;
+
+			f.open("Employee.txt", ios::in);
+
+			if (!f.is_open())
+			{
+				cout << "Cannot find Employee.txt.\n";
+				continue;
+			}
+
+			while (!f.eof())
+			{
+				getline(f, id, '\n');
+				getline(f, name, '\n');
+				getline(f, DoB, '\n');
+				getline(f, address, '\n');
+				getline(f, phone, '\n');
+				getline(f, email, '\n');
+				getline(f, merit, '\n');
+				f.ignore(1, '\n');
+
+				Employee buffer(id, name, DoB, address, phone, email, stoi(merit));
+				temp.push_back(buffer);
+			}
+			f.close();
+
+			int index = -2;
+LOOP1:
+			system("cls");
+			cout << "\n==========EMPLOYEE-LIST==========\n";
+			for (int i = 0; i < temp.size(); i++)
+			{
+				cout << "#" << i + 1 << endl;
+				cout << "ID          : " << temp[i].getId() << endl;
+				cout << "Name        : " << temp[i].getname() << endl;
+				cout << "DoB         : " << temp[i].getbirth() << endl;
+				cout << "Address     : " << temp[i].getaddress() << endl;
+				cout << "Phone Number: " << temp[i].getphone() << endl;
+				cout << "Email       : " << temp[i].getmail() << endl;
+				cout << "Merit       : " << temp[i].getmerit() << endl;
+				if (i != temp.size() - 1)
+					cout << endl;
+			}
+			cout << "=================================\n";
+TRY1:
+			cout << "-> Select employee that you want to fire (Enter -1 To Save Change And Go Back): ";
+			cin >> index;
+			if (index == -1)
+			{
+				f.open("Employee.txt", ios::out);
+
+				if (!f.is_open())
+				{
+					cout << "Save change failed.\n";
+					continue;
+				}
+
+				for (int i = 0; i < temp.size(); i++)
+				{
+					f << temp[i].getId() << endl;
+					f << temp[i].getname() << endl;
+					f << temp[i].getbirth() << endl;
+					f << temp[i].getaddress() << endl;
+					f << temp[i].getphone() << endl;
+					f << temp[i].getmail() << endl;
+					f << temp[i].getmerit() << endl;
+					if (i != temp.size() - 1)
+						f << endl;
+				}
+				f.close();
+
+				cout << "Saved successfully.\n";
+				continue;
+			}
+
+			index--;
+			if (index < 0 || index > temp.size() - 1)
+				goto TRY1;
+
+			temp.erase(temp.begin() + index);
+			goto LOOP1;
+		}
+
+		if (mode == 0)
+			return;
+
+		cout << "Wrong Mode.\n";
+		system("pause");
+	}
 }

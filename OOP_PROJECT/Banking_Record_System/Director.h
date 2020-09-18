@@ -26,6 +26,8 @@ public:
 	void showMenu();
 	void viewRequest();
 	void editRequest();
+	string getTotalMoney();
+	void showFireMenu();
 };
 
 #endif
