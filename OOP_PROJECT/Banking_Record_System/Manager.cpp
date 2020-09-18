@@ -442,6 +442,7 @@ void ManagerMenu::viewcustomer()
 		cout << endl;
 	}
 	f1.close();
+	a.clear();
 }
 
 void ManagerMenu::searchcustomer()
@@ -528,6 +529,7 @@ void ManagerMenu::searchcustomer()
 		}
 	}
 	f1.close();
+	a.clear();
 }
 
 void ManagerMenu::FireEmployee()
@@ -573,8 +575,8 @@ void ManagerMenu::FireEmployee()
 	f2.open("Employee.txt", ios::in);
 
 
-	if (!f1.is_open())
-		cout << "Cannot open Customer.txt\n";
+	if (!f2.is_open())
+		cout << "Cannot open Employee.txt\n";
 
 	int i = 0;
 
@@ -719,6 +721,8 @@ void ManagerMenu::FireEmployee()
 		break;
 	}
 	}
+	e.clear();
+	account.clear();
 }
 
 void ManagerMenu::viewemployee()

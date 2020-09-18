@@ -42,7 +42,7 @@ void Customer::newAccount()
 	if (!f2.is_open())
 		cout << "Cannot open Customer.txt\n";
 
-	for (int i = 0; i < this->account.size(); i++)
+	for (int i = 0; i < count; i++)
 	{
 
 		f2 << account[i].username()<<endl;
@@ -164,6 +164,8 @@ void Customer::newAccount()
 	}
 	f4.close();
 	cout << "Add new acc successfully " << endl;
+	a.clear();
+	account.clear();
 }
 
 void Customer::Editprofile()
@@ -306,6 +308,7 @@ void Customer::Editprofile()
 		break;
 	}
 	}
+	a.clear();
 }
 
 void Customer::deleteAccount()
@@ -473,6 +476,8 @@ void Customer::deleteAccount()
 		break;
 	}
 	}
+	a.clear();
+	account.clear();
 }
 
 void Customer::showMenu()
