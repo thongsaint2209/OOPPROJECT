@@ -133,7 +133,7 @@ public:
 
 	int gettype();
 
-	static void withdraw(int money,string id);
+	static void withdraw(int money,string id1);
 };
 
 #endif

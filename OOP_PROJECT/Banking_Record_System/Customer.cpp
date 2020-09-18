@@ -596,7 +596,7 @@ void Customer::deposit(int money) {
 }
 
 
-void Customer::withdraw(int money,string id) {
+void Customer::withdraw(int money,string id1) {
 	ifstream f1;
 	string id;
 	string	name;
@@ -636,8 +636,7 @@ void Customer::withdraw(int money,string id) {
 		count++;
 	}
 	f1.close();
-	cout << "Choose id you want to withdraw  ";
-	getline(cin, id);
+	
 
 	for (int i = 0; i < a.size(); i++)
 	{

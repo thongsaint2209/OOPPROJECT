@@ -275,7 +275,7 @@ void ManagerMenu::viewlistReDirector()
 			int option;
 			cout << "Do you want to  Processing this customer?  " << endl;
 			cout << "0: Out" << endl;
-			cout << "1: Edit" << endl;
+			cout << "1: Processing" << endl;
 			cin >> option;
 			switch (option)
 			{
@@ -298,7 +298,7 @@ void ManagerMenu::viewlistReDirector()
 						{
 							
 
-							Customer::withdraw(this->_requestList2[j].getMoney());
+							Customer::withdraw(this->_requestList2[j].getMoney(),id);
 
 
 							this->_requestList2.erase(_requestList2.begin() + j);
