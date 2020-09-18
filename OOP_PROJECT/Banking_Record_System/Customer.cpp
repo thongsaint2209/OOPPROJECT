@@ -28,8 +28,21 @@ void Customer::newAccount()
 		count++;
 	}
 	cin.ignore();
-	cout << "Enter your id : ";
-	getline(cin, username);
+
+     do	{
+		cout << "Enter your id : ";
+		getline(cin, username);
+		int k;
+		for (k=0; k < this->account.size(),k++)
+		{
+			if (username == this->[k].username())
+			{
+				break;
+			}
+		}
+		if (k == this->account.size())
+			break;
+	} while(true);
 
 	cout << "Enter your password : ";
 	getline(cin, password);
@@ -640,7 +653,7 @@ void Customer::withdraw(int money,string id1) {
 
 	for (int i = 0; i < a.size(); i++)
 	{
-		if (a[i].getId() == id)
+		if (a[i]._id == id1)
 		{
 			if (money < 10000000) {
 				if (a[i].gettype() == 3) {
@@ -672,12 +685,12 @@ void Customer::withdraw(int money,string id1) {
 					cout << "Withdraw Successfully" << endl;
 				}
 				else if (a[i].gettype() == 1 || a[i].gettype() == 2) {
-					fstream f3;
-					f3.open("EmployeeRequestsList.txt", ios::out);
-					if (!f3.is_open())
+					fstream f4;
+					f4.open("EmployeeRequestsList.txt", ios::out);
+					if (!f4.is_open())
 						cout << "Cannot open EmployeeRequestsList.txt\n";
 					else {
-						f3 << endl << endl << "Withdraw" << endl << a[i].getId() << endl << money << endl << 0;
+						f4 << endl << endl << "Withdraw" << endl << a[i].getId() << endl << money << endl << 0;
 					}
 				}
 
@@ -685,12 +698,12 @@ void Customer::withdraw(int money,string id1) {
 
 
 			else {
-				fstream f3;
-				f3.open("ManagerRequestsList.txt", ios::out);
-				if (!f3.is_open())
+				fstream f5;
+				f5.open("ManagerRequestsList.txt", ios::out);
+				if (!f5.is_open())
 					cout << "Cannot open ManagerRequestsList.txt\n";
 				else {
-					f3 << endl << endl << "Withdraw" << endl << a[i].getId() << endl << money << endl << 0;
+					f5 << endl << endl << "Withdraw" << endl << a[i].getId() << endl << money << endl << 0;
 				}
 			}
 			break;

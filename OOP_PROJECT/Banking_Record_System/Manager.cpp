@@ -294,7 +294,7 @@ void ManagerMenu::viewlistReDirector()
 
 					if (this->_requestList2[j].getId() == id)
 					{
-						if (this->_requestList2[j].getType() == "Deposit")
+						if (this->_requestList2[j].getType() == "Withdraw")
 						{
 							
 
@@ -326,7 +326,7 @@ void ManagerMenu::viewlistReDirector()
 				break;
 			}
 			}
-			
+			_requestList2.clear();
 	
 	
 
