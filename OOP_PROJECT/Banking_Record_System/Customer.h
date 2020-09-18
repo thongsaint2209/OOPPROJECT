@@ -134,6 +134,8 @@ public:
 	int gettype();
 
 	static void withdraw(int money,string id1);
+	
+	static void deposit(int money, string id2);
 };
 
 #endif

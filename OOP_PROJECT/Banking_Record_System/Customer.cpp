@@ -599,13 +599,7 @@ float Customer::ClacInrest() {
 		return  getBalance() * _DemandRate;
 	}
 }
-void Customer::deposit(int money) {
-	if (money < 10000000) {
-		_balance += ClacInrest() + money;
-		_duration = 0;
-	}
-	else {
-	}
+}
 }
 
 
@@ -711,4 +705,138 @@ void Customer::withdraw(int money,string id1) {
 	}
 }
 
+void Customer::deposit(int money, string id1) {
+	ifstream f1;
 
+	string id;
+	string	name;
+	string date;
+	string	address;
+
+	string phone;
+	string mail;
+	string Acctype;
+
+	int	balance;
+
+	int	duration;
+	int	period;
+	f1.open("Customer.txt", ios::in);
+
+
+	if (!f1.is_open())
+		cout << "Cannot open Customer.txt\n";
+
+
+	int count = 0;
+	while (f1.good())
+	{
+		f1 >> id;
+		f1.ignore();
+		getline(f1, name);
+
+		getline(f1, date);
+
+
+		getline(f1, address);
+
+		getline(f1, phone);
+
+		getline(f1, mail);
+
+		getline(f1, Acctype);
+
+		f1 >> balance;
+		f1 >> duration;
+		f1 >> period;
+
+		if (f1.eof())
+			break;
+		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
+		a.push_back(temp);
+		f1.ignore(1, '\n');
+		count++;
+
+	}
+	f1.close();
+	
+
+
+	for (int i = 0; i < a.size(); i++)
+	{
+
+		if (a[i].getId() == id)
+		{
+			if (money < 10000000) {
+				if (a[i].gettype() == 3) {
+					a[i]._balance += ClacInrest() + money;
+					a[i]._duration = 0;
+
+
+					fstream f3;
+					f3.open("Customer.txt", ios::out);
+					if (!f3.is_open())
+						cout << "Cannot open Customer.txt\n";
+
+					for (int i = 0; i < count; i++)
+					{
+						f3 << a[i]._id << endl;
+						f3 << a[i]._name << endl;
+						f3 << a[i]._birth << endl;
+						f3 << a[i]._address << endl;
+						f3 << a[i]._phone << endl;
+						f3 << a[i]._mail << endl;
+						f3 << a[i]._acctype << endl;
+						f3 << a[i]._balance << endl;
+						f3 << a[i]._duration << endl;
+						f3 << a[i]._period << endl;
+						f3 << endl;
+
+					}
+					f3.close();
+
+					cout << "Deposit Successfully" << endl;
+					fstream f4;
+					f4.open("TransactDate.txt", ios::out);
+					if (!f4.is_open())
+						cout << "Cannot open TransactDate.txt\n";
+					else {
+					//	Date d;
+						//f4 << d.toString() << endl << a[i].getname() << endl << "Deposit" << endl << money << endl;
+
+					}
+					f4.close();
+
+				}
+				else if (a[i].gettype() == 1 || a[i].gettype() == 2) {
+					fstream f3;
+					f3.open("EmployeeRequestsList.txt", ios::out);
+					if (!f3.is_open())
+						cout << "Cannot open EmployeeRequestsList.txt\n";
+					else {
+						f3 << endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
+					}
+					f3.close();
+
+				}
+
+
+			}
+			else {
+				fstream f3;
+				f3.open("ManagerRequestsList.txt", ios::out);
+				if (!f3.is_open())
+					cout << "Cannot open ManagerRequestsList.txt\n";
+				else {
+					f3 << endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
+				}
+			}
+
+			break;
+		}
+
+
+
+	}
+
+}
