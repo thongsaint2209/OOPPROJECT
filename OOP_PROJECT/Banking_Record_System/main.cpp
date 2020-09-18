@@ -8,7 +8,7 @@ int main()
 
 	m.loginMenu();
 
-m.redirect();
+	m.redirect();
 	//Customer c;
 	//c.deleteAccount();
 	return 0;

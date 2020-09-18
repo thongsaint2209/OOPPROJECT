@@ -88,7 +88,26 @@ int Account::login(const string& username, const string& password, const string&
 			return 3;
 		}
 	}
+	f.close();
 
+	//check Customer
+	f.open("CustomerAccounts.txt", ios::in);
+
+	if (!f.is_open())
+		cout << "Cannot open CustomerAccounts.txt\n";
+
+	while (!f.eof())
+	{
+		getline(f, buffer1, '\n');
+		getline(f, buffer2, '\n');
+		f.ignore(1, '\n');
+
+		if (buffer1 == this->_username && buffer2 == this->_password && this->_passwordLv2 == "")
+		{
+			f.close();
+			return 4;
+		}
+	}
 	f.close();
 
 	return 0; //cannot find account's role
