@@ -32,6 +32,7 @@ public:
 	void viewVIPCustomer();
 	void searchEmployee();
 	void viewEmployee();
+	void viewFeedBack();
 };
 
 #endif

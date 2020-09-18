@@ -106,6 +106,7 @@ void DirectorMenu::showMenu()
 			this->showFireMenu();
 			break;
 		case 7:
+			this->viewFeedBack();
 			break;
 		case 8:
 			this->searchEmployee();
@@ -803,6 +804,12 @@ void DirectorMenu::viewEmployee()
 SHORTCUT:
 		system("pause");
 	}
+}
+
+void DirectorMenu::viewFeedBack()
+{
+	cout << "Coming soon...\n";
+	return;
 }
 
 void DirectorMenu::showFireMenu()
