@@ -1,6 +1,3 @@
-<<<<<<< Updated upstream
-#include "Customer.h"
-=======
 #include"Customer.h"
 #include"Header.h"
 void Customer::newAccount()
@@ -77,7 +74,7 @@ void Customer::newAccount()
 
 
 	if (!f3.is_open())
-		cout << "Cannot open Customer.txt\n"; 1
+		cout << "Cannot open Customer.txt\n";
 
 	
 	int count1 = 0;
@@ -548,9 +545,6 @@ void Customer::showMenu()
 		system("pause");
 	}
 }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
 
 
 float Customer::ClacInrest() {
@@ -848,4 +842,3 @@ int Customer::gettype() {
 	if (_acctype == "Payment account") return 3;
 	return 0;
 }
->>>>>>> Stashed changes

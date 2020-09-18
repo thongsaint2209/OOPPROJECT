@@ -3,7 +3,7 @@
 
 #include "Header.h"
 #include "Director.h"
-
+#include "Manager.h"
 class Menu
 {
 private:

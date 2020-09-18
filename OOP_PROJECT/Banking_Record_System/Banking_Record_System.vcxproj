@@ -140,33 +140,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AllRole.h" />
-    <ClInclude Include="BankAccount.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Director.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Header.h" />
-<<<<<<< Updated upstream
-    <ClInclude Include="MyStaticLib\MyStaticLib\Address.h" />
-    <ClInclude Include="MyStaticLib\MyStaticLib\Date.h" />
-    <ClInclude Include="MyStaticLib\MyStaticLib\FullName.h" />
-    <ClInclude Include="MyStaticLib\MyStaticLib\Random.h" />
-=======
     <ClInclude Include="Manager.h" />
     <ClInclude Include="MyStaticLib\Date.h" />
     <ClInclude Include="MyStaticLib\Time.h" />
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllRole.cpp" />
-    <ClCompile Include="BankAccount.cpp" />
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Director.cpp" />
     <ClCompile Include="Employee.cpp" />
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="MyStaticLib\MyStaticLib\MyStaticLib.lib" />
+    <ClCompile Include="Manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="MyStaticLib\MyStaticLib.lib" />

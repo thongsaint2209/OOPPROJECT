@@ -9,18 +9,23 @@ DirectorMenu::DirectorMenu(Account acc)
 	if (!f.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
 
-	string buffer1 = "";
-	string buffer2 = "";
-
-	while (!f.eof())
+	string id;
+	string type;
+	int money;
+	int status;
+	while (f.good())
 	{
-		getline(f, buffer1, '\n');
-		getline(f, buffer2, '\n');
-		f.ignore(1, '\n');
+		f >> id;
 
-		int status = stoi(buffer2);
+		f >> type;
 
-		Request temp(buffer1, status);
+		f >> money;
+
+		f >> status;
+
+		if (f.eof())
+			break;
+		Request temp(id, type, money, status);
 		this->_requestList.push_back(temp);
 	}
 
@@ -48,6 +53,20 @@ void DirectorMenu::showMenu()
 		cout << "-> Select mode: ";
 		cin >> this->_mode;
 
+		while (1)
+		{
+			if (cin.fail())
+			{
+				cin.clear();
+				cin.ignore(numeric_limits<streamsize>::max(), '\n');
+				cout << "Please only enter number!" << endl;
+				cout << "Enter again: ";
+				cin >> this->_mode;
+			}
+			if (!cin.fail())
+				break;
+		}
+
 		if (this->_mode == 0)
 			break;
 
@@ -69,6 +88,11 @@ void DirectorMenu::showMenu()
 			break;
 		case 7:
 			break;
+		default:
+		{
+			cout << "Please only enter number from 0 to 7!\n";
+			break;
+		}
 		}
 		system("pause");
 	}
@@ -80,7 +104,9 @@ void DirectorMenu::viewRequest()
 	for (int i = 0; i < this->_requestList.size(); i++)
 	{
 		cout << "Request #" << i + 1 << endl;
-		cout << this->_requestList[i].viewRequest() << endl;
+		cout << this->_requestList[i].getId() << endl;
+		cout << this->_requestList[i].getType() << endl;
+		cout << this->_requestList[i].getMoney() << endl;
 		if (this->_requestList[i].approvalStatus() == -1)
 			cout << "Denied\n";
 		if (this->_requestList[i].approvalStatus() == 0)
@@ -154,7 +180,9 @@ void DirectorMenu::editRequest()
 
 	for (int i = 0; i < this->_requestList.size(); i++)
 	{
-		f << this->_requestList[i].viewRequest() << endl;
+		f << this->_requestList[i].getId() << endl;
+		f << this->_requestList[i].getType() << endl;
+		f << this->_requestList[i].getMoney() << endl;
 		f << this->_requestList[i].approvalStatus() << endl;
 		if (i != this->_requestList.size() - 1)
 			f << endl;

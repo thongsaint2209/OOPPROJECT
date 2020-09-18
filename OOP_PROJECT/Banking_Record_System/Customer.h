@@ -1,8 +1,4 @@
 #ifndef _CUSTOMER_H_
-<<<<<<< Updated upstream
-#define  _CUSTOMER_H_
-#include"Header.h"
-=======
 #define _CUSTOMER_H_
 #include "Header.h"
 #include <iostream>
@@ -14,33 +10,120 @@
 using namespace std;
 
 
->>>>>>> Stashed changes
 class Customer
 {
 private:
-	float _balance;
-	Account _Acc;
+
+	string _id;
+	string	_name;
+	string _birth;
+
+	string	_address;
+
+
+	string _phone;
+	string _mail;
+	string _acctype;
+	int _balance;
 	int _duration;
 	int _period;
-	string _acctype;
-	static float _TermRate;
-	static float _DemandRate;
+
+
+	float _TermRate;
+	float _DemandRate;
+
+	int _option;
+	Account _account;
+
+	vector<Request> _requestList;
+	vector<Account> account;
+    vector<Customer> a;
 public:
-	Customer(Account acc, float balance, string acctype, int period);
-	void newAcc();
-	void editInfo(string edit,string detail);
-	void deleteAcc();
+	Customer() {};
+	void setId(string id)
+	{
+		_id = id;
+	}
+	void setname(string name)
+	{
+		_name = name;
+	}
+	void setaddress(string address)
+	{
+		_address = address;
+	}
+	string getId()
+	{
+		return _id;
+	}
+	string getname()
+	{
+		return _name;
+	}
+	string getbirth()
+	{
+		return _birth;
+	}
+	string getaddress()
+	{
+		return _address;
+	}
+	string getphone()
+	{
+		return _phone;
+	}
+	string getmail()
+	{
+		return _mail;
+	}
+	string getacctype()
+	{
+		return _acctype;
+	}
+	int getBalance()
+	{
+		return _balance;
+	}
+	int getDuration()
+	{
+		return _duration;
+	}
+	int getPeriod()
+	{
+		return _period;
+	}
+	Customer(string id, string name, string birth,string address,string phone,string mail,string type, int balance,int duration,int period)
+	{
+		this->_id = id;
+		this->_name = name;
+		this->_birth = birth;
+		this->_address = address;
+		this->_phone = phone;
+		this->_mail = mail;
+		this->_acctype = type;
+		this->_balance = balance;
+		this->_duration = duration;
+		this->_period=period;
+	}
+	Customer(string id, string name, string birth, string address, string phone, string mail, string type)
+	{
+		this->_id = id;
+		this->_name = name;
+		this->_birth = birth;
+		this->_address = address;
+		this->_phone = phone;
+		this->_mail = mail;
+		this->_acctype = type;
+		this->_balance = 0;
+		this->_duration = 0;
+		this->_period = 0;
+	}
+	void newAccount();
 
-	float getBalance();
-	float CalcInterest();
+	void showMenu();
 
-	void withdraw(float money);
-	void deposit(float money);
-	void transfer(float money);
+    void Editprofile();
 
-<<<<<<< Updated upstream
-	int getType();
-=======
 	void deleteAccount();
 
 	float ClacInrest();
@@ -53,7 +136,6 @@ public:
 
 	//Time - deposit account(1),Demand – deposit account(2),payment acc(3)
 	int gettype();
->>>>>>> Stashed changes
 };
 
 #endif

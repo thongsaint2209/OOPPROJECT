@@ -24,7 +24,7 @@
     <ClInclude Include="Header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BankAccount.h">
+    <ClInclude Include="Manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Customer.h">
@@ -33,23 +33,10 @@
     <ClInclude Include="Employee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
-    <ClInclude Include="MyStaticLib\MyStaticLib\Address.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyStaticLib\MyStaticLib\Date.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyStaticLib\MyStaticLib\FullName.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MyStaticLib\MyStaticLib\Random.h">
-=======
     <ClInclude Include="MyStaticLib\Date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MyStaticLib\Time.h">
->>>>>>> Stashed changes
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -66,7 +53,7 @@
     <ClCompile Include="Header.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BankAccount.cpp">
+    <ClCompile Include="Manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Customer.cpp">
@@ -77,10 +64,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-    <Library Include="MyStaticLib\MyStaticLib\MyStaticLib.lib" />
-=======
     <Library Include="MyStaticLib\MyStaticLib.lib" />
->>>>>>> Stashed changes
   </ItemGroup>
 </Project>
