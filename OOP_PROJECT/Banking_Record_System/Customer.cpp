@@ -543,6 +543,7 @@ void Customer::showMenu()
 		cout << "2. Edit information customer.\n";
 
 		cout << "3. Delete account\n";
+		cout << "4. View Trade History\n";
 		cout << "0. Exit \n";
 
 		
@@ -579,7 +580,7 @@ void Customer::showMenu()
 			this->deleteAccount();
 			break;
 		case 4:
-			
+			this->viewTradeHistory();
 			break;
 		case 5:
 			break;
@@ -848,11 +849,8 @@ void Customer::deposit(int money, string id2) {
 					f6<< endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
 				}
 			}
-
 			break;
 		}
-
-
 
 	}
 
@@ -906,5 +904,44 @@ void Customer::saveTradeHistory(string id, string type, float money)
 			f << endl;
 	}
 	cout << "Saved successfully.\n";
+	f.close();
+}
+
+void Customer::viewTradeHistory()
+{
+	string _time;
+	string _id;
+	string _type;
+	string _money;
+	vector<TradeHistory> temp;
+	fstream f;
+	f.open("TransactDate.txt", ios::in);
+	if (!f.is_open())
+		cout << "Cannot open TransactDate.txt\n";
+	while (f.good())
+	{
+		getline(f, _time);
+		getline(f, _id);
+		getline(f, _type);
+		getline(f, _money);
+		f.ignore(1, '\n');
+
+		TradeHistory buffer(_time, _id, _type, stof(_money));
+		temp.push_back(buffer);
+
+		if (f.eof())
+			break;
+	}
+	for (int i = 0; i < temp.size(); i++)
+	{
+		if (temp[i].getId() == this->_account.username())
+		{
+			cout << "===YOUR-TRADE-HISTORY===" << endl;
+			cout << temp[i].getTime() << endl;
+			cout << temp[i].getId() << endl;
+			cout << temp[i].getType() << endl;
+			cout << temp[i].getMoney() << endl;
+		}
+	}
 	f.close();
 }

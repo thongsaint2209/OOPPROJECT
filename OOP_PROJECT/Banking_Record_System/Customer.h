@@ -136,6 +136,7 @@ public:
 	
 	static void deposit(int money, string id2);
 	void saveTradeHistory(string id, string type, float money);
+	void viewTradeHistory();
 };
 
 class TradeHistory
