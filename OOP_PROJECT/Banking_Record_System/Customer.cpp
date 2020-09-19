@@ -3,14 +3,20 @@
 vector <Customer> Customer::a;
 void Customer::newAccount()
 {
+	string username;
+	string password;
+
+	a.clear();
+	account.clear();
 	fstream f1;
 
 	f1.open("CustomerAccounts.txt", ios::in);
 
 	if (!f1.is_open())
 		cout << "Cannot open CustomerAccounts.txt\n";
-	string username;
-	string password;
+
+	
+	
 	int count = 0;
 	while (f1.good())
 	{
@@ -184,6 +190,7 @@ void Customer::newAccount()
 
 void Customer::Editprofile()
 {
+	
 	ifstream f1;
 
 	string id;
@@ -199,12 +206,14 @@ void Customer::Editprofile()
 
 	int	duration;
 	int	period;
+	a.clear();
+	account.clear();
 	f1.open("Customer.txt", ios::in);
 
 
 	if (!f1.is_open())
 		cout << "Cannot open Customer.txt\n";
-
+	
 
 	int count = 0;
 	while (f1.good())
@@ -344,14 +353,17 @@ void Customer::Editprofile()
 
 void Customer::deleteAccount()
 {
+	string username;
+	string password;
+	a.clear();
+	account.clear();
 	fstream f1;
 
 	f1.open("CustomerAccounts.txt", ios::in);
 
 	if (!f1.is_open())
 		cout << "Cannot open CustomerAccounts.txt\n";
-	string username;
-	string password;
+	
 	int count = 0;
 	while (f1.good())
 	{

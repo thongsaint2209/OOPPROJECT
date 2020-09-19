@@ -137,6 +137,7 @@ void ManagerMenu::viewRequest()
 		cout << endl;
 	}
 	cout << "=================================\n";
+//	_requestList1.clear();
 }
 
 void ManagerMenu::editRequest()
@@ -213,7 +214,7 @@ void ManagerMenu::editRequest()
 	f.close();
 
 	cout << "Saved successfully\n";
-	_requestList1.clear();
+	//_requestList1.clear();
 }
 
 
@@ -488,7 +489,7 @@ void ManagerMenu::searchcustomer()
 	while (getchar() != '\n');
 	getline(cin, id);
 
-
+	int dem=0;
 	for (int i = 0; i < count; i++)
 	{
 		if (a[i].getId() == id)
@@ -505,7 +506,13 @@ void ManagerMenu::searchcustomer()
 			cout << "duration :" << a[i].getDuration() << endl;
 			cout << "period :" << a[i].getPeriod() << endl;
 			cout << endl;
+			break;
 		}
+		dem++;
+	}
+	if(dem==count)
+	{
+		cout << "ID does not exist "<<endl;
 	}
 	f1.close();
 	a.clear();
@@ -584,7 +591,7 @@ void ManagerMenu::FireEmployee()
 			break;
 		Employee temp(id, name, date, address, phone, mail, merits);
 		this->e.push_back(temp);
-		f1.ignore(1, '\n');
+		f2.ignore(1, '\n');
 	
 	}
 	//cout merits <=90;
@@ -651,20 +658,18 @@ void ManagerMenu::FireEmployee()
 
 					f4 << e[l].getmerit() << endl;
 					f4 << endl;
-					
-				}
-				f4.close();
 
-				
+				}
+
+				f4.close();
 			}
+			
 		}
 		
 		for (int i = 0; i < this->account.size(); i++)
 		{
 			if(i==temp_pos)
 			{
-				
-				
 				this->account.erase(account.begin() + i);
 
 				fstream f3;
@@ -689,9 +694,6 @@ void ManagerMenu::FireEmployee()
 			}
 		}
 		
-		
-		
-
 		cout << "Delete successfully " << endl;
 	}
 	default:
@@ -706,7 +708,7 @@ void ManagerMenu::FireEmployee()
 
 void ManagerMenu::viewemployee()
 {
-
+	e.clear();
 	ifstream f1;
 
 	string id;
@@ -771,7 +773,7 @@ void ManagerMenu::viewemployee()
 
 void ManagerMenu::searchemployee()
 {
-
+	e.clear();
 	ifstream f1;
 
 	string id;
@@ -826,7 +828,7 @@ void ManagerMenu::searchemployee()
 	while (getchar() != '\n');
 	getline(cin, id);
 
-
+	int dem = 0;
 	for (int i = 0; i < e.size(); i++)
 	{
 		if (e[i].getId() == id)
@@ -841,7 +843,13 @@ void ManagerMenu::searchemployee()
 
 			cout << "merit :" << e[i].getmerit() << endl;
 			cout << endl;
+			break;
 		}
+		dem++;
+	}
+	if(dem==e.size())
+	{
+		cout << "id does not exist "<<endl;
 	}
 	f1.close();
 	e.clear();
