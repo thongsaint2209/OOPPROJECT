@@ -7,9 +7,9 @@ void Employee::showMenu()
 	{
 		system("cls");
 		cout << "\n==========EMPLOYEE-MENU==========\n";
-		cout << "1. View profile information.\n";
+		cout << "1. View profile's information.\n";
 		cout << "2. Change password.\n";
-		cout << "3. Customer's authority.\n";
+		cout << "3. Employee's authority.\n";
 		cout << "0. Logout.\n";
 		cout << "=================================\n";
 		cout << "-> Select option: ";
@@ -33,7 +33,7 @@ void Employee::showMenu()
 			while (true)
 			{
 				system("cls");
-				cout << "\n==========EMPLOYEE'S AUTHORITY-MENU==========\n";
+				cout << "\n==========EMPLOYEE'S-AUTHORITY-MENU==========\n";
 				cout << "1.ViewAndSolvingRequests.\n";
 				cout << "2. .\n";
 				cout << "3. .\n";
@@ -78,7 +78,7 @@ void Employee::showMenu()
 				//	tradeHistory(type, name, money);
 				default:
 				{
-					cout << "Please only enter number from 0 to 7!\n";
+					cout << "Please only enter number from 0 to 8!\n";
 					break;
 				}
 				}

@@ -68,7 +68,7 @@ void DirectorMenu::showMenu()
 			while (true)
 			{
 				system("cls");
-				cout << "\n==========DIRECTOR'S AUTHORITY-MENU==========\n";
+				cout << "\n==========DIRECTOR'S-AUTHORITY-MENU==========\n";
 				cout << "1. View requests list.\n";
 				cout << "2. Edit requests list.\n";
 				cout << "3. View total money.\n";

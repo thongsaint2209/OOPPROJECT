@@ -43,7 +43,7 @@ void ManagerMenu::showMenu()
 	{
 		system("cls");
 		cout << "\n==========MANAGER-MENU==========\n";
-		cout << "1. View profile information.\n";
+		cout << "1. View profile's information.\n";
 		cout << "2. Change password.\n";
 		cout << "3. Manager's authority.\n";
 		cout << "0. Logout.\n";
@@ -69,7 +69,7 @@ void ManagerMenu::showMenu()
 			while (true)
 			{
 				system("cls");
-				cout << "\n==========MANAGER'S AUTHORITY-MENU==========\n";
+				cout << "\n==========MANAGER'S-AUTHORITY-MENU==========\n";
 				cout << "1. View requests list.\n";
 				cout << "2. Edit requests list.\n";
 				cout << "3. View list of accepting requests and processing from director\n";
