@@ -1,5 +1,6 @@
 #include "AllRole.h"
 #include "Director.h"
+#include"Employee.h"
 
 //only use for run the program
 int main()
@@ -9,7 +10,9 @@ int main()
 	m.loginMenu();
 
 //m.redirect();
-	Customer c;
-	c.newAccount();
+	/*Customer c;
+	c.newAccount();*/
+	Employee e;
+	e.SolvingReManager();
 	return 0;
 }

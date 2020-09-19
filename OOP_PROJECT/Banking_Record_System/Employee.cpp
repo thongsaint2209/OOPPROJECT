@@ -644,11 +644,11 @@ void Employee::SolvingReManager() {
 	int status;
 
 
-	f1.open("ManagerRequestsList.txt", ios::in);
+	f1.open("ManagerRequestList.txt", ios::in);
 
 
 	if (!f1.is_open())
-		cout << "Cannot open ManagerRequestsList.txt\n";
+		cout << "Cannot open ManagerRequestList.txt\n";
 	vector<Request> requestList;
 	int count1 = 0;
 	while (f1.good())
@@ -755,10 +755,10 @@ void Employee::SolvingReManager() {
 	}
 		fstream f;
 
-		f.open("EmployeeRequestList.txt", ios::out);
+		f.open("ManagerRequestList.txt", ios::out);
 
 		if (!f.is_open())
-			cout << "Cannot open EmployeeRequestsList.txt\n";
+			cout << "Cannot open ManagerRequestList.txt\n";
 
 		for (int i = 0; i < requestList.size(); i++)
 		{
