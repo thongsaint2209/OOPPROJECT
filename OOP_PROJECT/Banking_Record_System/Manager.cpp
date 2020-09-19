@@ -291,11 +291,6 @@ void ManagerMenu::viewlistReDirector()
 			}
 			case 1:
 			{
-				
-
-				
-
-
 				for(int j=0;j< this->_requestList2.size();j++)
 				{
 					if (this->_requestList2[j].getId() == id1)
@@ -310,7 +305,7 @@ void ManagerMenu::viewlistReDirector()
 							this->_requestList2.erase(_requestList2.begin() + j);
 
 						}
-						else
+						 if (this->_requestList2[j].getType() == "Deposit")
 						{
 							Customer::deposit(this->_requestList2[j].getMoney(), id1);
 
@@ -339,6 +334,8 @@ void ManagerMenu::viewlistReDirector()
 				}
 				f2.close();
 			}
+
+			cout << "Processing succefully"<<endl;
 			default:
 			{
 			

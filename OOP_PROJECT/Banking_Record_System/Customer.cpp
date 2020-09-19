@@ -1,6 +1,9 @@
 #include"Customer.h"
 #include"Header.h"
 vector <Customer> Customer::a;
+
+float Customer::_TermRate = 0.07;
+float Customer::_DemandRate = 0.01;
 void Customer::newAccount()
 {
 	string username;
@@ -704,7 +707,7 @@ void Customer::withdraw(int money,string id1) {
 
 			else {
 				fstream f5;
-				f5.open("ManagerRequestsList.txt", ios::out);
+				f5.open("ManagerRequestList.txt", ios::out);
 				if (!f5.is_open())
 					cout << "Cannot open ManagerRequestsList.txt\n";
 				else {
@@ -835,7 +838,7 @@ void Customer::deposit(int money, string id1) {
 			}
 			else {
 				fstream f6;
-				f6.open("ManagerRequestsList.txt", ios::out);
+				f6.open("ManagerRequestList.txt", ios::out);
 				if (!f6.is_open())
 					cout << "Cannot open ManagerRequestsList.txt\n";
 				else {

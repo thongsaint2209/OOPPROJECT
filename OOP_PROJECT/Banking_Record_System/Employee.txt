@@ -6,14 +6,6 @@ Nhan Vien Mot
 nv1@gmail.com
 15
 
-13127002
-Nhan Vien Hai
-01/22/2001
-87, phuong 8, quan 5,HCM 
-0123789459
-nv2@gmail.com
-20
-
 13127003
 Nhan Vien Ba
 04/06/2001
@@ -21,3 +13,4 @@ Nhan Vien Ba
 0123789459
 nv3@gmail.com
 30
+
