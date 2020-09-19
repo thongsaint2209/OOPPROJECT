@@ -960,13 +960,12 @@ void Customer::saveTradeHistory(string id, string type, int money)
 		getline(f, _id);
 		getline(f, _type);
 		getline(f, _money);
-		f.ignore(1, '\n');
+		
 
 		TradeHistory buffer(_time, _id, _type, stof(_money));
 		temp.push_back(buffer);
-
-		if (f.eof())
-			break;
+		f.ignore(1, '\n');
+		
 	}
 	f.close();
 
