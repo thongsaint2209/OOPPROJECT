@@ -815,8 +815,247 @@ SHORTCUT:
 
 void DirectorMenu::viewFeedBack()
 {
-	cout << "Coming soon...\n";
-	return;
+	fstream f;
+
+	f.open("ReportList.txt", ios::in);
+
+	if (!f.is_open())
+	{
+		cout << "Cannot open ReportList.txt.\n";
+		return;
+	}
+
+	vector<string> idRead;
+	vector<string> detail;
+	vector<bool> status;
+	string buffer;
+
+	while (!f.eof())
+	{
+		getline(f, buffer, '\n');
+		idRead.push_back(buffer);
+		getline(f, buffer, '\n');
+		detail.push_back(buffer);
+		status.push_back(true);
+		f.ignore(1, '\n');
+	}
+	f.close();
+
+	while (true)
+	{
+		int index = -1;
+		system("cls");
+		cout << "==========REPORT-LIST=========\n";
+		for (int i = 0; i < idRead.size(); i++)
+		{
+			cout << "#" << i + 1 << endl;
+			cout << "Employee's ID: " << idRead[i] << endl;
+			cout << "Report Detail: " << detail[i] << endl;
+			if (!status[i])
+				cout << "--> Marked to subtract merit point <--\n";
+			if (i != idRead.size() - 1)
+				cout << endl;
+		}
+		cout << "==============================\n";
+	TRYINPUT:
+		cout << "--> Mark a number to subtract merit point \n(Enter 0 to go back and automaticlly subtract merit point of marked number): ";
+		cin >> index;
+
+		if (index == 0)
+		{
+			vector<Employee> manager;
+			vector<Employee> employee;
+
+			bool flag = true;
+			string id;
+			string name;
+			string DoB;
+			string address;
+			string phone;
+			string email;
+			string merit;
+
+			fstream f;
+
+			f.open("Manager.txt", ios::in);
+
+			if (!f.is_open())
+			{
+				cout << "Cannot find Manager.txt.\n";
+				flag = false;
+			}
+
+			while (!f.eof())
+			{
+				getline(f, id, '\n');
+				getline(f, name, '\n');
+				getline(f, DoB, '\n');
+				getline(f, address, '\n');
+				getline(f, phone, '\n');
+				getline(f, email, '\n');
+				getline(f, merit, '\n');
+				f.ignore(1, '\n');
+
+				Employee buffer(id, name, DoB, address, phone, email, stoi(merit));
+				manager.push_back(buffer);
+			}
+			f.close();
+
+			f.open("Employee.txt", ios::in);
+
+			if (!f.is_open())
+			{
+				cout << "Cannot find Employee.txt.\n";
+				flag = false;
+			}
+
+			while (!f.eof())
+			{
+				getline(f, id, '\n');
+				getline(f, name, '\n');
+				getline(f, DoB, '\n');
+				getline(f, address, '\n');
+				getline(f, phone, '\n');
+				getline(f, email, '\n');
+				getline(f, merit, '\n');
+				f.ignore(1, '\n');
+
+				Employee buffer(id, name, DoB, address, phone, email, stoi(merit));
+				employee.push_back(buffer);
+			}
+			f.close();
+
+			if (flag)
+			{
+				for (int i = 0; i < idRead.size(); i++)
+				{
+					if (!status[i])
+					{
+						bool mark = false;
+						for (int j = 0; j < manager.size(); j++)
+						{
+							if (manager[j].getId() == idRead[i])
+							{
+								if (manager[j].getmerit() > 20)
+									manager[j].setMerit(manager[j].getmerit() - 20);
+								else manager[j].setMerit(0);
+								mark = true;
+								break;
+							}
+						}
+
+						for (int j = 0; j < employee.size(); j++)
+						{
+							if (employee[j].getId() == idRead[i])
+							{
+								if (employee[j].getmerit() > 20)
+									employee[j].setMerit(employee[j].getmerit() - 20);
+								else employee[j].setMerit(0);
+								mark = true;
+								break;
+							}
+						}
+
+						if (!mark)
+							cout << "Cannot find employee with ID <" << idRead[i] << ">.\n";
+					}
+				}
+
+				bool flag1 = true;
+
+				f.open("Manager.txt", ios::out);
+
+				if (!f.is_open())
+				{
+					cout << "Cannot find Manager.txt.\n";
+					f.close();
+					goto SKIP;
+				}
+
+				for (int i = 0; i < manager.size(); i++)
+				{
+					f << manager[i].getId() << endl;
+					f << manager[i].getname() << endl;
+					f << manager[i].getbirth() << endl;
+					f << manager[i].getaddress() << endl;
+					f << manager[i].getphone() << endl;
+					f << manager[i].getmail() << endl;
+					f << manager[i].getmerit() << endl;
+					if (i != manager.size() - 1)
+						f << endl;
+				}
+				f.close();
+
+				f.open("Employee.txt", ios::out);
+
+				if (!f.is_open())
+				{
+					cout << "Cannot find Employee.txt.\n";
+					f.close();
+					goto SKIP;
+				}
+
+				for (int i = 0; i < employee.size(); i++)
+				{
+					f << employee[i].getId() << endl;
+					f << employee[i].getname() << endl;
+					f << employee[i].getbirth() << endl;
+					f << employee[i].getaddress() << endl;
+					f << employee[i].getphone() << endl;
+					f << employee[i].getmail() << endl;
+					f << employee[i].getmerit() << endl;
+					if (i != employee.size() - 1)
+						f << endl;
+				}
+				f.close();
+
+				f.open("ReportList.txt", ios::out);
+
+				if (!f.is_open())
+				{
+					cout << "Cannot open ReportList.txt.\n";
+					flag1 = false;
+					f.close();
+					goto SKIP;
+				}
+
+				for (int i = 0; i < idRead.size(); i++)
+				{
+					if (status[i])
+					{
+						f << idRead[i] << endl;
+						f << detail[i] << endl;
+						for (int j = i + 1; j < idRead.size(); j++)
+						{
+							if (status[j])
+							{
+								f << endl;
+								break;
+							}
+						}
+					}
+				}
+
+				f.close();
+
+			SKIP:
+				if (flag1)
+					cout << "Subtract merit point successfully.\n";
+				else cout << "Save data failed.\n";
+
+				return;
+			}
+			else cout << "Save data failed.\n";
+			return;
+		}
+
+		index--;
+
+		if (index < 0 || index > idRead.size() - 1)
+			goto TRYINPUT;
+
+		status[index] = false;
+	}
 }
 
 void DirectorMenu::showFireMenu()

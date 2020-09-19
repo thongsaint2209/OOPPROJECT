@@ -30,7 +30,15 @@ private:
 	vector<Account> account;
 	vector<Employee> e;
 public:
-	Employee() {};
+	Employee() {
+		this->_id = "";
+		this->_name = "";
+		this->_birth = "";
+		this->_address = "";
+		this->_phone = "";
+		this->_mail = "";
+		this->_merits = 0;
+	}
 	void setId(string id)
 	{
 		_id = id;
@@ -42,6 +50,10 @@ public:
 	void setaddress(string address)
 	{
 		_address = address;
+	}
+	void setMerit(int point)
+	{
+		this->_merits = point;
 	}
 	string getId()
 	{
