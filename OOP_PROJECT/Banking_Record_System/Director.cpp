@@ -101,6 +101,8 @@ void DirectorMenu::showMenu()
 					cout << "=================================\n";
 					cout << "Total Money In Bank: ";
 					cout << this->getTotalMoney() << endl;
+					_s.readMoney(stoi(this->getTotalMoney()));
+					cout << endl;
 					cout << "=================================\n";
 					break;
 				}

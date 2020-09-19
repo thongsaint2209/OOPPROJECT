@@ -103,6 +103,7 @@ class Support
 {
 public:
 	void checkValid(int _mode);
-
+	string readNumber(int number);
+	void readMoney(int number);
 };
 #endif
