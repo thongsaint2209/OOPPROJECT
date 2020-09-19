@@ -1,5 +1,8 @@
 #include"Customer.h"
 #include"Header.h"
+#include"Lib/Date.h"
+#include"Lib/Time.h"
+
 vector <Customer> Customer::a;
 
 float Customer::_TermRate = 0.07;
@@ -596,10 +599,10 @@ void Customer::showMenu()
 }
 
 
-//Time - deposit account(1), Demand ñ deposit account(2), payment acc(3)
+//Time - deposit account(1), Demand ÅEdeposit account(2), payment acc(3)
 int Customer::gettype() {
 	if (_acctype == "Time - deposit account") return 1;
-	if (_acctype == "Demand ñ deposit account") return 2;
+	if (_acctype == "Demand ÅEdeposit account") return 2;
 	if (_acctype == "Payment account") return 3;
 	return 0;
 }
@@ -853,4 +856,55 @@ void Customer::deposit(int money, string id2) {
 
 	}
 
+}
+
+void Customer::saveTradeHistory(string id, string type, float money)
+{
+	string _time;
+	string _id;
+	string _type;
+	string _money;
+	vector<TradeHistory> temp;
+	fstream f;
+	f.open("TransactDate.txt", ios::in);
+	if (!f.is_open())
+		cout << "Cannot open TransactDate.txt\n";
+	while (f.good())
+	{
+		getline(f, _time);
+		getline(f, _id);
+		getline(f, _type);
+		getline(f, _money);
+		f.ignore(1, '\n');
+
+		TradeHistory buffer(_time, _id, _type, stof(_money));
+		temp.push_back(buffer);
+
+		if (f.eof())
+			break;
+	}
+	f.close();
+
+	Time t;
+	Date d;
+	stringstream s;
+	s << t.toString() << " " << d.toString();
+
+	TradeHistory a(s.str(), id, type, money);
+	temp.push_back(a);
+
+	f.open("TransactDate.txt", ios::out);
+
+	
+	for (int i = 0; i < temp.size(); i++)
+	{
+		f << temp[i].getTime() << endl;
+		f << temp[i].getId() << endl;
+		f << temp[i].getType() << endl;
+		f << temp[i].getMoney() << endl;
+		if (i != temp.size() - 1)
+			f << endl;
+	}
+	cout << "Saved successfully.\n";
+	f.close();
 }

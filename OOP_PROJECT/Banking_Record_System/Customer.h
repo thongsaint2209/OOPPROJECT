@@ -6,7 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <conio.h>
-
+#include <sstream>
 using namespace std;
 
 
@@ -135,7 +135,32 @@ public:
 	static void withdraw(int money,string id1);
 	
 	static void deposit(int money, string id2);
+	void saveTradeHistory(string id, string type, float money);
 };
 
+class TradeHistory
+{
+private:
+	string _time;
+	string _id;
+	string _type;
+	float _money;
+public:
+	TradeHistory(string id, string type, float money) {
+		this->_id = id;
+		this->_type = type;
+		this->_money = money;
+	}
+	TradeHistory(string time, string id, string type, float money) {
+		this->_time = time;
+		this->_id = id;
+		this->_type = type;
+		this->_money = money;
+	}
+	string getTime() { return _time; }
+	string getId() { return _id; }
+	string getType() { return _type; }
+	float getMoney() { return _money; }
+};
 #endif
 
