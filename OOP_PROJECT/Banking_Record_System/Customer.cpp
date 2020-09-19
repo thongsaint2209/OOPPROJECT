@@ -681,16 +681,76 @@ void Customer::deposit(int money) {
 				
 				
 			}
-				else {
+				else if(money>=10000000&&money<100000000){
+					fstream f5;
+					vector<string> result;
+					f5.open("ManagerRequestsList.txt", ios::in);
+					if (!f5.is_open())
+						cout << "Cannot open ManagerRequestsList.txt\n";
+
+					while (f5.good())
+					{
+						string s;
+						getline(f5, s);
+						result.push_back(s);
+						if (f5.eof()) break;
+
+					}
 					fstream f3;
+					stringstream w;
+					w << money;
+					result.push_back(a[i].getId());
+					result.push_back("Deposit");
+					
+					result.push_back(w.str());
+					result.push_back("0");
 					f3.open("ManagerRequestsList.txt", ios::out);
 					if (!f3.is_open())
 						cout << "Cannot open ManagerRequestsList.txt\n";
 					else {
-						f3 << endl << endl << "Deposit" << endl << a[i].getId() << endl << money << endl << 0;
+						for (int t = 0;t < result.size();t+=4) {
+							f3 << result[t];
+							f3 << result[t + 1];
+							f3 << result[t + 2];
+							f3 << result[t + 3] << endl << endl;
+						}
 					}
 				}
+				else if ( money >= 100000000) {
+					fstream f5;
+					vector<string> result;
+					f5.open("DirectorRequestsList.txt", ios::in);
+					if (!f5.is_open())
+						cout << "Cannot open DirectorRequestsList.txt\n";
 
+					while (f5.good())
+					{
+						string s;
+						getline(f5, s);
+						result.push_back(s);
+						if (f5.eof()) break;
+
+					}
+					fstream f3;
+					stringstream w;
+					w << money;
+					result.push_back(a[i].getId());
+					result.push_back("Deposit");
+
+					result.push_back(w.str());
+					result.push_back("0");
+					f3.open("DirectorRequestsList.txt", ios::out);
+					if (!f3.is_open())
+						cout << "Cannot open DirectorRequestsList.txt\n";
+					else {
+						for (int t = 0;t < result.size();t += 4) {
+							f3 << result[t];
+							f3 << result[t + 1];
+							f3 << result[t + 2];
+							f3 << result[t + 3] << endl << endl;
+						}
+					}
+				}
 				break;
 		}
 
@@ -820,15 +880,76 @@ void Customer::withdraw(int money) {
 
 				}
 
-				else {
+				 else if (money >= 10000000 && money < 100000000) {
+					fstream f5;
+					vector<string> result;
+					f5.open("ManagerRequestsList.txt", ios::in);
+					if (!f5.is_open())
+						cout << "Cannot open ManagerRequestsList.txt\n";
+
+					while (f5.good())
+					{
+						string s;
+						getline(f5, s);
+						result.push_back(s);
+						if (f5.eof()) break;
+
+					}
 					fstream f3;
+					stringstream w;
+					w << money;
+					result.push_back(a[i].getId());
+					result.push_back("Withdraw");
+
+					result.push_back(w.str());
+					result.push_back("0");
 					f3.open("ManagerRequestsList.txt", ios::out);
 					if (!f3.is_open())
 						cout << "Cannot open ManagerRequestsList.txt\n";
 					else {
-						f3 << endl << endl << "Withdraw" << endl << a[i].getId() << endl << money << endl << 0;
+						for (int t = 0;t < result.size();t += 4) {
+							f3 << result[t];
+							f3 << result[t + 1];
+							f3 << result[t + 2];
+							f3 << result[t + 3] << endl << endl;
+						}
 					}
 				}
+				else if (money >= 10000000 && money < 100000000) {
+				fstream f5;
+				vector<string> result;
+				f5.open("DirectorRequestsList.txt", ios::in);
+				if (!f5.is_open())
+					cout << "Cannot open DirectorRequestsList.txt\n";
+
+				while (f5.good())
+				{
+					string s;
+					getline(f5, s);
+					result.push_back(s);
+					if (f5.eof()) break;
+
+				}
+				fstream f3;
+				stringstream w;
+				w << money;
+				result.push_back(a[i].getId());
+				result.push_back("Withdraw");
+
+				result.push_back(w.str());
+				result.push_back("0");
+				f3.open("DirectorRequestsList.txt", ios::out);
+				if (!f3.is_open())
+					cout << "Cannot open DirectorRequestsList.txt\n";
+				else {
+					for (int t = 0;t < result.size();t += 4) {
+						f3 << result[t];
+						f3 << result[t + 1];
+						f3 << result[t + 2];
+						f3 << result[t + 3] << endl << endl;
+					}
+				}
+			}
 
 				break;
 			}

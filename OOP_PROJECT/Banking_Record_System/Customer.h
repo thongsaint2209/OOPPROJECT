@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <conio.h>
+#include<sstream>
 #include"../Banking_Record_System/MyStaticLib/MyStaticLib/Date.h"
 using namespace std;
 
