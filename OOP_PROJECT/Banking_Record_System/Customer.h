@@ -149,7 +149,7 @@ private:
 	string _time;
 	string _id;
 	string _type;
-	float _money;
+	int _money;
 public:
 	TradeHistory(string id, string type, int money) {
 		this->_id = id;
