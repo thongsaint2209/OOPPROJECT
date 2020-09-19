@@ -30,6 +30,11 @@ public:
 	void editRequest();
 	string getTotalMoney();
 	void showFireMenu();
+	int getTotalCustomer();
+	void viewVIPCustomer();
+	void searchEmployee();
+	void viewEmployee();
+	void viewFeedBack();
 };
 
 #endif

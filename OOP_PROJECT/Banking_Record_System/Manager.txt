@@ -12,7 +12,7 @@ Quan Ly Hai
 15,phuong 17,quan 5,HCM 
 0123789459
 ql2@gmail.com 
-25
+40
 
 12127003
 Quan Ly Ba
