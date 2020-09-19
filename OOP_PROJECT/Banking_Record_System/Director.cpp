@@ -3,6 +3,7 @@
 #include "Employee.h"
 #include "Manager.h"
 #include "AllRole.h"
+
 DirectorMenu::DirectorMenu(Account acc)
 {
 	fstream f;
@@ -68,7 +69,7 @@ void DirectorMenu::showMenu()
 			while (true)
 			{
 				system("cls");
-				cout << "\n==========DIRECTOR'S AUTHORITY-MENU==========\n";
+				cout << "\n==========DIRECTOR'S-AUTHORITY-MENU==========\n";
 				cout << "1. View requests list.\n";
 				cout << "2. Edit requests list.\n";
 				cout << "3. View total money.\n";
@@ -79,7 +80,7 @@ void DirectorMenu::showMenu()
 				cout << "8. Search manager/employee/customer.\n";
 				cout << "9. View manager/employee/customer.\n";
 				cout << "0. Exit.\n";
-				cout << "=================================\n";
+				cout << "============================================\n";
 				cout << "-> Select mode: ";
 				cin >> this->_mode;
 
@@ -1351,7 +1352,6 @@ void DirectorMenu::viewProfile()
 
 void DirectorMenu::changePassword()
 {
-	
 		while (getchar() != '\n');
 		string cur = "", cur2 = "", pass = "", pass2 = "";
 		vector<Account> a;
