@@ -37,6 +37,7 @@ OPTION:
 		cout << "You have reached maximum login times. Please try again later.\n";
 		return;
 	}
+	cout << "\n---> BANKING_RECORD_SYSTEM_V1.0 <---\n";
 	cout << "\n==========LOGIN==========\n";
 	cout << "-> Username: \n";
 	getline(cin, user);

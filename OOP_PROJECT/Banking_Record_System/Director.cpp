@@ -99,18 +99,18 @@ void DirectorMenu::showMenu()
 					break;
 				case 3:
 				{
-					cout << "=================================\n";
+					cout << "============================================\n";
 					cout << "Total Money In Bank: ";
 					cout << this->getTotalMoney() << endl;
-					cout << "=================================\n";
+					cout << "============================================\n";
 					break;
 				}
 				case 4:
 				{
-					cout << "=================================\n";
+					cout << "============================================\n";
 					cout << "Total Bank's Customer: ";
 					cout << this->getTotalCustomer() << endl;
-					cout << "=================================\n";
+					cout << "============================================\n";
 					break;
 				}
 				case 5:
@@ -1348,6 +1348,7 @@ void DirectorMenu::viewProfile()
 			cout << "Merit       : " << temp[i].getmerit() << endl;
 		}
 	}
+	cout << "=======================================\n";
 }
 
 void DirectorMenu::changePassword()
