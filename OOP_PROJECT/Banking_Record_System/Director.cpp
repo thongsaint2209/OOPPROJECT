@@ -126,6 +126,7 @@ void DirectorMenu::showMenu()
 
 void DirectorMenu::viewRequest()
 {
+	system("cls");
 	cout << "\n==========REQUESTS-LIST==========\n";
 	for (int i = 0; i < this->_requestList.size(); i++)
 	{
