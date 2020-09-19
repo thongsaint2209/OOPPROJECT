@@ -78,6 +78,7 @@ void DirectorMenu::showMenu()
 				cout << "7. View report/feedback.\n";
 				cout << "8. Search manager/employee/customer.\n";
 				cout << "9. View manager/employee/customer.\n";
+				cout << "10. Bankrupt.\n";
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
 				cout << "-> Select mode: ";
@@ -128,6 +129,9 @@ void DirectorMenu::showMenu()
 					break;
 				case 9:
 					this->viewEmployee();
+					break;
+				case 10:
+					this->bankRupt();
 					break;
 				default:
 				{
@@ -1437,7 +1441,33 @@ OPTION:
 		goto OPTION;
 	}
 
-
 	return;
+}
 
+void DirectorMenu::bankRupt()
+{
+	bool choice;
+	cout << "Do you really want to bankrupt your bank? (0 For NO, 1 For YES)" << endl;
+	cin >> choice;
+
+	if (choice == 1)
+	{
+		remove("Customer.txt");
+		remove("CustomerAccounts.txt");
+		remove("Director.txt");
+		remove("DirectorAccounts.txt");
+		remove("DirectorRequestsList.txt");
+		remove("Employee.txt");
+		remove("EmployeeAccounts.txt");
+		remove("Manager.txt");
+		remove("ManagerAccounts.txt");
+		remove("ManagerRequestList.txt");
+		remove("ReportList.txt");
+		remove("TransactDate.txt");
+
+		cout << "Congratulation! Your bank has bankrupted!!!\n";
+		exit(1);
+		return;
+	}
+	return;
 }
