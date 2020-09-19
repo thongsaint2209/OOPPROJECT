@@ -305,7 +305,7 @@ void ManagerMenu::viewlistReDirector()
 							this->_requestList2.erase(_requestList2.begin() + j);
 
 						}
-						 if (this->_requestList2[j].getType() == "Deposit")
+						 else if (this->_requestList2[j].getType() == "Deposit")
 						{
 							Customer::deposit(this->_requestList2[j].getMoney(), id1);
 

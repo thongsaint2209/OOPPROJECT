@@ -4,7 +4,7 @@ Nguyen Thanh Tu
 185 Nguyen Van Cu Ho Chi Minh
 0906123456
 nttu@gmail.com
-Time - deposit account
+Payment account
 2000000
 13
 12
@@ -15,7 +15,7 @@ Ngo Dang Quang
 69 Xuan Dieu Hai Phong
 0906123456
 nttu@gmail.com
-Demand – deposit account
+Payment account
 4000000
 10
 0

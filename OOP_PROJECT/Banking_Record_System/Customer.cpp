@@ -698,7 +698,7 @@ void Customer::withdraw(int money,string id1) {
 					if (!f4.is_open())
 						cout << "Cannot open EmployeeRequestsList.txt\n";
 					else {
-						f4 << endl << endl << "Withdraw" << endl << a[i].getId() << endl << money << endl << 0;
+						f4 <<  endl << a[i].getId()  << endl << "Withdraw" << endl << money << endl << 0;
 					}
 				}
 
@@ -719,7 +719,7 @@ void Customer::withdraw(int money,string id1) {
 	}
 }
 
-void Customer::deposit(int money, string id1) {
+void Customer::deposit(int money, string id2) {
 	ifstream f1;
 
 	string id;
@@ -779,7 +779,7 @@ void Customer::deposit(int money, string id1) {
 	for (int i = 0; i < a.size(); i++)
 	{
 
-		if (a[i].getId() == id)
+		if (a[i]._id == id2)
 		{
 			if (money < 10000000) {
 				if (a[i].gettype() == 3) {
