@@ -449,12 +449,13 @@ void DirectorMenu::searchEmployee()
 			cout << "===============================\n";
 			cout << "-> Enter ID to search: ";
 			getline(cin, idTemp);
-			cout << "===============================\n";
 
 			for (int i = 0; i < temp.size(); i++)
 			{
 				if (temp[i].getId() == idTemp)
 				{
+					system("cls");
+					cout << "==========SEARCH-RESULT=========\n";
 					cout << "ID          : " << temp[i].getId() << endl;
 					cout << "Name        : " << temp[i].getname() << endl;
 					cout << "DoB         : " << temp[i].getbirth() << endl;
@@ -462,11 +463,12 @@ void DirectorMenu::searchEmployee()
 					cout << "Phone Number: " << temp[i].getphone() << endl;
 					cout << "Email       : " << temp[i].getmail() << endl;
 					cout << "Merit       : " << temp[i].getmerit() << endl;
-					cout << "===============================\n";
+					cout << "================================\n";
 					goto SHORTCUT;
 				}
 			}
 
+			cout << "===============================\n";
 			cout << "No manager with ID <" << idTemp << ">.\n";
 			cout << "===============================\n";
 			goto SHORTCUT;
@@ -513,12 +515,13 @@ void DirectorMenu::searchEmployee()
 			cout << "===============================\n";
 			cout << "-> Enter ID to search: ";
 			getline(cin, idTemp);
-			cout << "===============================\n";
 
 			for (int i = 0; i < temp.size(); i++)
 			{
 				if (temp[i].getId() == idTemp)
 				{
+					system("cls");
+					cout << "==========SEARCH-RESULT=========\n";
 					cout << "ID          : " << temp[i].getId() << endl;
 					cout << "Name        : " << temp[i].getname() << endl;
 					cout << "DoB         : " << temp[i].getbirth() << endl;
@@ -526,11 +529,12 @@ void DirectorMenu::searchEmployee()
 					cout << "Phone Number: " << temp[i].getphone() << endl;
 					cout << "Email       : " << temp[i].getmail() << endl;
 					cout << "Merit       : " << temp[i].getmerit() << endl;
-					cout << "===============================\n";
+					cout << "================================\n";
 					goto SHORTCUT;
 				}
 			}
 
+			cout << "===============================\n";
 			cout << "No employee with ID <" << idTemp << ">.\n";
 			cout << "===============================\n";
 			goto SHORTCUT;
@@ -585,23 +589,25 @@ void DirectorMenu::searchEmployee()
 			cout << "===============================\n";
 			cout << "-> Enter ID to search: ";
 			getline(cin, idTemp);
-			cout << "===============================\n";
 
 			for (int i = 0; i < temp.size(); i++)
 			{
 				if (temp[i].getId() == idTemp)
 				{
+					system("cls");
+					cout << "==========SEARCH-RESULT=========\n";
 					cout << "ID          : " << temp[i].getId() << endl;
 					cout << "Name        : " << temp[i].getname() << endl;
 					cout << "DoB         : " << temp[i].getbirth() << endl;
 					cout << "Address     : " << temp[i].getaddress() << endl;
 					cout << "Phone Number: " << temp[i].getphone() << endl;
 					cout << "Email       : " << temp[i].getmail() << endl;
-					cout << "===============================\n";
+					cout << "================================\n";
 					goto SHORTCUT;
 				}
 			}
 
+			cout << "===============================\n";
 			cout << "No customer with ID <" << idTemp << ">.\n";
 			cout << "===============================\n";
 			goto SHORTCUT;
@@ -629,7 +635,7 @@ void DirectorMenu::viewEmployee()
 
 		if (mode == 0)
 			return;
-
+		system("cls");
 		if (mode == 1)
 		{
 			string id;
@@ -667,7 +673,7 @@ void DirectorMenu::viewEmployee()
 			}
 			f.close();
 
-			cout << "===============================\n";
+			cout << "==========MANAGER-LIST=========\n";
 			for (int i = 0; i < temp.size(); i++)
 			{
 				cout << "#" << i + 1 << endl;
@@ -722,7 +728,7 @@ void DirectorMenu::viewEmployee()
 			}
 			f.close();
 
-			cout << "===============================\n";
+			cout << "==========EMPLOYEE-LIST=========\n";
 			for (int i = 0; i < temp.size(); i++)
 			{
 				cout << "#" << i + 1 << endl;
@@ -736,7 +742,7 @@ void DirectorMenu::viewEmployee()
 				if (i != temp.size() - 1)
 					cout << endl;
 			}
-			cout << "===============================\n";
+			cout << "================================\n";
 			goto SHORTCUT;
 		}
 
@@ -785,7 +791,7 @@ void DirectorMenu::viewEmployee()
 			}
 			f.close();
 
-			cout << "===============================\n";
+			cout << "==========CUSTOMER-LIST=========\n";
 			for (int i = 0; i < temp.size(); i++)
 			{
 				cout << "#" << i + 1 << endl;
@@ -798,7 +804,7 @@ void DirectorMenu::viewEmployee()
 				if (i != temp.size() - 1)
 					cout << endl;
 			}
-			cout << "===============================\n";
+			cout << "================================\n";
 			goto SHORTCUT;
 		}
 SHORTCUT:
