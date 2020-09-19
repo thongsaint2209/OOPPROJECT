@@ -38,6 +38,7 @@ private:
 	
 public:
 	Employee() {};
+	Employee(Account _acc);
 	void setId(string id)
 	{
 		_id = id;
@@ -102,6 +103,7 @@ public:
 	void viewInfoAllCustomer();
 	void SolvingReManager();
 	void tradeHistory(string type,string name,float money);
+
 };
 
 #endif

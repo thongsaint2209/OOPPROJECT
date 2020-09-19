@@ -799,6 +799,51 @@ void Employee::SolvingReManager() {
 		e.clear();
 }
 
+Employee::Employee(Account _acc)
+{
+	string id;
+	string name;
+	string birth;
+	string address;
+	string phone;
+	string mail;
+	string merit;
+	vector<Employee> temp;
 
+	fstream f;
+	f.open("Employee.txt", ios::in);
+	if (!f.is_open())
+		cout << "Cannot open Employee.txt \n";
+	while (f.good())
+	{
+		getline(f, id);
+		getline(f, name);
+		getline(f, birth);
+		getline(f, address);
+		getline(f, phone);
+		getline(f, mail);
+		getline(f, merit);
+		
+		if (f.eof())
+			break;
+
+		Employee buffer(id, name, birth, address, phone, mail, stoi(merit));
+		temp.push_back(buffer);
+		f.ignore(1, '\n');
+	}
+	for (int i = 0; i < temp.size(); i++)
+	{
+		if (temp[i].getname() == _account.username())
+		{
+			_id = temp[i].getId();
+			_name = temp[i].getname();
+			_birth = temp[i].getbirth();
+			_address = temp[i].getaddress();
+			_phone = temp[i].getphone();
+			_mail = temp[i].getmail();
+			_merits = temp[i].getmerit();
+		}
+	}
+}
 
 
