@@ -79,7 +79,7 @@ void ManagerMenu::showMenu()
 
 				cout << "8. Fire employee\n";
 
-				cout << "8. View list of employee\n";
+				
 				cout << "9. View Non-VIP trade history\n";
 
 				cout << "0. Exit.\n";
@@ -328,14 +328,14 @@ void ManagerMenu::viewlistReDirector()
 
 					Customer::withdraw(this->_requestList2[j].getMoney(), id1);
 
-
+					_c.saveTradeHistory(this->_requestList2[j].getId(), this->_requestList2[j].getType(), this->_requestList2[j].getMoney());
 					this->_requestList2.erase(_requestList2.begin() + j);
 
 				}
 				else if (this->_requestList2[j].getType() == "Deposit")
 				{
 					Customer::deposit(this->_requestList2[j].getMoney(), id1);
-
+					_c.saveTradeHistory(this->_requestList2[j].getId(), this->_requestList2[j].getType(), this->_requestList2[j].getMoney());
 					this->_requestList2.erase(_requestList2.begin() + j);
 				}
 			}
@@ -1012,7 +1012,9 @@ void ManagerMenu::viewTradeHistory()
 	string _id;
 	string _type;
 	string _money;
-	vector<TradeHistory> temp;
+	
+	
+
 	fstream f;
 	f.open("TransactDate.txt", ios::in);
 	if (!f.is_open())
@@ -1026,21 +1028,23 @@ void ManagerMenu::viewTradeHistory()
 		f.ignore(1, '\n');
 
 		TradeHistory buffer(_time, _id, _type, stof(_money));
-		temp.push_back(buffer);
+		_his.push_back(buffer);
 
 		if (f.eof())
 			break;
 	}
-	for (int i = 0; i < temp.size(); i++)
+	cout << "===NON-VIP-TRADE-HISTORY===" << endl;
+	for (int i = 0; i < _his.size(); i++)
 	{
-		if (temp[i].getMoney() < 10000000)
+		if (_his[i].getMoney() < 10000000)
 		{
-			cout << "===NON-VIP-TRADE-HISTORY===" << endl;
-			cout << temp[i].getTime() << endl;
-			cout << temp[i].getId() << endl;
-			cout << temp[i].getType() << endl;
-			cout << temp[i].getMoney() << endl;
+			
+			cout << _his[i].getTime() << endl;
+			cout << _his[i].getId() << endl;
+			cout << _his[i].getType() << endl;
+			cout << _his[i].getMoney() << endl;
 		}
 	}
 	f.close();
+	_his.clear();
 }

@@ -139,7 +139,7 @@ public:
 	static void withdraw(int money,string id1);
 	
 	static void deposit(int money, string id2);
-	void saveTradeHistory(string id, string type, float money);
+	void saveTradeHistory(string id, string type, int money);
 	void viewTradeHistory();
 };
 
@@ -151,12 +151,12 @@ private:
 	string _type;
 	float _money;
 public:
-	TradeHistory(string id, string type, float money) {
+	TradeHistory(string id, string type, int money) {
 		this->_id = id;
 		this->_type = type;
 		this->_money = money;
 	}
-	TradeHistory(string time, string id, string type, float money) {
+	TradeHistory(string time, string id, string type, int money) {
 		this->_time = time;
 		this->_id = id;
 		this->_type = type;

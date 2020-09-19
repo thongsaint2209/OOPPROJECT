@@ -943,7 +943,7 @@ void Customer::deposit(int money, string id2) {
 
 }
 
-void Customer::saveTradeHistory(string id, string type, float money)
+void Customer::saveTradeHistory(string id, string type, int money)
 {
 	string _time;
 	string _id;
