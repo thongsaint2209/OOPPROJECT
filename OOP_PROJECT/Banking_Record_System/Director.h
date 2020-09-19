@@ -2,7 +2,7 @@
 #define _DIRECTOR_H_
 
 #include "Header.h"
-
+using namespace std;
 class DirectorMenu
 {
 private:

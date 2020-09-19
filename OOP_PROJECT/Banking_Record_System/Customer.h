@@ -9,7 +9,6 @@
 #include <sstream>
 using namespace std;
 
-
 class Customer
 {
 private:
@@ -166,5 +165,6 @@ public:
 	string getType() { return _type; }
 	float getMoney() { return _money; }
 };
+
 #endif
 

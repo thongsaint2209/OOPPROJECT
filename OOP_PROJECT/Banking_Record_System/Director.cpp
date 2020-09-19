@@ -37,34 +37,36 @@ DirectorMenu::DirectorMenu(Account acc)
 	this->_account = acc;
 	this->_mode = -1;
 }
+
 void DirectorMenu::showMenu()
 {
-	while (true)
-	{
-		system("cls");
-		cout << "\n==========DIRECTOR-MENU==========\n";
-		cout << "1. View profile information.\n";
-		cout << "2. Change password.\n";
-		cout << "3. Director's authority.\n";
-		cout << "0. Logout.\n";
-		cout << "=================================\n";
-		cout << "-> Select mode: ";
-		cin >> this->_mode;
-		_s.checkValid(this->_mode);
-
-		if (this->_mode == 0)
-			break;
-
-		switch (this->_mode)
+		while (true)
 		{
-		case 1:
-			this->viewProfile();
-			break;
-		case 2:
-			this->changePassword();
-			break;
-		case 3:
-		{
+			system("cls");
+			cout << "\n==========DIRECTOR-MENU==========\n";
+			cout << "1. View profile information.\n";
+			cout << "2. Change password.\n";
+			cout << "3. Director's authority.\n";
+			cout << "0. Logout.\n";
+			cout << "=================================\n";
+			cout << "-> Select mode: ";
+			cin >> this->_mode;
+
+			_s.checkValid(this->_mode);
+
+			if (this->_mode == 0)
+				break;
+
+			switch (this->_mode)
+			{
+			case 1:
+				this->viewProfile();
+				break;
+			case 2:
+				this->changePassword();
+				break;
+			case 3:
+			{
 			while (true)
 			{
 				system("cls");
@@ -137,17 +139,18 @@ void DirectorMenu::showMenu()
 				}
 				system("pause");
 			}
-			break;
+				break;
+			}
+			default:
+			{
+				cout << "Please only enter number from 0 to 3!\n";
+				break;
+			}
+			}
+			system("pause");
 		}
+	
 
-		default:
-		{
-			cout << "Please only enter number from 0 to 3!\n";
-			break;
-		}
-		}
-		system("pause");
-	}
 	system("cls");
 	cin.ignore(1);
 
@@ -1298,6 +1301,7 @@ TRY1:
 		cout << "Wrong Mode.\n";
 		system("pause");
 	}
+
 }
 
 void DirectorMenu::viewProfile()
@@ -1352,7 +1356,7 @@ void DirectorMenu::viewProfile()
 
 void DirectorMenu::changePassword()
 {
-	
+
 	while (getchar() != '\n');
 	string cur = "", cur2 = "", pass = "", pass2 = "";
 	vector<Account> a;
@@ -1436,8 +1440,6 @@ OPTION:
 		times++;
 		goto OPTION;
 	}
-
-
 	return;
-
 }
+
