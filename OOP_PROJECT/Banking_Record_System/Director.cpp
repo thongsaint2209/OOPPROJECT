@@ -80,6 +80,7 @@ void DirectorMenu::showMenu()
 				cout << "7. View report/feedback.\n";
 				cout << "8. Search manager/employee/customer.\n";
 				cout << "9. View manager/employee/customer.\n";
+				cout << "10. View trade history.\n";
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
 				cout << "-> Select mode: ";
@@ -130,6 +131,9 @@ void DirectorMenu::showMenu()
 					break;
 				case 9:
 					this->viewEmployee();
+					break;
+				case 10:
+					this->viewTradeHistory();
 					break;
 				default:
 				{
@@ -1443,3 +1447,38 @@ OPTION:
 	return;
 }
 
+void DirectorMenu::viewTradeHistory()
+{
+	string _time;
+	string _id;
+	string _type;
+	string _money;
+	vector<TradeHistory> temp;
+	fstream f;
+	f.open("TransactDate.txt", ios::in);
+	if (!f.is_open())
+		cout << "Cannot open TransactDate.txt\n";
+	while (f.good())
+	{
+		getline(f, _time);
+		getline(f, _id);
+		getline(f, _type);
+		getline(f, _money);
+		f.ignore(1, '\n');
+
+		TradeHistory buffer(_time, _id, _type, stof(_money));
+		temp.push_back(buffer);
+
+		if (f.eof())
+			break;
+	}
+	cout << "===TRADE-HISTORY===" << endl;
+	for (int i = 0; i < temp.size(); i++)
+	{
+		cout << temp[i].getTime() << endl;
+		cout << temp[i].getId() << endl;
+		cout << temp[i].getType() << endl;
+		cout << temp[i].getMoney() << endl;
+	}
+	f.close();
+}

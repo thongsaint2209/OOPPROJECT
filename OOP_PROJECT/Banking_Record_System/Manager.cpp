@@ -76,7 +76,12 @@ void ManagerMenu::showMenu()
 				cout << "5. View list of employee.\n"; 
 				cout << "6. Search information customer\n";
 				cout << "7. Search information employee\n";
+
 				cout << "8. Fire employee\n";
+
+				cout << "8. View list of employee\n";
+				cout << "9. View Non-VIP trade history\n";
+
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
 				cout << "-> Select option: ";
@@ -111,6 +116,9 @@ void ManagerMenu::showMenu()
 					break;
 				case 8:
 					 this->FireEmployee();
+					break;
+				case 9:
+					this->viewTradeHistory();
 					break;
 				default:
 				{
@@ -996,4 +1004,43 @@ OPTION:
 		goto OPTION;
 	}
 	return;
+}
+
+void ManagerMenu::viewTradeHistory()
+{
+	string _time;
+	string _id;
+	string _type;
+	string _money;
+	vector<TradeHistory> temp;
+	fstream f;
+	f.open("TransactDate.txt", ios::in);
+	if (!f.is_open())
+		cout << "Cannot open TransactDate.txt\n";
+	while (f.good())
+	{
+		getline(f, _time);
+		getline(f, _id);
+		getline(f, _type);
+		getline(f, _money);
+		f.ignore(1, '\n');
+
+		TradeHistory buffer(_time, _id, _type, stof(_money));
+		temp.push_back(buffer);
+
+		if (f.eof())
+			break;
+	}
+	for (int i = 0; i < temp.size(); i++)
+	{
+		if (temp[i].getMoney() < 10000000)
+		{
+			cout << "===NON-VIP-TRADE-HISTORY===" << endl;
+			cout << temp[i].getTime() << endl;
+			cout << temp[i].getId() << endl;
+			cout << temp[i].getType() << endl;
+			cout << temp[i].getMoney() << endl;
+		}
+	}
+	f.close();
 }

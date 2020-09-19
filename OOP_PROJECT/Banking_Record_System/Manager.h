@@ -55,6 +55,8 @@ public:
 	void viewemployee();
 
 	void searchemployee();
+
+	void viewTradeHistory();
 };
 
 #endif
