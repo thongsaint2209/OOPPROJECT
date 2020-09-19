@@ -915,7 +915,7 @@ void Customer::withdraw(int money) {
 						}
 					}
 				}
-				else if (money >= 10000000 && money < 100000000) {
+				else if (money >= 100000000 ) {
 				fstream f5;
 				vector<string> result;
 				f5.open("DirectorRequestsList.txt", ios::in);

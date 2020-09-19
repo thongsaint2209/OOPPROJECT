@@ -93,13 +93,14 @@ public:
 
 	void showMenu();
 
-	void ViewAndSolvingRequests();
+	void ViewAndSolvingReCus();
 	void searchCustomer();
 	void Resign();
 	void reportManager();
 	void IncreaseMerit();
 	void Promote();
 	void viewInfoAllCustomer();
+	void SolvingReManager();
 	void tradeHistory(string type,string name,float money);
 };
 
