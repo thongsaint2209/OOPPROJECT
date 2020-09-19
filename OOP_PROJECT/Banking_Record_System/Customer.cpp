@@ -540,7 +540,7 @@ void Customer::showMenu()
 		cout << "2. Edit information customer.\n";
 
 		cout << "3. Delete account\n";
-		
+		cout << "0. Exit \n";
 
 		
 		cout << "=================================\n";

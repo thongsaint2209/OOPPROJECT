@@ -61,6 +61,7 @@ void ManagerMenu::showMenu()
 		cout << "7. Search information employee\n";
 
 		cout << "8. Fire employee \n";
+		cout << "0. Exit\n";
 		cout << "=================================\n";
 		cout << "-> Select option: ";
 		cin >> this->_option;
