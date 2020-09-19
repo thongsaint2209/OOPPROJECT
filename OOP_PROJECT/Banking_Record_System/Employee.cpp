@@ -42,6 +42,7 @@ void Employee::showMenu()
 				cout << "6. .\n";
 				cout << "7. .\n";
 				cout << "8. .\n";
+				cout << "9. Create new account \n";
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
 				cout << "-> Select option: ";
@@ -76,6 +77,10 @@ void Employee::showMenu()
 					break;
 				case 8:
 				//	tradeHistory(type, name, money);
+				case 9:
+				
+					_c.newAccount();
+					break;
 				default:
 				{
 					cout << "Please only enter number from 0 to 8!\n";

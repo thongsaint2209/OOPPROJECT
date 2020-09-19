@@ -26,7 +26,7 @@ private:
 	int _option;
 	Account _account;
 	Support _s;
-
+	Customer _c;
 	vector<Request> _requestList;
 	vector<Account> account;
 	vector<Employee> e;

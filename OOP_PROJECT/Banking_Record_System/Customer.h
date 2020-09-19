@@ -36,8 +36,10 @@ private:
 	Support _s;
 
 	vector<Request> _requestList;
-	vector<Account> account;
-  static  vector<Customer> a;
+ vector<Account> account;
+
+
+    static  vector<Customer> a;
 public:
 	Customer() {};
 	Customer(Account acc) { this->_account = acc; }
@@ -121,7 +123,7 @@ public:
 		this->_duration = 0;
 		this->_period = 0;
 	}
-	void newAccount();
+	 void newAccount();
 
 	void showMenu();
 

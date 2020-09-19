@@ -5,6 +5,7 @@
 #include"AllRole.h"
 
 vector <Customer> Customer::a;
+
 float Customer::_TermRate = 0.07;
 float Customer::_DemandRate = 0.01;
 
@@ -36,7 +37,7 @@ void Customer::newAccount()
 		if (f1.eof())
 			break;
 		Account temp(username, password);
-		this->account.push_back(temp);
+		account.push_back(temp);
 
 		count++;
 	}
@@ -46,14 +47,14 @@ void Customer::newAccount()
 		cout << "Enter your id : ";
 		getline(cin, username);
 		int k;
-		for (k = 0; k < this->account.size(); k++)
+		for (k = 0; k < account.size(); k++)
 		{
-			if (username == this->account[k].username())
+			if (username == account[k].username())
 			{
 				break;
 			}
 		}
-		if (k == this->account.size())
+		if (k == account.size())
 			break;
 	} while (true);
 
@@ -62,7 +63,7 @@ void Customer::newAccount()
 
 	Account temp1(username, password);
 
-	this->account.push_back(temp1);
+	account.push_back(temp1);
 	count++;
 	ofstream f2;
 	f2.open("CustomerAccounts.txt", ios::out);
@@ -130,7 +131,7 @@ void Customer::newAccount()
 		if (f3.eof())
 			break;
 		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
-		this->a.push_back(temp);
+		a.push_back(temp);
 		f3.ignore(1, '\n');
 		count1++;
 
@@ -162,7 +163,7 @@ void Customer::newAccount()
 
 
 	Customer temp2(username, name, date, address, phone, mail, Acctype);
-	this->a.push_back(temp2);
+	a.push_back(temp2);
 
 	count1++;
 	fstream f4;
@@ -565,10 +566,10 @@ void Customer::showMenu()
 			{
 				system("cls");
 				cout << "\n==========CUSTOMER'S-AUTHORITY-MENU==========\n";
-				cout << "1. Create New Account.\n";
-				cout << "2. Edit information customer.\n";
-				cout << "3. Delete account\n";
-				cout << "4. View Trade History\n";
+				
+				cout << "1. Edit information customer.\n";
+				cout << "2. Delete account\n";
+				cout << "3. View Trade History\n";
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
 				cout << "-> Select option: ";
@@ -581,15 +582,12 @@ void Customer::showMenu()
 				switch (this->_option)
 				{
 				case 1:
-					this->newAccount();
-					break;
-				case 2:
 					this->Editprofile();
 					break;
-				case 3:
+				case 2:
 					this->deleteAccount();
 					break;
-				case 4:
+				case 3:
 					this->viewTradeHistory();
 					break;
 				case 5:

@@ -73,10 +73,10 @@ void ManagerMenu::showMenu()
 				cout << "2. Edit requests list.\n";
 				cout << "3. View list of accepting requests and processing from director\n";
 				cout << "4. View list of customer.\n";
-				cout << "5. Fire employee.\n";
+				cout << "5. View list of employee.\n"; 
 				cout << "6. Search information customer\n";
 				cout << "7. Search information employee\n";
-				cout << "8. View list of employee\n";
+				cout << "8. Fire employee\n";
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
 				cout << "-> Select option: ";
@@ -101,7 +101,7 @@ void ManagerMenu::showMenu()
 					this->viewcustomer();
 					break;
 				case 5:
-					this->FireEmployee();
+					this->viewemployee();
 					break;
 				case 6:
 					this->searchcustomer();
@@ -110,7 +110,7 @@ void ManagerMenu::showMenu()
 					this->searchemployee();
 					break;
 				case 8:
-					this->viewemployee();
+					 this->FireEmployee();
 					break;
 				default:
 				{
