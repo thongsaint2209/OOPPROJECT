@@ -13,6 +13,6 @@ int main()
 	/*Customer c;
 	c.newAccount();*/
 	Employee e;
-	e.ViewAndSolvingReCus();
+	e.SolvingReManager();
 	return 0;
 }

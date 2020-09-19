@@ -1,4 +1,4 @@
 20/09/2020
 Nguyen Thi Be Ba
-Deposit
-6e+06
+Withdraw
+1e+07

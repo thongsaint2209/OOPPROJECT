@@ -116,7 +116,7 @@ void Employee::ViewAndSolvingReCus() {
 
 				}
 				IncreaseMerit();
-				//requestList.erase(requestList.begin() + i);
+				
 			}
 		}
 	}
@@ -127,9 +127,9 @@ void Employee::ViewAndSolvingReCus() {
 		f.open("EmployeeRequestList.txt", ios::out);
 
 		if (!f.is_open())
-			cout << "Cannot open EmployeeRequestsList.txt\n";
+			cout << "Cannot open EmployeeRequestList.txt\n";
 
-		for (int i = 0; i < requestList.size(); i++)
+		/*for (int i = 0; i < requestList.size(); i++)
 		{
 
 			f << requestList[i].getId() << endl;
@@ -141,6 +141,7 @@ void Employee::ViewAndSolvingReCus() {
 		}
 
 		f.close();
+		*/
 		fstream f3;
 		f3.open("Customer.txt", ios::out);
 		if (!f3.is_open())
@@ -750,10 +751,11 @@ void Employee::SolvingReManager() {
 							a[j]._duration = 0;
 							tradeHistory("Withdraw", a[j].getname(), requestList[i].getMoney());
 						}
-						IncreaseMerit();
+						
 
 					}
-					requestList.erase(requestList.begin() + i);
+					IncreaseMerit();
+					//requestList.erase(requestList.begin() + i);
 				}
 			}
 		}
@@ -762,7 +764,7 @@ void Employee::SolvingReManager() {
 
 		f.open("ManagerRequestList.txt", ios::out);
 
-		if (!f.is_open())
+		/*if (!f.is_open())
 			cout << "Cannot open ManagerRequestList.txt\n";
 
 		for (int i = 0; i < requestList.size(); i++)
@@ -774,7 +776,7 @@ void Employee::SolvingReManager() {
 			f << requestList[i].approvalStatus() << endl;
 			if (i != requestList.size() - 1)
 				f << endl;
-		}
+		}*/
 
 		f.close();
 		fstream f3;
