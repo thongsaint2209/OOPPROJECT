@@ -544,6 +544,8 @@ void Employee::Promote() {
 
 	}
 	f3.close();
+	account.clear();
+	e.clear();
 }
 void Employee::viewInfoAllCustomer() {
 	ifstream f1;
@@ -614,6 +616,8 @@ void Employee::viewInfoAllCustomer() {
 		cout << endl;
 	}
 	f1.close();
+	account.clear();
+	e.clear();
 }
 
 void Employee::tradeHistory(string type,string name,float money){
@@ -627,6 +631,8 @@ void Employee::tradeHistory(string type,string name,float money){
 
 	}
 	f4.close();
+	account.clear();
+	e.clear();
 }
 
 void Employee::SolvingReManager() {
@@ -789,4 +795,10 @@ void Employee::SolvingReManager() {
 		f3.close();
 
 		cout << "Saved successfully\n";
+		account.clear();
+		e.clear();
 }
+
+
+
+
