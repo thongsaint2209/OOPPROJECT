@@ -1,6 +1,5 @@
 #include"Manager.h"
-
-#include"Customer.h"
+#include"AllRole.h"
 ManagerMenu::ManagerMenu(Account acc)
 {
 	fstream f1;
@@ -44,41 +43,15 @@ void ManagerMenu::showMenu()
 	{
 		system("cls");
 		cout << "\n==========MANAGER-MENU==========\n";
-		
-		cout << "1. View requests list.\n";
-
-		cout << "2. Edit requests list.\n";
-
-		cout << "3. View list of accepting requests and processing from director\n";
-
-		cout << "4. View list of customer.\n";
-	
-		
-		cout << "5. View list of employee\n";
-
-		cout << "6. Search information customer\n";
-
-		cout << "7. Search information employee\n";
-
-		cout << "8. Fire employee \n";
-		cout << "0. Exit\n";
+		cout << "1. View profile's information.\n";
+		cout << "2. Change password.\n";
+		cout << "3. Manager's authority.\n";
+		cout << "0. Logout.\n";
 		cout << "=================================\n";
 		cout << "-> Select option: ";
 		cin >> this->_option;
 
-		while (1)
-		{
-			if (cin.fail())
-			{
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "Please only enter number!" << endl;
-				cout << "Enter again: ";
-				cin >> this->_option;
-			}
-			if (!cin.fail())
-				break;
-		}
+		_s.checkValid(this->_option);
 		
 		if (this->_option == 0)
 			break;
@@ -86,38 +59,86 @@ void ManagerMenu::showMenu()
 		switch (this->_option)
 		{
 		case 1:
-			this->viewRequest();
+			this->viewProfile();
 			break;
 		case 2:
-			this->editRequest();
+			this->changePassword();
 			break;
 		case 3:
-			this->viewlistReDirector();
-			break;
-		case 4:
-			this->viewcustomer();
-			break;
-		
-		case 5:
-			this->viewemployee();
-			break;
-		case 6:
-			this->searchcustomer();
-			break;
-		case 7:
-			this->searchemployee();
-			break;
-		case 8:
-			 this->FireEmployee();
-			break;
-		default:
 		{
-			cout << "Please only enter number from 0 to 7!\n";
+			while (true)
+			{
+				system("cls");
+				cout << "\n==========MANAGER'S-AUTHORITY-MENU==========\n";
+				cout << "1. View requests list.\n";
+				cout << "2. Edit requests list.\n";
+				cout << "3. View list of accepting requests and processing from director\n";
+				cout << "4. View list of customer.\n";
+				cout << "5. Fire employee.\n";
+				cout << "6. Search information customer\n";
+				cout << "7. Search information employee\n";
+				cout << "8. View list of employee\n";
+				cout << "0. Exit.\n";
+				cout << "=================================\n";
+				cout << "-> Select option: ";
+				cin >> this->_option;
+				_s.checkValid(this->_option);
+
+				if (this->_option == 0)
+					break;
+
+				switch (this->_option)
+				{
+				case 1:
+					this->viewRequest();
+					break;
+				case 2:
+					this->editRequest();
+					break;
+				case 3:
+					this->viewlistReDirector();
+					break;
+				case 4:
+					this->viewcustomer();
+					break;
+				case 5:
+					this->FireEmployee();
+					break;
+				case 6:
+					this->searchcustomer();
+					break;
+				case 7:
+					this->searchemployee();
+					break;
+				case 8:
+					this->viewemployee();
+					break;
+				default:
+				{
+					cout << "Please only enter number from 0 to 8!\n";
+					break;
+				}
+
+				}
+				system("pause");
+			}
 			break;
 		}
+		default:
+		{
+			cout << "Please only enter number from 0 to 3!\n";
+			break;
+		}
+
 		}
 		system("pause");
 	}
+	system("cls");
+	cin.ignore(1);
+
+	Menu m;
+	m.loginMenu();
+	m.redirect();
 }
 
 void ManagerMenu::viewRequest()
@@ -138,7 +159,6 @@ void ManagerMenu::viewRequest()
 		cout << endl;
 	}
 	cout << "=================================\n";
-//	_requestList1.clear();
 }
 
 void ManagerMenu::editRequest()
@@ -215,7 +235,6 @@ void ManagerMenu::editRequest()
 	f.close();
 
 	cout << "Saved successfully\n";
-	//_requestList1.clear();
 }
 
 
@@ -255,34 +274,30 @@ void ManagerMenu::viewlistReDirector()
 
 		this->_requestList2.push_back(temp);
 		
-		
-		i++;
-	}
-	for (int m=0;m<_requestList2.size();m++)
-	{
-		if (this->_requestList2[m].approvalStatus() == 1 && this->_requestList2[m].approvalStatus() == status)
+		if (this->_requestList2[i].approvalStatus() == 1 && this->_requestList2[i].approvalStatus() == status)
 		{
-			cout << "Request #" << m + 1 << endl;
-			cout << this->_requestList2[m].getId() << endl;
-			cout << this->_requestList2[m].getType() << endl;
-			cout << this->_requestList2[m].getMoney() << endl;
-			cout << this->_requestList2[m].approvalStatus() << endl;
+			cout << "Request #" << i + 1 << endl;
+			cout << this->_requestList2[i].getId() << endl;
+			cout << this->_requestList2[i].getType() << endl;
+			cout << this->_requestList2[i].getMoney() << endl;
 			cout << endl;
 		}
+		i++;
 	}
+	
 	f1.close();
 	
-	string id1;
+	
 	cout << "Choose id you want to Processing  ";
 	while (getchar() != '\n');
-	getline(cin, id1);
+	getline(cin, id);
 
-
+	int flag = 0;
 	
 			int option;
 			cout << "Do you want to  Processing this customer?  " << endl;
 			cout << "0: Out" << endl;
-			cout << "1: Processing" << endl;
+			cout << "1: Edit" << endl;
 			cin >> option;
 			switch (option)
 			{
@@ -292,58 +307,89 @@ void ManagerMenu::viewlistReDirector()
 			}
 			case 1:
 			{
-				for(int j=0;j< this->_requestList2.size();j++)
-				{
-					if (this->_requestList2[j].getId() == id1)
-					{
-						if (this->_requestList2[j].getType() == "Withdraw")
-						{
-							
+				int j = 0;
 
-							Customer::withdraw(this->_requestList2[j].getMoney(),id1);
+				//tao vector temp 
+
+				while (f1.good())
+				{
+
+					if (this->_requestList2[j].getId() == id)
+					{
+						if (this->_requestList2[j].getType() == "Deposit")
+						{
+							this->_requestList2[j].getMoney();//goi ham thuc thi
+
 
 
 							this->_requestList2.erase(_requestList2.begin() + j);
 
 						}
-						 else if (this->_requestList2[j].getType() == "Deposit")
+						else
 						{
-							Customer::deposit(this->_requestList2[j].getMoney(), id1);
+							this->_requestList2[j].getMoney();
 
 							this->_requestList2.erase(_requestList2.begin() + j);
 						}
 					}
-					if (this->_requestList2[j].approvalStatus() != 1)
+					if (this->_requestList2[j].approvalStatus() == -1)
 					{
 						this->_requestList2.erase(_requestList2.begin() + j);
 					}
-				
+					j++;
 				}
-				fstream f2;
-				f2.open("DirectorRequestsList.txt", ios::out);
+
+				ifstream f2;
+				f2.open("Customer.txt", ios::in);
 
 
 				if (!f2.is_open())
-					cout << "Cannot open DirectorRequestsList.txt\n";
-				for (int t = 0; t < this->_requestList2.size(); t++)
+					cout << "Cannot open Customer.txt\n";
+
+
+				int count = 0;
+				while (f2.good())
 				{
-					f2 << _requestList2[t].getId()<<endl;
-					f2 << _requestList2[t].getType()<<endl;
-					f2 << _requestList2[t].getMoney() << endl;
-					f2 << _requestList2[t].approvalStatus()<<endl;
-					f2 << endl;
+					f2 >> id;
+					getline(f2, name);
+					getline(f2, name);
+					getline(f2, address);
+					f2 >> balance;
+
+					if (f1.eof())
+						break;
+					//Customer temp(id, name, address, balance);
+					//this->a.push_back(temp);
+					f1.ignore(1, '\n');
+					count++;
 				}
 				f2.close();
-			}
 
-			cout << "Processing succefully"<<endl;
+				fstream f3;
+				f3.open("Customer.txt", ios::out);
+				if (!f3.is_open())
+					cout << "Cannot open Customer.txt\n";
+
+				for (int i = 0; i < count; i++)
+				{
+
+					f3 << a[i].getId();
+
+					f3 << a[i].getname();
+
+					f3 << a[i].getaddress();
+					f3 << a[i].getBalance() << endl;
+
+				}
+				f3.close();
+			}
 			default:
 			{
-			
+				cout << "Please choose number from 0-2" << endl;
 				break;
 			}
 			}
-			_requestList2.clear();
+			
 	
 	
 
@@ -420,7 +466,6 @@ void ManagerMenu::viewcustomer()
 		cout << endl;
 	}
 	f1.close();
-	a.clear();
 }
 
 void ManagerMenu::searchcustomer()
@@ -487,7 +532,7 @@ void ManagerMenu::searchcustomer()
 	while (getchar() != '\n');
 	getline(cin, id);
 
-	int dem=0;
+
 	for (int i = 0; i < count; i++)
 	{
 		if (a[i].getId() == id)
@@ -504,16 +549,9 @@ void ManagerMenu::searchcustomer()
 			cout << "duration :" << a[i].getDuration() << endl;
 			cout << "period :" << a[i].getPeriod() << endl;
 			cout << endl;
-			break;
 		}
-		dem++;
-	}
-	if(dem==count)
-	{
-		cout << "ID does not exist "<<endl;
 	}
 	f1.close();
-	a.clear();
 }
 
 void ManagerMenu::FireEmployee()
@@ -559,7 +597,7 @@ void ManagerMenu::FireEmployee()
 	f2.open("Employee.txt", ios::in);
 
 
-	if (!f2.is_open())
+	if (!f1.is_open())
 		cout << "Cannot open Employee.txt\n";
 
 	int i = 0;
@@ -589,7 +627,7 @@ void ManagerMenu::FireEmployee()
 			break;
 		Employee temp(id, name, date, address, phone, mail, merits);
 		this->e.push_back(temp);
-		f2.ignore(1, '\n');
+		f1.ignore(1, '\n');
 	
 	}
 	//cout merits <=90;
@@ -656,18 +694,20 @@ void ManagerMenu::FireEmployee()
 
 					f4 << e[l].getmerit() << endl;
 					f4 << endl;
-
+					
 				}
-
 				f4.close();
+
+				
 			}
-			
 		}
 		
 		for (int i = 0; i < this->account.size(); i++)
 		{
 			if(i==temp_pos)
 			{
+				
+				
 				this->account.erase(account.begin() + i);
 
 				fstream f3;
@@ -692,6 +732,9 @@ void ManagerMenu::FireEmployee()
 			}
 		}
 		
+		
+		
+
 		cout << "Delete successfully " << endl;
 	}
 	default:
@@ -700,13 +743,11 @@ void ManagerMenu::FireEmployee()
 		break;
 	}
 	}
-	e.clear();
-	account.clear();
 }
 
 void ManagerMenu::viewemployee()
 {
-	e.clear();
+
 	ifstream f1;
 
 	string id;
@@ -766,12 +807,11 @@ void ManagerMenu::viewemployee()
 		cout << endl;
 	}
 	f1.close();
-	e.clear();
 }
 
 void ManagerMenu::searchemployee()
 {
-	e.clear();
+
 	ifstream f1;
 
 	string id;
@@ -826,7 +866,7 @@ void ManagerMenu::searchemployee()
 	while (getchar() != '\n');
 	getline(cin, id);
 
-	int dem = 0;
+
 	for (int i = 0; i < e.size(); i++)
 	{
 		if (e[i].getId() == id)
@@ -841,15 +881,138 @@ void ManagerMenu::searchemployee()
 
 			cout << "merit :" << e[i].getmerit() << endl;
 			cout << endl;
-			break;
 		}
-		dem++;
-	}
-	if(dem==e.size())
-	{
-		cout << "id does not exist "<<endl;
 	}
 	f1.close();
-	e.clear();
 }
 
+void ManagerMenu::viewProfile()
+{
+	string id;
+	string name;
+	string DoB;
+	string address;
+	string phone;
+	string email;
+	string merit;
+	vector<Employee> temp;
+
+	fstream f;
+
+	f.open("Manager.txt", ios::in);
+
+	if (!f.is_open())
+	{
+		cout << "Cannot find Manager.txt.\n";
+	}
+
+	while (!f.eof())
+	{
+		getline(f, id, '\n');
+		getline(f, name, '\n');
+		getline(f, DoB, '\n');
+		getline(f, address, '\n');
+		getline(f, phone, '\n');
+		getline(f, email, '\n');
+		getline(f, merit, '\n');
+		f.ignore(1, '\n');
+
+		Employee buffer(id, name, DoB, address, phone, email, stoi(merit));
+		temp.push_back(buffer);
+	}
+	f.close();
+
+	system("cls");
+	cout << "\n==========PROFILE-INFORMATION==========\n";
+	for (int i = 0; i < temp.size(); i++)
+	{
+		if (temp[i].getId() == _account.username())
+		{
+			cout << "ID          : " << temp[i].getId() << endl;
+			cout << "Name        : " << temp[i].getname() << endl;
+			cout << "DoB         : " << temp[i].getbirth() << endl;
+			cout << "Address     : " << temp[i].getaddress() << endl;
+			cout << "Phone Number: " << temp[i].getphone() << endl;
+			cout << "Email       : " << temp[i].getmail() << endl;
+			cout << "Merit       : " << temp[i].getmerit() << endl;
+		}
+	}
+}
+
+void ManagerMenu::changePassword()
+{
+	while (getchar() != '\n');
+	string cur = "", pass = "";
+	vector<Account> a;
+	int times = 0;
+OPTION:
+	if (times == 10)
+	{
+		cout << "You have reached maximum change password times. Please try again later.\n";
+		return;
+	}
+
+	cout << "Enter your current password: \n";
+	cur.clear();
+	getline(cin, cur);
+	cout << "Enter your new password: \n";
+	pass.clear();
+	getline(cin, pass);
+	bool flag = 0;
+
+	if (strcmp(_account.password().c_str(), cur.c_str()) == 0)
+	{
+		_account.changePassword(pass);
+		cout << "Change password Successfully!" << endl;
+
+		fstream f;
+		f.open("ManagerAccounts.txt", ios::in);
+		if (!f.is_open())
+			cout << "Cannot open ManagerAccounts.txt\n";
+		else
+		{
+			string _username, _password;
+
+			while (f.good())
+			{
+				f >> _username;
+				f >> _password;
+
+				if (f.eof())
+					break;
+
+				Account buffer(_username, _password);
+				a.push_back(buffer);
+			}
+			f.close();
+		}
+		f.open("ManagerAccounts.txt", ios::out);
+		if (!f.is_open())
+			cout << "Cannot open ManagerAccounts.txt\n";
+		else
+		{
+
+
+			for (int i = 0; i < a.size(); i++)
+			{
+				if (a[i].username() == _account.username())
+				{
+					a[i].changePassword(_account.password());
+				}
+				f << a[i].username() << endl;
+				f << a[i].password() << endl;
+				if (i != a.size() - 1)
+					f << endl;
+			}
+			f.close();
+		}
+
+	}
+	else
+	{
+		cout << "Wrong password. Please try again" << endl;
+		times++;
+		goto OPTION;
+	}
+	return;
+}

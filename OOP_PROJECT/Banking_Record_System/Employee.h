@@ -17,26 +17,31 @@ private:
 	string _id;
 	string	_name;
 	string _birth;
-
 	string	_address;
-
-
 	string _phone;
 	string _mail;
-	
 	int _merits;
 	float _TermRate;
 	float _DemandRate;
-
 	int _option;
 	Account _account;
+	Support _s;
 
 	vector<Request> _requestList;
 	vector<Account> account;
 	vector<Employee> e;
 	vector<Customer> a;
 public:
-	Employee() {};
+	Employee(Account acc) { this->_account = acc; }
+	Employee() {
+		this->_id = "";
+		this->_name = "";
+		this->_birth = "";
+		this->_address = "";
+		this->_phone = "";
+		this->_mail = "";
+		this->_merits = 0;
+	}
 	void setId(string id)
 	{
 		_id = id;
@@ -48,6 +53,10 @@ public:
 	void setaddress(string address)
 	{
 		_address = address;
+	}
+	void setMerit(int point)
+	{
+		this->_merits = point;
 	}
 	string getId()
 	{
@@ -86,10 +95,10 @@ public:
 		this->_address = address;
 		this->_phone = phone;
 		this->_mail = mail;
-		
 		this->_merits = merits;
 	}
-
+	void viewProfile();
+	void changePassword();
 	void showMenu();
 
 	

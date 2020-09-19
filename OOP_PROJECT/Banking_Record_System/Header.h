@@ -34,6 +34,17 @@ public:
 	int approvalStatus();
 };
 
+class Profile
+{
+private:
+	string _fullname;
+	string _ID;
+	//Date _DoB;
+	int _merit; //Max = 100
+public:
+	Profile();
+};
+
 class Account
 {
 private:
@@ -66,13 +77,21 @@ public:
 	{
 		return _password;
 	}
-
+	string passwordLv2()
+	{
+		return _passwordLv2;
+	}
 
 	Account(const string &username,const  string &name)
 	{
 		this->_username = username;
 		this->_password = name;
-		
+	}
+	Account(const string& username, const string& pass, const string& passlv2)
+	{
+		this->_username = username;
+		this->_password = pass;
+		this->_passwordLv2 = passlv2;
 	}
 	int login(const string& username, const string& password, const string& password2);
 	void changePassword(const string& password);
@@ -80,5 +99,11 @@ public:
 	void logout();
 };
 
-
+class Support
+{
+public:
+	void checkValid(int _mode);
+	string readNumber(int number);
+	void readMoney(int number);
+};
 #endif

@@ -1,7 +1,10 @@
+#ifndef MANAGER_H
+#define MANAGER_H
+
 #include "Header.h"
 #include "Customer.h"
 #include "Employee.h"
-	class ManagerMenu
+class ManagerMenu
 {
 protected:
 	string _id;
@@ -22,7 +25,7 @@ protected:
 	int	_balance;
 	int _option;
 	Account _account;
-	
+	Support _s;
 	vector<Request> _requestList1;
 	vector<Request> _requestList2;
 	vector<Customer> a;
@@ -30,8 +33,10 @@ protected:
 	vector<Account> account;
 	vector<Employee> e;
 public:
-	ManagerMenu()  {};
+	ManagerMenu() {}
 	ManagerMenu(Account acc);
+	void viewProfile();
+	void changePassword();
 
 	void showMenu();
 
@@ -52,5 +57,5 @@ public:
 	void searchemployee();
 };
 
-
+#endif
 

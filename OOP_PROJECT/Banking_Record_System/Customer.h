@@ -34,6 +34,7 @@ private:
 
 	int _option;
 	Account _account;
+	Support _s;
 
 	vector<Request> _requestList;
 	vector<Account> account;
@@ -41,6 +42,8 @@ private:
 public:
 	Customer() {};
 	Customer(Account acc) { this->_account = acc; }
+	void viewProfile();
+	void changePassword();
 	void setId(string id)
 	{
 		_id = id;
@@ -104,7 +107,7 @@ public:
 		this->_acctype = type;
 		this->_balance = balance;
 		this->_duration = duration;
-		this->_period=period;
+		this->_period = period;
 	}
 	Customer(string id, string name, string birth, string address, string phone, string mail, string type)
 	{

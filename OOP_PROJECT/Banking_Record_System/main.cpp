@@ -8,8 +8,7 @@ int main()
 
 	m.loginMenu();
 
-//m.redirect();
 	m.redirect();
-	
+
 	return 0;
 }
