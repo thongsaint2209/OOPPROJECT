@@ -7,12 +7,12 @@ int main()
 {
 	Menu m;
 
-	m.loginMenu();
+	//m.loginMenu();
 
 //m.redirect();
 	/*Customer c;
 	c.newAccount();*/
 	Employee e;
-	e.SolvingReManager();
+	e.ViewAndSolvingReCus();
 	return 0;
 }

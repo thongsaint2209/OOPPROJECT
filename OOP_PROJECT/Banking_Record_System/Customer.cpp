@@ -708,7 +708,7 @@ void Customer::deposit(int money) {
 					if (!f3.is_open())
 						cout << "Cannot open ManagerRequestsList.txt\n";
 					else {
-						for (int t = 0;t < result.size();t+=4) {
+						for (int t = 0;t < result.size()-5;t+=4) {
 							f3 << result[t];
 							f3 << result[t + 1];
 							f3 << result[t + 2];
@@ -743,7 +743,7 @@ void Customer::deposit(int money) {
 					if (!f3.is_open())
 						cout << "Cannot open DirectorRequestsList.txt\n";
 					else {
-						for (int t = 0;t < result.size();t += 4) {
+						for (int t = 0;t < result.size()-5;t += 4) {
 							f3 << result[t];
 							f3 << result[t + 1];
 							f3 << result[t + 2];
@@ -907,7 +907,7 @@ void Customer::withdraw(int money) {
 					if (!f3.is_open())
 						cout << "Cannot open ManagerRequestsList.txt\n";
 					else {
-						for (int t = 0;t < result.size();t += 4) {
+						for (int t = 0;t < result.size()-5;t += 4) {
 							f3 << result[t];
 							f3 << result[t + 1];
 							f3 << result[t + 2];
@@ -942,7 +942,7 @@ void Customer::withdraw(int money) {
 				if (!f3.is_open())
 					cout << "Cannot open DirectorRequestsList.txt\n";
 				else {
-					for (int t = 0;t < result.size();t += 4) {
+					for (int t = 0;t < result.size()-5;t += 4) {
 						f3 << result[t];
 						f3 << result[t + 1];
 						f3 << result[t + 2];

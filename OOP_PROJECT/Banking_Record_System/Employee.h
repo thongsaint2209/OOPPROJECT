@@ -33,8 +33,7 @@ private:
 	Account _account;
 
 	
-	vector<Account> account;
-	vector<Employee> e;
+	
 	
 public:
 	Employee() {};

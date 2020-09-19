@@ -5,8 +5,8 @@ Nguyen Thanh Tu
 0906123456
 nttu@gmail.com
 Time - deposit account
-20000000
-13
+22416666
+0
 12
 
 19127002
@@ -16,7 +16,7 @@ Ngo Dang Quang
 0906123456
 nttu@gmail.com
 Demand – deposit account
-4000000
+-2147483648
 10
 0
 
@@ -27,8 +27,8 @@ Ngo Dang Khoa
 0909123123
 ndk@gmail.com
 Payment account
-6000000
-12
+12060000
+0
 0
 
 19127004
@@ -38,8 +38,8 @@ Nguyen Thi Be Ba
 0902664578
 ntbb@gmail.com
 Time - deposit account
-6000000
-24
+12840000
+0
 24
 
 19127005
@@ -49,7 +49,7 @@ Vy Ngu
 00000969
 vyngu@gmail.com
 Demand - deposit account
-2000000
+-2147483648
 15
 0
 

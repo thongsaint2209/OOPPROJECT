@@ -2,10 +2,9 @@
 
 void Employee::ViewAndSolvingReCus() {
 	ifstream f1;
-
 	string id;
 	string type;
-	int money;
+	float money;
 	int status;
 
 	
@@ -37,6 +36,9 @@ void Employee::ViewAndSolvingReCus() {
 	}
 
 	f1.close();
+	for (int i = 0;i < requestList.size();i++) {
+		cout << requestList[i].getId() << " " << requestList[i].getType() << " " << requestList[i].getMoney() << endl;
+	}
 
 	ifstream f2;
 
@@ -47,7 +49,7 @@ void Employee::ViewAndSolvingReCus() {
 
 	string phone;
 	string mail;
-	string Acctype;
+	string acctype;
 
 	float balance;
 
@@ -57,7 +59,7 @@ void Employee::ViewAndSolvingReCus() {
 
 
 	if (!f2.is_open())
-		cout << "Cannot open Customer.txt\n";
+		cout << "cannot open Customer.txt\n";
 
 	vector<Customer> a;
 	int count = 0;
@@ -76,7 +78,7 @@ void Employee::ViewAndSolvingReCus() {
 
 		getline(f2, mail);
 
-		getline(f2, Acctype);
+		getline(f2, acctype);
 
 		f2 >> balance;
 		f2 >> duration;
@@ -84,38 +86,43 @@ void Employee::ViewAndSolvingReCus() {
 
 		if (f2.eof())
 			break;
-		Customer temp(id1, name, date, address, phone, mail, Acctype, balance, duration, period);
+		Customer temp(id1, name, date, address, phone, mail, acctype, balance, duration, period);
 		a.push_back(temp);
 		f2.ignore(1, '\n');
 		count++;
 
 	}
 	f2.close();
+
+	for (int i = 0;i < a.size();i++) {
+		cout << a[i].getId()<<" "  << a[i].getBalance()<<" " << a[i].getbirth()<<endl;
+	}
 	for (int i = 0;i < requestList.size(); i++) {
 		for (int j = 0;j < a.size();j++) {
 			if (requestList[i].getId() == a[j].getId()) {
 				if (requestList[i].getType() == "Deposit") {
-					a[j]._balance += a[j].ClacInrest() + money;
-					a[i]._duration =0 ;
+					a[j]._balance += a[j].ClacInrest() + requestList[i].getMoney();
+					a[j]._duration =0 ;
 					tradeHistory("Deposit", a[j].getname(), requestList[i].getMoney());
 				}
 				if (requestList[i].getType() == "Withdraw") {
 					a[j]._balance += a[j].ClacInrest();
-					if (a[j]._balance > money) {
-						a[j]._balance -= money;
+					if (a[j]._balance > requestList[i].getMoney()) {
+						a[j]._balance -= requestList[i].getMoney();
 						a[j]._duration = 0;
 						tradeHistory("Withdraw", a[j].getname(), requestList[i].getMoney());
 					}
-					IncreaseMerit();
+					
 
 				}
-				requestList.erase(requestList.begin() + i);
+				IncreaseMerit();
+				//requestList.erase(requestList.begin() + i);
 			}
 		}
 	}
 		
 
-		fstream f;
+		ofstream f;
 
 		f.open("EmployeeRequestList.txt", ios::out);
 
@@ -139,7 +146,7 @@ void Employee::ViewAndSolvingReCus() {
 		if (!f3.is_open())
 			cout << "Cannot open Customer.txt\n";
 
-		for (int i = 0; i < count; i++)
+		for (int i = 0; i < a.size(); i++)
 		{
 			f3 << a[i]._id << endl;
 			f3 << a[i]._name << endl;
@@ -219,7 +226,7 @@ void Employee::ViewAndSolvingReCus() {
 			cout << endl;
 		}
 		cout << "Choose id you want to dind information about customer   ";
-		while (getchar() != '\n');
+		
 		getline(cin, id);
 
 
@@ -269,10 +276,8 @@ void Employee::ViewAndSolvingReCus() {
 			cout << "Cannot open ResignList.txt\n";
 		else {
 			
-			for (int i = 0;i < result.size();i += 2) {
-				f4 << result[i] << endl << result[i + 1] << endl << endl;
-			}
-
+			for (int i = 0;i < result.size(); i++)
+				f4  << result[i] << endl;
 		}
 		f4.close();
 	}
@@ -280,9 +285,9 @@ void Employee::ViewAndSolvingReCus() {
 		string reason;
 		string id;
 		cout << "Please submit the id who wants to report \n ";
-		cin >> id;
+		getline(cin, id);
 		cout << "Please describe the reasons for resignation \n ";
-		cin >> reason;
+		getline(cin, reason);
 		fstream f3;
 		vector<string> result;
 		f3.open("ReportList.txt", ios::in);
@@ -299,15 +304,15 @@ void Employee::ViewAndSolvingReCus() {
 		}
 		result.push_back(id);
 		result.push_back(reason);
+		
 		fstream f4;
-		f4.open("ResignList.txt", ios::out);
+		f4.open("ReportList.txt", ios::out);
 		if (!f4.is_open())
-			cout << "Cannot open ResignList.txt\n";
+			cout << "Cannot open ReportList.txt\n";
 		else {
 
-			for (int i = 0;i < result.size();i += 2) {
-				f4 << result[i] << endl << result[i + 1] << endl << endl;
-			}
+			for (int i = 0;i < result.size(); i++)
+				f4  << result[i] << endl;
 
 		}
 		f4.close();
@@ -316,6 +321,8 @@ void Employee::IncreaseMerit() {
 	_merits += 10;
 }
 void Employee::Promote() {
+	vector<Account> account;
+	vector<Employee> e;
 	string id;
 	string	name;
 	string date;
@@ -359,7 +366,7 @@ void Employee::Promote() {
 		if (f2.eof())
 			break;
 		Employee temp(id, name, date, address, phone, mail, merits);
-		this->e.push_back(temp);
+		e.push_back(temp);
 		f2.ignore(1, '\n');
 
 	}
@@ -385,7 +392,7 @@ void Employee::Promote() {
 		if (f1.eof())
 			break;
 		Account temp(username, password);
-		this->account.push_back(temp);
+		account.push_back(temp);
 
 		count++;
 	}
@@ -492,18 +499,18 @@ void Employee::Promote() {
 	if (!f4.is_open())
 		cout << "Manager.txt\n";
 
-	for (int l = 0; l < e.size(); l++)
+	for (int l = 0; l < m.size(); l++)
 	{
 
-		f4 << e[l].getId() << endl;
-		f4 << e[l].getname() << endl;
-		f4 << e[l].getbirth() << endl;
-		f4 << e[l].getaddress() << endl;
-		f4 << e[l].getphone() << endl;
+		f4 << m[l].getId() << endl;
+		f4 << m[l].getname() << endl;
+		f4 << m[l].getbirth() << endl;
+		f4 << m[l].getaddress() << endl;
+		f4 << m[l].getphone() << endl;
 
-		f4 << e[l].getmail() << endl;
+		f4 << m[l].getmail() << endl;
 
-		f4 << e[l].getmerit() << endl;
+		f4 << m[l].getmerit() << endl;
 		f4 << endl;
 
 	}
@@ -514,12 +521,12 @@ void Employee::Promote() {
 	if (!f3.is_open())
 		cout << "EmployeeAccounts.txt\n";
 
-	for (int j = 0; j < this->account.size(); j++)
+	for (int j = 0; j < account.size(); j++)
 	{
 
-		f3 << this->account[j].username() << endl;
+		f3 << account[j].username() << endl;
 
-		f3 << this->account[j].password() << endl;
+		f3 << account[j].password() << endl;
 
 
 		f3 << endl;
@@ -616,8 +623,7 @@ void Employee::viewInfoAllCustomer() {
 		cout << endl;
 	}
 	f1.close();
-	account.clear();
-	e.clear();
+	
 }
 
 void Employee::tradeHistory(string type,string name,float money){
@@ -631,8 +637,7 @@ void Employee::tradeHistory(string type,string name,float money){
 
 	}
 	f4.close();
-	account.clear();
-	e.clear();
+	
 }
 
 void Employee::SolvingReManager() {
@@ -777,7 +782,7 @@ void Employee::SolvingReManager() {
 		if (!f3.is_open())
 			cout << "Cannot open Customer.txt\n";
 
-		for (int i = 0; i < count; i++)
+		for (int i = 0; i < a.size(); i++)
 		{
 			f3 << a[i]._id << endl;
 			f3 << a[i]._name << endl;
@@ -795,8 +800,7 @@ void Employee::SolvingReManager() {
 		f3.close();
 
 		cout << "Saved successfully\n";
-		account.clear();
-		e.clear();
+		
 }
 
 
