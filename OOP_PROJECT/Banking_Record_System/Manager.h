@@ -16,10 +16,9 @@ protected:
 	int _duration;
 	int _period;
 	
-	static float _TermRate;
-	static float _DemandRate;
+	int _merits;
 
-	int	_balance;
+	
 	int _option;
 	Account _account;
 	
@@ -31,6 +30,17 @@ protected:
 	vector<Employee> e;
 public:
 	ManagerMenu()  {};
+	ManagerMenu(string id, string name, string birth, string address, string phone, string mail, int merits)
+	{
+		this->_id = id;
+		this->_name = name;
+		this->_birth = birth;
+		this->_address = address;
+		this->_phone = phone;
+		this->_mail = mail;
+
+		this->_merits = merits;
+	}
 	ManagerMenu(Account acc);
 
 	void showMenu();

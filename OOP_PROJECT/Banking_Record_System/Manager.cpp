@@ -569,7 +569,7 @@ void ManagerMenu::FireEmployee()
 
 
 	if (!f1.is_open())
-		cout << "Cannot open Customer.txt\n";
+		cout << "Cannot open Custo.txt\n";
 
 	int i = 0;
 

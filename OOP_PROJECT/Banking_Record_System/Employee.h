@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <conio.h>
+#include"Customer.h"
 
 using namespace std;
 
@@ -25,15 +26,15 @@ private:
 	string _mail;
 	
 	int _merits;
-	float _TermRate;
-	float _DemandRate;
+	
 
 	int _option;
 	Account _account;
 
-	vector<Request> _requestList;
+	
 	vector<Account> account;
 	vector<Employee> e;
+	
 public:
 	Employee() {};
 	void setId(string id)
@@ -90,6 +91,15 @@ public:
 	}
 
 	void showMenu();
+
+	void ViewAndSolvingRequests();
+	void searchCustomer();
+	void Resign();
+	void reportManager();
+	void IncreaseMerit();
+	void Promote();
+	void viewInfoAllCustomer();
+	void tradeHistory(string type,string name,float money);
 };
 
 #endif

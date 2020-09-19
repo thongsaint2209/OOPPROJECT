@@ -1,5 +1,8 @@
 #include"Customer.h"
 #include"Header.h"
+
+float Customer::_TermRate=0.07;
+float Customer::_DemandRate=0.01;
 void Customer::newAccount()
 {
 	fstream f1;
@@ -625,7 +628,7 @@ void Customer::deposit(int money) {
 			{
 				if (money < 10000000) {
 				if (a[i].gettype() == 3) {
-					a[i]._balance += ClacInrest() + money;
+					a[i]._balance += a[i].ClacInrest() + money;
 					a[i]._duration = 0;
 
 

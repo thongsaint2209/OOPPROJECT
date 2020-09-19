@@ -64,6 +64,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="MyStaticLib\MyStaticLib.lib" />
+    <Library Include="MyStaticLib\MyStaticLib\MyStaticLib.lib" />
   </ItemGroup>
 </Project>

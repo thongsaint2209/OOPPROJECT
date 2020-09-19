@@ -29,8 +29,8 @@ private:
 	int _period;
 
 
-	float _TermRate;
-	float _DemandRate;
+	static float _TermRate;
+	static float _DemandRate;
 
 	int _option;
 	Account _account;
@@ -38,6 +38,7 @@ private:
 	vector<Request> _requestList;
 	vector<Account> account;
     vector<Customer> a;
+	friend class Employee;
 public:
 	Customer() {};
 	void setId(string id)
