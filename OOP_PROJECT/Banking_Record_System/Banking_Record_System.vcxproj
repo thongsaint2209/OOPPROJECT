@@ -145,8 +145,8 @@
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Manager.h" />
-    <ClInclude Include="MyStaticLib\Date.h" />
-    <ClInclude Include="MyStaticLib\Time.h" />
+    <ClInclude Include="MyStaticLib\MyStaticLib\Date.h" />
+    <ClInclude Include="MyStaticLib\MyStaticLib\Time.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AllRole.cpp" />

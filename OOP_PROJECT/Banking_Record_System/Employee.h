@@ -7,7 +7,8 @@
 #include <vector>
 #include <conio.h>
 #include"Customer.h"
-
+#include"MyStaticLib/MyStaticLib/Time.h"
+#include"MyStaticLib/MyStaticLib/Date.h"
 using namespace std;
 
 

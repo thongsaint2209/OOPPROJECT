@@ -33,10 +33,10 @@
     <ClInclude Include="Employee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyStaticLib\Date.h">
+    <ClInclude Include="MyStaticLib\MyStaticLib\Date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyStaticLib\Time.h">
+    <ClInclude Include="MyStaticLib\MyStaticLib\Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
