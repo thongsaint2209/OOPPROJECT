@@ -4,7 +4,7 @@ Quan Ly Mot
 15,phuong 17,quan 3,HCM 
 0123789459
 ql1@gmail.com 
-15
+0
 
 12127002
 Quan Ly Hai
@@ -12,12 +12,4 @@ Quan Ly Hai
 15,phuong 17,quan 5,HCM 
 0123789459
 ql2@gmail.com 
-40
-
-12127003
-Quan Ly Ba
-09/09/2001
-15,phuong 17,quan 10,HCM 
-0907811232
-ql3@gmail.com 
-35
+20
