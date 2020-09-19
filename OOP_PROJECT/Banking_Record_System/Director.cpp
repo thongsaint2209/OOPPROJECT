@@ -2,7 +2,7 @@
 #include "Customer.h"
 #include "Employee.h"
 #include "Manager.h"
-
+#include "AllRole.h"
 DirectorMenu::DirectorMenu(Account acc)
 {
 	fstream f;
@@ -37,40 +37,20 @@ DirectorMenu::DirectorMenu(Account acc)
 	this->_account = acc;
 	this->_mode = -1;
 }
-
 void DirectorMenu::showMenu()
 {
 	while (true)
 	{
 		system("cls");
 		cout << "\n==========DIRECTOR-MENU==========\n";
-		cout << "1. View requests list.\n";
-		cout << "2. Edit requests list.\n";
-		cout << "3. View total money.\n";
-		cout << "4. View total customer.\n";
-		cout << "5. View VIP customer.\n";
-		cout << "6. Fire manager/employee.\n";
-		cout << "7. View report/feedback.\n";
-		cout << "8. Search manager/employee/customer.\n";
-		cout << "9. View manager/employee/customer.\n";
-		cout << "0. Exit.\n";
+		cout << "1. View profile information.\n";
+		cout << "2. Change password.\n";
+		cout << "3. Director's authority.\n";
+		cout << "0. Logout.\n";
 		cout << "=================================\n";
 		cout << "-> Select mode: ";
 		cin >> this->_mode;
-
-		while (1)
-		{
-			if (cin.fail())
-			{
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				cout << "Please only enter number!" << endl;
-				cout << "Enter again: ";
-				cin >> this->_mode;
-			}
-			if (!cin.fail())
-				break;
-		}
+		_s.checkValid(this->_mode);
 
 		if (this->_mode == 0)
 			break;
@@ -78,50 +58,100 @@ void DirectorMenu::showMenu()
 		switch (this->_mode)
 		{
 		case 1:
-			this->viewRequest();
+			this->viewProfile();
 			break;
 		case 2:
-			this->editRequest();
+			this->changePassword();
 			break;
 		case 3:
 		{
-			cout << "=================================\n";
-			cout << "Total Money In Bank: ";
-			cout << this->getTotalMoney() << endl;
-			cout << "=================================\n";
+			while (true)
+			{
+				system("cls");
+				cout << "\n==========DIRECTOR'S AUTHORITY-MENU==========\n";
+				cout << "1. View requests list.\n";
+				cout << "2. Edit requests list.\n";
+				cout << "3. View total money.\n";
+				cout << "4. View total customer.\n";
+				cout << "5. View VIP customer.\n";
+				cout << "6. Fire manager/employee.\n";
+				cout << "7. View report/feedback.\n";
+				cout << "8. Search manager/employee/customer.\n";
+				cout << "9. View manager/employee/customer.\n";
+				cout << "0. Exit.\n";
+				cout << "=================================\n";
+				cout << "-> Select mode: ";
+				cin >> this->_mode;
+
+				_s.checkValid(this->_mode);
+
+				if (this->_mode == 0)
+					break;
+
+				switch (this->_mode)
+				{
+				case 1:
+					this->viewRequest();
+					break;
+				case 2:
+					this->editRequest();
+					break;
+				case 3:
+				{
+					cout << "=================================\n";
+					cout << "Total Money In Bank: ";
+					cout << this->getTotalMoney() << endl;
+					cout << "=================================\n";
+					break;
+				}
+				case 4:
+				{
+					cout << "=================================\n";
+					cout << "Total Bank's Customer: ";
+					cout << this->getTotalCustomer() << endl;
+					cout << "=================================\n";
+					break;
+				}
+				case 5:
+					this->viewVIPCustomer();
+					break;
+				case 6:
+					this->showFireMenu();
+					break;
+				case 7:
+					this->viewFeedBack();
+					break;
+				case 8:
+					this->searchEmployee();
+					break;
+				case 9:
+					this->viewEmployee();
+					break;
+				default:
+				{
+					cout << "Please only enter number from 0 to 7!\n";
+					break;
+				}
+				}
+				system("pause");
+			}
 			break;
 		}
-		case 4:
-		{
-			cout << "=================================\n";
-			cout << "Total Bank's Customer: ";
-			cout << this->getTotalCustomer() << endl;
-			cout << "=================================\n";
-			break;
-		}
-		case 5:
-			this->viewVIPCustomer();
-			break;
-		case 6:
-			this->showFireMenu();
-			break;
-		case 7:
-			this->viewFeedBack();
-			break;
-		case 8:
-			this->searchEmployee();
-			break;
-		case 9:
-			this->viewEmployee();
-			break;
+
 		default:
 		{
-			cout << "Please only enter number from 0 to 9!\n";
+			cout << "Please only enter number from 0 to 3!\n";
 			break;
 		}
 		}
 		system("pause");
 	}
+	system("cls");
+	cin.ignore(1);
+
+	Menu m;
+	m.loginMenu();
+	m.redirect();
 }
 
 void DirectorMenu::viewRequest()
@@ -1266,4 +1296,147 @@ TRY1:
 		cout << "Wrong Mode.\n";
 		system("pause");
 	}
+}
+
+void DirectorMenu::viewProfile()
+{
+	string id;
+	string name;
+	string DoB;
+	string address;
+	string phone;
+	string email;
+	vector<Employee> temp;
+
+	fstream f;
+
+	f.open("Director.txt", ios::in);
+
+	if (!f.is_open())
+	{
+		cout << "Cannot find Director.txt.\n";
+	}
+
+	while (!f.eof())
+	{
+		getline(f, id, '\n');
+		getline(f, name, '\n');
+		getline(f, DoB, '\n');
+		getline(f, address, '\n');
+		getline(f, phone, '\n');
+		getline(f, email, '\n');
+		f.ignore(1, '\n');
+
+		Employee buffer(id, name, DoB, address, phone, email, 0);
+		temp.push_back(buffer);
+	}
+	f.close();
+
+	system("cls");
+	cout << "\n==========PROFILE-INFORMATION==========\n";
+	for (int i = 0; i < temp.size(); i++)
+	{
+		if (temp[i].getId() == _account.username())
+		{
+			cout << "ID          : " << temp[i].getId() << endl;
+			cout << "Name        : " << temp[i].getname() << endl;
+			cout << "DoB         : " << temp[i].getbirth() << endl;
+			cout << "Address     : " << temp[i].getaddress() << endl;
+			cout << "Phone Number: " << temp[i].getphone() << endl;
+			cout << "Email       : " << temp[i].getmail() << endl;
+			cout << "Merit       : " << temp[i].getmerit() << endl;
+		}
+	}
+}
+
+void DirectorMenu::changePassword()
+{
+	
+		while (getchar() != '\n');
+		string cur = "", cur2 = "", pass = "", pass2 = "";
+		vector<Account> a;
+		int times = 0;
+	OPTION:
+		if (times == 10)
+		{
+			cout << "You have reached maximum change password times. Please try again later.\n";
+			return;
+		}
+			
+		cout << "Enter your current password: \n";
+		cur.clear();
+		getline(cin, cur);
+		cout << "Enter your current lv2 password: \n";
+		cur2.clear();
+		getline(cin, cur2);
+		cout << "Enter your new password: \n";
+		pass.clear();
+		getline(cin, pass);
+		cout << "Enter your new lv2 password: \n";
+		pass2.clear();
+		getline(cin, pass2);
+		bool flag = 0;
+
+		if (strcmp(_account.password().c_str(), cur.c_str()) == 0 && strcmp(_account.passwordLv2().c_str(), cur2.c_str()) == 0)
+		{
+			_account.changePassword(pass);
+			_account.changePasswordLv2(pass2);
+			cout << "Change password Successfully!" << endl;
+
+			fstream f;
+			f.open("DirectorAccounts.txt", ios::in);
+			if (!f.is_open())
+				cout << "Cannot open DirectorAccounts.txt\n";
+			else
+			{
+				string _username, _password, _passwordlv2;
+				
+				while (f.good())
+				{
+					f >> _username;
+					f >> _password;
+					f >> _passwordlv2;
+
+					if (f.eof())
+						break;
+
+					Account buffer(_username, _password, _passwordlv2);
+					a.push_back(buffer);
+				}
+				f.close();
+			}
+			f.open("DirectorAccounts.txt", ios::out);
+			if (!f.is_open())
+				cout << "Cannot open DirectorAccounts.txt\n";
+			else
+			{
+				
+
+				for (int i = 0; i < a.size(); i++)
+				{
+					if (a[i].username() == _account.username())
+					{
+						a[i].changePassword(_account.password());
+						a[i].changePasswordLv2(_account.passwordLv2());
+					}
+					f << a[i].username() << endl;
+					f << a[i].password() << endl;
+					f << a[i].passwordLv2() << endl;
+					if (i != a.size() - 1)
+						f << endl;
+				}
+				f.close();
+			}
+			
+		}
+		else
+		{
+			cout << "Wrong password. Please try again" << endl;
+			times++;
+			goto OPTION;
+		}
+	
+
+	return;
+
 }

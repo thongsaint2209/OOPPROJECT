@@ -25,6 +25,7 @@ private:
 public:
 	DirectorMenu(Account acc);
 	void viewProfile();
+	void changePassword();
 	void showMenu();
 	void viewRequest();
 	void editRequest();

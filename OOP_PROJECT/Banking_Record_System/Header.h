@@ -77,13 +77,21 @@ public:
 	{
 		return _password;
 	}
-
+	string passwordLv2()
+	{
+		return _passwordLv2;
+	}
 
 	Account(const string &username,const  string &name)
 	{
 		this->_username = username;
 		this->_password = name;
-		
+	}
+	Account(const string& username, const string& pass, const string& passlv2)
+	{
+		this->_username = username;
+		this->_password = pass;
+		this->_passwordLv2 = passlv2;
 	}
 	int login(const string& username, const string& password, const string& password2);
 	void changePassword(const string& password);
