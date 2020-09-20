@@ -38,34 +38,36 @@ DirectorMenu::DirectorMenu(Account acc)
 	this->_account = acc;
 	this->_mode = -1;
 }
+
 void DirectorMenu::showMenu()
 {
-	while (true)
-	{
-		system("cls");
-		cout << "\n==========DIRECTOR-MENU==========\n";
-		cout << "1. View profile information.\n";
-		cout << "2. Change password.\n";
-		cout << "3. Director's authority.\n";
-		cout << "0. Logout.\n";
-		cout << "=================================\n";
-		cout << "-> Select mode: ";
-		cin >> this->_mode;
-		_s.checkValid(this->_mode);
-
-		if (this->_mode == 0)
-			break;
-
-		switch (this->_mode)
+		while (true)
 		{
-		case 1:
-			this->viewProfile();
-			break;
-		case 2:
-			this->changePassword();
-			break;
-		case 3:
-		{
+			system("cls");
+			cout << "\n==========DIRECTOR-MENU==========\n";
+			cout << "1. View profile information.\n";
+			cout << "2. Change password.\n";
+			cout << "3. Director's authority.\n";
+			cout << "0. Logout.\n";
+			cout << "=================================\n";
+			cout << "-> Select mode: ";
+			cin >> this->_mode;
+
+			_s.checkValid(this->_mode);
+
+			if (this->_mode == 0)
+				break;
+
+			switch (this->_mode)
+			{
+			case 1:
+				this->viewProfile();
+				break;
+			case 2:
+				this->changePassword();
+				break;
+			case 3:
+			{
 			while (true)
 			{
 				system("cls");
@@ -80,6 +82,7 @@ void DirectorMenu::showMenu()
 				cout << "8. Search manager/employee/customer.\n";
 				cout << "9. View manager/employee/customer.\n";
 				cout << "10. Bankrupt.\n";
+				cout << "10. View trade history.\n";
 				cout << "0. Exit.\n";
 				cout << "============================================\n";
 				cout << "-> Select mode: ";
@@ -133,6 +136,7 @@ void DirectorMenu::showMenu()
 					break;
 				case 10:
 					this->bankRupt();
+					this->viewTradeHistory();
 					break;
 				default:
 				{
@@ -142,17 +146,18 @@ void DirectorMenu::showMenu()
 				}
 				system("pause");
 			}
-			break;
+				break;
+			}
+			default:
+			{
+				cout << "Please only enter number from 0 to 3!\n";
+				break;
+			}
+			}
+			system("pause");
 		}
+	
 
-		default:
-		{
-			cout << "Please only enter number from 0 to 3!\n";
-			break;
-		}
-		}
-		system("pause");
-	}
 	system("cls");
 	cin.ignore(1);
 
@@ -1303,6 +1308,7 @@ TRY1:
 		cout << "Wrong Mode.\n";
 		system("pause");
 	}
+
 }
 
 void DirectorMenu::viewProfile()
@@ -1358,7 +1364,7 @@ void DirectorMenu::viewProfile()
 
 void DirectorMenu::changePassword()
 {
-	
+
 	while (getchar() != '\n');
 	string cur = "", cur2 = "", pass = "", pass2 = "";
 	vector<Account> a;
@@ -1442,6 +1448,8 @@ OPTION:
 		times++;
 		goto OPTION;
 	}
+	return;
+}
 
 	return;
 }
@@ -1472,4 +1480,40 @@ void DirectorMenu::bankRupt()
 		return;
 	}
 	return;
+}
+
+void DirectorMenu::viewTradeHistory()
+{
+	string _time;
+	string _id;
+	string _type;
+	string _money;
+	vector<TradeHistory> temp;
+	fstream f;
+	f.open("TransactDate.txt", ios::in);
+	if (!f.is_open())
+		cout << "Cannot open TransactDate.txt\n";
+	while (f.good())
+	{
+		getline(f, _time);
+		getline(f, _id);
+		getline(f, _type);
+		getline(f, _money);
+		f.ignore(1, '\n');
+
+		TradeHistory buffer(_time, _id, _type, stof(_money));
+		temp.push_back(buffer);
+
+		if (f.eof())
+			break;
+	}
+	cout << "===TRADE-HISTORY===" << endl;
+	for (int i = 0; i < temp.size(); i++)
+	{
+		cout << temp[i].getTime() << endl;
+		cout << temp[i].getId() << endl;
+		cout << temp[i].getType() << endl;
+		cout << temp[i].getMoney() << endl;
+	}
+	f.close();
 }

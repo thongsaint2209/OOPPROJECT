@@ -144,6 +144,9 @@
     <ClInclude Include="Director.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="Lib\Date.h" />
+    <ClInclude Include="Lib\Time.h" />
+    <ClInclude Include="Lib\Tokenizer.h" />
     <ClInclude Include="Manager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +157,9 @@
     <ClCompile Include="Header.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Manager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Lib\MyLib.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

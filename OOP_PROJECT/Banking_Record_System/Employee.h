@@ -8,7 +8,7 @@
 #include <conio.h>
 
 using namespace std;
-
+#include "Customer.h"
 
 class Employee
 {
@@ -26,10 +26,11 @@ private:
 	int _option;
 	Account _account;
 	Support _s;
-
+	Customer _c;
 	vector<Request> _requestList;
 	vector<Account> account;
 	vector<Employee> e;
+	vector<Customer> a;
 public:
 	Employee(Account acc) { this->_account = acc; }
 	Employee() {
@@ -99,6 +100,8 @@ public:
 	void viewProfile();
 	void changePassword();
 	void showMenu();
+
+	
 };
 
 #endif

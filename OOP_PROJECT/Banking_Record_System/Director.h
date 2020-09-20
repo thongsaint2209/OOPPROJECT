@@ -2,7 +2,7 @@
 #define _DIRECTOR_H_
 
 #include "Header.h"
-
+using namespace std;
 class DirectorMenu
 {
 private:
@@ -37,6 +37,7 @@ public:
 	void viewEmployee();
 	void viewFeedBack();
 	void bankRupt();
+	void viewTradeHistory();
 };
 
 #endif

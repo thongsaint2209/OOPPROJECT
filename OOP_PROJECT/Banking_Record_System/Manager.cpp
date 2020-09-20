@@ -8,8 +8,8 @@ ManagerMenu::ManagerMenu(Account acc)
 
 	if (!f1.is_open())
 		cout << "Cannot open ManagerRequestsList.txt\n";
-	string id ;
-	string type ;
+	string id;
+	string type;
 	int money;
 	int status;
 	while (f1.good())
@@ -27,7 +27,7 @@ ManagerMenu::ManagerMenu(Account acc)
 		Request temp(id, type, money, status);
 		this->_requestList1.push_back(temp);
 
-		
+
 	}
 
 	f1.close();
@@ -38,7 +38,7 @@ ManagerMenu::ManagerMenu(Account acc)
 
 void ManagerMenu::showMenu()
 {
-	
+
 	while (true)
 	{
 		system("cls");
@@ -52,7 +52,7 @@ void ManagerMenu::showMenu()
 		cin >> this->_option;
 
 		_s.checkValid(this->_option);
-		
+
 		if (this->_option == 0)
 			break;
 
@@ -65,7 +65,6 @@ void ManagerMenu::showMenu()
 			this->changePassword();
 			break;
 		case 3:
-		{
 			while (true)
 			{
 				system("cls");
@@ -74,10 +73,15 @@ void ManagerMenu::showMenu()
 				cout << "2. Edit requests list.\n";
 				cout << "3. View list of accepting requests and processing from director\n";
 				cout << "4. View list of customer.\n";
-				cout << "5. Fire employee.\n";
+				cout << "5. View list of employee.\n"; 
 				cout << "6. Search information customer\n";
 				cout << "7. Search information employee\n";
-				cout << "8. View list of employee\n";
+
+				cout << "8. Fire employee\n";
+
+				
+				cout << "9. View Non-VIP trade history\n";
+
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
 				cout << "-> Select option: ";
@@ -102,7 +106,7 @@ void ManagerMenu::showMenu()
 					this->viewcustomer();
 					break;
 				case 5:
-					this->FireEmployee();
+					this->viewemployee();
 					break;
 				case 6:
 					this->searchcustomer();
@@ -111,19 +115,20 @@ void ManagerMenu::showMenu()
 					this->searchemployee();
 					break;
 				case 8:
-					this->viewemployee();
+					 this->FireEmployee();
+					break;
+				case 9:
+					this->viewTradeHistory();
 					break;
 				default:
 				{
 					cout << "Please only enter number from 0 to 8!\n";
 					break;
 				}
-
 				}
 				system("pause");
 			}
 			break;
-		}
 		default:
 		{
 			cout << "Please only enter number from 0 to 3!\n";
@@ -159,6 +164,7 @@ void ManagerMenu::viewRequest()
 		cout << endl;
 	}
 	cout << "=================================\n";
+	//	_requestList1.clear();
 }
 
 void ManagerMenu::editRequest()
@@ -223,7 +229,7 @@ void ManagerMenu::editRequest()
 
 	for (int i = 0; i < this->_requestList1.size(); i++)
 	{
-		
+
 		f << this->_requestList1[i].getId() << endl;
 		f << this->_requestList1[i].getType() << endl;
 		f << this->_requestList1[i].getMoney() << endl;
@@ -235,6 +241,7 @@ void ManagerMenu::editRequest()
 	f.close();
 
 	cout << "Saved successfully\n";
+	//_requestList1.clear();
 }
 
 
@@ -247,13 +254,13 @@ void ManagerMenu::viewlistReDirector()
 	string type;
 	int money;
 	int status;
-	
+
 	string	name;
 	string	address;
 	int	balance;
 	f1.open("DirectorRequestsList.txt", ios::in);
 
-	
+
 	if (!f1.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
 
@@ -273,131 +280,102 @@ void ManagerMenu::viewlistReDirector()
 		Request temp(id, type, money, status);
 
 		this->_requestList2.push_back(temp);
-		
-		if (this->_requestList2[i].approvalStatus() == 1 && this->_requestList2[i].approvalStatus() == status)
-		{
-			cout << "Request #" << i + 1 << endl;
-			cout << this->_requestList2[i].getId() << endl;
-			cout << this->_requestList2[i].getType() << endl;
-			cout << this->_requestList2[i].getMoney() << endl;
-			cout << endl;
-		}
+
+
 		i++;
 	}
-	
+	for (int m = 0; m < _requestList2.size(); m++)
+	{
+		if (this->_requestList2[m].approvalStatus() == 1 && this->_requestList2[m].approvalStatus() == status)
+		{
+			cout << "Request #" << m + 1 << endl;
+			cout << this->_requestList2[m].getId() << endl;
+			cout << this->_requestList2[m].getType() << endl;
+			cout << this->_requestList2[m].getMoney() << endl;
+			cout << this->_requestList2[m].approvalStatus() << endl;
+			cout << endl;
+		}
+	}
 	f1.close();
-	
-	
+
+	string id1;
 	cout << "Choose id you want to Processing  ";
 	while (getchar() != '\n');
-	getline(cin, id);
+	getline(cin, id1);
 
-	int flag = 0;
-	
-			int option;
-			cout << "Do you want to  Processing this customer?  " << endl;
-			cout << "0: Out" << endl;
-			cout << "1: Edit" << endl;
-			cin >> option;
-			switch (option)
-			{
-			case 0:
-			{
-				return;
-			}
-			case 1:
-			{
-				int j = 0;
 
-				//tao vector temp 
 
-				while (f1.good())
+	int option;
+	cout << "Do you want to  Processing this customer?  " << endl;
+	cout << "0: Out" << endl;
+	cout << "1: Processing" << endl;
+	cin >> option;
+	switch (option)
+	{
+	case 0:
+	{
+		return;
+	}
+	case 1:
+	{
+		for (int j = 0; j < this->_requestList2.size(); j++)
+		{
+			if (this->_requestList2[j].getId() == id1)
+			{
+				if (this->_requestList2[j].getType() == "Withdraw")
 				{
 
-					if (this->_requestList2[j].getId() == id)
-					{
-						if (this->_requestList2[j].getType() == "Deposit")
-						{
-							this->_requestList2[j].getMoney();//goi ham thuc thi
 
+					Customer::withdraw(this->_requestList2[j].getMoney(), id1);
 
+					_c.saveTradeHistory(this->_requestList2[j].getId(), this->_requestList2[j].getType(), this->_requestList2[j].getMoney());
+					this->_requestList2.erase(_requestList2.begin() + j);
 
-							this->_requestList2.erase(_requestList2.begin() + j);
-
-						}
-						else
-						{
-							this->_requestList2[j].getMoney();
-
-							this->_requestList2.erase(_requestList2.begin() + j);
-						}
-					}
-					if (this->_requestList2[j].approvalStatus() == -1)
-					{
-						this->_requestList2.erase(_requestList2.begin() + j);
-					}
-					j++;
 				}
-
-				ifstream f2;
-				f2.open("Customer.txt", ios::in);
-
-
-				if (!f2.is_open())
-					cout << "Cannot open Customer.txt\n";
-
-
-				int count = 0;
-				while (f2.good())
+				else if (this->_requestList2[j].getType() == "Deposit")
 				{
-					f2 >> id;
-					getline(f2, name);
-					getline(f2, name);
-					getline(f2, address);
-					f2 >> balance;
-
-					if (f1.eof())
-						break;
-					//Customer temp(id, name, address, balance);
-					//this->a.push_back(temp);
-					f1.ignore(1, '\n');
-					count++;
+					Customer::deposit(this->_requestList2[j].getMoney(), id1);
+					_c.saveTradeHistory(this->_requestList2[j].getId(), this->_requestList2[j].getType(), this->_requestList2[j].getMoney());
+					this->_requestList2.erase(_requestList2.begin() + j);
 				}
-				f2.close();
-
-				fstream f3;
-				f3.open("Customer.txt", ios::out);
-				if (!f3.is_open())
-					cout << "Cannot open Customer.txt\n";
-
-				for (int i = 0; i < count; i++)
-				{
-
-					f3 << a[i].getId();
-
-					f3 << a[i].getname();
-
-					f3 << a[i].getaddress();
-					f3 << a[i].getBalance() << endl;
-
-				}
-				f3.close();
 			}
-			default:
+			if (this->_requestList2[j].approvalStatus() != 1)
 			{
-				cout << "Please choose number from 0-2" << endl;
-				break;
+				this->_requestList2.erase(_requestList2.begin() + j);
 			}
-			}
-			
-	
-	
+
+		}
+		fstream f2;
+		f2.open("DirectorRequestsList.txt", ios::out);
+
+
+		if (!f2.is_open())
+			cout << "Cannot open DirectorRequestsList.txt\n";
+		for (int t = 0; t < this->_requestList2.size(); t++)
+		{
+			f2 << _requestList2[t].getId() << endl;
+			f2 << _requestList2[t].getType() << endl;
+			f2 << _requestList2[t].getMoney() << endl;
+			f2 << _requestList2[t].approvalStatus() << endl;
+			f2 << endl;
+		}
+		f2.close();
+	}
+
+	cout << "Processing succefully" << endl;
+	default:
+	{
+
+		break;
+	}
+	}
+	_requestList2.clear();
 
 }
 
 void ManagerMenu::viewcustomer()
 {
-	
+
 	ifstream f1;
 
 	string id;
@@ -408,9 +386,9 @@ void ManagerMenu::viewcustomer()
 	string phone;
 	string mail;
 	string Acctype;
-	
+
 	int	balance;
-	
+
 	int	duration;
 	int	period;
 	f1.open("Customer.txt", ios::in);
@@ -426,25 +404,25 @@ void ManagerMenu::viewcustomer()
 		f1 >> id;
 		f1.ignore();
 		getline(f1, name);
-	
+
 		getline(f1, date);
-		
-		
+
+
 		getline(f1, address);
-	
+
 		getline(f1, phone);
-	
+
 		getline(f1, mail);
-		
+
 		getline(f1, Acctype);
-		
+
 		f1 >> balance;
 		f1 >> duration;
 		f1 >> period;
 
 		if (f1.eof())
 			break;
-		Customer temp(id, name,date, address,phone,mail,Acctype, balance,duration,period);
+		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
 		this->a.push_back(temp);
 		f1.ignore(1, '\n');
 		count++;
@@ -466,6 +444,7 @@ void ManagerMenu::viewcustomer()
 		cout << endl;
 	}
 	f1.close();
+	a.clear();
 }
 
 void ManagerMenu::searchcustomer()
@@ -524,15 +503,15 @@ void ManagerMenu::searchcustomer()
 		count++;
 	}
 	for (int i = 0; i < count; i++)
-	{		
-		cout << "id :" << a[i].getId() << endl;		
+	{
+		cout << "id :" << a[i].getId() << endl;
 		cout << endl;
 	}
 	cout << "Choose id you want to dind information about customer   ";
 	while (getchar() != '\n');
 	getline(cin, id);
 
-
+	int dem = 0;
 	for (int i = 0; i < count; i++)
 	{
 		if (a[i].getId() == id)
@@ -549,9 +528,16 @@ void ManagerMenu::searchcustomer()
 			cout << "duration :" << a[i].getDuration() << endl;
 			cout << "period :" << a[i].getPeriod() << endl;
 			cout << endl;
+			break;
 		}
+		dem++;
+	}
+	if (dem == count)
+	{
+		cout << "ID does not exist " << endl;
 	}
 	f1.close();
+	a.clear();
 }
 
 void ManagerMenu::FireEmployee()
@@ -582,7 +568,7 @@ void ManagerMenu::FireEmployee()
 		count++;
 	}
 	f1.close();
-	
+
 	string id;
 	string	name;
 	string date;
@@ -597,11 +583,9 @@ void ManagerMenu::FireEmployee()
 	f2.open("Employee.txt", ios::in);
 
 
-	if (!f1.is_open())
+	if (!f2.is_open())
 		cout << "Cannot open Employee.txt\n";
-
 	int i = 0;
-
 	while (f2.good())
 	{
 		f2 >> id;
@@ -617,7 +601,7 @@ void ManagerMenu::FireEmployee()
 
 		getline(f2, mail);
 
-	
+
 
 
 		f2 >> merits;
@@ -627,28 +611,28 @@ void ManagerMenu::FireEmployee()
 			break;
 		Employee temp(id, name, date, address, phone, mail, merits);
 		this->e.push_back(temp);
-		f1.ignore(1, '\n');
-	
+		f2.ignore(1, '\n');
+
 	}
 	//cout merits <=90;
 	cout << "View List employees have merits < 90 : " << endl;
 	for (int i = 0; i < e.size(); i++)
 	{
-		if (e[i].getmerit()<90)
+		if (e[i].getmerit() < 90)
 		{
-			
+
 			cout << "id :" << e[i].getId() << endl;
 			cout << "name :" << e[i].getname() << endl;
 			cout << "birthday :" << e[i].getbirth() << endl;
 			cout << "address :" << e[i].getaddress() << endl;
 			cout << "phone :" << e[i].getphone() << endl;
 			cout << "mail:" << e[i].getmail() << endl;
-			
+
 			cout << "merits :" << e[i].getmerit() << endl;
 			cout << endl;
 		}
 	}
-	
+
 	cout << "Enter id you want to Delete :";
 	while (getchar() != '\n');
 	getline(cin, id);
@@ -694,20 +678,18 @@ void ManagerMenu::FireEmployee()
 
 					f4 << e[l].getmerit() << endl;
 					f4 << endl;
-					
-				}
-				f4.close();
 
-				
+				}
+
+				f4.close();
 			}
+
 		}
-		
+
 		for (int i = 0; i < this->account.size(); i++)
 		{
-			if(i==temp_pos)
+			if (i == temp_pos)
 			{
-				
-				
 				this->account.erase(account.begin() + i);
 
 				fstream f3;
@@ -718,36 +700,35 @@ void ManagerMenu::FireEmployee()
 				for (int j = 0; j < this->account.size(); j++)
 				{
 
-					f3 << this->account[j].username()<< endl;
+					f3 << this->account[j].username() << endl;
 
 					f3 << this->account[j].password() << endl;
 
-				
+
 					f3 << endl;
 
 				}
 				f3.close();
 
-				
+
 			}
 		}
-		
-		
-		
 
 		cout << "Delete successfully " << endl;
 	}
 	default:
 	{
-		
+
 		break;
 	}
 	}
+	e.clear();
+	account.clear();
 }
 
 void ManagerMenu::viewemployee()
 {
-
+	e.clear();
 	ifstream f1;
 
 	string id;
@@ -794,24 +775,25 @@ void ManagerMenu::viewemployee()
 
 	for (int i = 0; i < e.size(); i++)
 	{
-		
+
 		cout << "id :" << e[i].getId() << endl;
 		cout << "name :" << e[i].getname() << endl;
 		cout << "birthday :" << e[i].getbirth() << endl;
 		cout << "address :" << e[i].getaddress() << endl;
 		cout << "phone :" << e[i].getphone() << endl;
 		cout << "mail:" << e[i].getmail() << endl;
-		
-		
+
+
 		cout << "merit :" << e[i].getmerit() << endl;
 		cout << endl;
 	}
 	f1.close();
+	e.clear();
 }
 
 void ManagerMenu::searchemployee()
 {
-
+	e.clear();
 	ifstream f1;
 
 	string id;
@@ -866,7 +848,7 @@ void ManagerMenu::searchemployee()
 	while (getchar() != '\n');
 	getline(cin, id);
 
-
+	int dem = 0;
 	for (int i = 0; i < e.size(); i++)
 	{
 		if (e[i].getId() == id)
@@ -881,9 +863,16 @@ void ManagerMenu::searchemployee()
 
 			cout << "merit :" << e[i].getmerit() << endl;
 			cout << endl;
+			break;
 		}
+		dem++;
+	}
+	if (dem == e.size())
+	{
+		cout << "id does not exist " << endl;
 	}
 	f1.close();
+	e.clear();
 }
 
 void ManagerMenu::viewProfile()
@@ -1015,4 +1004,47 @@ OPTION:
 		goto OPTION;
 	}
 	return;
+}
+
+void ManagerMenu::viewTradeHistory()
+{
+	string _time;
+	string _id;
+	string _type;
+	string _money;
+	
+	
+
+	fstream f;
+	f.open("TransactDate.txt", ios::in);
+	if (!f.is_open())
+		cout << "Cannot open TransactDate.txt\n";
+	while (f.good())
+	{
+		getline(f, _time);
+		getline(f, _id);
+		getline(f, _type);
+		getline(f, _money);
+		f.ignore(1, '\n');
+
+		TradeHistory buffer(_time, _id, _type, stof(_money));
+		_his.push_back(buffer);
+
+		if (f.eof())
+			break;
+	}
+	cout << "===NON-VIP-TRADE-HISTORY===" << endl;
+	for (int i = 0; i < _his.size(); i++)
+	{
+		if (_his[i].getMoney() < 10000000)
+		{
+			
+			cout << _his[i].getTime() << endl;
+			cout << _his[i].getId() << endl;
+			cout << _his[i].getType() << endl;
+			cout << _his[i].getMoney() << endl;
+		}
+	}
+	f.close();
+	_his.clear();
 }

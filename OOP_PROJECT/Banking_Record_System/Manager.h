@@ -29,9 +29,11 @@ protected:
 	vector<Request> _requestList1;
 	vector<Request> _requestList2;
 	vector<Customer> a;
-	
+	vector<TradeHistory> _his;
 	vector<Account> account;
 	vector<Employee> e;
+
+	Customer _c;
 public:
 	ManagerMenu() {}
 	ManagerMenu(Account acc);
@@ -55,6 +57,8 @@ public:
 	void viewemployee();
 
 	void searchemployee();
+
+	void viewTradeHistory();
 };
 
 #endif

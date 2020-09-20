@@ -6,9 +6,8 @@
 #include <fstream>
 #include <vector>
 #include <conio.h>
-
+#include <sstream>
 using namespace std;
-
 
 class Customer
 {
@@ -29,16 +28,18 @@ private:
 	int _period;
 
 
-	float _TermRate;
-	float _DemandRate;
+	static float _TermRate;
+	static float _DemandRate;
 
 	int _option;
 	Account _account;
 	Support _s;
 
 	vector<Request> _requestList;
-	vector<Account> account;
-    vector<Customer> a;
+ vector<Account> account;
+
+
+    static  vector<Customer> a;
 public:
 	Customer() {};
 	Customer(Account acc) { this->_account = acc; }
@@ -122,13 +123,49 @@ public:
 		this->_duration = 0;
 		this->_period = 0;
 	}
-	void newAccount();
+	 void newAccount();
 
 	void showMenu();
 
     void Editprofile();
 
 	void deleteAccount();
+
+    float ClacInrest();
+
+
+	int gettype();
+
+	static void withdraw(int money,string id1);
+	
+	static void deposit(int money, string id2);
+	void saveTradeHistory(string id, string type, int money);
+	void viewTradeHistory();
+};
+
+class TradeHistory
+{
+private:
+	string _time;
+	string _id;
+	string _type;
+	int _money;
+public:
+	TradeHistory(string id, string type, int money) {
+		this->_id = id;
+		this->_type = type;
+		this->_money = money;
+	}
+	TradeHistory(string time, string id, string type, int money) {
+		this->_time = time;
+		this->_id = id;
+		this->_type = type;
+		this->_money = money;
+	}
+	string getTime() { return _time; }
+	string getId() { return _id; }
+	string getType() { return _type; }
+	float getMoney() { return _money; }
 };
 
 #endif
