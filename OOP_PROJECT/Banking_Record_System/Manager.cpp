@@ -948,16 +948,17 @@ void ManagerMenu::SolvingReDirector() {
 	int status;
 	
 	vector<ManagerMenu> _ma;
-	_ma.clear();
+	
 	ifstream f6;
 	f6.open("Manager.txt", ios::in);
 
 	string id3;
-
+	int count3=0;
 	if (!f6.is_open())
 		cout << "Cannot open Manager.txt\n";
 	while (!f6.eof())
 	{
+		
 		f6 >> id;
 		f6.ignore();
 		getline(f6, name);
@@ -973,14 +974,16 @@ void ManagerMenu::SolvingReDirector() {
 
 		f6 >> merits;
 		
+		
 		ManagerMenu temp1(id, name, date, address, phone, mail, merits);
 		_ma.push_back(temp1);
 		f6.ignore(1, '\n');
 		
+		count3++;
 
 	}
+	f6.close();
 	_ma.pop_back();
-	
 	ifstream f1;
 
 	
@@ -1025,7 +1028,7 @@ void ManagerMenu::SolvingReDirector() {
 		}
 	}
 	f1.close();
-
+	count3--;
 	ifstream f2;
 
 	
@@ -1108,10 +1111,10 @@ void ManagerMenu::SolvingReDirector() {
 	_requestList2.clear();
 	fstream f;
 
-	f.open("DirectorRequestsList.txt", ios::out);
+	//f.open("DirectorRequestsList.txt", ios::out);
 
 
-	f.close();
+	//f.close();
 
 	
 	fstream f3;
@@ -1136,7 +1139,7 @@ void ManagerMenu::SolvingReDirector() {
 	}
 	f3.close();
 
-	f6.close();
+	
 	fstream f7;
 	f7.open("Manager.txt", ios::out);
 	if (!f7.is_open())

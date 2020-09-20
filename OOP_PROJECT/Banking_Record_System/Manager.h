@@ -57,8 +57,6 @@ public:
 
 	void editRequest();
 
-	//void viewlistReDirector();
-
 	void viewcustomer();
 
 	void searchcustomer();
