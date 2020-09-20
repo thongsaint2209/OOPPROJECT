@@ -77,6 +77,7 @@ void Employee::showMenu()
 					break;
 				case 8:
 				//	tradeHistory(type, name, money);
+					this->SolvingReManager();
 				case 9:
 				
 					_c.newAccount();
@@ -884,14 +885,54 @@ void Employee::tradeHistory(string type, string name, float money) {
 }
 
 void Employee::SolvingReManager() {
-	ifstream f1;
+	ifstream f6;
 
 	string id;
+	string	name;
+	string date;
+	string	address;
+
+	string phone;
+	string mail;
+	int merits;
+	
 	string type;
 	int money;
 	int status;
+	f6.open("Employee.txt", ios::in);
 
 
+	if (!f6.is_open())
+		cout << "Cannot open Employee.txt\n";
+
+	int i = 0;
+	int count = 0;
+	while (f6.good())
+	{
+		f6 >> id;
+		f6.ignore();
+		getline(f6, name);
+
+		getline(f6, date);
+
+
+		getline(f6, address);
+
+		getline(f6, phone);
+
+		getline(f6, mail);
+
+
+		f6>> merits;
+
+		if (f6.eof())
+			break;
+		Employee temp(id, name, date, address, phone, mail, merits);
+		e.push_back(temp);
+		f6.ignore(1, '\n');
+		count++;
+	}
+	ifstream f1;
 	f1.open("ManagerRequestList.txt", ios::in);
 
 
@@ -924,12 +965,7 @@ void Employee::SolvingReManager() {
 	ifstream f2;
 
 	string id1;
-	string	name;
-	string date;
-	string	address;
-
-	string phone;
-	string mail;
+	
 	string Acctype;
 
 	float	balance;
@@ -943,7 +979,7 @@ void Employee::SolvingReManager() {
 		cout << "Cannot open Customer.txt\n";
 
 	vector<Customer> a;
-	int count = 0;
+	
 	while (f2.good())
 	{
 		f2 >> id1;
@@ -970,10 +1006,11 @@ void Employee::SolvingReManager() {
 		Customer temp(id1, name, date, address, phone, mail, Acctype, balance, duration, period);
 		a.push_back(temp);
 		f2.ignore(1, '\n');
-		count++;
+		
 
 	}
 	f2.close();
+	int dem=0;
 	for (int i = 0; i < requestList.size(); i++) {
 		if (requestList[i].approvalStatus() == -1) {
 			requestList.erase(requestList.begin() + i);
@@ -985,6 +1022,7 @@ void Employee::SolvingReManager() {
 						a[j]._balance += a[j].ClacInrest() + money;
 						a[i]._duration = 0;
 						tradeHistory("Deposit", a[j].getname(), requestList[i].getMoney());
+						dem++;
 					}
 					if (requestList[i].getType() == "Withdraw") {
 						a[j]._balance += a[j].ClacInrest();
@@ -992,11 +1030,12 @@ void Employee::SolvingReManager() {
 							a[j]._balance -= money;
 							a[j]._duration = 0;
 							tradeHistory("Withdraw", a[j].getname(), requestList[i].getMoney());
+							
 						}
-
+						dem++;
 
 					}
-					IncreaseMerit();
+					//IncreaseMerit();
 					//requestList.erase(requestList.begin() + i);
 				}
 			}
@@ -1043,7 +1082,38 @@ void Employee::SolvingReManager() {
 	}
 	f3.close();
 
+	fstream f7;
+	f7.open("Employee.txt", ios::out);
+	if (!f7.is_open())
+		cout << "Cannot open Manager.txt\n";
+
+	for (int q = 0; q < e.size(); q++)
+	{
+		if ( _account.username()==e[q]._id)
+		{
+			for (int i=0; i < dem; i++)
+				e[q].IncreaseMerit();
+		}
+	
+		
+		f7 << e[q]._id << endl;
+		f7 << e[q]._name << endl;
+		f7 << e[q]._birth << endl;
+		f7 << e[q]._address << endl;
+		f7 << e[q]._phone << endl;
+		f7 << e[q]._mail << endl;
+		f7 << e[q]._merits << endl;
+
+		f7 << endl;
+
+	}
+	f7.close();
+	cout << dem;
+
 	cout << "Saved successfully\n";
+	a.clear();
+	_requestList.clear();
+	e.clear();
 
 }
 
