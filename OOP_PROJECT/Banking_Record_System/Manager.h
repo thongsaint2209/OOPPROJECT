@@ -37,6 +37,17 @@ protected:
 public:
 	ManagerMenu() {}
 	ManagerMenu(Account acc);
+
+	ManagerMenu(string id, string name, string birth, string address, string phone, string mail, int merits)
+	{
+		this->_id = id;
+		this->_name = name;
+		this->_birth = birth;
+		this->_address = address;
+		this->_phone = phone;
+		this->_mail = mail;
+		this->_merits = merits;
+	}
 	void viewProfile();
 	void changePassword();
 
