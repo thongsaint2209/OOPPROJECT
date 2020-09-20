@@ -5,7 +5,7 @@ Nguyen Thanh Tu
 0906123456
 nttu@gmail.com
 Payment account
-250000000
+60000000
 13
 12
 
@@ -16,7 +16,7 @@ Ngo Dang Quang
 0906123456
 nttu@gmail.com
 Payment account
-4000000
+550000000
 10
 0
 
