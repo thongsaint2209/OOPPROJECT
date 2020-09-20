@@ -32,6 +32,7 @@ private:
 	vector<Account> account;
 	vector<Employee> e;
 	vector<Customer> a;
+	friend class ManagerMenu;
 public:
 	Employee(Account acc);
 	Employee() {

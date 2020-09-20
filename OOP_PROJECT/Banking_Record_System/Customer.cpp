@@ -886,7 +886,7 @@ void Customer::saveTradeHistory(string id, string type, long money)
 		if (i != temp.size() - 1)
 			f << endl;
 	}
-	cout << "Saved successfully.\n";
+	cout << "Saved history successfully.\n";
 	f.close();
 }
 

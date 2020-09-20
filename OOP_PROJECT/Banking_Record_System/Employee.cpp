@@ -248,7 +248,7 @@ void Employee::ViewAndSolvingReCus() {
 	if (!f1.is_open())
 		cout << "Cannot open EmployeeRequestList.txt\n";
 	vector<Request> requestList;
-	int count1 = 0;
+
 	while (f1.good())
 	{
 		f1 >> id;
@@ -264,8 +264,6 @@ void Employee::ViewAndSolvingReCus() {
 		Request temp(id, type, money, status);
 
 		requestList.push_back(temp);
-
-		count1++;
 	}
 
 	f1.close();
@@ -301,7 +299,7 @@ void Employee::ViewAndSolvingReCus() {
 		cout << "cannot open Customer.txt\n";
 
 	vector<Customer> a;
-	int count = 0;
+
 	while (f2.good())
 	{
 		f2>> id1;
@@ -328,7 +326,7 @@ void Employee::ViewAndSolvingReCus() {
 		Customer temp(id1, name, date, address, phone, mail, acctype, balance, duration, period);
 		a.push_back(temp);
 		f2.ignore(1, '\n');
-		count++;
+
 
 	}
 	f2.close();
@@ -355,6 +353,8 @@ void Employee::ViewAndSolvingReCus() {
 			}
 		}
 	}
+	if (_requestList[index].approvalStatus() == -1)
+		cout << "Too bad, your request has been denied.\n";
 	requestList.erase(requestList.begin() + index);
 
 	ofstream f;
@@ -425,7 +425,7 @@ void Employee::searchCustomer() {
 		cout << "Cannot open Customer.txt\n";
 
 	int i = 0;
-	int count = 0;
+	
 	while (f1.good())
 	{
 		f1 >> id;
@@ -453,9 +453,9 @@ void Employee::searchCustomer() {
 		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
 		a.push_back(temp);
 		f1.ignore(1, '\n');
-		count++;
+		
 	}
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < a.size(); i++)
 	{
 		cout << "id :" << a[i].getId() << endl;
 		cout << endl;
@@ -465,7 +465,7 @@ void Employee::searchCustomer() {
 	getline(cin, id);
 
 
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < a.size(); i++)
 	{
 		if (a[i].getId() == id)
 		{
@@ -751,7 +751,7 @@ void Employee::Promote() {
 
 	string username;
 	string password;
-	int count = 0;
+
 	while (f1.good())
 	{
 		f1 >> username;
@@ -765,7 +765,6 @@ void Employee::Promote() {
 		Account temp(username, password);
 		e_account.push_back(temp);
 
-		count++;
 	}
 	f1.close();
 
@@ -815,7 +814,7 @@ void Employee::Promote() {
 		cout << "Cannot open ManagerAccounts.txt\n";
 	vector<Account> m_acc;
 	
-	int count1 = 0;
+
 	while (f1.good())
 	{
 		f1 >> username;
@@ -829,7 +828,7 @@ void Employee::Promote() {
 		Account temp(username, password);
 		m_acc.push_back(temp);
 
-		count1++;
+
 	}
 	f1.close();
 
@@ -954,7 +953,7 @@ void Employee::viewInfoAllCustomer() {
 		cout << "Cannot open Customer.txt\n";
 
 	int i = 0;
-	int count = 0;
+
 	while (f1.good())
 	{
 		f1 >> id;
@@ -981,10 +980,10 @@ void Employee::viewInfoAllCustomer() {
 		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
 		a.push_back(temp);
 		f1.ignore(1, '\n');
-		count++;
+
 	}
 
-	for (int i = 0; i < count; i++)
+	for (int i = 0; i < a.size(); i++)
 	{
 		cout << "Request #" << i + 1 << endl;
 		cout << "id :" << a[i].getId() << endl;
@@ -1032,7 +1031,7 @@ void Employee::SolvingReManager() {
 	if (!f1.is_open())
 		cout << "Cannot open ManagerRequestList.txt\n";
 	vector<Request> requestList;
-	int count1 = 0;
+
 	while (f1.good())
 	{
 		f1 >> id;
@@ -1049,7 +1048,7 @@ void Employee::SolvingReManager() {
 
 		requestList.push_back(temp);
 
-		count1++;
+
 	}
 	f1.close();
 	for (int i = 0; i < requestList.size(); i++)
@@ -1088,7 +1087,7 @@ void Employee::SolvingReManager() {
 		cout << "Cannot open Customer.txt\n";
 
 	vector<Customer> a;
-	int count = 0;
+
 	while (f2.good())
 	{
 		f2 >> id1;
@@ -1115,7 +1114,7 @@ void Employee::SolvingReManager() {
 		Customer temp(id1, name, date, address, phone, mail, Acctype, balance, duration, period);
 		a.push_back(temp);
 		f2.ignore(1, '\n');
-		count++;
+
 
 	}
 	f2.close();
@@ -1141,6 +1140,8 @@ void Employee::SolvingReManager() {
 			}
 		}
 	}
+	if (_requestList[index].approvalStatus() == -1)
+		cout << "Too bad, your request has been denied.\n";
 	requestList.erase(requestList.begin() + index);
 	
 	fstream f;
