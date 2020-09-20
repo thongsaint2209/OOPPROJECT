@@ -885,7 +885,7 @@ OPTION:
 	return;
 }
 
-/*void ManagerMenu::viewTradeHistory()
+void ManagerMenu::viewTradeHistory()
 {
 	string _time;
 	string _id;
@@ -927,7 +927,7 @@ OPTION:
 	f.close();
 	_his.clear();
 }
-*/
+
 void ManagerMenu::SolvingReDirector() {
 	string id;
 	string id1;
