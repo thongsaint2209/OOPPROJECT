@@ -34,14 +34,13 @@ void Employee::showMenu()
 			{
 				system("cls");
 				cout << "\n==========EMPLOYEE'S-AUTHORITY-MENU==========\n";
-				cout << "1.ViewAndSolvingRequests.\n";
-				cout << "2. .\n";
-				cout << "3. .\n";
-				cout << "4. .\n";
-				cout << "5. .\n";
-				cout << "6. .\n";
-				cout << "7. .\n";
-				cout << "8. .\n";
+				cout << "1.View And Solving Customer's Requests.\n";
+				cout << "2.Search Customers .\n";
+				cout << "3.Resign .\n";
+				cout << "4.Report Manager .\n";
+				cout << "5.Promote .\n";
+				cout << "6.View Information of all Customers .\n";
+				cout << "7.Solving Manager's Requests .\n";
 				cout << "9. Create new account \n";
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
@@ -55,28 +54,29 @@ void Employee::showMenu()
 				switch (this->_option)
 				{
 				case 1:
-				//	this->ViewAndSolvingRequests();
+					this->ViewAndSolvingReCus();
 					break;
 				case 2:
-				//	this->searchCustomer();
+					this->searchCustomer();
 					break;
 				case 3:
-				//	this->Resign();
+					this->Resign();
 					break;
 				case 4:
-				//	this->reportManager();
+					this->reportManager();
 					break;
 				case 5:
-				//	this->ncreaseMerit();
+					this->IncreaseMerit();
 					break;
 				case 6:
-				//	this->Promote();
+					this->Promote();
 					break;
 				case 7:
-				//	viewInfoAllCustomer();
+					viewInfoAllCustomer();
 					break;
 				case 8:
-				//	tradeHistory(type, name, money);
+					SolvingReManager();
+					break;
 				case 9:
 				
 					_c.newAccount();
@@ -406,156 +406,156 @@ void Employee::ViewAndSolvingReCus() {
 	
 
 }
-	void Employee::searchCustomer() {
-		ifstream f1;
-		vector<Customer> a;
-		string id;
-		string	name;
-		string date;
-		string	address;
+void Employee::searchCustomer() {
+	ifstream f1;
+	vector<Customer> a;
+	string id;
+	string	name;
+	string date;
+	string	address;
 
-		string phone;
-		string mail;
-		string Acctype;
+	string phone;
+	string mail;
+	string Acctype;
 
-		float balance;
+	float balance;
 
-		int	duration;
-		int	period;
-		f1.open("Customer.txt", ios::in);
+	int	duration;
+	int	period;
+	f1.open("Customer.txt", ios::in);
 
 
-		if (!f1.is_open())
-			cout << "Cannot open Customer.txt\n";
+	if (!f1.is_open())
+		cout << "Cannot open Customer.txt\n";
 
-		int i = 0;
-		int count = 0;
-		while (f1.good())
+	int i = 0;
+	int count = 0;
+	while (f1.good())
+	{
+		f1 >> id;
+		f1.ignore();
+		getline(f1, name);
+
+		getline(f1, date);
+
+
+		getline(f1, address);
+
+		getline(f1, phone);
+
+		getline(f1, mail);
+
+		getline(f1, Acctype);
+
+		f1 >> balance;
+		f1 >> duration;
+		f1 >> period;
+
+
+		if (f1.eof())
+			break;
+		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
+		a.push_back(temp);
+		f1.ignore(1, '\n');
+		count++;
+	}
+	for (int i = 0; i < count; i++)
+	{
+		cout << "id :" << a[i].getId() << endl;
+		cout << endl;
+	}
+	cin.ignore(1);
+	cout << "Choose id you want to dind information about customer   ";
+	getline(cin, id);
+
+
+	for (int i = 0; i < count; i++)
+	{
+		if (a[i].getId() == id)
 		{
-			f1 >> id;
-			f1.ignore();
-			getline(f1, name);
-
-			getline(f1, date);
-
-
-			getline(f1, address);
-
-			getline(f1, phone);
-
-			getline(f1, mail);
-
-			getline(f1, Acctype);
-
-			f1 >> balance;
-			f1 >> duration;
-			f1 >> period;
-
-
-			if (f1.eof())
-				break;
-			Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
-			a.push_back(temp);
-			f1.ignore(1, '\n');
-			count++;
-		}
-		for (int i = 0; i < count; i++)
-		{
+			cout << "Request #" << i + 1 << endl;
 			cout << "id :" << a[i].getId() << endl;
+			cout << "name :" << a[i].getname() << endl;
+			cout << "birthday :" << a[i].getbirth() << endl;
+			cout << "address :" << a[i].getaddress() << endl;
+			cout << "phone :" << a[i].getphone() << endl;
+			cout << "mail:" << a[i].getmail() << endl;
+			cout << "Acc type :" << a[i].getacctype() << endl;
+			cout << "balance :" << a[i].getBalance() << endl;
+			cout << "duration :" << a[i].getDuration() << endl;
+			cout << "period :" << a[i].getPeriod() << endl;
 			cout << endl;
 		}
-		cout << "Choose id you want to dind information about customer   ";
-		
-		getline(cin, id);
-
-
-		for (int i = 0; i < count; i++)
-		{
-			if (a[i].getId() == id)
-			{
-				cout << "Request #" << i + 1 << endl;
-				cout << "id :" << a[i].getId() << endl;
-				cout << "name :" << a[i].getname() << endl;
-				cout << "birthday :" << a[i].getbirth() << endl;
-				cout << "address :" << a[i].getaddress() << endl;
-				cout << "phone :" << a[i].getphone() << endl;
-				cout << "mail:" << a[i].getmail() << endl;
-				cout << "Acc type :" << a[i].getacctype() << endl;
-				cout << "balance :" << a[i].getBalance() << endl;
-				cout << "duration :" << a[i].getDuration() << endl;
-				cout << "period :" << a[i].getPeriod() << endl;
-				cout << endl;
-			}
-		}
-		f1.close();
 	}
-	void Employee::Resign() {
-		string reason;
-		cout << "Please describe the reasons for resignation \n ";
-		cin >> reason;
-		fstream f3;
-		vector<string> result;
-		f3.open("ResignList.txt", ios::in);
-		if (!f3.is_open())
-			cout << "Cannot open ResignList.txt\n";
+	f1.close();
+}
+void Employee::Resign() {
+	string reason;
+	cout << "Please describe the reasons for resignation \n ";
+	cin >> reason;
+	fstream f3;
+	vector<string> result;
+	f3.open("ResignList.txt", ios::in);
+	if (!f3.is_open())
+		cout << "Cannot open ResignList.txt\n";
 
-		while (f3.good())
-		{
-			string s;
-			getline(f3, s);
-			result.push_back(s);
-			if (f3.eof()) break;
-			
-		}
-		result.push_back(_id);
-		result.push_back(reason);
-		fstream f4;
-		f4.open("ResignList.txt", ios::out);
-		if (!f4.is_open())
-			cout << "Cannot open ResignList.txt\n";
-		else {
-			
-			for (int i = 0;i < result.size(); i++)
-				f4  << result[i] << endl;
-		}
-		f4.close();
+	while (f3.good())
+	{
+		string s;
+		getline(f3, s);
+		result.push_back(s);
+		if (f3.eof()) break;
+
 	}
-	void Employee::reportManager() {
-		string reason;
-		string id;
-		cout << "Please submit the id who wants to report \n ";
-		getline(cin, id);
-		cout << "Please describe the reasons for resignation \n ";
-		getline(cin, reason);
-		fstream f3;
-		vector<string> result;
-		f3.open("ReportList.txt", ios::in);
-		if (!f3.is_open())
-			cout << "Cannot open ReportList.txt\n";
+	result.push_back(_id);
+	result.push_back(reason);
+	fstream f4;
+	f4.open("ResignList.txt", ios::out);
+	if (!f4.is_open())
+		cout << "Cannot open ResignList.txt\n";
+	else {
 
-		while (f3.good())
-		{
-			string s;
-			getline(f3, s);
-			result.push_back(s);
-			if (f3.eof()) break;
-
-		}
-		result.push_back(id);
-		result.push_back(reason);
-		
-		fstream f4;
-		f4.open("ReportList.txt", ios::out);
-		if (!f4.is_open())
-			cout << "Cannot open ReportList.txt\n";
-		else {
-
-			for (int i = 0;i < result.size(); i++)
-				f4  << result[i] << endl;
-
-		}
-		f4.close();
+		for (int i = 0; i < result.size(); i++)
+			f4 << result[i] << endl;
 	}
+	f4.close();
+}
+void Employee::reportManager() {
+	string reason;
+	string id;
+	cout << "Please submit the id who wants to report \n ";
+	getline(cin, id);
+	cout << "Please describe the reasons for resignation \n ";
+	getline(cin, reason);
+	fstream f3;
+	vector<string> result;
+	f3.open("ReportList.txt", ios::in);
+	if (!f3.is_open())
+		cout << "Cannot open ReportList.txt\n";
+
+	while (f3.good())
+	{
+		string s;
+		getline(f3, s);
+		result.push_back(s);
+		if (f3.eof()) break;
+
+	}
+	result.push_back(id);
+	result.push_back(reason);
+
+	fstream f4;
+	f4.open("ReportList.txt", ios::out);
+	if (!f4.is_open())
+		cout << "Cannot open ReportList.txt\n";
+	else {
+
+		for (int i = 0; i < result.size(); i++)
+			f4 << result[i] << endl;
+
+	}
+	f4.close();
+}
 void Employee::IncreaseMerit() {
 	_merits += 10;
 }
@@ -993,7 +993,7 @@ void Employee::SolvingReManager() {
 
 					}
 					IncreaseMerit();
-					//requestList.erase(requestList.begin() + i);
+					requestList.erase(requestList.begin() + i);
 				}
 			}
 		}
@@ -1002,7 +1002,7 @@ void Employee::SolvingReManager() {
 
 		f.open("ManagerRequestList.txt", ios::out);
 
-		/*if (!f.is_open())
+		if (!f.is_open())
 			cout << "Cannot open ManagerRequestList.txt\n";
 
 		for (int i = 0; i < requestList.size(); i++)
@@ -1014,7 +1014,7 @@ void Employee::SolvingReManager() {
 			f << requestList[i].approvalStatus() << endl;
 			if (i != requestList.size() - 1)
 				f << endl;
-		}*/
+		}
 
 		f.close();
 		fstream f3;
