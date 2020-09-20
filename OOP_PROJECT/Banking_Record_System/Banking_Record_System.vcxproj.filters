@@ -33,10 +33,13 @@
     <ClInclude Include="Employee.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyStaticLib\MyStaticLib\Date.h">
+    <ClInclude Include="Lib\Date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MyStaticLib\MyStaticLib\Time.h">
+    <ClInclude Include="Lib\Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Tokenizer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -64,6 +67,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="MyStaticLib\MyStaticLib\MyStaticLib.lib" />
+    <Library Include="Lib\MyLib.lib" />
   </ItemGroup>
 </Project>
