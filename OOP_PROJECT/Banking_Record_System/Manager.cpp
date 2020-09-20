@@ -940,7 +940,7 @@ void ManagerMenu::SolvingReDirector() {
 	string Acctype;
 
 	float	balance;
-
+	int merits;
 	int	duration;
 	int	period;
 	string type;
@@ -971,49 +971,18 @@ void ManagerMenu::SolvingReDirector() {
 
 		getline(f6, mail);
 
-		f6 >> _merits;
+		f6 >> merits;
 		
 		if (f6.eof())
 			break;
-		ManagerMenu temp1(id, name, date, address, phone, mail, _merits);
+		ManagerMenu temp1(id, name, date, address, phone, mail, merits);
 		_ma.push_back(temp1);
 		f6.ignore(1, '\n');
 
 
 	}
-	f6.close();
-	for (int p= 0; p < _ma.size(); p++)
-	{
-		cout << _ma[p]._id << endl;
-		cout << _ma[p]._name << endl;
-		cout << _ma[p]._birth << endl;
-		cout << _ma[p]._address << endl;
-		cout << _ma[p]._phone << endl;
-		cout << _ma[p]._mail << endl;
-		cout << _ma[p]._merits << endl;
-
-		cout << endl;
-
-	}
-	fstream f7;
-	f7.open("Manager.txt", ios::out);
-	if (!f7.is_open())
-		cout << "Cannot open Manager.txt\n";
-
-	for (int q = 0; q < _ma.size(); q++)
-	{
-		f7 << _ma[q]._id << endl;
-		f7 << _ma[q]._name << endl;
-		f7 << _ma[q]._birth << endl;
-		f7 << _ma[q]._address << endl;
-		f7 << _ma[q]._phone << endl;
-		f7 << _ma[q]._mail << endl;
-		f7 << _ma[q]._merits << endl;
-
-		f7 << endl;
-
-	}
-	f7.close();
+	
+	
 	ifstream f1;
 
 	
@@ -1103,6 +1072,8 @@ void ManagerMenu::SolvingReDirector() {
 	
 
 	f2.close();
+
+	int dem;
 	for (int i = 0; i < _requestList2.size(); i++) {
 		if (_requestList2[i].approvalStatus() != 1) {
 			_requestList2.erase(_requestList2.begin() + i);
@@ -1128,8 +1099,8 @@ void ManagerMenu::SolvingReDirector() {
 
 
 					}
-					IncreaseMerit();
-					this->_merits += 10;
+				
+					
 					
 				}
 				//_requestList2.erase(_requestList2.begin() + i);
@@ -1140,22 +1111,9 @@ void ManagerMenu::SolvingReDirector() {
 
 	//f.open("DirectorRequestsList.txt", ios::out);
 
-	/*if (!f.is_open())
-		cout << "Cannot open ManagerRequestList.txt\n";
-
-	for (int i = 0; i < requestList.size(); i++)
-	{
-
-		f << requestList[i].getId() << endl;
-		f << requestList[i].getType() << endl;
-		f << requestList[i].getMoney() << endl;
-		f << requestList[i].approvalStatus() << endl;
-		if (i != requestList.size() - 1)
-			f << endl;
-	}*/
 
 	//f.close();
-
+	
 	fstream f3;
 	f3.open("Customer.txt", ios::out);
 	if (!f3.is_open())
@@ -1177,7 +1135,41 @@ void ManagerMenu::SolvingReDirector() {
 
 	}
 	f3.close();
+	for (int p = 0; p < _ma.size(); p++)
+	{
+		cout << _ma[p]._id << endl;
+		cout << _ma[p]._name << endl;
+		cout << _ma[p]._birth << endl;
+		cout << _ma[p]._address << endl;
+		cout << _ma[p]._phone << endl;
+		cout << _ma[p]._mail << endl;
+		cout << _ma[p]._merits << endl;
 
+		cout << endl;
+
+	}
+	f6.close();
+	fstream f7;
+	f7.open("Manager.txt", ios::out);
+	if (!f7.is_open())
+		cout << "Cannot open Manager.txt\n";
+
+	for (int q = 0; q < _ma.size(); q++)
+	{
+		if (_ma[q]._id == _account.username())
+			_ma[q].IncreaseMerit();
+		f7 << _ma[q]._id << endl;
+		f7 << _ma[q]._name << endl;
+		f7 << _ma[q]._birth << endl;
+		f7 << _ma[q]._address << endl;
+		f7 << _ma[q]._phone << endl;
+		f7 << _ma[q]._mail << endl;
+		f7 << _ma[q]._merits << endl;
+
+		f7 << endl;
+
+	}
+	f7.close();
 
 
 	cout << "Saved successfully\n";

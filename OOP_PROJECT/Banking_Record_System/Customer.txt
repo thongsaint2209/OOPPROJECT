@@ -5,7 +5,7 @@ Nguyen Thanh Tu
 0906123456
 nttu@gmail.com
 Payment account
--1303524480
+461886944
 0
 12
 
@@ -38,7 +38,7 @@ Nguyen Thi Be Ba
 0902664578
 ntbb@gmail.com
 Time deposit account
-1033840064
+-954036544
 24
 24
 
@@ -49,7 +49,7 @@ Nguyen Thanh Tinh
 0906123456
 nttu@gmail.com
 Demand deposit account
-2564855
+2722643
 15
 0
 
