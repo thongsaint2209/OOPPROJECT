@@ -906,7 +906,7 @@ void ManagerMenu::viewTradeHistory()
 		getline(f, _money);
 		f.ignore(1, '\n');
 
-		TradeHistory buffer(_time, _id, _type, stof(_money));
+		TradeHistory buffer(_time, _id, _type, stol(_money));
 		_his.push_back(buffer);
 
 		if (f.eof())
