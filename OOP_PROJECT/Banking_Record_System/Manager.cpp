@@ -890,7 +890,7 @@ void ManagerMenu::viewTradeHistory()
 	string _time;
 	string _id;
 	string _type;
-	long _money;
+	string _money;
 
 
 
