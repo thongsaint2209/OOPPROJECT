@@ -1,4 +1,5 @@
 #include "AllRole.h"
+#include "Customer.h"
 
 void Menu::redirect()
 {

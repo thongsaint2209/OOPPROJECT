@@ -1,5 +1,6 @@
 #ifndef _CUSTOMER_H_
 #define _CUSTOMER_H_
+
 #include "Header.h"
 #include <iostream>
 #include <string>
@@ -7,7 +8,7 @@
 #include <vector>
 #include <conio.h>
 #include <sstream>
-#include "Lib/Date.h"
+//#include "Lib/Date.h"
 using namespace std;
 
 
@@ -31,10 +32,10 @@ private:
 	Support _s;
 	vector<Request> _requestList;
  	vector<Account> account;
-    static  vector<Customer> a;
+    static vector<Customer> a;
 	friend class Employee;
 public:
-	Customer() {};
+	Customer() {}
 	Customer(Account acc) { this->_account = acc; }
 	void viewProfile();
 	void changePassword();
@@ -151,16 +152,16 @@ public:
 	string getId() { return _id; }
 	string getType() { return _type; }
 	float getMoney() { return _money; }
-	float ClacInrest();
+	//float ClacInrest();
 
-	void deposit(int money);
+	//void deposit(int money);
 
-	void withdraw(int money);
+	//void withdraw(int money);
 
-	void tranfer(int money, Customer& cus);
+	//void tranfer(int money, Customer& cus);
 
-	//Time - deposit account(1),Demand - deposit account(2),payment acc(3)
-	int gettype();
+	////Time - deposit account(1),Demand - deposit account(2),payment acc(3)
+	//int gettype();
 };
 
 #endif

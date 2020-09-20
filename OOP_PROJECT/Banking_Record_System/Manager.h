@@ -1,9 +1,10 @@
-#ifndef MANAGER_H
-#define MANAGER_H
+#ifndef _MANAGER_H_
+#define _MANAGER_H_
 
 #include "Header.h"
 #include "Customer.h"
 #include "Employee.h"
+
 class ManagerMenu
 {
 protected:

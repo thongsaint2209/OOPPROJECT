@@ -1,10 +1,10 @@
-﻿﻿#include "Customer.h"
+﻿﻿//#include "Customer.h"
 #include "Header.h"
 #include "Lib/Date.h"
 #include "Lib/Time.h"
 #include "AllRole.h"
 
-vector <Customer> Customer::a;
+//vector<Customer> Customer::a;
 
 float Customer::_TermRate = 0.07;
 float Customer::_DemandRate = 0.01;
@@ -643,109 +643,6 @@ float Customer::ClacInrest() {
 	}
 }
 
-
-void Customer::withdraw(int money, string id1) {
-	ifstream f1;
-	string id;
-	string	name;
-	string date;
-	string	address;
-	string phone;
-	string mail;
-	string Acctype;
-	int	balance;
-	int	duration;
-	int	period;
-	f1.open("Customer.txt", ios::in);
-
-	if (!f1.is_open())
-		cout << "Cannot open Customer.txt\n";
-
-	int count = 0;
-	while (f1.good())
-	{
-		f1 >> id;
-		f1.ignore();
-		getline(f1, name);
-		getline(f1, date);
-
-		getline(f1, address);
-		getline(f1, phone);
-		getline(f1, mail);
-		getline(f1, Acctype);
-		f1 >> balance;
-		f1 >> duration;
-		f1 >> period;
-		if (f1.eof())
-			break;
-		Customer temp(id, name, date, address, phone, mail, Acctype, balance, duration, period);
-		a.push_back(temp);
-		f1.ignore(1, '\n');
-		count++;
-	}
-	f1.close();
-
-
-	for (int i = 0; i < a.size(); i++)
-	{
-		if (a[i]._id == id1)
-		{
-			if (money < 10000000) {
-				if (a[i].gettype() == 3) {
-					a[i]._balance += a[i].ClacInrest();
-					if (a[i]._balance > money) {
-						a[i]._balance -= money;
-						a[i]._duration = 0;
-					}
-
-					fstream f3;
-					f3.open("Customer.txt", ios::out);
-					if (!f3.is_open())
-						cout << "Cannot open Customer.txt\n";
-					for (int i = 0; i < count; i++)
-					{
-						f3 << a[i]._id << endl;
-						f3 << a[i]._name << endl;
-						f3 << a[i]._birth << endl;
-						f3 << a[i]._address << endl;
-						f3 << a[i]._phone << endl;
-						f3 << a[i]._mail << endl;
-						f3 << a[i]._acctype << endl;
-						f3 << a[i]._balance << endl;
-						f3 << a[i]._duration << endl;
-						f3 << a[i]._period << endl;
-						f3 << endl;
-					}
-					f3.close();
-					cout << "Withdraw Successfully" << endl;
-				}
-				else if (a[i].gettype() == 1 || a[i].gettype() == 2) {
-					fstream f4;
-					f4.open("EmployeeRequestsList.txt", ios::out);
-					if (!f4.is_open())
-						cout << "Cannot open EmployeeRequestsList.txt\n";
-					else {
-						f4 << endl << a[i].getId() << endl << "Withdraw" << endl << money << endl << 0;
-					}
-				}
-
-			}
-
-
-			else {
-				fstream f5;
-				f5.open("ManagerRequestList.txt", ios::out);
-				if (!f5.is_open())
-					cout << "Cannot open ManagerRequestsList.txt\n";
-				else {
-					f5 << endl << endl << "Withdraw" << endl << a[i].getId() << endl << money << endl << 0;
-				}
-			}
-			break;
-		}
-	}
-}
-
 void Customer::viewProfile()
 {
 	string id;
@@ -1112,7 +1009,7 @@ OPTION:
 	return;
 }
 					
-void Customer::withdraw(int money) {
+void Customer::withdraw(int money, string id1) {
 	 
 		ifstream f1;
 
@@ -1310,14 +1207,4 @@ void Customer::withdraw(int money) {
 			}
 		}
 	
-}
-
-
-
-//Time - deposit account(1), Demand - deposit account(2), payment acc(3)
-int Customer::gettype() {
-	if (_acctype == "Time deposit account") return 1;
-	if (_acctype == "Demand deposit account") return 2;
-	if (_acctype == "Payment account") return 3;
-	return 0;
 }

@@ -8,8 +8,8 @@
 #include <conio.h>
 #include "Customer.h"
 #include "Lib/Date.h"
-using namespace std;
 
+using namespace std;
 
 class Employee
 {
@@ -33,7 +33,7 @@ private:
 	vector<Employee> e;
 	vector<Customer> a;
 public:
-	Employee(Account acc) { this->_account = acc; }
+	Employee(Account acc);
 	Employee() {
 		this->_id = "";
 		this->_name = "";

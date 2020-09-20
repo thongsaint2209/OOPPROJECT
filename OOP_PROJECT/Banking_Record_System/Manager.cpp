@@ -1,6 +1,5 @@
-#include"Manager.h"
+#include "Manager.h"
 #include "AllRole.h"
-#include "Customer.h"
 
 ManagerMenu::ManagerMenu(Account acc)
 {

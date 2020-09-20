@@ -1043,8 +1043,9 @@ void Employee::SolvingReManager() {
 		
 }
 
-Employee::Employee(Account _acc)
+Employee::Employee(Account acc)
 {
+	this->_account = acc;
 	string id;
 	string name;
 	string birth;
@@ -1075,6 +1076,8 @@ Employee::Employee(Account _acc)
 		temp.push_back(buffer);
 		f.ignore(1, '\n');
 	}
+	f.close();
+
 	for (int i = 0; i < temp.size(); i++)
 	{
 		if (temp[i].getname() == _account.username())
