@@ -69,13 +69,13 @@ void Employee::showMenu()
 					this->Promote();
 					break;
 				case 6:
-					viewInfoAllCustomer();
+					this->viewInfoAllCustomer();
 					break;
 				case 7:
-					SolvingReManager();
+					this->SolvingReManager();
 					break;
 				case 8:
-					_c.newAccount();
+					this->_c.newAccount();
 					break;
 				default:
 				{
@@ -238,7 +238,7 @@ void Employee::ViewAndSolvingReCus() {
 	ifstream f1;
 	string id;
 	string type;
-	float money;
+	long money;
 	int status;
 
 	
@@ -290,7 +290,7 @@ void Employee::ViewAndSolvingReCus() {
 	string mail;
 	string acctype;
 
-	float balance;
+	long balance;
 
 	int	duration;
 	int	period;
@@ -414,7 +414,7 @@ void Employee::searchCustomer() {
 	string mail;
 	string Acctype;
 
-	float balance;
+	long balance;
 
 	int	duration;
 	int	period;
@@ -487,35 +487,110 @@ void Employee::searchCustomer() {
 }
 void Employee::Resign() {
 	string reason;
+	cin.ignore(1);
 	cout << "Please describe the reasons for resignation \n ";
-	cin >> reason;
+	getline(cin, reason);
 	fstream f3;
-	vector<string> result;
+	vector<string> id;
+	vector<string> r;
 	f3.open("ResignList.txt", ios::in);
 	if (!f3.is_open())
 		cout << "Cannot open ResignList.txt\n";
 
 	while (f3.good())
 	{
-		string s;
-		getline(f3, s);
-		result.push_back(s);
-		if (f3.eof()) break;
+		string s1, s2;
+		getline(f3, s1);
+		getline(f3, s2);
+
+		if (f3.eof())
+			break;
+		id.push_back(s1);
+		r.push_back(s2);
 
 	}
-	result.push_back(_id);
-	result.push_back(reason);
+	id.push_back(this->_account.username());
+	r.push_back(reason);
 	fstream f4;
 	f4.open("ResignList.txt", ios::out);
 	if (!f4.is_open())
 		cout << "Cannot open ResignList.txt\n";
 	else {
-
-		for (int i = 0; i < result.size(); i++)
-			f4 << result[i] << endl;
+		for (int i = 0; i < id.size(); i++)
+		{
+			f4 << id[i] << endl;
+			f4 << r[i] << endl;
+			if (i != id.size() - 1)
+				f4 << endl;
+		}
 	}
 	f4.close();
+	string _id;
+	string name;
+	string DoB;
+	string address;
+	string phone;
+	string email;
+	string merit;
+	vector<Employee> temp;
+
+	fstream f;
+
+	f.open("Employee.txt", ios::in);
+
+	if (!f.is_open())
+	{
+		cout << "Cannot find Employee.txt.\n";
+	}
+
+	while (!f.eof())
+	{
+		getline(f, _id, '\n');
+		getline(f, name, '\n');
+		getline(f, DoB, '\n');
+		getline(f, address, '\n');
+		getline(f, phone, '\n');
+		getline(f, email, '\n');
+		getline(f, merit, '\n');
+		f.ignore(1, '\n');
+
+		Employee buffer(_id, name, DoB, address, phone, email, stoi(merit));
+		temp.push_back(buffer);
+	}
+	f.close();
+
+
+	f.open("Employee.txt", ios::out);
+
+	if (!f.is_open())
+	{
+		cout << "Save change failed.\n";
+	}
+	for (int i = 0; i < temp.size(); i++)
+	{
+		if (temp[i].getId() == _account.username())
+		{
+			temp.erase(temp.begin() + i);
+			break;
+		}
+	}
+	for (int i = 0; i < temp.size(); i++)
+	{
+		f << temp[i].getId() << endl;
+		f << temp[i].getname() << endl;
+		f << temp[i].getbirth() << endl;
+		f << temp[i].getaddress() << endl;
+		f << temp[i].getphone() << endl;
+		f << temp[i].getmail() << endl;
+		f << temp[i].getmerit() << endl;
+		if (i != temp.size() - 1)
+			f << endl;
+	}
+	f.close();
+
+	cout << "Saved successfully.\n";
 }
+
 void Employee::reportManager() {
 	string reason;
 	string id;
@@ -525,31 +600,36 @@ void Employee::reportManager() {
 	cout << "Please describe the reasons for resignation \n ";
 	getline(cin, reason);
 	fstream f3;
-	vector<string> result;
+	vector<string> _id;
+	vector<string> r;
 	f3.open("ReportList.txt", ios::in);
 	if (!f3.is_open())
 		cout << "Cannot open ReportList.txt\n";
-
+	string s1, s2;
 	while (f3.good())
 	{
-		string s;
-		getline(f3, s);
-		result.push_back(s);
-		if (f3.eof()) break;
-
+		getline(f3, s1);
+		getline(f3, s2);
+		if (f3.eof())
+			break;
+		_id.push_back(s1);
+		r.push_back(s2);
 	}
-	result.push_back(id);
-	result.push_back(reason);
-
+	_id.push_back(_account.username());
+	r.push_back(reason);
 	fstream f4;
 	f4.open("ReportList.txt", ios::out);
 	if (!f4.is_open())
 		cout << "Cannot open ReportList.txt\n";
 	else {
+		for (int i = 0; i < _id.size(); i++)
+		{
+			f4 << _id[i] << endl;
+			f4 << r[i] << endl;
 
-		for (int i = 0; i < result.size(); i++)
-			f4 << result[i] << endl;
-
+			if (i != _id.size() - 1)
+				f4 << endl;
+		}
 	}
 	f4.close();
 }
@@ -863,7 +943,7 @@ void Employee::viewInfoAllCustomer() {
 	string mail;
 	string Acctype;
 
-	float balance;
+	long balance;
 
 	int	duration;
 	int	period;
@@ -997,7 +1077,7 @@ void Employee::SolvingReManager() {
 	string mail;
 	string Acctype;
 
-	float	balance;
+	long balance;
 
 	int	duration;
 	int	period;
@@ -1152,6 +1232,7 @@ Employee::Employee(Account acc)
 			_phone = temp[i].getphone();
 			_mail = temp[i].getmail();
 			_merits = temp[i].getmerit();
+			break;
 		}
 	}
 }
