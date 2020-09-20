@@ -1109,10 +1109,10 @@ void ManagerMenu::SolvingReDirector() {
 	_requestList2.clear();
 	fstream f;
 
-	//f.open("DirectorRequestsList.txt", ios::out);
+	f.open("DirectorRequestsList.txt", ios::out);
 
 
-	//f.close();
+	f.close();
 
 	
 	fstream f3;
@@ -1136,19 +1136,7 @@ void ManagerMenu::SolvingReDirector() {
 
 	}
 	f3.close();
-	for (int p = 0; p < _ma.size(); p++)
-	{
-		cout << _ma[p]._id << endl;
-		cout << _ma[p]._name << endl;
-		cout << _ma[p]._birth << endl;
-		cout << _ma[p]._address << endl;
-		cout << _ma[p]._phone << endl;
-		cout << _ma[p]._mail << endl;
-		cout << _ma[p]._merits << endl;
 
-		cout << endl;
-
-	}
 	f6.close();
 	fstream f7;
 	f7.open("Manager.txt", ios::out);
