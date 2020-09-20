@@ -81,8 +81,8 @@ void DirectorMenu::showMenu()
 				cout << "7. View report/feedback.\n";
 				cout << "8. Search manager/employee/customer.\n";
 				cout << "9. View manager/employee/customer.\n";
-				cout << "10. Bankrupt.\n";
 				cout << "10. View trade history.\n";
+				cout << "11. Bankrupt.\n";
 				cout << "0. Exit.\n";
 				cout << "============================================\n";
 				cout << "-> Select mode: ";
@@ -135,12 +135,14 @@ void DirectorMenu::showMenu()
 					this->viewEmployee();
 					break;
 				case 10:
-					this->bankRupt();
 					this->viewTradeHistory();
+					break;
+				case 11:
+					this->bankRupt();
 					break;
 				default:
 				{
-					cout << "Please only enter number from 0 to 9!\n";
+					cout << "Please only enter number from 0 to 11!\n";
 					break;
 				}
 				}
@@ -1451,9 +1453,6 @@ OPTION:
 	return;
 }
 
-	return;
-}
-
 void DirectorMenu::bankRupt()
 {
 	bool choice;
@@ -1507,6 +1506,7 @@ void DirectorMenu::viewTradeHistory()
 		if (f.eof())
 			break;
 	}
+
 	cout << "===TRADE-HISTORY===" << endl;
 	for (int i = 0; i < temp.size(); i++)
 	{
@@ -1515,5 +1515,6 @@ void DirectorMenu::viewTradeHistory()
 		cout << temp[i].getType() << endl;
 		cout << temp[i].getMoney() << endl;
 	}
+
 	f.close();
 }
