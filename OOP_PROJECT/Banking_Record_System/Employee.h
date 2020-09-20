@@ -7,8 +7,9 @@
 #include <vector>
 #include <conio.h>
 #include "Customer.h"
-
+#include "Lib/Date.h"
 using namespace std;
+
 
 class Employee
 {
@@ -100,10 +101,16 @@ public:
 	void viewProfile();
 	void changePassword();
 	void showMenu();
+	void ViewAndSolvingReCus();
+	void searchCustomer();
+	void Resign();
+	void reportManager();
+	void IncreaseMerit();
+	void Promote();
+	void viewInfoAllCustomer();
+	void SolvingReManager();
+	void tradeHistory(string type,string name,float money);
 
-	
 };
 
 #endif
-
-

@@ -1,5 +1,7 @@
 #include"Manager.h"
-#include"AllRole.h"
+#include "AllRole.h"
+#include "Customer.h"
+
 ManagerMenu::ManagerMenu(Account acc)
 {
 	fstream f1;
@@ -27,7 +29,6 @@ ManagerMenu::ManagerMenu(Account acc)
 		Request temp(id, type, money, status);
 		this->_requestList1.push_back(temp);
 
-
 	}
 
 	f1.close();
@@ -38,7 +39,6 @@ ManagerMenu::ManagerMenu(Account acc)
 
 void ManagerMenu::showMenu()
 {
-
 	while (true)
 	{
 		system("cls");
@@ -229,7 +229,6 @@ void ManagerMenu::editRequest()
 
 	for (int i = 0; i < this->_requestList1.size(); i++)
 	{
-
 		f << this->_requestList1[i].getId() << endl;
 		f << this->_requestList1[i].getType() << endl;
 		f << this->_requestList1[i].getMoney() << endl;
@@ -254,12 +253,10 @@ void ManagerMenu::viewlistReDirector()
 	string type;
 	int money;
 	int status;
-
 	string	name;
 	string	address;
 	int	balance;
 	f1.open("DirectorRequestsList.txt", ios::in);
-
 
 	if (!f1.is_open())
 		cout << "Cannot open DirectorRequestsList.txt\n";
@@ -375,7 +372,6 @@ void ManagerMenu::viewlistReDirector()
 
 void ManagerMenu::viewcustomer()
 {
-
 	ifstream f1;
 
 	string id;
@@ -568,7 +564,6 @@ void ManagerMenu::FireEmployee()
 		count++;
 	}
 	f1.close();
-
 	string id;
 	string	name;
 	string date;
@@ -603,7 +598,6 @@ void ManagerMenu::FireEmployee()
 
 
 
-
 		f2 >> merits;
 
 
@@ -627,12 +621,10 @@ void ManagerMenu::FireEmployee()
 			cout << "address :" << e[i].getaddress() << endl;
 			cout << "phone :" << e[i].getphone() << endl;
 			cout << "mail:" << e[i].getmail() << endl;
-
 			cout << "merits :" << e[i].getmerit() << endl;
 			cout << endl;
 		}
 	}
-
 	cout << "Enter id you want to Delete :";
 	while (getchar() != '\n');
 	getline(cin, id);
@@ -775,15 +767,12 @@ void ManagerMenu::viewemployee()
 
 	for (int i = 0; i < e.size(); i++)
 	{
-
 		cout << "id :" << e[i].getId() << endl;
 		cout << "name :" << e[i].getname() << endl;
 		cout << "birthday :" << e[i].getbirth() << endl;
 		cout << "address :" << e[i].getaddress() << endl;
 		cout << "phone :" << e[i].getphone() << endl;
 		cout << "mail:" << e[i].getmail() << endl;
-
-
 		cout << "merit :" << e[i].getmerit() << endl;
 		cout << endl;
 	}

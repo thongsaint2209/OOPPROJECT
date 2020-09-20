@@ -7,39 +7,32 @@
 #include <vector>
 #include <conio.h>
 #include <sstream>
+#include "Lib/Date.h"
 using namespace std;
+
 
 class Customer
 {
 private:
-
 	string _id;
 	string	_name;
 	string _birth;
-
 	string	_address;
-
-
 	string _phone;
 	string _mail;
 	string _acctype;
 	int _balance;
 	int _duration;
 	int _period;
-
-
 	static float _TermRate;
 	static float _DemandRate;
-
 	int _option;
 	Account _account;
 	Support _s;
-
 	vector<Request> _requestList;
- vector<Account> account;
-
-
+ 	vector<Account> account;
     static  vector<Customer> a;
+	friend class Employee;
 public:
 	Customer() {};
 	Customer(Account acc) { this->_account = acc; }
@@ -123,21 +116,13 @@ public:
 		this->_duration = 0;
 		this->_period = 0;
 	}
-	 void newAccount();
-
+	void newAccount();
 	void showMenu();
-
     void Editprofile();
-
 	void deleteAccount();
-
     float ClacInrest();
-
-
 	int gettype();
-
 	static void withdraw(int money,string id1);
-	
 	static void deposit(int money, string id2);
 	void saveTradeHistory(string id, string type, int money);
 	void viewTradeHistory();
@@ -166,6 +151,16 @@ public:
 	string getId() { return _id; }
 	string getType() { return _type; }
 	float getMoney() { return _money; }
+	float ClacInrest();
+
+	void deposit(int money);
+
+	void withdraw(int money);
+
+	void tranfer(int money, Customer& cus);
+
+	//Time - deposit account(1),Demand - deposit account(2),payment acc(3)
+	int gettype();
 };
 
 #endif
