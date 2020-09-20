@@ -6,9 +6,9 @@
 #include <fstream>
 #include <vector>
 #include <conio.h>
+#include "Customer.h"
 
 using namespace std;
-#include "Customer.h"
 
 class Employee
 {
