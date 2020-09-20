@@ -109,7 +109,7 @@ public:
 	void Promote();
 	void viewInfoAllCustomer();
 	void SolvingReManager();
-	void tradeHistory(string type,string name,float money);
+	void tradeHistory(string type,string name, long money);
 
 };
 
