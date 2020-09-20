@@ -333,21 +333,24 @@ void Employee::ViewAndSolvingReCus() {
 	}
 	f2.close();
 
-	for (int j = 0; j < a.size(); j++) {
-		if (requestList[index].getId() == a[j].getId()) {
-			if (requestList[index].getType() == "Deposit") {
-				a[j]._balance += a[j].ClacInrest() + requestList[index].getMoney();
-				a[j]._duration = 0;
-				_c.saveTradeHistory(a[j].getId(), "Deposit",requestList[index].getMoney());
-				IncreaseMerit();
-			}
-			if (requestList[index].getType() == "Withdraw") {
-				a[j]._balance += a[j].ClacInrest();
-				if (a[j]._balance > requestList[index].getMoney()) {
-					a[j]._balance -= requestList[index].getMoney();
+	if (requestList[index].approvalStatus() == 1)
+	{
+		for (int j = 0; j < a.size(); j++) {
+			if (requestList[index].getId() == a[j].getId()) {
+				if (requestList[index].getType() == "Deposit") {
+					a[j]._balance += a[j].ClacInrest() + requestList[index].getMoney();
 					a[j]._duration = 0;
-					_c.saveTradeHistory(a[j].getId(), "Withdraw", requestList[index].getMoney());
+					_c.saveTradeHistory(a[j].getId(), "Deposit", requestList[index].getMoney());
 					IncreaseMerit();
+				}
+				if (requestList[index].getType() == "Withdraw") {
+					a[j]._balance += a[j].ClacInrest();
+					if (a[j]._balance > requestList[index].getMoney()) {
+						a[j]._balance -= requestList[index].getMoney();
+						a[j]._duration = 0;
+						_c.saveTradeHistory(a[j].getId(), "Withdraw", requestList[index].getMoney());
+						IncreaseMerit();
+					}
 				}
 			}
 		}
@@ -920,7 +923,7 @@ void Employee::viewInfoAllCustomer() {
 	
 }
 
-void Employee::tradeHistory(string type,string name,float money){
+void Employee::tradeHistory(string type,string name,long money){
 	fstream f4;
 	f4.open("TransactDate.txt", ios::out);
 	if (!f4.is_open())
@@ -1036,21 +1039,24 @@ void Employee::SolvingReManager() {
 
 	}
 	f2.close();
-	for (int j = 0; j < a.size(); j++) {
-		if (requestList[index].getId() == a[j].getId()) {
-			if (requestList[index].getType() == "Deposit") {
-				a[j]._balance += a[j].ClacInrest() + requestList[index].getMoney();
-				a[j]._duration = 0;
-				_c.saveTradeHistory(a[j].getId(), "Deposit", requestList[index].getMoney());
-				IncreaseMerit();
-			}
-			if (requestList[index].getType() == "Withdraw") {
-				a[j]._balance += a[j].ClacInrest();
-				if (a[j]._balance > requestList[index].getMoney()) {
-					a[j]._balance -= requestList[index].getMoney();
+	if (requestList[index].approvalStatus() == 1)
+	{
+		for (int j = 0; j < a.size(); j++) {
+			if (requestList[index].getId() == a[j].getId()) {
+				if (requestList[index].getType() == "Deposit") {
+					a[j]._balance += a[j].ClacInrest() + requestList[index].getMoney();
 					a[j]._duration = 0;
-					_c.saveTradeHistory(a[j].getId(), "Withdraw", requestList[index].getMoney());
+					_c.saveTradeHistory(a[j].getId(), "Deposit", requestList[index].getMoney());
 					IncreaseMerit();
+				}
+				if (requestList[index].getType() == "Withdraw") {
+					a[j]._balance += a[j].ClacInrest();
+					if (a[j]._balance > requestList[index].getMoney()) {
+						a[j]._balance -= requestList[index].getMoney();
+						a[j]._duration = 0;
+						_c.saveTradeHistory(a[j].getId(), "Withdraw", requestList[index].getMoney());
+						IncreaseMerit();
+					}
 				}
 			}
 		}
