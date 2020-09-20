@@ -626,8 +626,8 @@ void Customer::showMenu()
 
 //Time - deposit account(1), Demand Edeposit account(2), payment acc(3)
 int Customer::gettype() {
-	if (_acctype == "Time - deposit account") return 1;
-	if (_acctype == "Demand Edeposit account") return 2;
+	if (_acctype == "Time deposit account") return 1;
+	if (_acctype == "Demand deposit account") return 2;
 	if (_acctype == "Payment account") return 3;
 	return 0;
 }
