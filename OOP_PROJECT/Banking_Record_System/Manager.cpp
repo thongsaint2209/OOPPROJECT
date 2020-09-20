@@ -973,12 +973,11 @@ void ManagerMenu::SolvingReDirector() {
 
 		f6 >> merits;
 		
-		if (f6.eof())
-			break;
 		ManagerMenu temp1(id, name, date, address, phone, mail, merits);
 		_ma.push_back(temp1);
 		f6.ignore(1, '\n');
-
+		if (f6.eof())
+			break;
 
 	}
 	
@@ -1107,6 +1106,7 @@ void ManagerMenu::SolvingReDirector() {
 		}
 		
 	}
+	_requestList2.clear();
 	fstream f;
 
 	//f.open("DirectorRequestsList.txt", ios::out);
