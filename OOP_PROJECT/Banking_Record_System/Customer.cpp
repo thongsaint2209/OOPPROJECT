@@ -1,10 +1,10 @@
-﻿﻿//#include "Customer.h"
+﻿﻿#include "Customer.h"
 #include "Header.h"
 #include "Lib/Date.h"
 #include "Lib/Time.h"
 #include "AllRole.h"
 
-//vector<Customer> Customer::a;
+vector<Customer> Customer::a;
 
 float Customer::_TermRate = 0.07;
 float Customer::_DemandRate = 0.01;
