@@ -4,7 +4,7 @@ Quan Ly Mot
 15,phuong 17,quan 3,HCM 
 0123789459
 ql1@gmail.com 
-195
+15
 
 12127002
 Quan Ly Hai
@@ -21,4 +21,3 @@ Quan Ly Ba
 0907811232
 ql3@gmail.com 
 35
-
