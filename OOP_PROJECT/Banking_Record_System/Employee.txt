@@ -5,11 +5,3 @@ Nhan Vien Mot
 0123789459
 nv1@gmail.com
 95
-
-13127002
-Nhan Vien Hai
-01/22/2001
-87, phuong 8, quan 5,HCM 
-0123789459
-nv2@gmail.com
-20

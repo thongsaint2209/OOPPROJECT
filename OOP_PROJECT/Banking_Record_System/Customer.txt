@@ -5,7 +5,7 @@ Nguyen Thanh Tu
 0906123456
 nttu@gmail.com
 Payment account
-2000000
+12345678
 13
 12
 
@@ -52,3 +52,4 @@ Demand – deposit account
 2000000
 15
 0
+   
