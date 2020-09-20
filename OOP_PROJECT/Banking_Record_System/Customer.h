@@ -23,7 +23,7 @@ private:
 	string _phone;
 	string _mail;
 	string _acctype;
-	int _balance;
+	long _balance;
 	int _duration;
 	int _period;
 	static float _TermRate;
@@ -81,7 +81,7 @@ public:
 	{
 		return _acctype;
 	}
-	int getBalance()
+	long getBalance()
 	{
 		return _balance;
 	}

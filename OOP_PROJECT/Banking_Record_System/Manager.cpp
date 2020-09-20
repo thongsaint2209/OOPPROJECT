@@ -885,12 +885,12 @@ OPTION:
 	return;
 }
 
-/*void ManagerMenu::viewTradeHistory()
+void ManagerMenu::viewTradeHistory()
 {
 	string _time;
 	string _id;
 	string _type;
-	string _money;
+	long _money;
 
 
 
@@ -927,7 +927,7 @@ OPTION:
 	f.close();
 	_his.clear();
 }
-*/
+
 void ManagerMenu::SolvingReDirector() {
 	string id;
 	string id1;

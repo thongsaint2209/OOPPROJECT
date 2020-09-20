@@ -51,6 +51,7 @@ void Customer::newAccount()
 		}
 		if (k == account.size())
 			break;
+		cout << "ID have been existed"<<endl;
 	} while (true);
 
 	cout << "Enter your password : ";
