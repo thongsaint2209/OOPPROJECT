@@ -34,13 +34,13 @@ void Employee::showMenu()
 			{
 				system("cls");
 				cout << "\n==========EMPLOYEE'S-AUTHORITY-MENU==========\n";
-				cout << "1.View And Solving Customer's Requests.\n";
-				cout << "2.Search Customers .\n";
-				cout << "3.Resign .\n";
-				cout << "4.Report Manager .\n";
-				cout << "5.Promote .\n";
-				cout << "6.View Information of all Customers .\n";
-				cout << "7.Solving Manager's Requests .\n";
+				cout << "1. View And Solving Customer's Requests.\n";
+				cout << "2. Search Customers .\n";
+				cout << "3. Resign .\n";
+				cout << "4. Report Manager .\n";
+				cout << "5. Promote .\n";
+				cout << "6. View Information of all Customers .\n";
+				cout << "7. Solving Manager's Requests .\n";
 				cout << "9. Create new account \n";
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
