@@ -40,6 +40,8 @@ private:
 
 
     static  vector<Customer> a;
+	friend class Employee;
+	friend class ManagerMenu;
 public:
 	Customer() {};
 	Customer(Account acc) { this->_account = acc; }
@@ -139,11 +141,11 @@ public:
 	static void withdraw(int money,string id1);
 	
 	static void deposit(int money, string id2);
-	void saveTradeHistory(string id, string type, int money);
-	void viewTradeHistory();
+	//void saveTradeHistory(string id, string type, int money);
+	//void viewTradeHistory();
 };
 
-class TradeHistory
+/*class TradeHistory
 {
 private:
 	string _time;
@@ -166,7 +168,7 @@ public:
 	string getId() { return _id; }
 	string getType() { return _type; }
 	float getMoney() { return _money; }
-};
+};*/
 
 #endif
 

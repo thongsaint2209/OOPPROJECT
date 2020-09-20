@@ -100,7 +100,9 @@ void ManagerMenu::showMenu()
 					this->editRequest();
 					break;
 				case 3:
-					this->viewlistReDirector();
+					//this->viewlistReDirector();
+					this->SolvingReDirector();
+
 					break;
 				case 4:
 					this->viewcustomer();
@@ -118,7 +120,7 @@ void ManagerMenu::showMenu()
 					 this->FireEmployee();
 					break;
 				case 9:
-					this->viewTradeHistory();
+					//Employee::viewTradeHistory();
 					break;
 				default:
 				{
@@ -244,134 +246,11 @@ void ManagerMenu::editRequest()
 	//_requestList1.clear();
 }
 
-
-//chua xong
-void ManagerMenu::viewlistReDirector()
+void ManagerMenu::IncreaseMerit()
 {
-	ifstream f1;
-
-	string id;
-	string type;
-	int money;
-	int status;
-
-	string	name;
-	string	address;
-	int	balance;
-	f1.open("DirectorRequestsList.txt", ios::in);
-
-
-	if (!f1.is_open())
-		cout << "Cannot open DirectorRequestsList.txt\n";
-
-	int i = 0;
-	while (f1.good())
-	{
-		f1 >> id;
-
-		f1 >> type;
-
-		f1 >> money;
-
-		f1 >> status;
-
-		if (f1.eof())
-			break;
-		Request temp(id, type, money, status);
-
-		this->_requestList2.push_back(temp);
-
-
-		i++;
-	}
-	for (int m = 0; m < _requestList2.size(); m++)
-	{
-		if (this->_requestList2[m].approvalStatus() == 1 && this->_requestList2[m].approvalStatus() == status)
-		{
-			cout << "Request #" << m + 1 << endl;
-			cout << this->_requestList2[m].getId() << endl;
-			cout << this->_requestList2[m].getType() << endl;
-			cout << this->_requestList2[m].getMoney() << endl;
-			cout << this->_requestList2[m].approvalStatus() << endl;
-			cout << endl;
-		}
-	}
-	f1.close();
-
-	string id1;
-	cout << "Choose id you want to Processing  ";
-	while (getchar() != '\n');
-	getline(cin, id1);
-
-
-
-	int option;
-	cout << "Do you want to  Processing this customer?  " << endl;
-	cout << "0: Out" << endl;
-	cout << "1: Processing" << endl;
-	cin >> option;
-	switch (option)
-	{
-	case 0:
-	{
-		return;
-	}
-	case 1:
-	{
-		for (int j = 0; j < this->_requestList2.size(); j++)
-		{
-			if (this->_requestList2[j].getId() == id1)
-			{
-				if (this->_requestList2[j].getType() == "Withdraw")
-				{
-
-
-					Customer::withdraw(this->_requestList2[j].getMoney(), id1);
-
-					_c.saveTradeHistory(this->_requestList2[j].getId(), this->_requestList2[j].getType(), this->_requestList2[j].getMoney());
-					this->_requestList2.erase(_requestList2.begin() + j);
-
-				}
-				else if (this->_requestList2[j].getType() == "Deposit")
-				{
-					Customer::deposit(this->_requestList2[j].getMoney(), id1);
-					_c.saveTradeHistory(this->_requestList2[j].getId(), this->_requestList2[j].getType(), this->_requestList2[j].getMoney());
-					this->_requestList2.erase(_requestList2.begin() + j);
-				}
-			}
-			if (this->_requestList2[j].approvalStatus() != 1)
-			{
-				this->_requestList2.erase(_requestList2.begin() + j);
-			}
-
-		}
-		fstream f2;
-		f2.open("DirectorRequestsList.txt", ios::out);
-
-
-		if (!f2.is_open())
-			cout << "Cannot open DirectorRequestsList.txt\n";
-		for (int t = 0; t < this->_requestList2.size(); t++)
-		{
-			f2 << _requestList2[t].getId() << endl;
-			f2 << _requestList2[t].getType() << endl;
-			f2 << _requestList2[t].getMoney() << endl;
-			f2 << _requestList2[t].approvalStatus() << endl;
-			f2 << endl;
-		}
-		f2.close();
-	}
-
-	cout << "Processing succefully" << endl;
-	default:
-	{
-
-		break;
-	}
-	}
-	_requestList2.clear();
-
+	_merits += 10;
 }
+
 
 void ManagerMenu::viewcustomer()
 {
@@ -1006,7 +885,7 @@ OPTION:
 	return;
 }
 
-void ManagerMenu::viewTradeHistory()
+/*void ManagerMenu::viewTradeHistory()
 {
 	string _time;
 	string _id;
@@ -1047,4 +926,172 @@ void ManagerMenu::viewTradeHistory()
 	}
 	f.close();
 	_his.clear();
+}
+*/
+void ManagerMenu::SolvingReDirector() {
+	ifstream f1;
+
+	string id;
+	string type;
+	int money;
+	int status;
+
+	vector<Request> _requestList2;
+	f1.open("DirectorRequestsList.txt", ios::in);
+
+
+	if (!f1.is_open())
+		cout << "Cannot open DirectorRequestsList.txt\n";
+	
+	int count1 = 0;
+	while (f1.good())
+	{
+		f1 >> id;
+
+		f1 >> type;
+
+		f1 >> money;
+
+		f1 >> status;
+
+		if (f1.eof())
+			break;
+		Request temp(id, type, money, status);
+
+		_requestList2.push_back(temp);
+
+
+		count1++;
+	}
+
+	f1.close();
+
+	ifstream f2;
+
+	string id1;
+	string	name;
+	string date;
+	string	address;
+
+	string phone;
+	string mail;
+	string Acctype;
+
+	float	balance;
+
+	int	duration;
+	int	period;
+	f2.open("Customer.txt", ios::in);
+
+
+	if (!f2.is_open())
+		cout << "Cannot open Customer.txt\n";
+
+	
+	int count = 0;
+	while (f2.good())
+	{
+		f2 >> id1;
+		f2.ignore();
+		getline(f2, name);
+
+		getline(f2, date);
+
+
+		getline(f2, address);
+
+		getline(f2, phone);
+
+		getline(f2, mail);
+
+		getline(f2, Acctype);
+
+		f2 >> balance;
+		f2 >> duration;
+		f2 >> period;
+
+		if (f2.eof())
+			break;
+		Customer temp(id1, name, date, address, phone, mail, Acctype, balance, duration, period);
+		a.push_back(temp);
+		f2.ignore(1, '\n');
+		count++;
+
+	}
+	f2.close();
+	for (int i = 0; i < _requestList2.size(); i++) {
+		if (_requestList2[i].approvalStatus() == -1) {
+			_requestList2.erase(_requestList2.begin() + i);
+		}
+		else if (_requestList2[i].approvalStatus() == 1) {
+			for (int j = 0; j < a.size(); j++) 
+			{
+				if (_requestList2[i].getId() == a[j].getId()) {
+					if (_requestList2[i].getType() == "Deposit") {
+						a[j]._balance += a[j].ClacInrest() + _requestList2[i].getMoney();
+						a[i]._duration = 0;
+						Employee::tradeHistory("Deposit", a[j].getname(), _requestList2[i].getMoney());
+						//this->_requestList2[i].approvalStatus() == -1;
+					}
+					if (_requestList2[i].getType() == "Withdraw") {
+						a[j]._balance += a[j].ClacInrest();
+						if (a[j]._balance > _requestList2[i].getMoney()) {
+							a[j]._balance -= _requestList2[i].getMoney();
+							a[j]._duration = 0;
+							Employee::tradeHistory("Withdraw", a[j].getname(), _requestList2[i].getMoney());
+							//this->_requestList2[i].approvalStatus() == -1;
+						}
+
+
+					}
+					IncreaseMerit();
+					
+				}
+				//_requestList2.erase(_requestList2.begin() + i);
+			}
+		}
+	}
+	fstream f;
+
+	f.open("DirectorRequestsList.txt", ios::out);
+
+	/*if (!f.is_open())
+		cout << "Cannot open ManagerRequestList.txt\n";
+
+	for (int i = 0; i < requestList.size(); i++)
+	{
+
+		f << requestList[i].getId() << endl;
+		f << requestList[i].getType() << endl;
+		f << requestList[i].getMoney() << endl;
+		f << requestList[i].approvalStatus() << endl;
+		if (i != requestList.size() - 1)
+			f << endl;
+	}*/
+
+	f.close();
+	fstream f3;
+	f3.open("Customer.txt", ios::out);
+	if (!f3.is_open())
+		cout << "Cannot open Customer.txt\n";
+
+	for (int i = 0; i < a.size(); i++)
+	{
+		f3 << a[i]._id << endl;
+		f3 << a[i]._name << endl;
+		f3 << a[i]._birth << endl;
+		f3 << a[i]._address << endl;
+		f3 << a[i]._phone << endl;
+		f3 << a[i]._mail << endl;
+		f3 << a[i]._acctype << endl;
+		f3 << a[i]._balance << endl;
+		f3 << a[i]._duration << endl;
+		f3 << a[i]._period << endl;
+		f3 << endl;
+
+	}
+	f3.close();
+
+	cout << "Saved successfully\n";
+
 }

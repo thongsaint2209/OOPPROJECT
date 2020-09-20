@@ -36,7 +36,7 @@ public:
 	void searchEmployee();
 	void viewEmployee();
 	void viewFeedBack();
-	void viewTradeHistory();
+//	void viewTradeHistory();
 };
 
 #endif

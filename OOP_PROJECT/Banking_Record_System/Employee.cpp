@@ -1,6 +1,6 @@
 #include "Employee.h"
 #include "AllRole.h"
-
+//vector<Employee>Employee::e;
 void Employee::showMenu()
 {
 	while (true)
@@ -241,6 +241,7 @@ OPTION:
 
 
 
+
 void Employee::ViewAndSolvingReCus() {
 	ifstream f1;
 	string id;
@@ -342,15 +343,15 @@ void Employee::ViewAndSolvingReCus() {
 		for (int j = 0; j < a.size(); j++) {
 			if (requestList[i].getId() == a[j].getId()) {
 				if (requestList[i].getType() == "Deposit") {
-					a[j].getBalance() += a[j].ClacInrest() + requestList[i].getMoney();
-					a[j].getDuration()= 0;
+					a[j]._balance += a[j].ClacInrest() + requestList[i].getMoney();
+					a[j]._duration = 0;
 					tradeHistory("Deposit", a[j].getname(), requestList[i].getMoney());
 				}
 				if (requestList[i].getType() == "Withdraw") {
-					a[j].getBalance() += a[j].ClacInrest();
-					if (a[j].getBalance() > requestList[i].getMoney()) {
-						a[j].getBalance() -= requestList[i].getMoney();
-						a[j].getDuration() = 0;
+					a[j]._balance += a[j].ClacInrest();
+					if (a[j]._balance > requestList[i].getMoney()) {
+						a[j]._balance -= requestList[i].getMoney();
+						a[j]._duration = 0;
 						tradeHistory("Withdraw", a[j].getname(), requestList[i].getMoney());
 					}
 
@@ -390,16 +391,16 @@ void Employee::ViewAndSolvingReCus() {
 
 	for (int i = 0; i < a.size(); i++)
 	{
-		f3 << a[i].getId() << endl;
-		f3 << a[i].getname() << endl;
-		f3 << a[i].getbirth() << endl;
-		f3 << a[i].getaddress() << endl;
-		f3 << a[i].getphone() << endl;
-		f3 << a[i].getmail() << endl;
-		f3 << a[i].getacctype() << endl;
-		f3 << a[i].getBalance() << endl;
-		f3 << a[i].getDuration() << endl;
-		f3 << a[i].getPeriod() << endl;
+		f3 << a[i]._id << endl;
+		f3 << a[i]._name << endl;
+		f3 << a[i]._birth << endl;
+		f3 << a[i]._address << endl;
+		f3 << a[i]._phone << endl;
+		f3 << a[i]._mail << endl;
+		f3 << a[i]._acctype << endl;
+		f3 << a[i]._balance << endl;
+		f3 << a[i]._duration << endl;
+		f3 << a[i]._period << endl;
 		f3 << endl;
 
 	}
@@ -874,8 +875,8 @@ void Employee::tradeHistory(string type, string name, float money) {
 	if (!f4.is_open())
 		cout << "Cannot open TransactDate.txt\n";
 	else {
-		Date d;
-		f4 << d.toString() << endl << name << endl << type << endl << money << endl;
+		//Date d;
+		//f4 << d.toString() << endl << name << endl << type << endl << money << endl;
 
 	}
 	f4.close();
@@ -941,7 +942,7 @@ void Employee::SolvingReManager() {
 	if (!f2.is_open())
 		cout << "Cannot open Customer.txt\n";
 
-	
+	vector<Customer> a;
 	int count = 0;
 	while (f2.good())
 	{
@@ -981,15 +982,15 @@ void Employee::SolvingReManager() {
 			for (int j = 0; j < a.size(); j++) {
 				if (requestList[i].getId() == a[j].getId()) {
 					if (requestList[i].getType() == "Deposit") {
-						a[j].getBalance() += a[j].ClacInrest() + money;
-						a[i].getDuration()= 0;
+						a[j]._balance += a[j].ClacInrest() + money;
+						a[i]._duration = 0;
 						tradeHistory("Deposit", a[j].getname(), requestList[i].getMoney());
 					}
 					if (requestList[i].getType() == "Withdraw") {
-						a[j].getBalance() += a[j].ClacInrest();
-						if (a[j].getBalance() > money) {
-							a[j].getBalance() -= money;
-							a[j].getDuration() = 0;
+						a[j]._balance += a[j].ClacInrest();
+						if (a[j]._balance > money) {
+							a[j]._balance -= money;
+							a[j]._duration = 0;
 							tradeHistory("Withdraw", a[j].getname(), requestList[i].getMoney());
 						}
 
@@ -1027,16 +1028,16 @@ void Employee::SolvingReManager() {
 
 	for (int i = 0; i < a.size(); i++)
 	{
-		f3 << a[i].getId() << endl;
-		f3 << a[i].getname() << endl;
-		f3 << a[i].getbirth() << endl;
-		f3 << a[i].getaddress() << endl;
-		f3 << a[i].getphone() << endl;
-		f3 << a[i].getmail() << endl;
-		f3 << a[i].getacctype() << endl;
-		f3 << a[i].getBalance() << endl;
-		f3 << a[i].getDuration() << endl;
-		f3 << a[i].getDuration()<< endl;
+		f3 << a[i]._id << endl;
+		f3 << a[i]._name << endl;
+		f3 << a[i]._birth << endl;
+		f3 << a[i]._address << endl;
+		f3 << a[i]._phone << endl;
+		f3 << a[i]._mail << endl;
+		f3 << a[i]._acctype << endl;
+		f3 << a[i]._balance << endl;
+		f3 << a[i]._duration << endl;
+		f3 << a[i]._period << endl;
 		f3 << endl;
 
 	}
@@ -1092,6 +1093,9 @@ void Employee::SolvingReManager() {
 		}
 	}
 }*/
+
+
+
 
 
 

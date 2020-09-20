@@ -588,7 +588,7 @@ void Customer::showMenu()
 					this->deleteAccount();
 					break;
 				case 3:
-					this->viewTradeHistory();
+					//this->viewTradeHistory();
 					break;
 				case 5:
 					break;
@@ -943,7 +943,7 @@ void Customer::deposit(int money, string id2) {
 
 }
 
-void Customer::saveTradeHistory(string id, string type, int money)
+/*void Customer::saveTradeHistory(string id, string type, int money)
 {
 	string _time;
 	string _id;
@@ -1031,7 +1031,7 @@ void Customer::viewTradeHistory()
 	}
 	f.close();
 }
-
+*/
 void Customer::changePassword()
 {
 	while (getchar() != '\n');

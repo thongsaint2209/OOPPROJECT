@@ -20,7 +20,7 @@ private:
 	string	_address;
 	string _phone;
 	string _mail;
-	int _merits;
+	 int _merits;
 	float _TermRate;
 	float _DemandRate;
 	int _option;
@@ -29,8 +29,9 @@ private:
 	Customer _c;
 	vector<Request> _requestList;
 	vector<Account> account;
-	vector<Employee> e;
+vector<Employee> e;
 	vector<Customer> a;
+	friend class ManagerMenu;
 public:
 	Employee(Account acc) { this->_account = acc; }
 	Employee() {
@@ -105,11 +106,11 @@ public:
 	void searchCustomer();
 	void Resign();
 	void reportManager();
-	void IncreaseMerit();
+	 void IncreaseMerit();
 	void Promote();
 	void viewInfoAllCustomer();
 	void SolvingReManager();
-	void tradeHistory(string type, string name, float money);
+	static void tradeHistory(string type, string name, float money);
 
 };
 

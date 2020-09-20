@@ -18,7 +18,7 @@ protected:
 	string _acctype;
 	int _duration;
 	int _period;
-	
+	int _merits;
 	static float _TermRate;
 	static float _DemandRate;
 
@@ -27,9 +27,9 @@ protected:
 	Account _account;
 	Support _s;
 	vector<Request> _requestList1;
-	vector<Request> _requestList2;
+	
 	vector<Customer> a;
-	vector<TradeHistory> _his;
+	//vector<TradeHistory> _his;
 	vector<Account> account;
 	vector<Employee> e;
 
@@ -46,7 +46,7 @@ public:
 
 	void editRequest();
 
-	void viewlistReDirector();
+	//void viewlistReDirector();
 
 	void viewcustomer();
 
@@ -58,7 +58,11 @@ public:
 
 	void searchemployee();
 
-	void viewTradeHistory();
+	///void viewTradeHistory();
+
+	void SolvingReDirector();
+
+	void IncreaseMerit();
 };
 
 #endif

@@ -133,7 +133,7 @@ void DirectorMenu::showMenu()
 					this->viewEmployee();
 					break;
 				case 10:
-					this->viewTradeHistory();
+					//this->viewTradeHistory();
 					break;
 				default:
 				{
@@ -1446,7 +1446,7 @@ OPTION:
 	}
 	return;
 }
-
+/*
 void DirectorMenu::viewTradeHistory()
 {
 	string _time;
@@ -1482,3 +1482,6 @@ void DirectorMenu::viewTradeHistory()
 	}
 	f.close();
 }
+
+
+*/
