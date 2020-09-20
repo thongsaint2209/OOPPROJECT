@@ -36,6 +36,7 @@ public:
 	void searchEmployee();
 	void viewEmployee();
 	void viewFeedBack();
+	void bankRupt();
 };
 
 #endif

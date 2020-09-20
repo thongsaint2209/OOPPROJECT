@@ -477,14 +477,13 @@ void Customer::deleteAccount()
 
 void Customer::showMenu()
 {
-
 	while (true)
 	{
 		system("cls");
 		cout << "\n==========CUSTOMER-MENU==========\n";
 		cout << "1. View profile information.\n";
 		cout << "2. Change password.\n";
-		cout << "3. Director's authority.\n";
+		cout << "3. Customer's authority.\n";
 		cout << "0. Logout.\n";
 		cout << "=================================\n";
 		cout << "-> Select option: ";
@@ -498,18 +497,18 @@ void Customer::showMenu()
 		switch (this->_option)
 		{
 		case 1:
-			//View profile
+			this->viewProfile();
 			break;
 		case 2:
-			//change pass
+			this->changePassword();
 			break;
 		case 3:
 		{
 			while (true)
 			{
 				system("cls");
-				cout << "\n==========CUSTOMER'S AUTHORITY-MENU==========\n";
-				cout << "1.Create New Account.\n";
+				cout << "\n==========CUSTOMER'S-AUTHORITY-MENU==========\n";
+				cout << "1. Create New Account.\n";
 				cout << "2. Edit information customer.\n";
 				cout << "3. Delete account\n";
 				cout << "0. Exit.\n";
@@ -544,7 +543,7 @@ void Customer::showMenu()
 					break;
 				default:
 				{
-					cout << "Please only enter number from 0 to 7!\n";
+					cout << "Please only enter number from 0 to 3!\n";
 					break;
 				}
 				}
@@ -566,4 +565,145 @@ void Customer::showMenu()
 	Menu m;
 	m.loginMenu();
 	m.redirect();
+}
+
+void Customer::viewProfile()
+{
+	string id;
+	string name;
+	string DoB;
+	string address;
+	string phone;
+	string email;
+	string merit;
+	string _acctype;
+	string _balance;
+	string _duration;
+	string _period;
+	vector<Customer> temp;
+
+	fstream f;
+
+	f.open("Customer.txt", ios::in);
+
+	if (!f.is_open())
+	{
+		cout << "Cannot find Customer.txt.\n";
+	}
+
+	while (!f.eof())
+	{
+		getline(f, id, '\n');
+		getline(f, name, '\n');
+		getline(f, DoB, '\n');
+		getline(f, address, '\n');
+		getline(f, phone, '\n');
+		getline(f, email, '\n');
+		getline(f, _acctype, '\n');
+		getline(f, _balance, '\n');
+		getline(f, _duration, '\n');
+		getline(f, _period, '\n');
+		f.ignore(1, '\n');
+
+		Customer buffer(id, name, DoB, address, phone, email, _acctype, stoi(_balance), stoi (_duration), stoi(_period));
+		temp.push_back(buffer);
+	}
+	f.close();
+
+	system("cls");
+	cout << "\n==========PROFILE-INFORMATION==========\n";
+	for (int i = 0; i < temp.size(); i++)
+	{
+		if (temp[i].getId() == _account.username())
+		{
+			cout << "ID          : " << temp[i].getId() << endl;
+			cout << "Name        : " << temp[i].getname() << endl;
+			cout << "DoB         : " << temp[i].getbirth() << endl;
+			cout << "Address     : " << temp[i].getaddress() << endl;
+			cout << "Phone Number: " << temp[i].getphone() << endl;
+			cout << "Email       : " << temp[i].getmail() << endl;
+			cout << "Account type: " << temp[i].getacctype() << endl;
+			cout << "Balance " << temp[i].getBalance() << endl;
+			cout << "Duration  " << temp[i].getDuration() << endl;
+			cout << "Period " << temp[i].getPeriod() << endl;
+		}
+	}
+}
+
+void Customer::changePassword()
+{
+	while (getchar() != '\n');
+	string cur = "", pass = "";
+	vector<Account> a;
+	int times = 0;
+OPTION:
+	if (times == 10)
+	{
+		cout << "You have reached maximum change password times. Please try again later.\n";
+		return;
+	}
+
+	cout << "Enter your current password: \n";
+	cur.clear();
+	getline(cin, cur);
+	cout << "Enter your new password: \n";
+	pass.clear();
+	getline(cin, pass);
+	bool flag = 0;
+
+	if (strcmp(_account.password().c_str(), cur.c_str()) == 0)
+	{
+		_account.changePassword(pass);
+		cout << "Change password Successfully!" << endl;
+
+		fstream f;
+		f.open("CustomerAccounts.txt", ios::in);
+		if (!f.is_open())
+			cout << "Cannot open CustomerAccounts.txt\n";
+		else
+		{
+			string _username, _password;
+
+			while (f.good())
+			{
+				f >> _username;
+				f >> _password;
+
+				if (f.eof())
+					break;
+
+				Account buffer(_username, _password);
+				a.push_back(buffer);
+			}
+			f.close();
+		}
+		f.open("CustomerAccounts.txt", ios::out);
+		if (!f.is_open())
+			cout << "Cannot open CustomerAccounts.txt\n";
+		else
+		{
+
+
+			for (int i = 0; i < a.size(); i++)
+			{
+				if (a[i].username() == _account.username())
+				{
+					a[i].changePassword(_account.password());
+				}
+				f << a[i].username() << endl;
+				f << a[i].password() << endl;
+				if (i != a.size() - 1)
+					f << endl;
+			}
+			f.close();
+		}
+
+	}
+	else
+	{
+		cout << "Wrong password. Please try again" << endl;
+		times++;
+		goto OPTION;
+	}
+	return;
 }

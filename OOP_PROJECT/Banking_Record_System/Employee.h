@@ -25,11 +25,13 @@ private:
 	float _DemandRate;
 	int _option;
 	Account _account;
+	Support _s;
 
 	vector<Request> _requestList;
 	vector<Account> account;
 	vector<Employee> e;
 public:
+	Employee(Account acc) { this->_account = acc; }
 	Employee() {
 		this->_id = "";
 		this->_name = "";
@@ -94,7 +96,8 @@ public:
 		this->_mail = mail;
 		this->_merits = merits;
 	}
-
+	void viewProfile();
+	void changePassword();
 	void showMenu();
 };
 

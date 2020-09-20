@@ -79,6 +79,7 @@ void DirectorMenu::showMenu()
 				cout << "7. View report/feedback.\n";
 				cout << "8. Search manager/employee/customer.\n";
 				cout << "9. View manager/employee/customer.\n";
+				cout << "10. Bankrupt.\n";
 				cout << "0. Exit.\n";
 				cout << "============================================\n";
 				cout << "-> Select mode: ";
@@ -102,7 +103,9 @@ void DirectorMenu::showMenu()
 					cout << "============================================\n";
 					cout << "Total Money In Bank: ";
 					cout << this->getTotalMoney() << endl;
-					cout << "============================================\n";
+					_s.readMoney(stoi(this->getTotalMoney()));
+					cout << endl;
+					cout << "=================================\n";
 					break;
 				}
 				case 4:
@@ -128,9 +131,12 @@ void DirectorMenu::showMenu()
 				case 9:
 					this->viewEmployee();
 					break;
+				case 10:
+					this->bankRupt();
+					break;
 				default:
 				{
-					cout << "Please only enter number from 0 to 7!\n";
+					cout << "Please only enter number from 0 to 9!\n";
 					break;
 				}
 				}
@@ -1345,7 +1351,6 @@ void DirectorMenu::viewProfile()
 			cout << "Address     : " << temp[i].getaddress() << endl;
 			cout << "Phone Number: " << temp[i].getphone() << endl;
 			cout << "Email       : " << temp[i].getmail() << endl;
-			cout << "Merit       : " << temp[i].getmerit() << endl;
 		}
 	}
 	cout << "=======================================\n";
@@ -1353,91 +1358,118 @@ void DirectorMenu::viewProfile()
 
 void DirectorMenu::changePassword()
 {
-		while (getchar() != '\n');
-		string cur = "", cur2 = "", pass = "", pass2 = "";
-		vector<Account> a;
-		int times = 0;
-	OPTION:
-		if (times == 10)
-		{
-			cout << "You have reached maximum change password times. Please try again later.\n";
-			return;
-		}
-			
-		cout << "Enter your current password: \n";
-		cur.clear();
-		getline(cin, cur);
-		cout << "Enter your current lv2 password: \n";
-		cur2.clear();
-		getline(cin, cur2);
-		cout << "Enter your new password: \n";
-		pass.clear();
-		getline(cin, pass);
-		cout << "Enter your new lv2 password: \n";
-		pass2.clear();
-		getline(cin, pass2);
-		bool flag = 0;
+	
+	while (getchar() != '\n');
+	string cur = "", cur2 = "", pass = "", pass2 = "";
+	vector<Account> a;
+	int times = 0;
+OPTION:
+	if (times == 10)
+	{
+		cout << "You have reached maximum change password times. Please try again later.\n";
+		return;
+	}
 
-		if (strcmp(_account.password().c_str(), cur.c_str()) == 0 && strcmp(_account.passwordLv2().c_str(), cur2.c_str()) == 0)
-		{
-			_account.changePassword(pass);
-			_account.changePasswordLv2(pass2);
-			cout << "Change password Successfully!" << endl;
+	cout << "Enter your current password: \n";
+	cur.clear();
+	getline(cin, cur);
+	cout << "Enter your current lv2 password: \n";
+	cur2.clear();
+	getline(cin, cur2);
+	cout << "Enter your new password: \n";
+	pass.clear();
+	getline(cin, pass);
+	cout << "Enter your new lv2 password: \n";
+	pass2.clear();
+	getline(cin, pass2);
+	bool flag = 0;
 
-			fstream f;
-			f.open("DirectorAccounts.txt", ios::in);
-			if (!f.is_open())
-				cout << "Cannot open DirectorAccounts.txt\n";
-			else
-			{
-				string _username, _password, _passwordlv2;
-				
-				while (f.good())
-				{
-					f >> _username;
-					f >> _password;
-					f >> _passwordlv2;
+	if (strcmp(_account.password().c_str(), cur.c_str()) == 0 && strcmp(_account.passwordLv2().c_str(), cur2.c_str()) == 0)
+	{
+		_account.changePassword(pass);
+		_account.changePasswordLv2(pass2);
+		cout << "Change password Successfully!" << endl;
 
-					if (f.eof())
-						break;
-
-					Account buffer(_username, _password, _passwordlv2);
-					a.push_back(buffer);
-				}
-				f.close();
-			}
-			f.open("DirectorAccounts.txt", ios::out);
-			if (!f.is_open())
-				cout << "Cannot open DirectorAccounts.txt\n";
-			else
-			{
-				
-
-				for (int i = 0; i < a.size(); i++)
-				{
-					if (a[i].username() == _account.username())
-					{
-						a[i].changePassword(_account.password());
-						a[i].changePasswordLv2(_account.passwordLv2());
-					}
-					f << a[i].username() << endl;
-					f << a[i].password() << endl;
-					f << a[i].passwordLv2() << endl;
-					if (i != a.size() - 1)
-						f << endl;
-				}
-				f.close();
-			}
-			
-		}
+		fstream f;
+		f.open("DirectorAccounts.txt", ios::in);
+		if (!f.is_open())
+			cout << "Cannot open DirectorAccounts.txt\n";
 		else
 		{
-			cout << "Wrong password. Please try again" << endl;
-			times++;
-			goto OPTION;
+			string _username, _password, _passwordlv2;
+
+			while (f.good())
+			{
+				f >> _username;
+				f >> _password;
+				f >> _passwordlv2;
+
+				if (f.eof())
+					break;
+
+				Account buffer(_username, _password, _passwordlv2);
+				a.push_back(buffer);
+			}
+			f.close();
 		}
-	
+		f.open("DirectorAccounts.txt", ios::out);
+		if (!f.is_open())
+			cout << "Cannot open DirectorAccounts.txt\n";
+		else
+		{
+
+
+			for (int i = 0; i < a.size(); i++)
+			{
+				if (a[i].username() == _account.username())
+				{
+					a[i].changePassword(_account.password());
+					a[i].changePasswordLv2(_account.passwordLv2());
+				}
+				f << a[i].username() << endl;
+				f << a[i].password() << endl;
+				f << a[i].passwordLv2() << endl;
+				if (i != a.size() - 1)
+					f << endl;
+			}
+			f.close();
+		}
+
+	}
+	else
+	{
+		cout << "Wrong password. Please try again" << endl;
+		times++;
+		goto OPTION;
+	}
 
 	return;
+}
 
+void DirectorMenu::bankRupt()
+{
+	bool choice;
+	cout << "Do you really want to bankrupt your bank? (0 For NO, 1 For YES)" << endl;
+	cin >> choice;
+
+	if (choice == 1)
+	{
+		remove("Customer.txt");
+		remove("CustomerAccounts.txt");
+		remove("Director.txt");
+		remove("DirectorAccounts.txt");
+		remove("DirectorRequestsList.txt");
+		remove("Employee.txt");
+		remove("EmployeeAccounts.txt");
+		remove("Manager.txt");
+		remove("ManagerAccounts.txt");
+		remove("ManagerRequestList.txt");
+		remove("ReportList.txt");
+		remove("TransactDate.txt");
+
+		cout << "Congratulation! Your bank has bankrupted!!!\n";
+		exit(1);
+		return;
+	}
+	return;
 }

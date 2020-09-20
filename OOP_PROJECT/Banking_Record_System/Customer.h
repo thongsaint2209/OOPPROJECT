@@ -42,6 +42,8 @@ private:
 public:
 	Customer() {};
 	Customer(Account acc) { this->_account = acc; }
+	void viewProfile();
+	void changePassword();
 	void setId(string id)
 	{
 		_id = id;

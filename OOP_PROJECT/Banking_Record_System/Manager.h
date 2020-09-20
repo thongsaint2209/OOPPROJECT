@@ -35,6 +35,8 @@ protected:
 public:
 	ManagerMenu() {}
 	ManagerMenu(Account acc);
+	void viewProfile();
+	void changePassword();
 
 	void showMenu();
 

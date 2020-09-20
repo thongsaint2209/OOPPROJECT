@@ -14,7 +14,8 @@ void Menu::redirect()
 	}
 	if (this->_role == 3)
 	{
-		Employee e();
+		Employee e(this->_account = _account);
+		e.showMenu();
 	}
 	if (this->_role == 4)
 	{
