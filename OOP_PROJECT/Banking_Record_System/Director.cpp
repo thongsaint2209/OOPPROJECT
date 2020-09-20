@@ -1473,6 +1473,8 @@ void DirectorMenu::bankRupt()
 		remove("ManagerRequestList.txt");
 		remove("ReportList.txt");
 		remove("TransactDate.txt");
+		remove("ResignList.txt");
+		remove("EmployeeRequestList.txt");
 
 		cout << "Congratulation! Your bank has bankrupted!!!\n";
 		exit(1);
