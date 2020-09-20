@@ -80,7 +80,7 @@ void ManagerMenu::showMenu()
 				cout << "8. Fire employee\n";
 
 				
-				cout << "9. View Non-VIP trade history\n";
+				//cout << "9. View Non-VIP trade history\n";
 
 				cout << "0. Exit.\n";
 				cout << "=================================\n";

@@ -56,6 +56,7 @@ void Customer::newAccount()
 		}
 		if (k == account.size())
 			break;
+		cout << "id have been existed " << endl;
 	} while (true);
 
 	cout << "Enter your password : ";
@@ -352,7 +353,7 @@ void Customer::Editprofile()
 	}
 	default:
 	{
-		cout << "HUHU" << endl;
+		
 		break;
 	}
 	}
