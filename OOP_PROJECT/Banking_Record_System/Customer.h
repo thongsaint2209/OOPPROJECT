@@ -35,6 +35,7 @@ private:
  	vector<Account> account;
     static vector<Customer> a;
 	friend class Employee;
+	friend class ManagerMenu;
 public:
 	Customer() {}
 	Customer(Account acc) { this->_account = acc; }

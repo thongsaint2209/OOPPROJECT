@@ -1,10 +1,9 @@
-#ifndef _MANAGER_H_
-#define _MANAGER_H_
+#ifndef MANAGER_H
+#define MANAGER_H
 
 #include "Header.h"
 #include "Customer.h"
 #include "Employee.h"
-
 class ManagerMenu
 {
 protected:
@@ -19,16 +18,16 @@ protected:
 	string _acctype;
 	int _duration;
 	int _period;
-	
+	int _merits;
 	static float _TermRate;
 	static float _DemandRate;
 
-	int	_balance;
+	long _balance;
 	int _option;
 	Account _account;
 	Support _s;
 	vector<Request> _requestList1;
-	vector<Request> _requestList2;
+
 	vector<Customer> a;
 	vector<TradeHistory> _his;
 	vector<Account> account;
@@ -38,6 +37,17 @@ protected:
 public:
 	ManagerMenu() {}
 	ManagerMenu(Account acc);
+
+	ManagerMenu(string id, string name, string birth, string address, string phone, string mail, int merits)
+	{
+		this->_id = id;
+		this->_name = name;
+		this->_birth = birth;
+		this->_address = address;
+		this->_phone = phone;
+		this->_mail = mail;
+		this->_merits = merits;
+	}
 	void viewProfile();
 	void changePassword();
 
@@ -46,8 +56,6 @@ public:
 	void viewRequest();
 
 	void editRequest();
-
-	void viewlistReDirector();
 
 	void viewcustomer();
 
@@ -60,6 +68,10 @@ public:
 	void searchemployee();
 
 	void viewTradeHistory();
+
+	void SolvingReDirector();
+
+	void IncreaseMerit();
 };
 
 #endif
