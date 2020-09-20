@@ -1111,10 +1111,10 @@ void ManagerMenu::SolvingReDirector() {
 	_requestList2.clear();
 	fstream f;
 
-	//f.open("DirectorRequestsList.txt", ios::out);
+	f.open("DirectorRequestsList.txt", ios::out);
 
 
-	//f.close();
+	f.close();
 
 	
 	fstream f3;
