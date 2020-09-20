@@ -242,11 +242,11 @@ void Employee::ViewAndSolvingReCus() {
 	int status;
 
 	
-	f1.open("EmployeeRequestsList.txt", ios::in);
+	f1.open("EmployeeRequestList.txt", ios::in);
 
 
 	if (!f1.is_open())
-		cout << "Cannot open EmployeeRequestsList.txt\n";
+		cout << "Cannot open EmployeeRequestList.txt\n";
 	vector<Request> requestList;
 	int count1 = 0;
 	while (f1.good())
@@ -265,15 +265,20 @@ void Employee::ViewAndSolvingReCus() {
 
 		requestList.push_back(temp);
 
-		
 		count1++;
 	}
 
 	f1.close();
 	for (int i = 0;i < requestList.size();i++) {
-		cout << requestList[i].getId() << " " << requestList[i].getType() << " " << requestList[i].getMoney() << endl;
+		cout <<"#" << i + 1 << endl << requestList[i].getId() << endl << requestList[i].getType() << endl << requestList[i].getMoney() << endl 
+			 << "Status: " << requestList[i].approvalStatus() << endl << endl;
 	}
-
+	int index;
+	cout << "Enter number of request you want to process: " << endl;
+	cin >> index;
+	if (index <= 0 || index > requestList.size())
+		return;
+	index--;
 	ifstream f2;
 
 	string id1;
@@ -328,77 +333,69 @@ void Employee::ViewAndSolvingReCus() {
 	}
 	f2.close();
 
-	for (int i = 0;i < a.size();i++) {
-		cout << a[i].getId()<<" "  << a[i].getBalance()<<" " << a[i].getbirth()<<endl;
-	}
-	for (int i = 0;i < requestList.size(); i++) {
-		for (int j = 0;j < a.size();j++) {
-			if (requestList[i].getId() == a[j].getId()) {
-				if (requestList[i].getType() == "Deposit") {
-					a[j]._balance += a[j].ClacInrest() + requestList[i].getMoney();
-					a[j]._duration =0 ;
-					tradeHistory("Deposit", a[j].getname(), requestList[i].getMoney());
-				}
-				if (requestList[i].getType() == "Withdraw") {
-					a[j]._balance += a[j].ClacInrest();
-					if (a[j]._balance > requestList[i].getMoney()) {
-						a[j]._balance -= requestList[i].getMoney();
-						a[j]._duration = 0;
-						tradeHistory("Withdraw", a[j].getname(), requestList[i].getMoney());
-					}
-					
-
-				}
+	for (int j = 0; j < a.size(); j++) {
+		if (requestList[index].getId() == a[j].getId()) {
+			if (requestList[index].getType() == "Deposit") {
+				a[j]._balance += a[j].ClacInrest() + requestList[index].getMoney();
+				a[j]._duration = 0;
+				_c.saveTradeHistory(a[j].getId(), "Deposit",requestList[index].getMoney());
 				IncreaseMerit();
-				
+			}
+			if (requestList[index].getType() == "Withdraw") {
+				a[j]._balance += a[j].ClacInrest();
+				if (a[j]._balance > requestList[index].getMoney()) {
+					a[j]._balance -= requestList[index].getMoney();
+					a[j]._duration = 0;
+					_c.saveTradeHistory(a[j].getId(), "Withdraw", requestList[index].getMoney());
+					IncreaseMerit();
+				}
 			}
 		}
 	}
-		
+	requestList.erase(requestList.begin() + index);
 
-		ofstream f;
+	ofstream f;
+	f.open("EmployeeRequestList.txt", ios::out);
 
-		f.open("EmployeeRequestList.txt", ios::out);
+	if (!f.is_open())
+		cout << "Cannot open EmployeeRequestList.txt\n";
 
-		if (!f.is_open())
-			cout << "Cannot open EmployeeRequestList.txt\n";
+	for (int i = 0; i < requestList.size(); i++)
+	{
 
-		/*for (int i = 0; i < requestList.size(); i++)
-		{
+		f << requestList[i].getId() << endl;
+		f << requestList[i].getType() << endl;
+		f << requestList[i].getMoney() << endl;
+		f << requestList[i].approvalStatus() << endl;
+		if (i != requestList.size() - 1)
+			f << endl;
+	}
 
-			f << requestList[i].getId() << endl;
-			f << requestList[i].getType() << endl;
-			f << requestList[i].getMoney() << endl;
-			f << requestList[i].approvalStatus() << endl;
-			if (i != requestList.size() - 1)
-				f << endl;
-		}
+	f.close();
 
-		f.close();
-		*/
-		fstream f3;
-		f3.open("Customer.txt", ios::out);
-		if (!f3.is_open())
-			cout << "Cannot open Customer.txt\n";
+	fstream f3;
+	f3.open("Customer.txt", ios::out);
+	if (!f3.is_open())
+		cout << "Cannot open Customer.txt\n";
 
-		for (int i = 0; i < a.size(); i++)
-		{
-			f3 << a[i]._id << endl;
-			f3 << a[i]._name << endl;
-			f3 << a[i]._birth << endl;
-			f3 << a[i]._address << endl;
-			f3 << a[i]._phone << endl;
-			f3 << a[i]._mail << endl;
-			f3 << a[i]._acctype << endl;
-			f3 << a[i]._balance << endl;
-			f3 << a[i]._duration << endl;
-			f3 << a[i]._period << endl;
-			f3 << endl;
+	for (int i = 0; i < a.size(); i++)
+	{
+		f3 << a[i]._id << endl;
+		f3 << a[i]._name << endl;
+		f3 << a[i]._birth << endl;
+		f3 << a[i]._address << endl;
+		f3 << a[i]._phone << endl;
+		f3 << a[i]._mail << endl;
+		f3 << a[i]._acctype << endl;
+		f3 << a[i]._balance << endl;
+		f3 << a[i]._duration << endl;
+		f3 << a[i]._period << endl;
+		f3 << endl;
 
-		}
-		f3.close();
+	}
+	f3.close();
 
-		cout << "Saved successfully\n";
+	cout << "Saved successfully\n";
 	
 
 }
@@ -555,9 +552,64 @@ void Employee::reportManager() {
 }
 void Employee::IncreaseMerit() {
 	_merits += 10;
+	fstream f;
+	string id;
+	string name;
+	string birth;
+	string address;
+	string phone;
+	string mail;
+	string merit;
+	vector<Employee> temp;
+
+	f.open("Employee.txt", ios::in);
+	if (!f.is_open())
+		cout << "Saved failed\n";
+	while (f.good())
+	{
+		getline(f, id);
+		getline(f, name);
+		getline(f, birth);
+		getline(f, address);
+		getline(f, phone);
+		getline(f, mail);
+		getline(f, merit);
+
+		if (f.eof())
+			break;
+
+		Employee buffer(id, name, birth, address, phone, mail, stoi(merit));
+		temp.push_back(buffer);
+		f.ignore(1, '\n');
+	}
+	f.close();
+
+	for (int i = 0; i < temp.size(); i++)
+	{
+		if (temp[i].getId() == this->_id)
+		{
+			temp[i].setMerit(_merits);
+		}
+	}
+	f.open("Employee.txt", ios::out);
+	for (int i = 0; i < temp.size(); i++)
+	{
+		f << temp[i]._id << endl;
+		f << temp[i]._name << endl;
+		f << temp[i]._birth << endl;
+		f << temp[i]._address << endl;
+		f << temp[i]._phone << endl;
+		f << temp[i]._mail << endl;
+		f << temp[i]._merits << endl;
+
+		if (i != temp.size() - 1)
+			f << endl;
+	}
+	f.close();
+
 }
 void Employee::Promote() {
-	vector<Account> account;
+	vector<Account> e_account;
 	vector<Employee> e;
 	string id;
 	string	name;
@@ -628,7 +680,7 @@ void Employee::Promote() {
 		if (f1.eof())
 			break;
 		Account temp(username, password);
-		account.push_back(temp);
+		e_account.push_back(temp);
 
 		count++;
 	}
@@ -678,7 +730,7 @@ void Employee::Promote() {
 
 	if (!f1.is_open())
 		cout << "Cannot open ManagerAccounts.txt\n";
-	vector<Account> acc;
+	vector<Account> m_acc;
 	
 	int count1 = 0;
 	while (f1.good())
@@ -692,21 +744,27 @@ void Employee::Promote() {
 		if (f1.eof())
 			break;
 		Account temp(username, password);
-		acc.push_back(temp);
+		m_acc.push_back(temp);
 
 		count1++;
 	}
 	f1.close();
 
 	for (int i = 0; i < e.size(); i++) {
-		if (e[i].getmerit() == 100){
-			acc.push_back(account[i]);
+		if (e[i].getmerit() == 100) {
+			m_acc.push_back(e_account[i]);
 			Employee temp(e[i].getId(), e[i].getname(), e[i].getbirth(), e[i].getaddress(), e[i].getphone(), e[i].getmail(), e[i].getmerit());
-			
+
 			m.push_back(temp);
 			e.erase(e.begin() + i);
-			account.erase(account.begin() + i);
+			e_account.erase(e_account.begin() + i);
 		}
+		else
+		{
+			cout << "You don't have enough merit to promote yourself!\n";
+			return;
+		}
+			
 	}
 
 	fstream f4;
@@ -757,12 +815,12 @@ void Employee::Promote() {
 	if (!f3.is_open())
 		cout << "EmployeeAccounts.txt\n";
 
-	for (int j = 0; j < account.size(); j++)
+	for (int j = 0; j < e_account.size(); j++)
 	{
 
-		f3 << account[j].username() << endl;
+		f3 << e_account[j].username() << endl;
 
-		f3 << account[j].password() << endl;
+		f3 << e_account[j].password() << endl;
 
 
 		f3 << endl;
@@ -775,19 +833,19 @@ void Employee::Promote() {
 	if (!f3.is_open())
 		cout << "ManagerAccounts.txt\n";
 
-	for (int j = 0; j <acc.size(); j++)
+	for (int j = 0; j <m_acc.size(); j++)
 	{
 
-		f3 << acc[j].username() << endl;
+		f3 << m_acc[j].username() << endl;
 
-		f3 << acc[j].password() << endl;
+		f3 << m_acc[j].password() << endl;
 
 
 		f3 << endl;
 
 	}
 	f3.close();
-	account.clear();
+	e_account.clear();
 	e.clear();
 }
 void Employee::viewInfoAllCustomer() {
@@ -908,12 +966,23 @@ void Employee::SolvingReManager() {
 
 		requestList.push_back(temp);
 
-
 		count1++;
 	}
-
 	f1.close();
-
+	for (int i = 0; i < requestList.size(); i++)
+	{
+		cout << "#" << i + 1 << endl;
+		cout << requestList[i].getId() << endl;
+		cout << requestList[i].getType() << endl;
+		cout << requestList[i].getMoney() << endl;
+		cout << "Status: " << requestList[i].approvalStatus() << endl << endl;
+	}
+	int index;
+	cout << "Enter number to choose request to process: " << endl;
+	cin >> index;
+	if (index <= 0 || index > requestList.size())
+		return;
+	index--;
 	ifstream f2;
 
 	string id1;
@@ -967,79 +1036,70 @@ void Employee::SolvingReManager() {
 
 	}
 	f2.close();
-	for (int i = 0;i < requestList.size();i++) {
-		if (requestList[i].approvalStatus() == -1) {
-			requestList.erase(requestList.begin() + i);
-		}
-		else if (requestList[i].approvalStatus() == 1) {
-			for (int j = 0;j < a.size();j++) {
-				if (requestList[i].getId() == a[j].getId()) {
-					if (requestList[i].getType() == "Deposit") {
-						a[j]._balance += a[j].ClacInrest() + money;
-						a[i]._duration = 0;
-						tradeHistory("Deposit", a[j].getname(), requestList[i].getMoney());
-					}
-					if (requestList[i].getType() == "Withdraw") {
-						a[j]._balance += a[j].ClacInrest();
-						if (a[j]._balance > money) {
-							a[j]._balance -= money;
-							a[j]._duration = 0;
-							tradeHistory("Withdraw", a[j].getname(), requestList[i].getMoney());
-						}
-						
-
-					}
+	for (int j = 0; j < a.size(); j++) {
+		if (requestList[index].getId() == a[j].getId()) {
+			if (requestList[index].getType() == "Deposit") {
+				a[j]._balance += a[j].ClacInrest() + requestList[index].getMoney();
+				a[j]._duration = 0;
+				_c.saveTradeHistory(a[j].getId(), "Deposit", requestList[index].getMoney());
+				IncreaseMerit();
+			}
+			if (requestList[index].getType() == "Withdraw") {
+				a[j]._balance += a[j].ClacInrest();
+				if (a[j]._balance > requestList[index].getMoney()) {
+					a[j]._balance -= requestList[index].getMoney();
+					a[j]._duration = 0;
+					_c.saveTradeHistory(a[j].getId(), "Withdraw", requestList[index].getMoney());
 					IncreaseMerit();
-					requestList.erase(requestList.begin() + i);
 				}
 			}
 		}
 	}
-		fstream f;
+	requestList.erase(requestList.begin() + index);
+	
+	fstream f;
 
-		f.open("ManagerRequestList.txt", ios::out);
+	f.open("ManagerRequestList.txt", ios::out);
 
-		if (!f.is_open())
-			cout << "Cannot open ManagerRequestList.txt\n";
+	if (!f.is_open())
+		cout << "Cannot open ManagerRequestList.txt\n";
 
-		for (int i = 0; i < requestList.size(); i++)
-		{
+	for (int i = 0; i < requestList.size(); i++)
+	{
 
-			f << requestList[i].getId() << endl;
-			f << requestList[i].getType() << endl;
-			f << requestList[i].getMoney() << endl;
-			f << requestList[i].approvalStatus() << endl;
-			if (i != requestList.size() - 1)
-				f << endl;
-		}
+		f << requestList[i].getId() << endl;
+		f << requestList[i].getType() << endl;
+		f << requestList[i].getMoney() << endl;
+		f << requestList[i].approvalStatus() << endl;
+		if (i != requestList.size() - 1)
+			f << endl;
+	}
 
-		f.close();
-		fstream f3;
-		f3.open("Customer.txt", ios::out);
-		if (!f3.is_open())
-			cout << "Cannot open Customer.txt\n";
+	f.close();
+	fstream f3;
+	f3.open("Customer.txt", ios::out);
+	if (!f3.is_open())
+		cout << "Cannot open Customer.txt\n";
 
-		for (int i = 0; i < a.size(); i++)
-		{
-			f3 << a[i]._id << endl;
-			f3 << a[i]._name << endl;
-			f3 << a[i]._birth << endl;
-			f3 << a[i]._address << endl;
-			f3 << a[i]._phone << endl;
-			f3 << a[i]._mail << endl;
-			f3 << a[i]._acctype << endl;
-			f3 << a[i]._balance << endl;
-			f3 << a[i]._duration << endl;
-			f3 << a[i]._period << endl;
-			f3 << endl;
+	for (int i = 0; i < a.size(); i++)
+	{
+		f3 << a[i]._id << endl;
+		f3 << a[i]._name << endl;
+		f3 << a[i]._birth << endl;
+		f3 << a[i]._address << endl;
+		f3 << a[i]._phone << endl;
+		f3 << a[i]._mail << endl;
+		f3 << a[i]._acctype << endl;
+		f3 << a[i]._balance << endl;
+		f3 << a[i]._duration << endl;
+		f3 << a[i]._period << endl;
+		f3 << endl;
 
-		}
-		f3.close();
+	}
+	f3.close();
 
-		cout << "Saved successfully\n";
-		
+	cout << "Saved successfully\n";
 }
-
 Employee::Employee(Account acc)
 {
 	this->_account = acc;
@@ -1077,7 +1137,7 @@ Employee::Employee(Account acc)
 
 	for (int i = 0; i < temp.size(); i++)
 	{
-		if (temp[i].getname() == _account.username())
+		if (temp[i].getId() == _account.username())
 		{
 			_id = temp[i].getId();
 			_name = temp[i].getname();

@@ -856,8 +856,9 @@ void Customer::saveTradeHistory(string id, string type, int money)
 		getline(f, _type);
 		getline(f, _money);
 
-
-		TradeHistory buffer(_time, _id, _type, stof(_money));
+		if (f.eof())
+			break;
+		TradeHistory buffer(_time, _id, _type, stoi(_money));
 		temp.push_back(buffer);
 		f.ignore(1, '\n');
 
