@@ -37,7 +37,7 @@ Nguyen Thi Be Ba
 357 Ly Thuong Kiet Tien Giang
 0902664578
 ntbb@gmail.com
-Time-deposit account
+Time - deposit account
 6000000
 24
 24
@@ -48,8 +48,19 @@ Nguyen Thanh Tinh
 123 Tran Dan Ho Chi Minh
 0906123456
 nttu@gmail.com
-Demand – deposit account
+Demand - deposit account
 2000000
 15
 0
-   
+
+19127011
+Nguyen Van A
+1/1/2020
+123 street
+0908123456
+nva@gmail.com
+Time - deposit account
+0
+0
+0
+

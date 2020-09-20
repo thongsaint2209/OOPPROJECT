@@ -41,7 +41,7 @@ void Employee::showMenu()
 				cout << "5. Promote .\n";
 				cout << "6. View Information of all Customers .\n";
 				cout << "7. Solving Manager's Requests .\n";
-				cout << "9. Create new account \n";
+				cout << "8. Create new account \n";
 				cout << "0. Exit.\n";
 				cout << "=================================\n";
 				cout << "-> Select option: ";
@@ -66,19 +66,15 @@ void Employee::showMenu()
 					this->reportManager();
 					break;
 				case 5:
-					this->IncreaseMerit();
-					break;
-				case 6:
 					this->Promote();
 					break;
-				case 7:
+				case 6:
 					viewInfoAllCustomer();
 					break;
-				case 8:
+				case 7:
 					SolvingReManager();
 					break;
-				case 9:
-				
+				case 8:
 					_c.newAccount();
 					break;
 				default:
@@ -523,6 +519,7 @@ void Employee::Resign() {
 void Employee::reportManager() {
 	string reason;
 	string id;
+	cin.ignore(1, '\n');
 	cout << "Please submit the id who wants to report \n ";
 	getline(cin, id);
 	cout << "Please describe the reasons for resignation \n ";
