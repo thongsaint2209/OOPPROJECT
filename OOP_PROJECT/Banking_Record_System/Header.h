@@ -14,7 +14,7 @@ class Request
 private:
 	string _id;
 	string _type;
-	int _money;
+	long _money;
 	/*
 	Status:
 		-1: Denied
@@ -24,11 +24,11 @@ private:
 	int _approvalStatus;
 public:
 	Request();
-	Request(const string& id, const string& type, int money, int status);
+	Request(const string& id, const string& type, long money, int status);
 //	string viewRequest();
 	string getId();
 	string getType();
-	int getMoney();
+	long getMoney();
 	void approveRequest();
 	void denyRequest();
 	int approvalStatus();
@@ -103,7 +103,7 @@ class Support
 {
 public:
 	void checkValid(int _mode);
-	string readNumber(int number);
-	void readMoney(int number);
+	string readNumber(long number);
+	void readMoney(long number);
 };
 #endif

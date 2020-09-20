@@ -939,7 +939,7 @@ void Employee::SolvingReManager() {
 
 	string id;
 	string type;
-	int money;
+	long money;
 	int status;
 
 

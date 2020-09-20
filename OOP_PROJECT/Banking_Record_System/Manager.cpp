@@ -11,7 +11,7 @@ ManagerMenu::ManagerMenu(Account acc)
 		cout << "Cannot open ManagerRequestsList.txt\n";
 	string id;
 	string type;
-	int money;
+	long money;
 	int status;
 	while (f1.good())
 	{
@@ -250,11 +250,11 @@ void ManagerMenu::viewlistReDirector()
 
 	string id;
 	string type;
-	int money;
+	long money;
 	int status;
 	string	name;
 	string	address;
-	int	balance;
+	long balance;
 	f1.open("DirectorRequestsList.txt", ios::in);
 
 	if (!f1.is_open())
@@ -382,7 +382,7 @@ void ManagerMenu::viewcustomer()
 	string mail;
 	string Acctype;
 
-	int	balance;
+	long balance;
 
 	int	duration;
 	int	period;
@@ -456,7 +456,7 @@ void ManagerMenu::searchcustomer()
 	string mail;
 	string Acctype;
 
-	int	balance;
+	long balance;
 
 	int	duration;
 	int	period;

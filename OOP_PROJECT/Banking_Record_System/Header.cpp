@@ -138,7 +138,7 @@ Request::Request()
 	this->_approvalStatus = 0;
 }
 
-Request::Request(const string& id, const string& type, int money, int status)
+Request::Request(const string& id, const string& type, long money, int status)
 {
 	this->_id = id;
 	this->_type = type;
@@ -160,7 +160,7 @@ string Request::getType()
 	return this->_type;
 }
 
-int Request::getMoney()
+long Request::getMoney()
 {
 	return this->_money;
 }
@@ -207,7 +207,7 @@ vector<string> ones{ "","one", "two", "three", "four", "five", "six", "seven", "
 vector<string> teens{ "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen","sixteen", "seventeen", "eighteen", "nineteen" };
 vector<string> tens{ "", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety" };
 
-string Support::readNumber(int number) {
+string Support::readNumber(long number) {
 	if (number < 10) 
 		return ones[number];
 	else if (number < 20) 
@@ -225,7 +225,7 @@ string Support::readNumber(int number) {
 	return "error";
 }
 
-void Support::readMoney(int number)
+void Support::readMoney(long number)
 {
 	string s = readNumber(number);
 	s += " VND";

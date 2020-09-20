@@ -17,7 +17,7 @@ private:
 	string _acctype;
 	static float _TermRate;
 	static float _DemandRate;
-	int	_balance;
+	long _balance;
 	int _mode;
 	Account _account;
 	Support _s;

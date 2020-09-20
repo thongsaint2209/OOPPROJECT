@@ -15,7 +15,7 @@ DirectorMenu::DirectorMenu(Account acc)
 
 	string id;
 	string type;
-	int money;
+	long money;
 	int status;
 	while (f.good())
 	{
@@ -106,7 +106,7 @@ void DirectorMenu::showMenu()
 					cout << "============================================\n";
 					cout << "Total Money In Bank: ";
 					cout << this->getTotalMoney() << endl;
-					_s.readMoney(stoi(this->getTotalMoney()));
+					_s.readMoney(stof(this->getTotalMoney()));
 					cout << endl;
 					cout << "============================================\n";
 					break;
@@ -303,18 +303,18 @@ string DirectorMenu::getTotalMoney()
 		if (f.eof())
 			break;
 
-		Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+		Customer temp1(id, name, date, address, phone, mail, Acctype, stol(balance), stoi(duration), stoi(period));
 		temp.push_back(temp1);
 		f.ignore(1, '\n');
 	}
 	f.close();
 
 	//calc total money
-	float sum = 0;
+	long sum = 0;
 	for (int i = 0; i < temp.size(); i++)
 		sum += temp[i].getBalance();
 
-	return to_string((int)sum);
+	return to_string((long)sum);
 }
 
 int DirectorMenu::getTotalCustomer()
@@ -356,7 +356,7 @@ int DirectorMenu::getTotalCustomer()
 		if (f.eof())
 			break;
 
-		Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+		Customer temp1(id, name, date, address, phone, mail, Acctype, stol(balance), stoi(duration), stoi(period));
 		temp.push_back(temp1);
 		f.ignore(1, '\n');
 	}
@@ -404,7 +404,7 @@ void DirectorMenu::viewVIPCustomer()
 		if (f.eof())
 			break;
 
-		Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+		Customer temp1(id, name, date, address, phone, mail, Acctype, stol(balance), stoi(duration), stoi(period));
 		temp.push_back(temp1);
 		f.ignore(1, '\n');
 	}
@@ -624,7 +624,7 @@ void DirectorMenu::searchEmployee()
 				if (f.eof())
 					break;
 
-				Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+				Customer temp1(id, name, date, address, phone, mail, Acctype, stol(balance), stoi(duration), stoi(period));
 				temp.push_back(temp1);
 				f.ignore(1, '\n');
 			}
@@ -830,7 +830,7 @@ void DirectorMenu::viewEmployee()
 				if (f.eof())
 					break;
 
-				Customer temp1(id, name, date, address, phone, mail, Acctype, stoi(balance), stoi(duration), stoi(period));
+				Customer temp1(id, name, date, address, phone, mail, Acctype, stof(balance), stoi(duration), stoi(period));
 				temp.push_back(temp1);
 				f.ignore(1, '\n');
 			}
@@ -1500,7 +1500,7 @@ void DirectorMenu::viewTradeHistory()
 		getline(f, _money);
 		f.ignore(1, '\n');
 
-		TradeHistory buffer(_time, _id, _type, stof(_money));
+		TradeHistory buffer(_time, _id, _type, stol(_money));
 		temp.push_back(buffer);
 
 		if (f.eof())

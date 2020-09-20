@@ -677,7 +677,7 @@ void Customer::viewProfile()
 		getline(f, _period, '\n');
 		f.ignore(1, '\n');
 
-		Customer buffer(id, name, DoB, address, phone, email, _acctype, stoi(_balance), stoi(_duration), stoi(_period));
+		Customer buffer(id, name, DoB, address, phone, email, _acctype, stol(_balance), stoi(_duration), stoi(_period));
 		temp.push_back(buffer);
 	}
 	f.close();
@@ -703,7 +703,7 @@ void Customer::viewProfile()
 }
 
 
-void Customer::deposit(int money, string id2) {
+void Customer::deposit(long money, string id2) {
 	ifstream f1;
 
 	string id;
@@ -838,7 +838,7 @@ void Customer::deposit(int money, string id2) {
 
 }
 
-void Customer::saveTradeHistory(string id, string type, int money)
+void Customer::saveTradeHistory(string id, string type, long money)
 {
 	string _time;
 	string _id;
@@ -858,7 +858,7 @@ void Customer::saveTradeHistory(string id, string type, int money)
 
 		if (f.eof())
 			break;
-		TradeHistory buffer(_time, _id, _type, stoi(_money));
+		TradeHistory buffer(_time, _id, _type, stol(_money));
 		temp.push_back(buffer);
 		f.ignore(1, '\n');
 
@@ -1006,7 +1006,7 @@ OPTION:
 	return;
 }
 
-void Customer::withdraw(int money, string id1) {
+void Customer::withdraw(long money, string id1) {
 
 	ifstream f1;
 
@@ -1019,7 +1019,7 @@ void Customer::withdraw(int money, string id1) {
 	string mail;
 	string Acctype;
 
-	int	balance;
+	long balance;
 
 	int	duration;
 	int	period;

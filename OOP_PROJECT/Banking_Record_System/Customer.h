@@ -92,7 +92,7 @@ public:
 	{
 		return _period;
 	}
-	Customer(string id, string name, string birth,string address,string phone,string mail,string type, int balance,int duration,int period)
+	Customer(string id, string name, string birth,string address,string phone,string mail,string type, long balance,int duration,int period)
 	{
 		this->_id = id;
 		this->_name = name;
@@ -124,9 +124,9 @@ public:
 	void deleteAccount();
     float ClacInrest();
 	int gettype();
-	static void withdraw(int money,string id1);
-	static void deposit(int money, string id2);
-	void saveTradeHistory(string id, string type, int money);
+	static void withdraw(long money,string id1);
+	static void deposit(long money, string id2);
+	void saveTradeHistory(string id, string type, long money);
 	void viewTradeHistory();
 };
 
@@ -136,14 +136,14 @@ private:
 	string _time;
 	string _id;
 	string _type;
-	int _money;
+	long _money;
 public:
-	TradeHistory(string id, string type, int money) {
+	TradeHistory(string id, string type, long money) {
 		this->_id = id;
 		this->_type = type;
 		this->_money = money;
 	}
-	TradeHistory(string time, string id, string type, int money) {
+	TradeHistory(string time, string id, string type, long money) {
 		this->_time = time;
 		this->_id = id;
 		this->_type = type;
@@ -152,14 +152,14 @@ public:
 	string getTime() { return _time; }
 	string getId() { return _id; }
 	string getType() { return _type; }
-	float getMoney() { return _money; }
+	long getMoney() { return _money; }
 	//float ClacInrest();
 
-	//void deposit(int money);
+	//void deposit(long money);
 
-	//void withdraw(int money);
+	//void withdraw(long money);
 
-	//void tranfer(int money, Customer& cus);
+	//void tranfer(long money, Customer& cus);
 
 	////Time - deposit account(1),Demand - deposit account(2),payment acc(3)
 	//int gettype();
