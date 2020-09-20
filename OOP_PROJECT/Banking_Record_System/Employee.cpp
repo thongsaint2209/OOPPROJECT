@@ -496,10 +496,9 @@ void Employee::Resign() {
 	f3.open("ResignList.txt", ios::in);
 	if (!f3.is_open())
 		cout << "Cannot open ResignList.txt\n";
-
+	string s1, s2;
 	while (f3.good())
 	{
-		string s1, s2;
 		getline(f3, s1);
 		getline(f3, s2);
 
@@ -507,7 +506,7 @@ void Employee::Resign() {
 			break;
 		id.push_back(s1);
 		r.push_back(s2);
-
+		f3.ignore(1, '\n');
 	}
 	id.push_back(this->_account.username());
 	r.push_back(reason);
@@ -612,10 +611,12 @@ void Employee::reportManager() {
 		getline(f3, s2);
 		if (f3.eof())
 			break;
+
 		_id.push_back(s1);
 		r.push_back(s2);
+		f3.ignore(1, '\n');
 	}
-	_id.push_back(_account.username());
+	_id.push_back(id);
 	r.push_back(reason);
 	fstream f4;
 	f4.open("ReportList.txt", ios::out);
