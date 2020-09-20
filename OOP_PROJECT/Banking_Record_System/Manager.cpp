@@ -1073,7 +1073,7 @@ void ManagerMenu::SolvingReDirector() {
 
 	f2.close();
 
-	int dem;
+	int dem=0;
 	for (int i = 0; i < _requestList2.size(); i++) {
 		if (_requestList2[i].approvalStatus() != 1) {
 			_requestList2.erase(_requestList2.begin() + i);
@@ -1087,6 +1087,7 @@ void ManagerMenu::SolvingReDirector() {
 						a[i]._duration = 0;
 						Employee::tradeHistory("Deposit", a[j].getname(), _requestList2[i].getMoney());
 						//this->_requestList2[i].approvalStatus() == -1;
+						dem++;
 					}
 					if (_requestList2[i].getType() == "Withdraw") {
 						a[j]._balance += a[j].ClacInrest();
@@ -1096,16 +1097,15 @@ void ManagerMenu::SolvingReDirector() {
 							Employee::tradeHistory("Withdraw", a[j].getname(), _requestList2[i].getMoney());
 							//this->_requestList2[i].approvalStatus() == -1;
 						}
-
+						dem++;
 
 					}
-				
-					
-					
 				}
+				
 				//_requestList2.erase(_requestList2.begin() + i);
 			}
 		}
+		
 	}
 	fstream f;
 
@@ -1113,6 +1113,7 @@ void ManagerMenu::SolvingReDirector() {
 
 
 	//f.close();
+
 	
 	fstream f3;
 	f3.open("Customer.txt", ios::out);
@@ -1157,7 +1158,10 @@ void ManagerMenu::SolvingReDirector() {
 	for (int q = 0; q < _ma.size(); q++)
 	{
 		if (_ma[q]._id == _account.username())
+		{
+			for(int g=0;g<dem;g++)
 			_ma[q].IncreaseMerit();
+		}
 		f7 << _ma[q]._id << endl;
 		f7 << _ma[q]._name << endl;
 		f7 << _ma[q]._birth << endl;
