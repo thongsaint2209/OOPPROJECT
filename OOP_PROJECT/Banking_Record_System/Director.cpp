@@ -105,7 +105,7 @@ void DirectorMenu::showMenu()
 					cout << this->getTotalMoney() << endl;
 					_s.readMoney(stoi(this->getTotalMoney()));
 					cout << endl;
-					cout << "=================================\n";
+					cout << "============================================\n";
 					break;
 				}
 				case 4:
